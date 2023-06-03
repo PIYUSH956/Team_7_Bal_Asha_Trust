@@ -8,15 +8,7 @@ import Dashboard from "../Component/Dashboard"
 
 function Page1() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </Router>
+   <h1>I am Home Page </h1>
   );
 }
 
