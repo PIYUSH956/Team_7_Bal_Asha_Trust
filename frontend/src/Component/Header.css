@@ -1,0 +1,30 @@
+.main_card {
+    width: 45%;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.5s;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #faf4f8, #effafc);
+  }
+  
+  .main_card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .main_card .img_rotate {
+    transition: transform 0.5s;
+  }
+
+  .main_card:hover .img_rotate {
+    transform: rotate(15deg);
+  }
+  
+  .card {
+    position: relative;
+  }
+
+  .img_rotate {
+    max-width: 300px;
+    max-height: 200px;
+  }
