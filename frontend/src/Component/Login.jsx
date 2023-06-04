@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Grid from "@mui/material/Grid";
 import "../Css/Header.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -26,18 +26,22 @@ function Login() {
     console.log("welcome");
   };
 
-
   return (
-    <div className="card-container m-5 p-2 text-center">
-      <div className="card main_card col-sm-5">
-        <div className="card-body" >
-          <img src={LoginImage} alt="login" className="img_rotate"/>
+    <Grid
+      container
+      justifyContent="center"
+      textAlign="center"
+      style={{ marginTop: "15px" }}
+    >
+      <Grid item md={6} xs={10}>
+        <div className="main_card">
+          <img src={LoginImage} alt="login" className="img_rotate" />
           <br /> <br /> <br />
           <TextField
             value={email}
             onChange={updateEmail}
             type="email"
-            label= "Enter Email"
+            label="Enter Email"
             variant="standard"
             color="secondary"
             placeholder="abcd@gmail.com"
@@ -51,7 +55,7 @@ function Login() {
             label="Enter Password"
             variant="standard"
             color="secondary"
-            placeholder="******"
+            placeholder="**"
             focused
           />
           <br /> <br /> <br />
@@ -59,8 +63,8 @@ function Login() {
             Login
           </Button>
         </div>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 
