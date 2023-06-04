@@ -1,71 +1,75 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import MenuIcon from "@mui/icons-material/Menu";
+import "../Css/Navbar.css";
 
-function Navbar() {
+function NavBar() {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary m-auto">
-      <div className="container">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="mr-5">
-        <h3> Bal Asha Trust </h3>
-        </div>
+    <>
+      <nav className="navbar">
+        <div className="nav-container">
+          <NavLink exact to="/" className="nav-logo">
+            Bal Asha Trust
+            <HomeIcon />
+          </NavLink>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
                 exact
                 to="/"
                 activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
               >
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
+                exact
                 to="/dashboard"
                 activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
               >
                 Dashboard
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
+                exact
                 to="/login"
                 activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
               >
                 Login
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
-                to="/signup"
+                exact
+                to="/Signup"
                 activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
               >
-                Signup
+                signup
               </NavLink>
             </li>
           </ul>
+          <div className="nav-icon" onClick={handleClick}>
+            <MenuIcon />
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
 
-export default Navbar;
+export default NavBar;
