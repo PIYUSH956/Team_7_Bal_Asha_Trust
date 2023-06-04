@@ -8,7 +8,13 @@ import Navbar from './Component/Navbar';
 import DemoPage from './Pages/DemoPage';
 import CaseManagerDashboard from './Pages/CaseManagerDashboard';
 import ChildDataForm from './Component/ChildDataForm';
+import {useSelector} from 'react-redux';
 function App() {
+
+
+  const state = useSelector((state) => ({ ...state }));
+  console.log(state);
+
   return (
     <>
     <Navbar />
@@ -23,8 +29,8 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/demo" element={<DemoPage />} />
       <Route path="/case-manager" element={<CaseManagerDashboard />} />
-      
-      <Route path="/childDataForm" element={<ChildDataForm />} />
+       
+      <Route path="/child-data-form" element={<ChildDataForm />} />
     </Routes>
     </>
   );

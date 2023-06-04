@@ -19,7 +19,7 @@ exports.signup = async (req, res) => {
          if (!err) {
               
                const x = new User({ email, password: has, username, image, role });
-           
+      
                x.save(function(error,result){
                  if(error){
                   console.error(error);
