@@ -32,10 +32,12 @@ function Signup() {
     console.log("password : " + password);
     console.log("welcome");
   };
+
+
   return (
     <div className="card-container m-2 p-2">
       <br />
-      <div className="card main_card">
+      <div className="card main_card col-sm-5 text-center">
         <div className="card-body">
           <img src={LoginImage} alt="login" className="img_rotate" />
           <br /> <br /> <br />
@@ -43,7 +45,7 @@ function Signup() {
             value={user}
             onChange={updateUser}
             type="text"
-            label="enter user name"
+            label="Enter User Name"
             variant="standard"
             color="secondary"
             focused
@@ -53,7 +55,7 @@ function Signup() {
             value={email}
             onChange={updateEmail}
             type="email"
-            label="enter email"
+            label="Enter Email"
             variant="standard"
             color="secondary"
             focused
@@ -63,7 +65,7 @@ function Signup() {
             value={password}
             onChange={updatePassword}
             type="password"
-            label="enter password"
+            label="Enter Password"
             variant="standard"
             color="secondary"
             focused

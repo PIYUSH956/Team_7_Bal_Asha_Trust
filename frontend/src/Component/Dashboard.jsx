@@ -6,8 +6,8 @@ import children from "./ChildrenDetails";
 const Dashboard = () => {
   return (
     <div>
+      <div className="container text-center">
       <h2> Ground Level Dashboard </h2> <br /> <br />
-      <div className="container">
         <h2> Stage-1 Child </h2> <br />
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {children.map((val) => {

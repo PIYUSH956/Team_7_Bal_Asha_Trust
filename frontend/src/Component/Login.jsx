@@ -28,18 +28,19 @@ function Login() {
 
 
   return (
-    <div className="card-container m-5 p-2">
-      <div className="card main_card">
-        <div className="card-body">
+    <div className="card-container m-5 p-2 text-center">
+      <div className="card main_card col-sm-5">
+        <div className="card-body" >
           <img src={LoginImage} alt="login" className="img_rotate"/>
           <br /> <br /> <br />
           <TextField
             value={email}
             onChange={updateEmail}
             type="email"
-            label="enter email"
+            label= "Enter Email"
             variant="standard"
             color="secondary"
+            placeholder="abcd@gmail.com"
             focused
           />
           <br /> <br /> <br />
@@ -47,9 +48,10 @@ function Login() {
             value={password}
             onChange={updatePassword}
             type="password"
-            label="enter password"
+            label="Enter Password"
             variant="standard"
             color="secondary"
+            placeholder="******"
             focused
           />
           <br /> <br /> <br />

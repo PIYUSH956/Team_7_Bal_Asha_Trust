@@ -1,5 +1,4 @@
 .main_card {
-    width: 45%;
     margin: 0 auto;
     cursor: pointer;
     transition: transform 0.5s, box-shadow 0.5s;
@@ -27,4 +26,5 @@
   .img_rotate {
     max-width: 300px;
     max-height: 200px;
+    overflow: hidden;
   }
