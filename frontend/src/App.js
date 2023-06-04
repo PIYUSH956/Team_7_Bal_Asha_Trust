@@ -5,6 +5,7 @@ import Login from './Component/Login';
 import Dashboard from './Component/Dashboard';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
+import ChildDataForm from './Component/ChildDataForm';
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/childDataForm" element={<ChildDataForm />} />
     </Routes>
     </>
   );
