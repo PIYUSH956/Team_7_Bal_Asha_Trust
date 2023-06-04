@@ -64,10 +64,12 @@ function Signup() {
   }
 
   };
+
+
   return (
     <div className="card-container m-2 p-2">
       <br />
-      <div className="card main_card">
+      <div className="card main_card col-sm-5 text-center">
         <div className="card-body">
         <input type = "file" lable="image" accept = ".jpeg ,.png" onChange={(e)=>{setFile(e.target.files[0])}}/>
           <br /> <br /> <br />

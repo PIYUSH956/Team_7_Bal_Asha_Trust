@@ -1,5 +1,4 @@
 .main_card {
-    width: 45%;
     margin: 0 auto;
     cursor: pointer;
     transition: transform 0.5s, box-shadow 0.5s;
@@ -33,4 +32,5 @@
   }
   .display-b{
     display: inline-block;
+    overflow: hidden;
   }
