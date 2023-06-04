@@ -3,19 +3,22 @@ const Child = require('../models/childSchema');
 
 exports.insertChildData= async (req,res) =>{
 
-    var base64 = req.body.image;
-//    console.log(req.body);    
+    try {
+        const newChild = new Child(req.body);
+        const savedChild = await newChild.save();
+        res.status(200).json(savedChild);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to insert new child' });
+      }
+};
 
-    try{
-    const x = new Child({image:base64});
-    x.save();
-    console.log(x);
-    return res.status(201).json({message:"Successfully Created"});
+exports.updateChildData=async (req,res) =>{
+
+    try {
+
+    }catch(error){
+
     }
-    catch(err){
-        console.log(err);
-        return res.status(400).json({message:err.message});
-    }
-}
 
-
+};

@@ -12,10 +12,11 @@ const {
 // Route to Login
 router.post("/login",  authCheck,  login);
 
-
 // Route to create user
 router.post("/signup", authCheck, signup);
-router.post("/verify", authCheck, verifyAccount);
+
+//verify user 
+router.put("/verify/:id", authCheck, verifyAccount);
 
 
 module.exports = router ;
