@@ -10,9 +10,9 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import PersonalDetailsForm from './PersonalDetailsForm';
-import CaseDetailsForm  from './CaseDetailsForm ';
-import Review from './Review';
+import PersonalDetailsForm from '../Component/PersonalDetailsForm';
+import CaseDetailsForm  from '../Component/CaseDetailsForm ';
+import Review from '../Component/Review';
 import { useState } from 'react';
 
 const steps = ['Personal Details', 'Case Details', 'Review information'];

@@ -7,7 +7,7 @@ import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
 import DemoPage from './Pages/DemoPage';
 import CaseManagerDashboard from './Pages/CaseManagerDashboard';
-import ChildDataForm from './Component/ChildDataForm';
+import ChildDataForm from './Pages/ChildDataForm';
 function App() {
   return (
     <>
@@ -24,7 +24,7 @@ function App() {
       <Route path="/demo" element={<DemoPage />} />
       <Route path="/case-manager" element={<CaseManagerDashboard />} />
       
-      <Route path="/childDataForm" element={<ChildDataForm />} />
+      <Route path="/child-data-form" element={<ChildDataForm />} />
     </Routes>
     </>
   );

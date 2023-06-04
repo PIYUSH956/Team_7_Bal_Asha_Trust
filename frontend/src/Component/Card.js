@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "@mui/material/Button";
-import "./Card.css";
+import "../Css/Card.css";
 import ChildProfile from "./ChildProfile";
 
 function Card(props) {
