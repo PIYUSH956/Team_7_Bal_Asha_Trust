@@ -1,0 +1,53 @@
+const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+
+const User = require("../models/User");
+const {
+    loginValidation
+} = require("../validation");
+const createError = require("http-errors");
+
+
+//login new user
+exports.user_login = async (req, res, next) => {
+    //validating user data
+    const { valid, error } = loginValidation(req.body);
+
+    if (!valid) {
+        next(createError(400, error));
+        return;
+    }
+
+    console.log("user Creatation")
+    console.log(req.body);
+    //checking if the email exsist
+    try {
+        const user = await User.findOne({ email: req.body.email });
+
+        if (!user) {
+            throw createError(404, "Incorrect Email");
+        }
+
+
+
+        const validPass = await bcrypt.compare(req.body.password, user.password);
+        if (!validPass) {
+            next(createError(400, "Incorrect password"));
+            return;
+        }
+        const data = {
+            msg: "user Login"
+        }
+        res.status(200);
+        //   await User.updateOne({email: req.body.email}, {token: req.body.token})
+
+        //create web token
+        //   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+        //   res.header("auth_token", token).send(user);
+    } catch (error) {
+        next(error);
+        return;
+    }
+};
