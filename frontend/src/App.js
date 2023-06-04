@@ -2,14 +2,13 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import Login from './Component/Login';
-import Dashboard from './Pages/RootDashboard';
+import Dashboard from './Pages/Dashboard';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
-import Header from './Component/Header';
 
 import DemoPage from './Pages/DemoPage';
 import CaseManagerDashboard from './Pages/CaseManagerDashboard';
-import ChildDataForm from './Component/ChildDataForm';
+import ChildDataForm from './Pages/ChildDataForm';
 import { useSelector, useDispatch } from 'react-redux';
 import PageNotFound from './Pages/PageNotFound';
 import { useEffect } from 'react';
@@ -37,8 +36,8 @@ function App() {
 
   return (
     <>
-    {/* <Navbar /> */}
-    <Header />
+    <Navbar />
+    {/* <Header /> */}
 
       {/* // All routes will go here */}
 
