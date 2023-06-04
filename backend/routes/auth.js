@@ -4,7 +4,7 @@ const { authCheck } = require("../middlewares/auth");
 const {
   login,
   signup,
-
+  verifyAccount,
 } = require("../controller/auth");
 
 
@@ -15,7 +15,7 @@ router.post("/login",  authCheck,  login);
 
 // Route to create user
 router.post("/signup", authCheck, signup);
-
+router.post("/verify", authCheck, verifyAccount);
 
 
 module.exports = router ;
