@@ -5,6 +5,8 @@ import Login from './Component/Login';
 import Dashboard from './Component/Dashboard';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
+import DemoPage from './Pages/DemoPage';
+import CaseManagerDashboard from './Pages/CaseManagerDashboard';
 function App() {
   return (
     <>
@@ -18,6 +20,9 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/demo" element={<DemoPage />} />
+      <Route path="/case-manager" element={<CaseManagerDashboard />} />
+      
     </Routes>
     </>
   );
