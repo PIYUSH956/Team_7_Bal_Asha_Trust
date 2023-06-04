@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "./Card.js";
-import children from "./ChildrenDetails";
+import Card from "../Component/Card.js";
+import children from "../Component/ChildrenDetails";
 
 
 const Dashboard = () => {

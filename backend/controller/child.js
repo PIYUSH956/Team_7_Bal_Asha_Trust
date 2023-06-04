@@ -1,4 +1,3 @@
-const multer = require('multer');
 const Child = require('../models/childSchema');
 
 exports.insertChildData= async (req,res) =>{

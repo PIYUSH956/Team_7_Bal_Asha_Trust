@@ -1,11 +1,31 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useSelector,useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import "../Css/Navbar.css";
 
 function NavBar() {
   const [click, setClick] = useState(false);
+  var state = useSelector((state) => ({ ...state }));
+  
+  console.log(state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = (e)=>{
+    e.preventDefault();
+    localStorage.clear();
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
+    navigate("/")
+
+  
+  }
 
   const handleClick = () => setClick(!click);
   return (
@@ -29,7 +49,7 @@ function NavBar() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
+            {state.user != null && <li className="nav-item">
               <NavLink
                 exact
                 to="/dashboard"
@@ -39,9 +59,9 @@ function NavBar() {
               >
                 Dashboard
               </NavLink>
-            </li>
+            </li>}
             <li className="nav-item">
-              <NavLink
+              { state.user == null && <NavLink
                 exact
                 to="/login"
                 activeClassName="active"
@@ -49,9 +69,20 @@ function NavBar() {
                 onClick={handleClick}
               >
                 Login
-              </NavLink>
+              </NavLink>}
             </li>
             <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                to="/login"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleLogout}
+              >
+                Logout
+              </NavLink>}
+            </li>
+            {/* <li className="nav-item">
               <NavLink
                 exact
                 to="/Signup"
@@ -61,7 +92,7 @@ function NavBar() {
               >
                 signup
               </NavLink>
-            </li>
+            </li> */}
           </ul>
           <div className="nav-icon" onClick={handleClick}>
             <MenuIcon />

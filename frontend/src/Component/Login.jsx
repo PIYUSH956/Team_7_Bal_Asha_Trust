@@ -4,28 +4,65 @@ import "../Css/Header.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import LoginImage from "../Images/LoginImage.jpg";
-import {useSelector} from 'react-redux'
+import axios from 'axios';
+import { Navigate, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
+
+  const navigate = useNavigate();
+  const state = useSelector((state) => ({ ...state }));
+  let dispatch = useDispatch();
+  console.log(state);
+  
+  if(state.user != null && state.user.role == "root"){
+    navigate("/dashboard");
+  }
+  if(state.user != null && state.user.role == "manager"){
+    navigate("/manager-dashboard");
+  }
+  if(state.user != null && state.user.role == "admin"){
+    navigate("/admin-dashboard");
+  }
 
 
-  const updateEmail = (event) => {
-    setEmail(event.target.value);
-  };
 
-  const updatePassword = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log(email, password);
     e.preventDefault();
     let isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!isValidEmail) alert("not a valid email ");
-    console.log("email : " + email);
-    console.log("password : " + password);
-    console.log("welcome");
+    if (!isValidEmail) { alert("not a valid email "); return; }
+    if (!password || password.length < 6) { alert("not a valid email "); return; }
+
+    try {
+      const res = await axios.post("http://localhost:4000/api/login", { email, password });
+
+      const payload = res.data;
+
+      console.log("Payload",payload);
+      localStorage.setItem("user-detail",JSON.stringify(payload));
+
+      dispatch({
+        type: "LOGGED_IN_USER",
+        payload,
+      });
+
+      alert("Succesfully Logged In");
+      //Role based redirecting  Right now for only root 
+      if(payload.role == "root")
+      navigate("/dashboard");
+      if(payload.role == "manager")
+      navigate("/manager-dashboard");
+      if(payload.role == "admin")
+      navigate("/admin-dashboard");
+    } catch (err) {
+      console.log(err);
+      alert(err.response.data.message);
+    }
+
   };
 
   return (
@@ -41,7 +78,7 @@ function Login() {
           <br /> <br /> <br />
           <TextField
             value={email}
-            onChange={updateEmail}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             label="Enter Email"
             variant="standard"
@@ -52,7 +89,7 @@ function Login() {
           <br /> <br /> <br />
           <TextField
             value={password}
-            onChange={updatePassword}
+            onChange={(e) => { setPassword(e.target.value) }}
             type="password"
             label="Enter Password"
             variant="standard"
