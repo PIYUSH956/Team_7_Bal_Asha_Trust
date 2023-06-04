@@ -5,10 +5,13 @@ import Login from './Component/Login';
 import Dashboard from './Component/Dashboard';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
+import Header from './Component/Header';
+
 function App() {
   return (
     <>
-    <Navbar />
+    {/* <Navbar /> */}
+    <Header />
 
     {/* // All routes will go here */}
 
