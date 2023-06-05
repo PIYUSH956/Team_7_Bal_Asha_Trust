@@ -86,27 +86,18 @@ export default function CaseDetailsForm() {
 
   }
 
-  const totalShelterYears = (e) => {
+  const totalShelterHomeStay= (e) => {
 
     dispatch({
       type: "UPDATE_FORM_DATA",
       payload: {
-        key: "totalShelterYears",
+        key: "totalShelterHomeStay",
         value: e.target.value
       }
     });
   }
 
-  const totalShelterMonths = (e) => {
 
-    dispatch({
-      type: "UPDATE_FORM_DATA",
-      payload: {
-        key: "totalShelterMonths",
-        value: e.target.value
-      }
-    });
-  }
 
   const lastReviewDate = (e) => {
 
@@ -281,33 +272,20 @@ export default function CaseDetailsForm() {
             variant="standard"
           />
         </Grid>
+
         <Grid item xs={12}>
-          <FormLabel id="total-shelter-home-stay">Total Shelter Home Stay</FormLabel>
-        </Grid>
-        <Grid item xs={12} md={6}>
           <TextField
             required
-            type="number"
-            id="stay-year"
-            label="Number of years"
-            value={state.form != null ? state.form.totalShelterYears:""}
-            onChange={totalShelterYears}
+            id="last-cwc-order"
+            label="Total Shelter Home Stay"
             fullWidth
+            value={state.form != null ? state.form.totalShelterHomeStay:""}
+            onChange={totalShelterHomeStay}
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            type="number"
-            id="stay-month"
-            label="Number of months"
-            value={state.form != null ? state.form.totalShelterMonths:""}
-            onChange={totalShelterMonths}
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
+       
+       
 
         <Grid item xs={12}>
           <FormLabel id="cwc-last-review">Child Welfare Committee Last Review Date</FormLabel>

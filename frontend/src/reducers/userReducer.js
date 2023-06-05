@@ -17,6 +17,8 @@ export function formReducer(state = null,action){
                 ...state,
                 [action.payload.key]: action.payload.value,
               };
+        case "CLEAR_DATA":
+            return null;
         default:
             return state;        
     }

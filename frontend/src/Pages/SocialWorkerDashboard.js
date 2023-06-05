@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import {useNavigate} from 'react-router-dom';
 
 
 const SocialWorkerDashboard = () => {
@@ -19,6 +20,14 @@ const SocialWorkerDashboard = () => {
       backgroundColor: ["#003f5c",  "#bc5090", "#ffa600"]
     }
   ];
+  const navigate = useNavigate();
+
+
+  const handleRegistration = (e) =>{
+      e.preventDefault();
+      navigate("/child-data-form");
+
+  }
     return (
 
         <Grid container spacing={3} padding={5} >
@@ -69,7 +78,7 @@ const SocialWorkerDashboard = () => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button  color="primary">
+                <Button  color="primary" onClick={handleRegistration}>
                     Register
                 </Button>
             </CardActions>

@@ -21,27 +21,19 @@ export default function PersonalDetailsForm() {
 
   const dispatch = useDispatch();
 
-  const firstNameChange = (e)=>{
+  const childName = (e)=>{
 
     dispatch({
       type: "UPDATE_FORM_DATA",
       payload:{
-          key:"firstName",
+          key:"childName",
           value:e.target.value
       }
   });
 
   }
 
-  const lastNameChange = (e)=>{
-      dispatch({
-      type: "UPDATE_FORM_DATA",
-      payload:{
-          key:"lastName",
-          value:e.target.value
-      }
-  });
-  }
+
 
   const dobChange = (e)=>{
 
@@ -111,29 +103,16 @@ export default function PersonalDetailsForm() {
       </Typography>
       <Grid container spacing={3}>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             required
             id="firstName"
-            name="firstName"
-            label="First name"
+            name="Name"
+            label="name"
             fullWidth
-            value={state.form != null ? state.form.firstName:""}
+            value={state.form != null ? state.form.childName:""}
             variant="standard"
-            onChange={firstNameChange}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            value={state.form != null ? state.form.lastName:""}
-            variant="standard"
-            onChange={lastNameChange}
+            onChange={childName}
           />
         </Grid>
 
