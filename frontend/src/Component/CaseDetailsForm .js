@@ -282,6 +282,7 @@ export default function CaseDetailsForm() {
             value={state.form != null ? state.form.totalShelterHomeStay:""}
             onChange={totalShelterHomeStay}
             variant="standard"
+            helperText="Format: 3 years and 4 months"
           />
         </Grid>
        
