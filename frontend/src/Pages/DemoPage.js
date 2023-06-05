@@ -34,13 +34,28 @@ function DemoPage() {
         // navigate("/")
     
         dispatch({
-            type: "LOGGED_IN_USER",
-            payload,
+            type: "INSERT_FORM_DATA",
+            payload:{
+                name:"Piii",
+            }
         });
+
+        dispatch({
+            type: "UPDATE_FORM_DATA",
+            payload:{
+                key:"names",
+                value:"Jaiswal"
+            }
+        });
+
+       
     
 
-    },[])
 
+    },[])
+   
+    const ss = useSelector((state) => ({ ...state }));
+    console.log("SSS",ss);
    
 
     function convertToBase64(file) {

@@ -2,9 +2,9 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import Login from './Component/Login';
-import Dashboard from './Pages/RootDashboard';
+import Dashboard from './Pages/Dashboard';
 import Signup from './Component/Signup';
-import Header from './Component/Header';
+import Navbar from './Component/Navbar';
 
 import DemoPage from './Pages/DemoPage';
 import CaseManagerDashboard from './Pages/CaseManagerDashboard';
@@ -36,8 +36,8 @@ function App() {
 
   return (
     <>
-    {/* <Navbar /> */}
-    <Header />
+    <Navbar />
+    {/* <Header /> */}
 
       {/* // All routes will go here */}
 
@@ -56,7 +56,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
 
-        {true && <Route path="/signup" element={<Signup />} />}
+        {(state.user != null && state.user.role == "admin") && <Route path="/signup" element={<Signup />} />}
 
 
         {/* //TESTING PURPOSE */}
