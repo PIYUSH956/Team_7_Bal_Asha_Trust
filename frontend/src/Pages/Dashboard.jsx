@@ -1,13 +1,20 @@
 import React from "react";
 import Card from "../Component/Card.js";
 import children from "../Component/ChildrenDetails";
+import SocialWorkerDashboard from "./SocialWorkerDashboard.js";
 
 
 const Dashboard = () => {
   return (
     <div>
+      <div >
+      <SocialWorkerDashboard/>
+      </div>
+
       <div className="container text-center">
-      <h2> Ground Level Dashboard </h2> <br /> <br />
+      <h2> Ground Level Dashboard </h2> <br /> 
+      
+      <br />
         <h2> Stage-1 Child </h2> <br />
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {children.map((val) => {
