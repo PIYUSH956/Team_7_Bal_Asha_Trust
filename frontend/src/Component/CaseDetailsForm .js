@@ -6,8 +6,200 @@ import FormLabel from '@mui/material/FormLabel';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useSelector, useDispatch } from 'react-redux';
 
-export default function CaseDetailsForm () {
+export default function CaseDetailsForm() {
+
+
+  var state = useSelector((state) => ({ ...state }));
+  console.log(state);
+
+  const dispatch = useDispatch();
+
+  const reasonForAdmission = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "reasonForAdmission",
+        value: e.target.value
+      }
+    });
+
+  }
+
+  const reasonForFlagging = (e) => {
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "reasonForFlagging",
+        value: e.target.value
+      }
+    });
+  }
+
+  const lastVisitSince = (e) => {
+
+  
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "lastVisitSince",
+        value: e.target.value
+      }
+    });
+  }
+
+  const lastCallSince = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "lastCallSince",
+        value: e.target.value
+      }
+    });
+
+  }
+
+  const guardian = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "guardian",
+        value: e.target.value
+      }
+    });
+
+  }
+
+  const siblingDetails = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "siblingDetails",
+        value: e.target.value
+      }
+    });
+
+  }
+
+  const totalShelterHomeStay= (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "totalShelterHomeStay",
+        value: e.target.value
+      }
+    });
+  }
+
+
+
+  const lastReviewDate = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "lastReviewDate",
+        value: e
+      }
+    });
+  }
+
+
+
+  const lastChildWelfareCommiteOrder = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "lastChildWelfareCommiteOrder",
+        value: e.target.value
+      }
+    });
+
+  }
+
+  const caseHistory = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "caseHistory",
+        value: e.target.value
+      }
+    });
+
+  }
+
+  const documentCompleted = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "documentCompleted",
+        value: e.target.value
+      }
+    });
+  }
+
+  const documentPending = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "documentPending",
+        value: e.target.value
+      }
+    });
+  }
+
+  const newsPaperPublicationPending = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "newsPaperPublicationPending",
+        value: e.target.value
+      }
+    });
+  }
+
+
+
+  const policeReportPending = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "policeReportPending",
+        value: e.target.value
+      }
+    });
+  }
+
+  const surrenderPending = (e) => {
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload: {
+        key: "surrenderPending",
+        value: e.target.value
+      }
+    });
+  }
+
+
+
+
+
+
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -19,6 +211,8 @@ export default function CaseDetailsForm () {
             required
             id="admission-reason"
             label="Reason for Admission"
+            value={state.form != null ? state.form.reasonForAdmission:""}
+            onChange={reasonForAdmission}
             fullWidth
             variant="standard"
           />
@@ -29,6 +223,8 @@ export default function CaseDetailsForm () {
             id="flagging-reason"
             label="Reason for Flagging"
             fullWidth
+            value={state.form != null ? state.form.reasonForFlagging:""}
+            onChange={reasonForFlagging}
             variant="standard"
           />
         </Grid>
@@ -38,6 +234,8 @@ export default function CaseDetailsForm () {
             id="last-visit-since"
             label="Last Visit Since"
             fullWidth
+            value={state.form != null ? state.form.lastVisitSince:""}
+            onChange={lastVisitSince}
             variant="standard"
           />
         </Grid>
@@ -47,6 +245,8 @@ export default function CaseDetailsForm () {
             id="last-call-since"
             label="Last Call Since"
             fullWidth
+            value={state.form != null ? state.form.lastCallSince:""}
+            onChange={lastCallSince}
             variant="standard"
           />
         </Grid>
@@ -56,6 +256,8 @@ export default function CaseDetailsForm () {
             id="guardian"
             label="Guardian"
             fullWidth
+            value={state.form != null ? state.form.guardian:""}
+            onChange={guardian}
             variant="standard"
           />
         </Grid>
@@ -65,37 +267,30 @@ export default function CaseDetailsForm () {
             id="sibling-details"
             label="Sibling Details"
             fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-        <FormLabel id="total-shelter-home-stay">Total Shelter Home Stay</FormLabel>
-        </Grid>
-        <Grid item xs={12}  md={6}>
-          <TextField
-            required
-            type="number"
-            id="stay-year"
-            label="Number of years"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}  md={6}>
-          <TextField
-            required
-            type="number"
-            id="stay-month"
-            label="Number of months"
-            fullWidth
+            value={state.form != null ? state.form.siblingDetails:""}
+            onChange={siblingDetails}
             variant="standard"
           />
         </Grid>
 
         <Grid item xs={12}>
+          <TextField
+            required
+            id="last-cwc-order"
+            label="Total Shelter Home Stay"
+            fullWidth
+            value={state.form != null ? state.form.totalShelterHomeStay:""}
+            onChange={totalShelterHomeStay}
+            variant="standard"
+          />
+        </Grid>
+       
+       
+
+        <Grid item xs={12}>
           <FormLabel id="cwc-last-review">Child Welfare Committee Last Review Date</FormLabel>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker />
+            <DatePicker onChange={lastReviewDate} value={state.form != null ? state.form.lastReviewDate:""} />
           </LocalizationProvider>
         </Grid>
 
@@ -105,6 +300,8 @@ export default function CaseDetailsForm () {
             id="last-cwc-order"
             label="Last Child Welfare Committee Order"
             fullWidth
+            value={state.form != null ? state.form.lastChildWelfareCommiteOrder:""}
+            onChange={lastChildWelfareCommiteOrder}
             variant="standard"
           />
         </Grid>
@@ -115,6 +312,8 @@ export default function CaseDetailsForm () {
             id="case-history"
             label="Case History"
             fullWidth
+            value={state.form != null ? state.form.caseHistory:""}
+            onChange={caseHistory}
             variant="standard"
           />
         </Grid>
@@ -124,6 +323,8 @@ export default function CaseDetailsForm () {
             id="documents-completed"
             label="Documents Completed"
             fullWidth
+            value={state.form != null ? state.form.documentCompleted:""}
+            onChange={documentCompleted}
             variant="standard"
           />
         </Grid>
@@ -133,6 +334,8 @@ export default function CaseDetailsForm () {
             id="documents-pending"
             label="Documents Pending"
             fullWidth
+            value={state.form != null ? state.form.documentPending:""}
+            onChange={documentPending}
             variant="standard"
           />
         </Grid>
@@ -143,6 +346,8 @@ export default function CaseDetailsForm () {
             id="newspaper-publication-pending-since"
             label="Newspaper Publication Pending Since"
             fullWidth
+            value={state.form != null ? state.form.newsPaperPublicationPending:""}
+            onChange={newsPaperPublicationPending}
             variant="standard"
           />
         </Grid>
@@ -153,6 +358,8 @@ export default function CaseDetailsForm () {
             id="police-report-pending-since"
             label="Police Report Pending Since"
             fullWidth
+            value={state.form != null ? state.form.policeReportPending:""}
+            onChange={policeReportPending}
             variant="standard"
           />
         </Grid>
@@ -163,6 +370,8 @@ export default function CaseDetailsForm () {
             id="surrender-pending-since"
             label="Surrender Pending Since"
             fullWidth
+            value={state.form != null ? state.form.surrenderPending:""}
+            onChange={surrenderPending}
             variant="standard"
           />
         </Grid>

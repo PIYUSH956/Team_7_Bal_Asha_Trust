@@ -8,3 +8,18 @@ export function userReducer(state = null,action){
             return state;        
     }
 }
+export function formReducer(state = null,action){
+    switch(action.type){
+        case "INSERT_FORM_DATA":
+            return action.payload;
+        case "UPDATE_FORM_DATA":
+            return {
+                ...state,
+                [action.payload.key]: action.payload.value,
+              };
+        case "CLEAR_DATA":
+            return null;
+        default:
+            return state;        
+    }
+}

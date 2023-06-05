@@ -56,7 +56,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
 
-        {true && <Route path="/signup" element={<Signup />} />}
+        {(state.user != null && state.user.role == "admin") && <Route path="/signup" element={<Signup />} />}
 
 
         {/* //TESTING PURPOSE */}

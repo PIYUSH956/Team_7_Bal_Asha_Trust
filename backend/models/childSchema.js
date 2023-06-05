@@ -11,7 +11,7 @@ const ChildSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    shelterHome: {
+    shelter: {
         type: String,
         require: true,
     },
@@ -45,57 +45,55 @@ const ChildSchema = new mongoose.Schema({
     },
     image: {
         type: String
+
     },
     childClassification: {
         type: String,
         require: true,
     },
-    role: {
+    reasonForAdmission: {
+        type: String,
+    }, reasonForFlagging: {
         type: String,
         require: true,
-    }, reason_for_admission: {
-        type: String,
-    }, reasong_for_flagging: {
+    }, lastVisitSince: {
         type: String,
         require: true,
-    }, last_visit_since: {
-        type: String,
-        require: true,
-    }, last_call_since: {
+    }, lastCallSince: {
         type: String,
         require: true,
     }, guardian: {
         type: String,
         require: true,
-    }, sibling_details: {
+    }, siblingDetails: {
         type: String,
         require: true
-    }, total_shelter_home_stay: {
+    }, totalShelterHomeStay: {
         type: String,
         require: true,
         // Year and month input
-    }, cwc_last_review: {
+    }, lastReviewDate: {
         type: String,
         requre: true,
-    }, last_cwc_order: {
+    }, lastChildWelfareCommiteOrder: {
         type: String,
         require: true,
-    }, case_history: {
+    }, caseHistory: {
         type: String,
         require: true,
-    }, documents_completed: {
+    }, documentCompleted: {
         type: String,
 
-    }, documents_pending: {
+    }, documentPending: {
         type: String,
 
-    }, newspaper_publication_pending: {
+    }, newsPaperPublicationPending: {
         type: String,
         require: true,
-    }, final_police_report_pending: {
+    }, policeReportPending: {
         type: String,
         require: true,
-    }, surrender_pending: {
+    }, surrenderPending: {
         type: String,
         require: true,
     },

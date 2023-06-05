@@ -23,8 +23,18 @@ function NavBar() {
       payload: null,
     });
     navigate("/")
+  }
 
-  
+  const handleDashboardClick = (e)=>{
+    e.preventDefault();
+    const role = state.user.role;
+    console.log("ROLE",role);
+    if(role == "root")
+    navigate("/dashboard");
+    else if(role == "admin")
+    navigate("/admin-dashboard");
+    else if(role == "manager")
+    navigate("/manager-dashboard");
   }
 
   const handleClick = () => setClick(!click);
@@ -52,10 +62,9 @@ function NavBar() {
             {state.user != null && <li className="nav-item">
               <NavLink
                 exact
-                to="/dashboard"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
+                onClick={handleDashboardClick}
               >
                 Dashboard
               </NavLink>
@@ -74,7 +83,6 @@ function NavBar() {
             <li className="nav-item">
               { state.user != null && <NavLink
                 exact
-                to="/login"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleLogout}
