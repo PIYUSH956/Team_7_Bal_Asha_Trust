@@ -108,7 +108,7 @@ export default function PersonalDetailsForm() {
             required
             id="firstName"
             name="Name"
-            label="name"
+            label="Child Name"
             fullWidth
             value={state.form != null ? state.form.childName:""}
             variant="standard"
