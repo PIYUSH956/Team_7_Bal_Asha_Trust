@@ -17,5 +17,65 @@
 }
 
 .childCard{
-    padding: 80px 20px;
+    padding: 60px 20px 80px 20px;
 }
+
+/* footer */
+.footer{
+    margin-top: 80px;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0 20px 0;
+    background-color: #394867;
+    color: white;
+}
+
+.footer h4{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+
+.icons {
+    /* color: #f44336; */
+    margin: 0px 13px;
+    cursor: pointer;
+    padding: 18px 2px;
+}
+
+/* our journey css */
+
+.our-journey {
+    margin: 50px 0;
+    /* background-color: #e8f0fe; */
+    padding: 40px;
+  }
+  
+  .our-journey h2 {
+    margin-bottom: 20px;
+    /* font-size: 24px; */
+    /* color: #555; */
+    text-align: center;
+  }
+  
+  .our-journey p {
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+/* about text */
+
+    .about {
+        background-color: #e8f0fe;
+        padding: 80px;
+      }
+      
+      .about-text {
+        font-family: sans-serif;
+        color: #333;
+        text-align: center;
+      }
