@@ -1,5 +1,5 @@
 import React from "react";
-
+import ChildAccountPage from "./ChildAccountPage";
 
 function HomePage() {
   return (
