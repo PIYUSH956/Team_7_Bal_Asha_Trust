@@ -9,6 +9,7 @@ import ChildrenHomeImg from "../Images/ChildrenHome.jpg"
 import AwarenessImg from "../Images/Awareness.jpg"
 import ChildDevelopmentImg from "../Images/Development.jpg"
 import {Box, Card , CardContent, Typography, Button, CardActionArea, CardMedia, CardActions, Grid} from '@mui/material'
+import ChildAccountPage from "./ChildAccountPage";
 
 function HomePage() {
   return (
