@@ -4,16 +4,19 @@ const { ObjectId } = mongoose.Schema;
 const caseSchema = new mongoose.Schema(
   {
     caseManagerID: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"User",
       required: true,
     },
     childID: {
-        type: String,
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Child",
+      required: true,
     },
     assignedWorkerID: {
-        type: String,
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"User",
+      required: true,
     },
     category: {
       type: String,

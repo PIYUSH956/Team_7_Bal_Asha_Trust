@@ -5,27 +5,33 @@ import ChildrenDetails from "./ChildrenDetails";
 import "../Css/ListItemComponent.css";
 import { useEffect } from "react";
 import axios from 'axios';
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const ChildList =  () => {
 
 
  const [childData,setChildData] = useState([]);
+ var state = useSelector((state) => ({ ...state }));
+ console.log(state);
 
 
   useEffect(()=>{
 
     async function fetchData() {
       try {
-        const data = await axios.get("http://localhost:4000/api/get-child-data",{status:""});
+        if(state.user != null && state.user.role == "manager"){
+        const data = await axios.post("http://localhost:4000/api/get-child-data",{status:"notAssigned"});
+        console.log(data);
         setChildData(data.data);
+        }else if(state.user != null && state.user.role == "root"){
+
+        }
       } catch (err) {
           console.log(err);
       }
   }
-  fetchData();
-
-   
+  fetchData();   
    }
   ,[]);
 
@@ -57,12 +63,13 @@ const ChildList =  () => {
             }}
             sx={{ p: 10 }}
           >
-            <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #f9dede, #fa96c1)"}}>Allotted</h3>
+            <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #f9dede, #fa96c1)"}}>{state.user.role == "manager" ?"Not Assigned":"Assigned"}</h3>
             {childData.map((val) => {
              
                 return (
                   <ListItemComponent
-                    key={val.id}
+                    key={val._id}
+                    uid={val._id}
                     id={val.caseNumber}
                     location={val.district + " , " + val.state}
                     age={val.age}
