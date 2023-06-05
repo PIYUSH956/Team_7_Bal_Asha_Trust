@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const {
  insertChildData,
- updateChildData
+ updateChildData,
+ getChildData
 
 } = require("../controller/child");
 
@@ -15,6 +16,8 @@ router.post("/insert-child-data",  insertChildData);
 // route to update child data 
 
 router.put("/update-child",updateChildData);
+
+router.get("/get-child-data",getChildData);
 
 
 

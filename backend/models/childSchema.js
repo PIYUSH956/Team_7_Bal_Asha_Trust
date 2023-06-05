@@ -38,9 +38,9 @@ const ChildSchema = new mongoose.Schema({
         require: true,
         validate: {
             validator: function (v) {
-                return v < 18;
+                return v < 18 &&  v >= 0;
             },
-            message: 'Value must be less than 18.'
+            message: 'Value must be less than 18 and greater then 0'
         }
     },
     image: {
@@ -96,7 +96,11 @@ const ChildSchema = new mongoose.Schema({
     }, surrenderPending: {
         type: String,
         require: true,
-    },
+    }, status:{
+        type:String,
+        enum:["assigned","notAssigned","completed"],
+        default:"notAssigned"
+    }
 },
     { timestamps: true }
 );

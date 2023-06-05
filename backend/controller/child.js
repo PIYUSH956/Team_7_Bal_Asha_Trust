@@ -55,3 +55,20 @@ exports.updateChildData = async (req, res) => {
   }
 
 };
+
+
+exports.getChildData = async (req, res) => {
+
+  try {
+
+    const data = await Child.find({status:req.body.status});
+    return res.status(200).json(data); 
+
+
+  } catch (error) {
+    console.log(error);
+    
+    return res.status(401).json(error.message);
+  }
+
+};
