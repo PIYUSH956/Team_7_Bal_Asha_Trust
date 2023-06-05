@@ -1,35 +1,63 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { useSelector } from 'react-redux';
+import {useState} from 'react';
 
 
 
 // const personalDetail = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const caseDetails = [
-  { name: 'Name', detail: 'XYZ' },
-  { name: 'Date of Birth', detail: '13/03/2018' },
-  { name: 'Gender', detail: 'Male' },
-  { name: 'District', detail: 'Mumbai' },
-  { name: 'State', detail: 'Maharashtra' },
-  { name: 'Shelter Home', detail: 'KVB Trust' },
-  { name: 'Reason of Admission', detail: 'XYZ' },
-  { name: 'Reason of Flagging', detail: 'XYZ' },
-  { name: 'Last Visit Since', detail: '13/03/2021' },
-  { name: 'Last Call Since', detail: '13/03/2021' },
-  { name: 'Guardian', detail: 'No guardian' },
-  { name: 'Sibling Details', detail: 'No' },
-  { name: 'Total Shelter Home Stay', detail: '2 year and 4 months' },
-  { name: 'CWC LAst Review Date', detail: '28/07/2021' },
-  { name: 'Last CWC Order', detail: 'XYZ' },
-  { name: 'Case History', detail: 'XYZ' },
-  { name: 'Documents Completed', detail: 'XYZ' },
-  { name: 'Documents Pending', detail: 'XYZ' },
-  { name: 'Newspaper Publication Pending Since', detail: 'NA' },
-  { name: 'Final Police Report Pending Since', detail: 'NA' },
-  { name: 'Surrender Pending Since', detail: 'NA' },
-];
+
+function formatString(inputString) {
+  // Capitalize the first letter of the string
+  const formattedString = inputString.charAt(0).toUpperCase() + inputString.slice(1);
+
+  // Add a space before every capital letter
+  const finalString = formattedString.replace(/([A-Z])/g, ' $1');
+
+  return finalString;
+}
+
+
+
 
 export default function Review() {
+
+  var state = useSelector((state) => ({ ...state }));
+  console.log(state);
+  var formData = state.form;
+  console.log(formData);
+  const [caseDetails,setCaseDetails] = useState([]);
+
+  React.useEffect(()=>{
+
+
+    var arr = [];
+    for(var key in formData){
+
+      if (formData.hasOwnProperty(key)) {
+        if(formatString(key).includes("Date")){
+          var dateObject = formData[key];
+          console.log(dateObject);
+          var date = dateObject.$D + "/" + dateObject.$M + "/" + dateObject.$y;
+          console.log(date);
+          arr.push([formatString(key), date]);
+        }else{
+          arr.push([formatString(key), formData[key]]);
+        }
+        
+      }
+
+    }
+    setCaseDetails(arr);
+
+  },[])
+
+
+  console.log(caseDetails);
+  
+
+
   return (
     <React.Fragment>
       
@@ -41,13 +69,13 @@ export default function Review() {
             Payment details
           </Typography> */}
           <Grid container>
-            {caseDetails.map((caseDetail) => (
-              <React.Fragment key={caseDetail.name}>
+            {caseDetails.map((caseDetail,i) => (
+              <React.Fragment key={i}>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{caseDetail.name}</Typography>
+                  <Typography gutterBottom>{caseDetail[0]}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{caseDetail.detail}</Typography>
+                  <Typography gutterBottom>{caseDetail[1]}</Typography>
                 </Grid>
               </React.Fragment>
             ))}

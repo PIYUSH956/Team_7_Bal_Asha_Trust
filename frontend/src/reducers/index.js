@@ -1,10 +1,11 @@
 
 import { combineReducers } from "redux";
-import {userReducer} from './userReducer';
+import {formReducer, userReducer} from './userReducer';
 
 
 const rootReducer = combineReducers({
     user : userReducer,
+    form : formReducer,
 })
 
 

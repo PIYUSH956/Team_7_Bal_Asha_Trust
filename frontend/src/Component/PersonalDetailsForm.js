@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -9,8 +10,100 @@ import FormLabel from '@mui/material/FormLabel';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useDispatch,useSelector } from 'react-redux';
 
 export default function PersonalDetailsForm() {
+
+
+
+  var state = useSelector((state) => ({ ...state }));
+  console.log(state);
+
+  const dispatch = useDispatch();
+
+  const firstNameChange = (e)=>{
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload:{
+          key:"firstName",
+          value:e.target.value
+      }
+  });
+
+  }
+
+  const lastNameChange = (e)=>{
+      dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload:{
+          key:"lastName",
+          value:e.target.value
+      }
+  });
+  }
+
+  const dobChange = (e)=>{
+
+    console.log(e);
+    var date = e.$D + "/" + e.$M + "/" + e.$y;
+    console.log(date);
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload:{
+          key:"dateOfBirth",
+          value:e
+      }
+  });
+  }
+
+  const districtChange = (e)=>{
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload:{
+          key:"district",
+          value:e.target.value
+      }
+  });
+    
+  }
+
+  const stateChange = (e)=>{
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload:{
+          key:"state",
+          value:e.target.value
+      }
+  });
+    
+  }
+
+  const shelterChange = (e) =>{
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload:{
+          key:"shelter",
+          value:e.target.value
+      }
+  });
+
+  }
+
+  const genderChange = (e) =>{
+
+    dispatch({
+      type: "UPDATE_FORM_DATA",
+      payload:{
+          key:"gender",
+          value:e.target.value
+      }
+  });
+   
+  }  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -25,7 +118,9 @@ export default function PersonalDetailsForm() {
             name="firstName"
             label="First name"
             fullWidth
+            value={state.form != null ? state.form.firstName:""}
             variant="standard"
+            onChange={firstNameChange}
           />
         </Grid>
 
@@ -36,7 +131,9 @@ export default function PersonalDetailsForm() {
             name="lastName"
             label="Last name"
             fullWidth
+            value={state.form != null ? state.form.lastName:""}
             variant="standard"
+            onChange={lastNameChange}
           />
         </Grid>
 
@@ -44,7 +141,7 @@ export default function PersonalDetailsForm() {
         <Grid item xs={12} sm={6}>
           <FormLabel id="dob-picker">Date of Birth</FormLabel>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker />
+            <DatePicker value={state.form != null ? state.form.dateOfBirth : ""}  onChange={dobChange} />
           </LocalizationProvider>
         </Grid>
         
@@ -53,6 +150,8 @@ export default function PersonalDetailsForm() {
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
+            onChange={genderChange}
+            value={state.form != null ? state.form.gender:""}
             name="row-radio-buttons-group"
           >
             <FormControlLabel value="female" control={<Radio />} label="Female" />
@@ -67,6 +166,8 @@ export default function PersonalDetailsForm() {
             name="district"
             label="District"
             fullWidth
+            value={state.form != null ? state.form.district:""}
+            onChange={districtChange}
             variant="standard"
           />
         </Grid>
@@ -76,7 +177,10 @@ export default function PersonalDetailsForm() {
             id="state"
             name="state"
             label="State"
+            inputFormat="dd.MM.yyyy"
             fullWidth
+            value={state.form != null ? state.form.state:""}
+            onChange={(e)=>stateChange(e)}
             variant="standard"
           />
         </Grid>
@@ -88,6 +192,8 @@ export default function PersonalDetailsForm() {
             name="shelter"
             label="Shelter Home"
             fullWidth
+            value={state.form != null ? state.form.shelter:""}
+            onChange={shelterChange}
             variant="standard"
           />
         </Grid>
