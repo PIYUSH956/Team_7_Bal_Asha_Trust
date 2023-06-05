@@ -16,7 +16,7 @@
   }
 
   .main_card:hover .img_rotate {
-    transform: rotate(15deg);
+    transform: rotate(0deg);
   }
   
   .card {

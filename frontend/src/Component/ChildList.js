@@ -9,13 +9,13 @@ const ChildList = () => {
     <>
       <Box
         sx={{
-          margin: "20px",
-          padding: "10px",
+          margin: "10px",
+          padding: "5px",
           justifyContent: "center",
           textAlign: "center",
         }}
       >
-        <Grid container spacing={2} >
+        <Grid container spacing={1} sx={{justifyContent:'center'}}>
           <Grid
             item
             md={4}
@@ -25,10 +25,9 @@ const ChildList = () => {
               overflowY: "auto",
               overflowX: "hidden",
               backgroundColor: "#f5f5f5",
-              margin: "0",
-              padding: "0",
+              marginTop: "30px",
+              padding: "0px",
             }}
-            sx={{ p: 10 }}
           >
             <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #f9dede, #fa96c1)"}}>Allotted</h3>
             {ChildrenDetails.map((val) => {
@@ -52,13 +51,13 @@ const ChildList = () => {
               overflowY: "auto",
               overflowX: "hidden",
               backgroundColor: "#f5f5f5",
-              margin: "0",
-              padding: "0",
+              marginTop: "30px",
+              padding: "0px",
             }}
           >
             <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #e2def9, #b196fa)"}}> Ongoing </h3>
             {ChildrenDetails.map((val) => {
-              if (val.stage === "2")
+              if (val.stage === "1" || val.stage === "2" || val.stage === "3")
                 return (
                   <ListItemComponent
                     key={val.id}
@@ -68,6 +67,7 @@ const ChildList = () => {
                   />
                 );
             })}
+            <br/>
           </Grid>
           <Grid
             item
@@ -78,8 +78,8 @@ const ChildList = () => {
               overflowY: "auto",
               overflowX: "hidden",
               backgroundColor: "#f5f5f5",
-              margin: "0",
-              padding: "0",
+              marginTop: "30px",
+              padding: "0px",
             }}
           >
             <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #def9e3, #96fab7)"}}> Completed </h3>
@@ -94,6 +94,7 @@ const ChildList = () => {
                   />
                 );
             })}
+            <br/>
           </Grid>
         </Grid>
       </Box>

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Grid from "@mui/material/Grid";
 import "../Css/Header.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from 'axios';
 import LoginImage from "../Images/LoginImage.jpg";
+import Backgroundimg from "../Images/Background.jpg";
+import Fade from '@mui/material/Fade';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 function Signup() {
@@ -13,6 +16,7 @@ function Signup() {
   const [role,setRole] = useState("root");
   const [password, setPassword] = useState("");
   const [file,setFile]= useState();
+  const [loading, setLoading] = React.useState(false);
 
   const updateEmail = (event) => {
     setEmail(event.target.value);
@@ -48,6 +52,8 @@ function Signup() {
     }catch(err){
     console.log(err);
     alert(err.response.data.message);
+    } finally {
+      setLoading(true);
     }
 
 
@@ -66,10 +72,21 @@ function Signup() {
 
   };
   return (
-    <div className="card-container m-2 p-2">
-      <br />
-      <div className="card main_card">
-        <div className="card-body">
+    <div style={{backgroundImage: `url(${Backgroundimg})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    minHeight: "90vh",
+  }}>
+    <br/> <br/>
+    <Grid
+      container
+      justifyContent="center"
+      textAlign="center"
+    >
+      <Grid item md={6} xs={10}>
+      <div className="main_card">
+        <br />
         <input type = "file" lable="image" accept = ".jpeg ,.png" onChange={(e)=>{setFile(e.target.files[0])}}/>
           <br /> <br /> <br />
           <TextField
@@ -102,11 +119,23 @@ function Signup() {
             focused
           />
           <br /> <br /> <br />
+          <Fade
+          in={loading}
+          style={{
+            transitionDelay: loading ? '800ms' : '0ms',
+          }}
+          unmountOnExit
+        >
+          <CircularProgress />
+        </Fade>
+        <br/>
           <Button variant="contained" onClick={handleSubmit}>
             Signup
           </Button>
+          <br/> <br/>
         </div>
-      </div>
+      </Grid>
+    </Grid>
     </div>
   );
 }

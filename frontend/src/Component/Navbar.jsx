@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import Logo from "../Images/logo.png";
 import "../Css/Navbar.css";
 
 function NavBar() {
@@ -43,8 +42,8 @@ function NavBar() {
       <nav className="navbar">
         <div className="nav-container">
           <NavLink exact to="/" className="nav-logo">
-            Bal Asha Trust
-            <HomeIcon />
+            {/* navbar logo added */}
+            <img src={Logo} alt="Bal Asha Trust" />
           </NavLink>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>

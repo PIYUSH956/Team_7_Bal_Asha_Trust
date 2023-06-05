@@ -7,11 +7,18 @@ import LoginImage from "../Images/LoginImage.jpg";
 import axios from 'axios';
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import Backgroundimg from "../Images/Background.jpg";
+
+
+import Fade from '@mui/material/Fade';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const navigate = useNavigate();
   const state = useSelector((state) => ({ ...state }));
@@ -38,6 +45,7 @@ function Login() {
     if (!password || password.length < 6) { alert("not a valid email "); return; }
 
     try {
+      setLoading(true);
       const res = await axios.post("http://localhost:4000/api/login", { email, password });
 
       const payload = res.data;
@@ -61,16 +69,25 @@ function Login() {
     } catch (err) {
       console.log(err);
       alert(err.response.data.message);
+    } finally {
+      setLoading(true);
     }
 
   };
 
   return (
-    <Grid
+    <div style={{backgroundImage: `url(${Backgroundimg})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    minHeight: "90vh",
+  }}>
+
+      <br/> <br/>
+      <Grid
       container
       justifyContent="center"
       textAlign="center"
-      style={{ marginTop: "15px" }}
     >
       <Grid item md={6} xs={10}>
         <div className="main_card">
@@ -98,12 +115,24 @@ function Login() {
             focused
           />
           <br /> <br /> <br />
+          <Fade
+          in={loading}
+          style={{
+            transitionDelay: loading ? '800ms' : '0ms',
+          }}
+          unmountOnExit
+        >
+          <CircularProgress />
+        </Fade>
+        <br/>
           <Button variant="contained" onClick={handleSubmit}>
-            Login
+          Login
           </Button>
+          <br/> <br/>
         </div>
       </Grid>
     </Grid>
+    </div>
   );
 }
 
