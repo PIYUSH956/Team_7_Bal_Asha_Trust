@@ -4,12 +4,11 @@ import HomePage from './Pages/HomePage';
 import Login from './Component/Login';
 import Dashboard from './Pages/RootDashboard';
 import Signup from './Component/Signup';
-import Navbar from './Component/Navbar';
 import Header from './Component/Header';
 
 import DemoPage from './Pages/DemoPage';
 import CaseManagerDashboard from './Pages/CaseManagerDashboard';
-import ChildDataForm from './Component/ChildDataForm';
+import ChildDataForm from './Pages/ChildDataForm';
 import { useSelector, useDispatch } from 'react-redux';
 import PageNotFound from './Pages/PageNotFound';
 import { useEffect } from 'react';
