@@ -1,4 +1,5 @@
-import { Grid, Paper, Typography  , Box, Button, TextField, Input} from "@mui/material";
+import { useState } from "react";
+import { Grid, Paper, Typography  , Box, Button, TextField, Input , Select , MenuItem} from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -15,33 +16,164 @@ const styleTypo = {
 }
 
 export default function ProcessStep4 (){
+
+    const[submitFileDate , setSubmitFileDate] = useState('');
+    const[mer , setMER] = useState('');
+    const[merDate , setMERDate] = useState('');
+    const[csr , setCSR] = useState(''); 
+    const[csrDate , setCSRDate] = useState('');
+    const[followUpDate , setFollowUpDate] = useState(''); 
+
+    const [status1, setStatus1] = useState('pending');
+    const [status3, setStatus3] = useState('pending');
+    const [status2, setStatus2] = useState('pending');
+
+    // for the purpose of setting the color to status field
+    const [backgroundColor1 , setbackgroundColor1] = useState('red');
+    const [backgroundColor2 , setbackgroundColor2] = useState('red');
+    const [backgroundColor3 , setbackgroundColor3] = useState('red');
+
+    const handleStatus1 = (event) => {
+        setStatus1(event.target.value);
+        statusColor1(event);
+    };
+
+    const handleStatus2 = (event) => {
+        setStatus2(event.target.value);
+        statusColor2(event);
+    };
+
+    const handleStatus3 = (event) => {
+        setStatus3(event.target.value);
+        statusColor3(event);
+    };
+
+    const statusColor1 = (event) => {
+        switch (event.target.value) {
+            case 'pending':
+                setbackgroundColor1('red');
+                break;
+            case 'ongoing':
+                setbackgroundColor1('yellow');
+                break;
+            case 'completed':
+                setbackgroundColor1('green');
+                break;
+            default:
+                setbackgroundColor1('');
+        }
+    }
+
+    const statusColor2 = (event) => {
+        switch (event.target.value) {
+            case 'pending':
+                setbackgroundColor2('red');
+                break;
+            case 'ongoing':
+                setbackgroundColor2('yellow');
+                break;
+            case 'completed':
+                setbackgroundColor2('green');
+                break;
+            default:
+                setbackgroundColor2('');
+        }
+    }
+
+    const statusColor3 = (event) => {
+        switch (event.target.value) {
+            case 'pending':
+                setbackgroundColor3('red');
+                break;
+            case 'ongoing':
+                setbackgroundColor3('yellow');
+                break;
+            case 'completed':
+                setbackgroundColor3('green');
+                break;
+            default:
+                setbackgroundColor3('');
+        }
+    }
+
     return(
         <>
             <Grid>
-                <Paper elevation={12} style={paperStyle}>
-                    <Grid>
-                        <h5>Step 4 : </h5>
-                    </Grid>
-
                     <Box sx={{mt:2}}>
                         <h6>Submit File</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}>Submit the child file to the SAA</Typography>
-                            <Input type="file" sx={{ mr : 2 , mb:1, maxWidth : '200px'}}/>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker slotProps={{ textField : {size : 'small'}}} />
+                                <DatePicker 
+                                    value={submitFileDate}
+                                    onChange={(e) => setSubmitFileDate(e.target.value)}
+                                    slotProps={{ textField : {size : 'small'}}} 
+                                />
                             </LocalizationProvider>
+                            <Select value={status1}
+                                    onChange={handleStatus1} 
+                                    sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor1}}>
+                                    <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
+                                        Pending
+                                    </MenuItem>
+                                    <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
+                                        Ongoing
+                                    </MenuItem>
+                                    <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
+                                        Completed
+                                    </MenuItem>
+                                </Select>
                         </Grid>
                     </Box>
 
                     <Box sx={{mt:2}}>
                         <h6>Medical Tests</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Work with SAA and CCI to complete the medical tests , MER and CSR</Typography>
-                            <Input type="file" sx={{ mr : 2 , mb:1, maxWidth : '200px'}}/>
+                            <Typography style={styleTypo}>Work with SAA and CCI to complete the Medical Tests : MER and CSR</Typography>
+                            <Typography style={styleTypo}>Submit both the MER and CSR reports to the below fields respectively.</Typography>
+                            <Grid>
+                            <Input 
+                                value={mer} 
+                                onChange={(e) => setMER(e.target.value)} 
+                                type="file" 
+                                sx={{ mr : 2 , mb:1, maxWidth : '200px'}}
+                            />
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker slotProps={{ textField : {size : 'small'}}} />
+                                <DatePicker 
+                                    value={merDate}
+                                    onChange={(e) => setMERDate(e.target.value)}
+                                    slotProps={{ textField : {size : 'small'}}} 
+                                />
                             </LocalizationProvider>
+                            </Grid>
+                            <Grid mt={1}>
+                                <Input 
+                                    value={csr}
+                                    onChange={(e) => setCSR(e.target.value)}
+                                    type="file" 
+                                    sx={{ mr : 2 , mb:1, maxWidth : '200px'}}
+                                />
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <DatePicker 
+                                        value={csrDate}
+                                        onChange={(e) => setCSRDate(e.target.value)}
+                                        slotProps={{ textField : {size : 'small'}}} 
+                                    />
+                                </LocalizationProvider>
+                                <Select value={status2}
+                                        onChange={handleStatus2} 
+                                        sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor2}}>
+                                        <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
+                                            Pending
+                                        </MenuItem>
+                                        <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
+                                            Ongoing
+                                        </MenuItem>
+                                        <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
+                                            Completed
+                                        </MenuItem>
+                                </Select>
+                            </Grid>
                         </Grid>
                     </Box>
 
@@ -49,10 +181,26 @@ export default function ProcessStep4 (){
                         <h6>Follow-up</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}>Follow-up with SAA to upload child into Caring System</Typography>
-                            <Input type="file" sx={{ mr : 2 , mb:1, maxWidth : '200px'}}/>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker slotProps={{ textField : {size : 'small'}}} />
+                                <DatePicker 
+                                    value={followUpDate}
+                                    onChange={(e) => setFollowUpDate(e.target.value)}
+                                    slotProps={{ textField : {size : 'small'}}} 
+                                />
                             </LocalizationProvider>
+                            <Select value={status3}
+                                    onChange={handleStatus3} 
+                                    sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor3}}>
+                                    <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
+                                        Pending
+                                    </MenuItem>
+                                    <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
+                                        Ongoing
+                                    </MenuItem>
+                                    <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
+                                        Completed
+                                    </MenuItem>
+                                </Select>
                         </Grid>
                     </Box>
 
@@ -60,7 +208,6 @@ export default function ProcessStep4 (){
                         <Button variant="contained">Update Section</Button>
                     </Grid>
 
-                </Paper>
             </Grid>
             
         </>
