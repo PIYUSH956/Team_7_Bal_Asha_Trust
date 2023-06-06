@@ -9,7 +9,7 @@ const {
 
 
 // Route to Insert Child Data
-router.post("/insert-data",  insertChildData);
+router.post("/insert-child-data",  insertChildData);
 
 
 // route to update child data 

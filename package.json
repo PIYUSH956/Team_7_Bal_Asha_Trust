@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@mui/x-data-grid": "^6.6.0"
+    "@mui/x-data-grid": "^6.6.0",
+    "@mui/x-data-grid-generator": "^6.6.0"
   }
 }

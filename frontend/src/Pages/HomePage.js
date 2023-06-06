@@ -1,13 +1,16 @@
 import React from "react";
 import ChildAccountPage from "./ChildAccountPage";
 
-function Page1() {
+function HomePage() {
   return (
-    <>
-    <h1>I am Home Page </h1>
-    <ChildAccountPage />
+   <>
+   
+    
+  <h1>HHHH</h1>
+  <ChildAccountPage /> 
+   
    </>
   );
 }
 
-export default Page1;
+export default HomePage;

@@ -13,7 +13,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PersonalDetailsForm from '../Component/PersonalDetailsForm';
 import CaseDetailsForm  from '../Component/CaseDetailsForm ';
 import Review from '../Component/Review';
+import axios from 'axios';
 import { useState } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
 
 const steps = ['Personal Details', 'Case Details', 'Review information'];
 
@@ -35,9 +37,152 @@ const defaultTheme = createTheme();
 
 export default function ChildDataForm() {
   const [activeStep, setActiveStep] = useState(0);
+  var state = useSelector((state) => ({ ...state }));
+  const [caseNumber,setCaseNumber] = useState();
+  const dispatch = useDispatch();
+  console.log(state);
 
-  const handleNext = () => {
+
+  const handleNext = async () => {
+    if(activeStep == steps.length - 1){
+
+      var form = state.form;
+      if(form == null){
+        alert("Empty Form");
+        return;
+      }
+
+
+      console.log(form);
+      if(form.state == null){
+        alert("No State Entered");
+        return;
+      }
+
+      if(form.district == null){
+        alert("No District Found");
+        return;
+      }
+
+      if(form.shelter == null){
+        alert("No Shelter Home Found");
+        return;
+      }
+
+      if(form.childName == null){
+        alert("No Child Name Found");
+        return;
+      }
+
+      if(form.gender == null){
+        alert("No Gender Found");
+        return;
+      }
+
+      if(form.dateOfBirth == null){
+        alert("No Date of Birth Found");
+        return;
+      }
+
+
+      if(form.reasonForFlagging == null){
+        alert("No Reason for Flagging Found");
+        return;
+      }
+
+      if(form.lastVisitSince == null){
+        alert("No Last Visit Since Found");
+        return;
+      }
+
+      if(form.lastCallSince == null){
+        alert("No Last Call Since Found");
+        return;
+      }
+
+      if(form.guardian == null){
+        alert("No Guardian Found");
+        return;
+      }
+
+      if(form.siblingDetails == null){
+        alert("No Sibling Details Found");
+        return;
+      }
+
+      if(form.totalShelterHomeStay == null){
+        alert("No TotalShelter Home Stay Found");
+        return;
+      }
+
+
+      if(form.siblingDetails == null){
+        alert("No Sibling Details Found");
+        return;
+      }
+
+      if(form.totalShelterHomeStay == null){
+        alert("No TotalShelter Home Stay Found");
+        return;
+      }
+
+
+      if(form.lastReviewDate == null){
+        alert("No Last Review Date Found");
+        return;
+      }
+
+      if(form.lastChildWelfareCommiteOrder == null){
+        alert("No Last CWC order Found");
+        return;
+      }
+
+      
+      if(form.caseHistory == null){
+        alert("No Case History Found");
+        return;
+      }
+
+      if(form.newsPaperPublicationPending == null){
+        alert("No News Paper Publication Pending Found");
+        return;
+      }
+
+
+      if(form.policeReportPending== null){
+        alert("No Police Report Found");
+        return;
+      }
+
+      if(form.surrenderPending == null){
+        alert("No Last CWC order Found");
+        return;
+      }
+
+      
+    
+
+      try{
+        const res = await axios.post("http://localhost:4000/api/insert-child-data", state.form);
+        console.log(res);
+        alert("Saved Successfully");
+        setCaseNumber(res.data.caseNumber);
+        dispatch({
+          type: "CLEAR_DATA",
+          payload: null
+        });
+      }
+      catch(err){
+        alert(err.response.data.message);
+        console.log(err);
+      }
+      setActiveStep(activeStep + 1);
+
+
+    }else{
     setActiveStep(activeStep + 1);
+
+    }
   };
 
   const handleBack = () => {
@@ -76,7 +221,7 @@ export default function ChildDataForm() {
                 Thank you for Registering.
               </Typography>
               <Typography variant="subtitle1">
-                Your child with case number BAT/1539 has been successfully registered.
+                Your child with case number {caseNumber} has been successfully registered.
               </Typography>
             </React.Fragment>
           ) : (

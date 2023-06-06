@@ -7,6 +7,7 @@ import React from "react"
 import PersonalDetails from '../Component/PersonalDetails';
 import CaseDetails from '../Component/CaseDetails';
 import ScheduleDetails from '../Component/ScheduleDetails';
+import ProcessDetails from '../Component/ProcessDetails';
 
 export default function ChildAccountPage(){
 
@@ -37,12 +38,14 @@ export default function ChildAccountPage(){
                                     <Tab label="Personal Details" value='0' />
                                     <Tab label="Case Detail" value='1' />
                                     <Tab label="Schedule" value='2' />
+                                    <Tab label='Process' value='3' />
                                 </TabList>
                             </Box>
 
                             <TabPanel value='0'><PersonalDetails /></TabPanel>
                             <TabPanel value='1'><CaseDetails /></TabPanel>
                             <TabPanel value='2'><ScheduleDetails /></TabPanel>
+                            <TabPanel value='3'><ProcessDetails /></TabPanel>
                         </TabContext>
                     </Box>
 
