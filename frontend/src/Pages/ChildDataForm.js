@@ -167,16 +167,18 @@ export default function ChildDataForm() {
         console.log(res);
         alert("Saved Successfully");
         setCaseNumber(res.data.caseNumber);
+        setActiveStep(activeStep + 1);
         dispatch({
           type: "CLEAR_DATA",
           payload: null
         });
+        
       }
       catch(err){
         alert(err.response.data.message);
         console.log(err);
       }
-      setActiveStep(activeStep + 1);
+      
 
 
     }else{
