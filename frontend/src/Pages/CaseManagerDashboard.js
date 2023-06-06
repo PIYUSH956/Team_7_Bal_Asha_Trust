@@ -32,7 +32,6 @@ function formatString(inputString) {
 
 
 
-
 const CaseManagerDashboard = () => {
     const labels1 = ["Assigned", "Not Assigned", "Completed"],
         labels2 = ["Andheri", "Borivali", "Kurla"],
