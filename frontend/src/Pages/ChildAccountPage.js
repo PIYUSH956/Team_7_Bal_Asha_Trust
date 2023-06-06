@@ -107,7 +107,7 @@ export default function ChildAccountPage(){
                             
                             /></TabPanel>
                             <TabPanel value='2'><ScheduleDetails childID = {childData._id}/></TabPanel>
-                            <TabPanel value='3'><ProcessDetails /></TabPanel>
+                            <TabPanel value='3'><ProcessDetails childData = {childData} /></TabPanel>
                         </TabContext>
                     </Box>
 

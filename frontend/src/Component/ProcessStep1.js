@@ -11,7 +11,7 @@ const styleTypo = {
 }
 
 
-export default function ProcessStep1 (){
+export default function ProcessStep1 (props){
 
     const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ export default function ProcessStep1 (){
         navigate("/pdf-generator");
 
     }
+    const childData = props.childData;
 
 
     const[news1 , setNews1] = useState('');
@@ -197,11 +198,13 @@ export default function ProcessStep1 (){
         }
     }
 
+    console.log("PROCESS STEP",childData);
+
     return(
         <>
             <Grid>
 
-                    <Box sx={{mt:2}}>
+                  {!(childData.childClassification == "surrendered") && <> <Box sx={{mt:2}}>
                         <h6>Newspaper Publication</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}>Get Template for Newspaper</Typography>
@@ -246,7 +249,11 @@ export default function ProcessStep1 (){
                         </Grid>
                     </Box>
 
-                    <Box sx={{mt:5}}>
+                    </>
+                    
+                    }
+
+                    {!(childData.childClassification == "surrendered") && <Box sx={{mt:5}}>
                         <h6>TV Telecasting</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}>Telecast the child details to any television channel</Typography>
@@ -287,9 +294,9 @@ export default function ProcessStep1 (){
                                 />
                             </Grid>
                         </Grid>
-                    </Box>
+                    </Box>}
 
-                    <Box sx={{mt:5}}>
+                    {!(childData.childClassification == "surrendered") && <Box sx={{mt:5}}>
                         <h6>File Missing Complaint</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}>Telecast the child details to any television channel</Typography>
@@ -336,7 +343,7 @@ export default function ProcessStep1 (){
                                 />
                             </Grid>
                         </Grid>
-                    </Box>
+                    </Box>}
 
                     <Box sx={{mt:5}}>
                         <h6>Medical Report (if needed)</h6>

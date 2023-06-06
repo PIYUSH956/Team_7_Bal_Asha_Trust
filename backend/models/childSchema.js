@@ -50,6 +50,7 @@ const ChildSchema = new mongoose.Schema({
     childClassification: {
         type: String,
         require: true,
+        enum:["abandoned","surrendered","orphanedNoGuardian","childAdmittedInCCIByFamily"]
     },
     reasonForAdmission: {
         type: String,
