@@ -4,14 +4,24 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { useNavigate } from 'react-router-dom';
 
 const styleTypo = {
     fontSize : '13px',
 }
 
 
-
 export default function ProcessStep1 (){
+
+    const navigate = useNavigate();
+
+    const handlePdfGeneration = (e) =>{
+        e.preventDefault();
+        navigate("/pdf-generator");
+
+    }
+
+
     const[news1 , setNews1] = useState('');
     const[news1Date , setNews1Date] = useState('');
     const[news2 , setNews2] = useState('');
