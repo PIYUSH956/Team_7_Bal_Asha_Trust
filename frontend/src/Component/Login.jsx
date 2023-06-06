@@ -82,6 +82,7 @@ function Login() {
     backgroundPosition: "center center",
     minHeight: "90vh",
   }}>
+  {/* <div> */}
 
       <br/> <br/>
       <Grid
@@ -92,7 +93,7 @@ function Login() {
       <Grid item md={6} xs={10}>
         <div className="main_card">
           <img src={LoginImage} alt="login" className="img_rotate" />
-          <br /> <br /> <br />
+          <br /> <br />
           <TextField
             value={email}
             onChange={(e) => setEmail(e.target.value)}

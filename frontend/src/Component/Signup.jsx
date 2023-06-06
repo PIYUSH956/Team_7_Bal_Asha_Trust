@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import "../Css/Header.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from 'axios';
-import LoginImage from "../Images/LoginImage.jpg";
+import UploadImg from "../Images/Upload-img.jpg"
 import Backgroundimg from "../Images/Background.jpg";
 import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -17,6 +17,20 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [file,setFile]= useState();
   const [loading, setLoading] = React.useState(false);
+  const [img, setImg] = useState(UploadImg);
+  const fileInputRef = useRef(null);
+
+  const onImageIconClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const onImageChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setImg(URL.createObjectURL(selectedFile));
+    }
+  };
 
   const updateEmail = (event) => {
     setEmail(event.target.value);
@@ -37,7 +51,7 @@ function Signup() {
     if(!user) {alert("not a valid user"); return;}
     if (!password || password.length < 6 ) {alert("not a valid password"); return;}
 
-
+    
     const base64 = await convertToBase64(file);
     console.log("user : " + user);
     console.log("email : " + email);
@@ -85,10 +99,30 @@ function Signup() {
       textAlign="center"
     >
       <Grid item md={6} xs={10}>
-      <div className="main_card">
+      <div className="main_card" style={{justifyContent:'center'}}>
         <br />
-        <input type = "file" lable="image" accept = ".jpeg ,.png" onChange={(e)=>{setFile(e.target.files[0])}}/>
-          <br /> <br /> <br />
+        {/* input field modified  */}
+        <div>
+        <label htmlFor="fileInput">
+                <img
+                  src={img}
+                  alt=""
+                  className="img-upload"
+                  onClick={onImageIconClick}
+                />
+              </label>
+              <input
+                id="fileInput"
+                type="file"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                accept=".jpeg,.png"
+                onChange={onImageChange}
+              />
+      </div>
+         {/* previous input field */}
+        {/* <input type = "file" lable="image" accept = ".jpeg ,.png" onChange={(e)=>{setFile(e.target.files[0])}}/> */}
+          <br /> 
           <TextField
             value={user}
             onChange={updateUser}
@@ -98,7 +132,7 @@ function Signup() {
             color="secondary"
             focused
           />
-          <br /> <br /> <br />
+          <br /> <br />
           <TextField
             value={email}
             onChange={updateEmail}
@@ -108,7 +142,7 @@ function Signup() {
             color="secondary"
             focused
           />
-          <br /> <br /> <br />
+          <br /> <br />
           <TextField
             value={password}
             onChange={updatePassword}
@@ -118,7 +152,7 @@ function Signup() {
             color="secondary"
             focused
           />
-          <br /> <br /> <br />
+          <br />
           <Fade
           in={loading}
           style={{
@@ -132,7 +166,7 @@ function Signup() {
           <Button variant="contained" onClick={handleSubmit}>
             Signup
           </Button>
-          <br/> <br/>
+          <br/> <br />
         </div>
       </Grid>
     </Grid>
