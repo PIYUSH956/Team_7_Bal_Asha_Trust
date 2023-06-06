@@ -14,7 +14,6 @@ import ChildAccountPage from "./ChildAccountPage";
 function HomePage() {
   return (
    <>
-   
    <section className="header-img">
      <div className="header-text-box">
      <Typography sx={{fontSize:"100px", fontFamily:"initial"}}>Bal Asha Trust</Typography>
@@ -170,9 +169,6 @@ function HomePage() {
         </div>
         <p>Bal Asha © 2019 | All Rights Reserved.</p>
     </section>
-
-   
-   
    
    </>
   );
