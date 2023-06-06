@@ -3,14 +3,24 @@ import { Grid, Select, Typography  , Button , Box, MenuItem, TextField, Input} f
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {useNavigate} from 'react-router-dom';
 
 const styleTypo = {
     fontSize : '13px',
 }
 
 
-
 export default function ProcessStep1 (){
+
+    const navigate = useNavigate();
+
+    const handlePdfGeneration = (e) =>{
+        e.preventDefault();
+        navigate("/pdf-generator");
+
+    }
+
+
     const[news1 , setNews1] = useState('');
     const[news1Date , setNews1Date] = useState('');
     const[news2 , setNews2] = useState('');
@@ -148,7 +158,7 @@ export default function ProcessStep1 (){
                     <Box sx={{mt:2}}>
                         <h6>Newspaper Publication</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Get Template for Newspaper</Typography>
+                            <Button style={styleTypo} onClick={handlePdfGeneration}>Get Template for Newspaper</Button>
                             <Typography style={styleTypo}>Print it into 2 National Newspaper</Typography>
                             <Grid>
                                 <TextField
