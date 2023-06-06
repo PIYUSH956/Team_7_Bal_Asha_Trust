@@ -3,41 +3,8 @@ import { Box, Grid } from "@mui/material";
 import ListItemComponent from "./ListItemComponent";
 import ChildrenDetails from "./ChildrenDetails";
 import "../Css/ListItemComponent.css";
-import { useEffect } from "react";
-import axios from 'axios';
-import { useSelector } from "react-redux";
-import { useState } from "react";
 
-const ChildList =  () => {
-
-
- const [childData,setChildData] = useState([]);
- var state = useSelector((state) => ({ ...state }));
- console.log(state);
-
-
-  useEffect(()=>{
-
-    async function fetchData() {
-      try {
-        if(state.user != null && state.user.role == "manager"){
-        const data = await axios.post("http://localhost:4000/api/get-child-data",{status:"notAssigned"});
-        console.log(data);
-        setChildData(data.data);
-        }else if(state.user != null && state.user.role == "root"){
-
-        }
-      } catch (err) {
-          console.log(err);
-      }
-  }
-  fetchData();   
-   }
-  ,[]);
-
-  console.log(childData);
-
-
+const CaseManagerList = () => {
   return (
     <>
       <Box
@@ -48,29 +15,28 @@ const ChildList =  () => {
           textAlign: "center",
         }}
       >
-        <Grid container spacing={1} sx={{justifyContent:'center'}}>
+        <Grid container sx={{justifyContent:'center'}}>
           <Grid
             item
-            md={4}
+            lg={3}
+            md={6}
             xs={11}
             style={{
-              maxHeight: '600px',
+              maxHeight: 600,
               overflowY: "auto",
               overflowX: "hidden",
               backgroundColor: "#f5f5f5",
               marginTop: "30px",
-              padding: "0px",
             }}
           >
-            <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #f9dede, #fa96c1)"}}>{state.user.role == "manager" ?"Not Assigned":"Assigned"}</h3>
-            {childData.map((val) => {
-             
+            <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #f9dede, #fa96c1)"}}>Allotted</h3>
+            {ChildrenDetails.map((val) => {
+              if (val.stage === "1" || val.stage === "2" || val.stage === "3")
                 return (
                   <ListItemComponent
-                    key={val._id}
-                    uid={val._id}
-                    id={val.caseNumber}
-                    location={val.district + " , " + val.state}
+                    key={val.id}
+                    id={"BAT_" + val.id}
+                    location={val.location}
                     age={val.age}
                   />
                 );
@@ -78,15 +44,15 @@ const ChildList =  () => {
           </Grid>
           <Grid
             item
-            md={4}
+            lg={3}
+            md={6}
             xs={11}
             style={{
-              maxHeight: '600px',
+              maxHeight: 600,
               overflowY: "auto",
               overflowX: "hidden",
               backgroundColor: "#f5f5f5",
               marginTop: "30px",
-              padding: "0px",
             }}
           >
             <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #e2def9, #b196fa)"}}> Ongoing </h3>
@@ -105,15 +71,15 @@ const ChildList =  () => {
           </Grid>
           <Grid
             item
-            md={4}
+            lg={3}
+            md={6}
             xs={11}
             style={{
-              maxHeight: '600px',
+              maxHeight: 600,
               overflowY: "auto",
               overflowX: "hidden",
               backgroundColor: "#f5f5f5",
               marginTop: "30px",
-              padding: "0px",
             }}
           >
             <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #def9e3, #96fab7)"}}> Completed </h3>
@@ -130,10 +96,37 @@ const ChildList =  () => {
             })}
             <br/>
           </Grid>
+          <Grid
+            item
+            lg={3}
+            md={6}
+            xs={11}
+            style={{
+              maxHeight: 600,
+              overflowY: "auto",
+              overflowX: "hidden",
+              backgroundColor: "#f5f5f5",
+              marginTop: "30px",
+            }}
+          >
+            <h3 className="list-heading" style={{background:"linear-gradient(to bottom right, #f9dede, #fa96c1)"}}>Heading</h3>
+            {ChildrenDetails.map((val) => {
+              if (val.stage === "1" || val.stage === "2" || val.stage === "3")
+                return (
+                  <ListItemComponent
+                    key={val.id}
+                    id={"BAT_" + val.id}
+                    location={val.location}
+                    age={val.age}
+                  />
+                );
+            })}
+          </Grid>
         </Grid>
       </Box>
+
     </>
   );
 };
 
-export default ChildList;
+export default CaseManagerList;

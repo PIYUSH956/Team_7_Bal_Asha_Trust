@@ -5,7 +5,6 @@ import Login from './Component/Login';
 import Dashboard from './Pages/Dashboard';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
-
 import DemoPage from './Pages/DemoPage';
 import CaseManagerDashboard from './Pages/CaseManagerDashboard';
 import ChildDataForm from './Pages/ChildDataForm';
@@ -14,6 +13,7 @@ import PageNotFound from './Pages/PageNotFound';
 import { useEffect } from 'react';
 import AdminDashboard from './Pages/AdminDashboard';
 import ChildAccountPage from './Pages/ChildAccountPage';
+import PdfGenerator from './Component/PdfGenerator';
 function App() {
 
   let dispatch = useDispatch();
@@ -44,6 +44,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        <Route path="/pdf-generator" element={<PdfGenerator />} />
 
         <Route path="*" element={<PageNotFound />} />
 

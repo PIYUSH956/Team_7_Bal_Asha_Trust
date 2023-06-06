@@ -7,6 +7,8 @@ import React from "react"
 import PersonalDetails from '../Component/PersonalDetails';
 import CaseDetails from '../Component/CaseDetails';
 import ScheduleDetails from '../Component/ScheduleDetails';
+import ProcessDetails from '../Component/ProcessDetails';
+
 import {useParams} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -62,6 +64,7 @@ export default function ChildAccountPage(){
                                     <Tab label="Personal Details" value='0' />
                                     <Tab label="Case Detail" value='1' />
                                     <Tab label="Schedule" value='2' />
+                                    <Tab label='Process' value='3' />
                                 </TabList>
                             </Box>
 
@@ -101,6 +104,7 @@ export default function ChildAccountPage(){
                             
                             /></TabPanel>
                             <TabPanel value='2'><ScheduleDetails data = {childData}/></TabPanel>
+                            <TabPanel value='3'><ProcessDetails /></TabPanel>
                         </TabContext>
                     </Box>
 
