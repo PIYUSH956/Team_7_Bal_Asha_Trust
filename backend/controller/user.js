@@ -57,7 +57,7 @@ exports.getAllUser = async (req, res, next) => {
 exports.getSocialWorker = async (req, res) => {
 
     try {
-        const user = await User.find({ role: 'social worker' });
+        const user = await User.find({ role: 'root' });
         if (user) {
             res.status(200).send(user);
         } else {

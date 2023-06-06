@@ -36,14 +36,14 @@ exports.insertChildData = async (req, res) => {
 
   console.log(req.body);
 
-    try {
-        const newChild = new Child(req.body);
-        const savedChild = await newChild.save();
-        res.status(200).json(savedChild);
-      } catch (error) {
-        console.error(error.message);
-        res.status(500).json({ message: error.message });
-      }
+  try {
+    const newChild = new Child(req.body);
+    const savedChild = await newChild.save();
+    res.status(200).json(savedChild);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
 };
 
 exports.updateChildData = async (req, res) => {
@@ -52,6 +52,44 @@ exports.updateChildData = async (req, res) => {
 
   } catch (error) {
 
+  }
+
+};
+
+
+exports.getChildData = async (req, res) => {
+
+  console.log(req.body);
+  try {
+
+    if (req.body.status != null) {
+      const data = await Child.find({ status: req.body.status });
+      return res.status(200).json(data);
+    }else if(req.body._id != null){
+      const data = await Child.find({ _id: req.body._id });
+      return res.status(200).json(data);
+    }
+  } catch (error) {
+    console.log(error);
+
+    return res.status(401).json(error.message);
+  }
+
+};
+
+exports.getAllChildData = async (req, res) => {
+
+  console.log(req.body);
+  try {
+
+   
+      const data = await Child.find({ });
+      return res.status(200).json(data);
+   
+  } catch (error) {
+    console.log(error);
+
+    return res.status(401).json(error.message);
   }
 
 };

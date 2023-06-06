@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const {
  insertChildData,
- updateChildData
+ updateChildData,
+ getChildData,
+ getAllChildData
 
 } = require("../controller/child");
 
@@ -16,6 +18,9 @@ router.post("/insert-child-data",  insertChildData);
 
 router.put("/update-child",updateChildData);
 
+router.post("/get-child-data",getChildData);
+
+router.post("/get-all-child-data",getAllChildData);
 
 
 module.exports = router ;

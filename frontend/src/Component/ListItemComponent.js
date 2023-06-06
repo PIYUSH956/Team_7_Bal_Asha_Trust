@@ -7,10 +7,13 @@ import {
   Typography
 } from "@mui/material";
 import "../Css/ListItemComponent.css";
-
+import { useNavigate } from "react-router-dom";
 const ListItemComponent = (props) => {
+  const navigate = useNavigate();
   const handleClick = (event) => {
-    console.log("clicked on " + props.id);
+
+    console.log("clicked on " + props.uid);
+    navigate(`/profile/${props.uid}`);
   };
 
   return (
