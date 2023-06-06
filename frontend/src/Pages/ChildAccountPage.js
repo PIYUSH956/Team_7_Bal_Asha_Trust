@@ -9,6 +9,10 @@ import CaseDetails from '../Component/CaseDetails';
 import ScheduleDetails from '../Component/ScheduleDetails';
 import ProcessDetails from '../Component/ProcessDetails';
 
+import {useParams} from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 export default function ChildAccountPage(){
 
     const paperStyle = {
@@ -17,7 +21,29 @@ export default function ChildAccountPage(){
         margin:'50px auto',
     }
 
-    const [value, setValue] = React.useState(0);
+    const uid = useParams().id;
+    console.log(uid);
+
+    const [value, setValue] = React.useState('0');
+    const [childData,setChildData] = useState({}); 
+
+
+
+  useEffect(()=>{
+
+    async function fetchData() {
+      try {
+        
+        const data = await axios.post("http://localhost:4000/api/get-child-data",{_id:uid});
+        console.log(data);
+        setChildData(data.data[0]);
+      } catch (err) {
+          console.log(err);
+      }
+  }
+  fetchData();   
+   }
+  ,[]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -42,9 +68,42 @@ export default function ChildAccountPage(){
                                 </TabList>
                             </Box>
 
-                            <TabPanel value='0'><PersonalDetails /></TabPanel>
-                            <TabPanel value='1'><CaseDetails /></TabPanel>
-                            <TabPanel value='2'><ScheduleDetails /></TabPanel>
+                            <TabPanel value='0'><PersonalDetails 
+                                 image = {childData.image}
+                                 caseNumber = {childData.caseNumber}
+                                 childName = {childData.childName}
+                                 gender = {childData.gender}
+                                 dateOfBirth  = {childData.dateOfBirth}
+                                 district = {childData.district}
+                                 state = {childData.state}
+                                 shelterHome = {childData.shelter}
+                            /></TabPanel>
+                            <TabPanel value='1'>
+                                
+                                <CaseDetails 
+                            
+                                  reasonForAdmission = {childData.reasonForAdmission}
+                                  reasonForFlagging = {childData.reasonForFlagging}
+                                  caseHistory = {childData.caseHistory}
+                                  documentCompleted={childData.documentCompleted}
+                                  documentPending = {childData.documentPending}
+                                  lastVisitSince = {childData.lastVisitSince}
+                                  lastCallSince = {childData.lastCallSince}
+                                  totalShelterHomeStay = {childData.totalShelterHomeStay}
+                                  newsPaperPublicationPending={childData.newsPaperPublicationPending}
+                                  policeReportPending = {childData.policeReportPending}
+                                  surrenderPending = {childData.surrenderPending}
+                                  lastReviewDate = {childData.lastReviewDate}
+                                  lastChildWelfareCommiteOrder = {childData.lastChildWelfareCommiteOrder}
+                                  guardian = {childData.guardian}
+                                  siblingDetails = {childData.siblingDetails}
+                            
+                            
+                            
+                            
+                            
+                            /></TabPanel>
+                            <TabPanel value='2'><ScheduleDetails data = {childData}/></TabPanel>
                             <TabPanel value='3'><ProcessDetails /></TabPanel>
                         </TabContext>
                     </Box>

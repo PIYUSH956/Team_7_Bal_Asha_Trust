@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PageNotFound from './Pages/PageNotFound';
 import { useEffect } from 'react';
 import AdminDashboard from './Pages/AdminDashboard';
+import ChildAccountPage from './Pages/ChildAccountPage';
 function App() {
 
   let dispatch = useDispatch();
@@ -45,6 +46,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="*" element={<PageNotFound />} />
+
+        {state.user  != null && <Route path="/profile/:id" element={<ChildAccountPage />} />}
 
         {(state.user != null && state.user.role == "root") &&  <Route path="/dashboard" element={<Dashboard />} /> }
 
