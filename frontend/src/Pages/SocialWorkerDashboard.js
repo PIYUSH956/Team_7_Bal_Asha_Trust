@@ -8,6 +8,22 @@ import {Typography, Box} from '@mui/material/';
 import { Button } from '@mui/material';
 import ChildList from "../Component/ChildList";
 import { Avatar } from '@material-ui/core';
+import { useEffect } from "react";
+import axios from "axios";
+import {useSelector} from 'react-redux';
+import { useState } from "react";
+
+
+const generateRandomColors = (numColors) => {
+    const colors = [];
+    for (let i = 0; i < numColors; i++) {
+        const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+            Math.random() * 256
+        )}, ${Math.floor(Math.random() * 256)}, 0.6)`;
+        colors.push(color);
+    }
+    return colors;
+};
 
 
 const SocialWorkerDashboard = () => {
@@ -21,11 +37,70 @@ const SocialWorkerDashboard = () => {
   const navigate = useNavigate();
 
 
+  var state = useSelector((state) => ({ ...state }));
+
+
+  const [childData,setChildData] = useState([]);
+  const [label1, setLabel1] = useState([]);
+  const [dataset1, setDataset1] = useState([]);
+
+
   const handleRegistration = (e) =>{
       e.preventDefault();
       navigate("/child-data-form");
-
   }
+
+
+  useEffect(() => {
+
+    async function fetchData() {
+        try {
+
+
+            function createLabelAndCount1(data) {
+                const cases = {};
+
+                for (const item of data) {
+                    const status = item.childID.status;
+                    if (status in cases) {
+                        cases[status] += 1;
+                    } else {
+                        cases[status] = 1;
+                    }
+                }
+                const labels = Object.keys(cases);
+                const ldata = Object.values(cases);
+                const backgroundColor = generateRandomColors(labels.length);
+
+                return {
+                    labels: labels,
+                    count: [{data:ldata,backgroundColor}]
+                };
+            }
+
+            if (state.user != null) {
+                var data = await axios.post("http://localhost:4000/api/get-assign-case",{assignedWorkerID:state.user._id});
+                data = data.data;
+                setChildData(data);
+                var lbl = createLabelAndCount1(data);
+
+
+                setLabel1(lbl.labels);
+                setDataset1(lbl.count);
+
+            } 
+        } catch (err) {
+            console.log(err);
+        }
+
+
+
+    }
+    fetchData();
+}
+    , []);
+
+
     return (
 
         <>
@@ -55,8 +130,8 @@ const SocialWorkerDashboard = () => {
                     width: 1000,
                 }}
                 data={{
-                    labels: labels,
-                    datasets: datasets
+                    labels: label1,
+                    datasets: dataset1
                 }}
             />
         </Grid>
@@ -82,7 +157,7 @@ const SocialWorkerDashboard = () => {
         </Grid>
         <Grid item xs={12} md={2}></Grid>
         </Grid>
-        <ChildList />
+        <ChildList data = {childData} />
         </>      
     );
 }

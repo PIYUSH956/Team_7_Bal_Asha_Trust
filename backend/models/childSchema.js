@@ -98,7 +98,7 @@ const ChildSchema = new mongoose.Schema({
         require: true,
     }, status:{
         type:String,
-        enum:["assigned","notAssigned","completed"],
+        enum:["assigned","notAssigned","onGoing","completed"],
         default:"notAssigned"
     }
 },
