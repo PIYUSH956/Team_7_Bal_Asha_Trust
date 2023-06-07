@@ -3,6 +3,8 @@ import { Grid, Paper, Typography ,Select , MenuItem , Box, Button, TextField, In
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+
 import Brightness1RoundedIcon from '@mui/icons-material/Brightness1Rounded';
 
 const paperStyle = {
@@ -16,14 +18,22 @@ const styleTypo = {
 }
 
 export default function ProcessStep3 (){
-    const [submitCaseDate , setSubmitCaseDate] = useState('');
+    const [submitCaseDate , setSubmitCaseDate] = useState();
     const [lfa , setLFA] = useState('');
-    const [lfaDate , setLFADate] = useState('');
-    const [submitLatterDate , setSubmitLatterDate] = useState('');
+    const [lfaDate , setLFADate] = useState();
+    const [submitLatterDate , setSubmitLatterDate] = useState();
+    const [desc1 , setDesc1] = useState('');
+    const [desc2 , setDesc2] = useState('');
+    const [desc3 , setDesc3] = useState('');
     const [status1, setStatus1] = useState('pending');
     const [status2, setStatus2] = useState('pending');
     const [status3, setStatus3] = useState('pending');
 
+    const downloadLFA = (event) => {
+
+    }
+
+    // For the purpose of setting the color to status field
     const [backgroundColor1 , setbackgroundColor1] = useState('red');
     const [backgroundColor2 , setbackgroundColor2] = useState('red');
     const [backgroundColor3 , setbackgroundColor3] = useState('red');
@@ -96,8 +106,9 @@ export default function ProcessStep3 (){
             <Grid>
 
                     <Box sx={{mt:2}}>
-                        <h6>Submit Case to CWC</h6>
+                        <h6>Submit Case to Child Welfare Committee(CWC)</h6>
                         <Grid sx={{pl:2}}>
+                            <Typography style={styleTypo}>Submit the case to Child Welfare Committee(CWC) for getting the legally free for adoption (LFA) certificate</Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
                                     value={submitCaseDate}
@@ -118,13 +129,22 @@ export default function ProcessStep3 (){
                                         Completed
                                     </MenuItem>
                                 </Select>
+                                <Grid mt={1}>
+                                    <TextField 
+                                        value={desc1}
+                                        onChange={(e) => setDesc1(e.target.value)}
+                                        multiline 
+                                        maxRows={3} 
+                                        placeholder='Description' 
+                                    />
+                                </Grid>
                         </Grid>
                     </Box>
 
                     <Box sx={{mt:2}}>
-                        <h6>Receive LFA</h6>
+                        <h6>Receive Legally Free for Adoption(LFA) Certificate</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>CWC will issue the LFA to the CCI/SSA</Typography>
+                            <Typography style={styleTypo}>Child Welfare Committee(CWC) will issue the LFA to the Child Care Institution(CCI)/Specialised Adoption Agencies(SSA)</Typography>
                             <Input 
                                 value={lfa}
                                 onChange={(e) => setLFA(e.target.value)}
@@ -151,12 +171,29 @@ export default function ProcessStep3 (){
                                         Completed
                                     </MenuItem>
                                 </Select>
+                                <Button
+                                    onClick={downloadLFA} 
+                                    variant='contained' 
+                                    sx={{ml:1}}
+                                >
+                                    <FileDownloadIcon />
+                                </Button>
+                                <Grid mt={1}>
+                                    <TextField 
+                                        value={desc2}
+                                        onChange={(e) => setDesc2(e.target.value)}
+                                        multiline 
+                                        maxRows={3} 
+                                        placeholder='Description' 
+                                    />
+                            </Grid>
                         </Grid>
                     </Box>
 
                     <Box sx={{mt:2}}>
                         <h6>Submit Letter</h6>
                         <Grid sx={{pl:2}}>
+                        <Typography style={styleTypo}>Submit letter to District Child Protection Unit(DCPU) to link the child to the relevant (Sppacialised Adoption Agencies)SAA</Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
                                     value={submitLatterDate}
@@ -176,6 +213,15 @@ export default function ProcessStep3 (){
                                         Completed
                                     </MenuItem>
                                 </Select>
+                                <Grid mt={1}>
+                                    <TextField 
+                                        value={desc3}
+                                        onChange={(e) => setDesc3(e.target.value)}
+                                        multiline 
+                                        maxRows={3} 
+                                        placeholder='Description' 
+                                    />
+                            </Grid>
                         </Grid>
                     </Box>
 
