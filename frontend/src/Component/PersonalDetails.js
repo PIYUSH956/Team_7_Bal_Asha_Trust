@@ -22,25 +22,18 @@ function formatDate(dateString) {
   
     return `${day}/${month}/${year}`;
   }
+  function formatString(inputString) {
+    if(inputString == null) return "";
+    const formattedString = inputString.charAt(0).toUpperCase() + inputString.slice(1);
+
+    const finalString = formattedString.replace(/([A-Z])/g, ' $1');
+
+    return finalString;
+}
 
 export default function PersonalDetails(props) {
 
-    const [profilePhoto, setProfilePhoto] = useState(null);
-    const [username, setUsername] = useState('Amit Kumar');
-    const [dobValue, setDobValue] = useState(dayjs('2022-04-17'));
-    const [gender, setGender] = useState("Male");
-    const [district, setDistrict] = useState("Thane");
-    const [state, setState] = useState("Maharastra");
-    const [shelterHome, setSelterHome] = useState("KVB");
-
-    const handlePhotoChange = (event) => {
-        const file = event.target.files[0];
-        setProfilePhoto(URL.createObjectURL(file));
-    };
-
-    const handleUsername = (event) => {
-        setUsername(event.target.value);
-    }
+   
 
     const btnStyle = {
         width: '20px',
@@ -71,7 +64,8 @@ export default function PersonalDetails(props) {
 
     const contentStyle = {
         color:'gray',
-        marginBottom: '15px'
+        marginBottom: '15px',
+        textAlign:'center'
     }
 
     const paperStyle = {
@@ -102,8 +96,8 @@ export default function PersonalDetails(props) {
 
                 <Grid style={nameHolder}  sx={{color:'#ff8100',paddingTop: '10px'}}>
                     <Grid item xs={12} md={8}>
-                        <Typography variant='h4' fontWeight='bold'>John Fernandis</Typography>
-                        <Typography style={contentStyle}>Male</Typography>
+                        <Typography variant='h4' fontWeight='bold'>{props.name}</Typography>
+                        <Typography style={contentStyle}>{formatString(props.gender)}</Typography>
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
                         <ProcessIcon/>
@@ -113,28 +107,28 @@ export default function PersonalDetails(props) {
 
                 <Grid>
                     <Typography style={headingStyle}>Age</Typography>
-                    <Typography style={contentStyle}>5</Typography>
+                    <Typography style={contentStyle}>{props.age + " Years"}</Typography>
 
                     <Typography style={headingStyle}>Date of Birth</Typography>
-                    <Typography style={contentStyle}>23/07/2000</Typography>
+                    <Typography style={contentStyle}>{formatDate(props.dateOfBirth)}</Typography>
 
                     <Typography style={headingStyle}>ShelterHome</Typography>
-                    <Typography style={contentStyle}>KVB Trust</Typography>
+                    <Typography style={contentStyle}>{props.shelter}</Typography>
                     {/* <TextField id="standard-basic" value={props.shelterHome} onChange={(event) => setSelterHome(event.target.value)} variant="standard" multiline maxRows={4} /> */}
                     
                     </Grid>
 
                 <Grid>
                     <Typography style={headingStyle}>District</Typography>
-                    <Typography style={contentStyle}>Mumbai</Typography>
+                    <Typography style={contentStyle}>{props.district}</Typography>
                     {/* <TextField id="standard-basic" value={props.district} onChange={(event) => setDistrict(event.target.value)} variant="standard" /> */}
                     
                     <Typography style={headingStyle}>State</Typography>
-                    <Typography style={contentStyle}>Maharastra</Typography>
+                    <Typography style={contentStyle}>{props.state}</Typography>
                     {/* <TextField id="standard-basic" value={props.state} onChange={(event) => setState(event.target.value)} variant="standard" /> */}
                 
                     <Typography style={headingStyle}>Category</Typography>
-                    <Typography style={contentStyle}>Abandoned</Typography>
+                    <Typography style={contentStyle}>{formatString(props.category)}</Typography>
                     
                     </Grid>
             </Box>

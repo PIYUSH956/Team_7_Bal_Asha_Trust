@@ -150,9 +150,9 @@ const CaseManagerDashboard = () => {
         <>
            
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <Typography variant="h4" align="center" fontWeight="bold">
+                <h1  align="center" fontWeight="bold">
                     Children Information
-                </Typography>
+                </h1>
             </Box>
             
 
@@ -216,9 +216,9 @@ const CaseManagerDashboard = () => {
 
 
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <Typography variant="h4" align="center" fontWeight="bold">
+                <h1 variant="h4" align="center" fontWeight="bold">
                     Social Workers Information
-                </Typography>
+                </h1>
             </Box>
             <Grid container spacing={3}  marginBottom={7}>
                 <Grid item xs={12} md={3}></Grid>

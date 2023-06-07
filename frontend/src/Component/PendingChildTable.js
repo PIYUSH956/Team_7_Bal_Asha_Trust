@@ -19,8 +19,10 @@ import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   tableHeader: {
-    backgroundColor: 'black',
-    color: 'white',
+    backgroundColor: '#ffe2cb',
+    color: "#ff8100",
+    fontWeight:1000,
+   
   },
   hoverRow: {
     '&:hover': {
@@ -136,10 +138,11 @@ export default function PendingChildTable() {
         <Paper sx={{ width: '90%', overflow: 'hidden' }}>
           <TableContainer sx={{ maxHeight: 580 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableHead className={classes.tableHeader} >
+              <TableHead   >
                 <TableRow>
                   {columns.map((column) => (
-                    <TableCell
+                    <TableCell 
+                      className={classes.tableHeader}
                       key={column.id}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}

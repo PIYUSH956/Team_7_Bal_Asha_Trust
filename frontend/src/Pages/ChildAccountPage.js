@@ -56,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
         margin:'2px',
         width: '80vw', // Custom width for xs breakpoint
       },
+      marginLeft:'5px',
+      marginRight:'5px',
       [theme.breakpoints.only('md')]: {
         width: '25vw', // Custom width for md breakpoint
       },
@@ -105,7 +107,20 @@ export default function ChildAccountPage(){
             <Box style={boxStyle} >
                 <h2 style={heading}>Personal Details</h2>
                 <Paper elevation={10} style={paperStyle}>
-                    <PersonalDetails />
+                    <PersonalDetails
+                    
+                    image={childData.image}
+                    name={childData.childName}
+                    dateOfBirth={childData.dateOfBirth}
+                    gender={childData.gender}
+                    district={childData.district}
+                    age={childData.age}
+                    category={childData.status}
+                    state={childData.state}
+                    shelter={childData.shelter}
+
+                    
+                    />
                     <Box>
                         {/* <TabContext value={value} >
                             <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
@@ -166,36 +181,36 @@ export default function ChildAccountPage(){
                         justifyContent:'space-between',
                         flexDirection: {xs:'column' , md: "row" },
                     }}>
-                        <Paper elevation={10} className={classes.paperStyle}>
+                        <Paper elevation={10} className={classes.paper}>
                             <Grid>
                                 <Typography style={headingStyle} >Reason for Admission</Typography>
                             </Grid>
                             <Grid> 
-                                <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser element default font size is 16px , but browsers have an option to change this value, so rem </Typography>
+                                <Typography style={contentStyle}>{childData.reasonForAdmission}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Case History</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.caseHistory}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Document Completed</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.documentCompleted}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Document Pending</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>    
+                                <Typography style={contentStyle}>{childData.documentPending}</Typography>    
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Newspaper Publication Pending Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.newsPaperPublicationPending}</Typography>
                             </Grid>
                         </Paper>
 
@@ -204,31 +219,31 @@ export default function ChildAccountPage(){
                                 <Typography style={headingStyle} >Reason for Flagging</Typography>
                             </Grid>
                             <Grid>    
-                                <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser element default font size is 16px , but browsers have an option to change this value, so rem ...</Typography>
+                                <Typography style={contentStyle}>{childData.reasonForFlagging}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Last Call Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.lastCallSince}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Total Shelter Home Stay</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.totalShelterHomeStay}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Last Visit Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.lastVisitSince}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Police Report Pending Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.policeReportPending}</Typography>
                             </Grid>
                             
                         </Paper>
@@ -238,31 +253,31 @@ export default function ChildAccountPage(){
                                 <Typography style={headingStyle}>Child Welfare Committee Last Review Date</Typography>
                             </Grid>
                             <Grid>    
-                                <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser  element default font size is 16px , but browsers have an option to change this value, so rem ...</Typography>
+                                <Typography style={contentStyle}>{childData.childWelfareCommitteLastReviewDate}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Last Child Welfare Committee Order</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.lastChildWelfareCommiteOrder}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Gaurdian</Typography>
                             </Grid>
                             <Grid>    
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.guardian}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Sibling Details</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.siblingDetails}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={headingStyle}>Surrender Pending Status</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}>Discription</Typography>
+                                <Typography style={contentStyle}>{childData.surrenderPending}</Typography>
                             </Grid>
                         </Paper>
                     </Box>
