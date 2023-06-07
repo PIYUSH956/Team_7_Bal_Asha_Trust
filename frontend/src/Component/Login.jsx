@@ -10,6 +10,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Backgroundimg from "../Images/Background.jpg";
 import Checkbox from "@mui/material/Checkbox";
+import { useMediaQuery,useTheme } from '@material-ui/core';
 import img1 from "../Images/loginphoto.jpg";
 import Box from "@mui/material/Box";
 
@@ -18,6 +19,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 function Login() {
+  
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
@@ -145,8 +150,7 @@ function Login() {
       className='main_box'
       >
         <Grid container
-          xs={10}
-          md={9}
+          xs={isMobile ? 12 : 7} md={isMobile ? 6 : 7}
           className='grid-container'
           
         >
