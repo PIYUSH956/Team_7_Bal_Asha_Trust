@@ -14,6 +14,8 @@ import { useEffect } from 'react';
 import AdminDashboard from './Pages/AdminDashboard';
 import ChildAccountPage from './Pages/ChildAccountPage';
 import PdfGenerator from './Component/PdfGenerator';
+import Dash from './Pages/Dash';
+
 function App() {
 
   let dispatch = useDispatch();
@@ -37,7 +39,8 @@ function App() {
 
   return (
     <>
-    <Navbar />
+    <Dash/>
+    {/* <Navbar /> */}
     {/* <Header /> */}
 
       {/* // All routes will go here */}
@@ -46,6 +49,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
+        {/* <Route path="/dash" element={<Dash />} /> */}
 
         <Route path="*" element={<PageNotFound />} />
 
