@@ -16,6 +16,7 @@ import Box from "@mui/material/Box";
 
 import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
+import { borderColor } from "@mui/system";
 
 
 function Login() {
@@ -76,10 +77,12 @@ function Login() {
       navigate("/admin-dashboard");
     } catch (err) {
       console.log(err);
+      if(err.resoonse == null){
+        alert("No Internet Connection");
+      }else{
       alert(err.response.data.message);
-    } finally {
-      setLoading(true);
     }
+  } 
 
   };
 
@@ -167,10 +170,10 @@ function Login() {
             />
           </Grid>
 
-          <Grid item xs={11} md={6} sx={{ textAlign: "center" }}>
+          <Grid item xs={11} md={6} sx={{ textAlign: "center", color:"#ff8100"}}>
             <br />
             <TextField
-              sx={{ margin: "10px", width: "80%" }}
+              sx={{ margin: "10px", width: "80%", color:"#ff8100" }}
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -181,7 +184,7 @@ function Login() {
             />
             <br />
             <TextField
-              sx={{ margin: "10px", width: "80%" }}
+              sx={{ margin: "10px", width: "80%", color:"#ff8100" }}
               required
               value={password}
               onChange={(e) => {
@@ -199,10 +202,11 @@ function Login() {
               className="item-2"
             >
               <span>
-                <Checkbox label="Remember Me" /> Remember Me
+              <p  className="text-color">
+                <input type ="checkbox" /> Remember Me </p>
               </span>
               <span>
-                <a href="">Forget Password </a>
+                <a href=""><p className="text-color">Forget Password</p></a>
               </span>
             </Grid>
             <br />
@@ -219,7 +223,8 @@ function Login() {
             <Button
               variant="contained"
               onClick={handleSubmit}
-              sx={{ fontSize: "20px" }}
+              sx={{ fontSize: "20px",backgroundColor: "#ff8100"}}
+        
             >
               Login
             </Button>

@@ -25,7 +25,7 @@
     margin-top: 80px;
     width: 100%;
     text-align: center;
-    padding: 5px 0 20px 0;
+    padding: 30px 0 20px 0;
     background-color: #394867;
     color: white;
 }
@@ -35,6 +35,10 @@
     margin-bottom: 25px;
     font-size: 1.5rem;
     font-weight: 600;
+}
+
+.footer p{
+  margin: 20px auto 0px auto;
 }
 
 
@@ -50,21 +54,18 @@
 
 .our-journey {
     margin: 50px 0;
-    /* background-color: #e8f0fe; */
     padding: 40px;
   }
   
   .our-journey h2 {
     margin-bottom: 20px;
-    /* font-size: 24px; */
-    /* color: #555; */
     text-align: center;
   }
   
   .our-journey p {
     font-size: 20px;
-    color: #333;
     text-align: center;
+   
   }
 
 /* about text */
@@ -79,3 +80,89 @@
         color: #333;
         text-align: center;
       }
+/* Container(icon-collections) */
+.container {
+  display: flex;
+  justify-content: center; 
+  margin-bottom: 60px; 
+  margin-top: 100px;
+}
+
+.container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+ 
+  padding: 10px; 
+  text-align: center; 
+}
+
+.container > div svg {
+  width: 200px; 
+  fill: #F73D93; 
+  margin: 20px 40px; 
+  font-size: "2rem";
+  size:0cqmax;
+}
+
+.container > div p {
+  color: #FFC23C;
+  margin: 0; 
+  font-size: 40px;
+}
+
+.text-style{
+  font-family:var(--sopot-font-two);
+  font-weight:700;
+}
+.tag-line{
+font-size: 80px;
+font-family: initial;
+color: #ff8100;
+text-align: left;
+}
+.border-line{
+  font-size: 25px;
+  text-align: left;
+  font-family: initial;
+  color: #ff8100
+}
+.head-black-under{
+  font-size: 25px;
+  color: black;
+}
+p{
+  letter-spacing: 0;
+  font-family: initial;
+  text-align: center;
+}
+.head-size{
+  font-size: 80px;
+  color: black;
+}
+.para{
+  font-size: 23px;
+  color: black;
+}
+h6{
+letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  *{
+    font-size: 14px; /* Adjust the font size for mobile screens */
+  }
+  p{
+    font-size: 20px;
+  }
+  .tag-line,.head-size{
+    font-size: 50px;
+  }
+  .head-size{
+    font-size: 50px;
+  }
+  .about{
+    padding: 30px;
+  }
+}

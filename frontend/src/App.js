@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import Login from './Component/Login';
 import Dashboard from './Pages/Dashboard';
+import AboutPage from './Pages/AboutPage'
+import ContactPage from './Pages/ContactPage';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
 import DemoPage from './Pages/DemoPage';
@@ -41,8 +43,7 @@ function App() {
 
   return (
     <>
-    <Dash/>
-    {/* <Navbar /> */}
+    {state.user != null  ? <Dash/> : <Navbar />}
     {/* <Header /> */}
 
       {/* // All routes will go here */}
@@ -60,6 +61,9 @@ function App() {
 
         <Route path="*" element={<PageNotFound />} />
 
+        <Route path="about" element={<AboutPage />} />
+
+        <Route path="contact" element={<ContactPage/>} />
         {state.user  != null && <Route path="/profile/:id" element={<ChildAccountPage />} />}
 
         {state.user  != null && <Route path="/user-profile" element={<ProfileForCm />} />}
