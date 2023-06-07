@@ -7,8 +7,19 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import {useSelector} from 'react-redux';
+
+
+
+
 
 const ProfileForCm = () => {
+
+
+
+  var state = useSelector((state) => ({ ...state }));
+
+
   const paperStyle = {
     padding: 20,
     width: "80vw",
@@ -46,17 +57,17 @@ const ProfileForCm = () => {
       <Grid>
         <Paper elevation={10} style={paperStyle}>
           <Grid align="center">
-            <h4>Profile CM</h4>
+            <h4>Profile</h4>
           </Grid>
 
           <Box>
             <Temp
-              image={cmData.image}
-              verified={cmData.verified}
-              username={cmData.username}
-              role={cmData.role}
-              email={cmData.email}
-              password={cmData.password}
+              image={state.user.image}
+              verified={state.user.verified}
+              username={state.user.username}
+              role={state.user.role}
+              email={state.user.email}
+              _id = {state.user._id}
             />
           </Box>
         </Paper>
