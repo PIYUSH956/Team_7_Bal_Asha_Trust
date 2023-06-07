@@ -25,17 +25,24 @@ const boxStyle2 = {
     marginRight:'10%',
 }
 
-const paperStyle = {
-    padding:40,
-    width:'80vw',
+const heading ={
+    color:'#ff8100',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize:'35px',
+    fontWeight: '700',
+    align: 'center',
 }
 
 const headingStyle = {
     color:'white',
     fontSize:'18px',
     fontWeight:"lighter",
-    backgroundColor:'purple',
+    backgroundColor:'#ff8100',
     padding:10,
+    marginTop: '20px',
+    marginBottom: '20px',
 }
 
 const contentStyle = {
@@ -46,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
       padding: theme.spacing(2),
       [theme.breakpoints.only('xs')]: {
-        marginTop:'20px',
+        margin:'2px',
         width: '80vw', // Custom width for xs breakpoint
       },
       [theme.breakpoints.only('md')]: {
@@ -60,8 +67,7 @@ export default function ChildAccountPage(){
 
 
     var state = useSelector((state) => ({ ...state }));
-    const classes = useStyles();
-
+    const classes= useStyles();
     const paperStyle = {
         padding:20,
         width:'80vw',
@@ -73,8 +79,6 @@ export default function ChildAccountPage(){
 
     const [value, setValue] = React.useState('0');
     const [childData,setChildData] = useState({}); 
-
-
 
   useEffect(()=>{
 
@@ -98,10 +102,10 @@ export default function ChildAccountPage(){
 
     return(
         <>
-            <Box style={boxStyle} mt={10}>
+            <Box style={boxStyle} >
+                <h2 style={heading}>Personal Details</h2>
                 <Paper elevation={10} style={paperStyle}>
                     <PersonalDetails />
-
                     <Box>
                         {/* <TabContext value={value} >
                             <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
@@ -152,11 +156,11 @@ export default function ChildAccountPage(){
                             <TabPanel value='3'><ProcessDetails /></TabPanel>
                         </TabContext> */}
                     </Box>
-
                 </Paper>
-                </Box>
-
-                <Box style={boxStyle2} mt={5} mb={10}>
+            </Box>
+                
+            <h2 style={heading}>Case Details</h2>
+            <Box style={boxStyle2} mt={5} mb={10}>
                     <Box sx={{
                         display: 'flex',
                         justifyContent:'space-between',
@@ -170,32 +174,32 @@ export default function ChildAccountPage(){
                                 <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser element default font size is 16px , but browsers have an option to change this value, so rem </Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Case History</Typography>
+                                <Typography style={headingStyle}>Case History</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Document Completed</Typography>
+                                <Typography style={headingStyle}>Document Completed</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Document Pending</Typography>
+                                <Typography style={headingStyle}>Document Pending</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>    
+                                <Typography style={contentStyle}>Discription</Typography>    
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Newspaper Publication Pending Since</Typography>
+                                <Typography style={headingStyle}>Newspaper Publication Pending Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                         </Paper>
 
-                        <Paper elevation={10} className={classes.paper} mt={2}>
+                        <Paper elevation={10} className={classes.paper} >
                             <Grid>
                                 <Typography style={headingStyle} >Reason for Flagging</Typography>
                             </Grid>
@@ -203,38 +207,33 @@ export default function ChildAccountPage(){
                                 <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser element default font size is 16px , but browsers have an option to change this value, so rem ...</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Last Call Since</Typography>
+                                <Typography style={headingStyle}>Last Call Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Total Shelter Home Stay</Typography>
+                                <Typography style={headingStyle}>Total Shelter Home Stay</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} >Last Visit Since</Typography>
+                                <Typography style={headingStyle}>Last Visit Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Police Report Pending Since</Typography>
+                                <Typography style={headingStyle}>Police Report Pending Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
-                            <Grid>
-                                <Typography style={headingStyle}  mt={2}>Surrender Pending Status</Typography>
-                            </Grid>
-                            <Grid>
-                                <Typography style={contentStyle}></Typography>
-                            </Grid>
+                            
                         </Paper>
 
-                        <Paper elevation={10} className={classes.paper} mt={2}>
+                        <Paper elevation={10} className={classes.paper} >
                             <Grid>
                                 <Typography style={headingStyle}>Child Welfare Committee Last Review Date</Typography>
                             </Grid>
@@ -242,26 +241,32 @@ export default function ChildAccountPage(){
                                 <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser  element default font size is 16px , but browsers have an option to change this value, so rem ...</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Last Child Welfare Committee Order</Typography>
+                                <Typography style={headingStyle}>Last Child Welfare Committee Order</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Gaurdian</Typography>
+                                <Typography style={headingStyle}>Gaurdian</Typography>
                             </Grid>
                             <Grid>    
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Sibling Details</Typography>
+                                <Typography style={headingStyle}>Sibling Details</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>Discription</Typography>
+                            </Grid>
+                            <Grid>
+                                <Typography style={headingStyle}>Surrender Pending Status</Typography>
+                            </Grid>
+                            <Grid>
+                                <Typography style={contentStyle}>Discription</Typography>
                             </Grid>
                         </Paper>
                     </Box>
-                </Box>
+            </Box>
         </>
     )
 }
