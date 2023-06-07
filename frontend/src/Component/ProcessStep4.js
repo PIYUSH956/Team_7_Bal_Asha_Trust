@@ -3,6 +3,7 @@ import { Grid, Paper, Typography  , Box, Button, TextField, Input , Select , Men
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import Brightness1RoundedIcon from '@mui/icons-material/Brightness1Rounded';
 
 const paperStyle = {
@@ -17,17 +18,30 @@ const styleTypo = {
 
 export default function ProcessStep4 (){
 
-    const[submitFileDate , setSubmitFileDate] = useState('');
+    const[submitFileDate , setSubmitFileDate] = useState();
     const[mer , setMER] = useState('');
-    const[merDate , setMERDate] = useState('');
+    const[merDate , setMERDate] = useState();
     const[csr , setCSR] = useState(''); 
-    const[csrDate , setCSRDate] = useState('');
-    const[followUpDate , setFollowUpDate] = useState(''); 
-
+    const[csrDate , setCSRDate] = useState();
+    const[followUpDate , setFollowUpDate] = useState(); 
+    const [desc1 , setDesc1] = useState('');
+    const [desc2 , setDesc2] = useState('');
+    const [desc3 , setDesc3] = useState('');
     const [status1, setStatus1] = useState('pending');
     const [status3, setStatus3] = useState('pending');
     const [status2, setStatus2] = useState('pending');
 
+    const downloadFileToSAA = (event) => {
+
+    }
+
+    const downloadMER = (event) => [
+
+    ]
+
+    const downloadCSR = (event) => {
+
+    }
     // for the purpose of setting the color to status field
     const [backgroundColor1 , setbackgroundColor1] = useState('red');
     const [backgroundColor2 , setbackgroundColor2] = useState('red');
@@ -102,7 +116,7 @@ export default function ProcessStep4 (){
                     <Box sx={{mt:2}}>
                         <h6>Submit File</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Submit the child file to the SAA</Typography>
+                            <Typography style={styleTypo}>Submit the child file to the Specialised Adoption Agencies(SAA)</Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
                                     value={submitFileDate}
@@ -122,15 +136,31 @@ export default function ProcessStep4 (){
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
                                         Completed
                                     </MenuItem>
-                                </Select>
+                            </Select>
+                            <Button
+                                onClick={downloadFileToSAA} 
+                                variant='contained' 
+                                sx={{ml:1}}
+                            >
+                                <FileDownloadIcon />
+                            </Button>
+                            <Grid mt={1}>
+                                <TextField 
+                                    value={desc1}
+                                    onChange={(e) => setDesc1(e.target.value)}
+                                    multiline 
+                                    maxRows={3} 
+                                    placeholder='Description' 
+                                />
+                            </Grid>
                         </Grid>
                     </Box>
 
                     <Box sx={{mt:2}}>
                         <h6>Medical Tests</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Work with SAA and CCI to complete the Medical Tests : MER and CSR</Typography>
-                            <Typography style={styleTypo}>Submit both the MER and CSR reports to the below fields respectively.</Typography>
+                            <Typography style={styleTypo}>Work with Specialised Adoption Agencies(SAA) and Child Care Institution(CCI) to complete the Medical Tests : Medical Examination Report(MER) and Child Study Report(CSR)</Typography>
+                            <Typography style={styleTypo}>Submit both the Medical Examination Report(MER) and Child Study Report(CSR) reports to the below fields respectively.</Typography>
                             <Grid>
                             <Input 
                                 value={mer} 
@@ -145,6 +175,13 @@ export default function ProcessStep4 (){
                                     slotProps={{ textField : {size : 'small'}}} 
                                 />
                             </LocalizationProvider>
+                            <Button
+                                onClick={downloadMER} 
+                                variant='contained' 
+                                sx={{ml:1}}
+                            >
+                                <FileDownloadIcon />
+                            </Button>
                             </Grid>
                             <Grid mt={1}>
                                 <Input 
@@ -173,6 +210,22 @@ export default function ProcessStep4 (){
                                             Completed
                                         </MenuItem>
                                 </Select>
+                                <Button
+                                    onClick={downloadCSR} 
+                                    variant='contained' 
+                                    sx={{ml:1}}
+                                >
+                                    <FileDownloadIcon />
+                                </Button>
+                                <Grid mt={1}>
+                                    <TextField 
+                                        value={desc2}
+                                        onChange={(e) => setDesc2(e.target.value)}
+                                        multiline 
+                                        maxRows={3} 
+                                        placeholder='Description' 
+                                    />
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Box>
@@ -180,7 +233,7 @@ export default function ProcessStep4 (){
                     <Box sx={{mt:2}}>
                         <h6>Follow-up</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Follow-up with SAA to upload child into Caring System</Typography>
+                            <Typography style={styleTypo}>Follow-up with Specialised Adoption Agencies(SAA) to upload child into Caring System</Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
                                     value={followUpDate}
@@ -200,7 +253,16 @@ export default function ProcessStep4 (){
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
                                         Completed
                                     </MenuItem>
-                                </Select>
+                            </Select>
+                            <Grid mt={1}>
+                                    <TextField 
+                                        value={desc3}
+                                        onChange={(e) => setDesc3(e.target.value)}
+                                        multiline 
+                                        maxRows={3} 
+                                        placeholder='Description' 
+                                    />
+                            </Grid>
                         </Grid>
                     </Box>
 
