@@ -24,6 +24,8 @@ function NavBar() {
     navigate("/")
   }
 
+
+
   const handleDashboardClick = (e)=>{
     e.preventDefault();
     const role = state.user.role;
@@ -34,6 +36,11 @@ function NavBar() {
     navigate("/admin-dashboard");
     else if(role == "manager")
     navigate("/manager-dashboard");
+  }
+
+  const handleProfile = (e) =>{
+    e.preventDefault();
+    navigate("/profile");
   }
 
   const handleClick = () => setClick(!click);
@@ -79,6 +86,19 @@ function NavBar() {
                 Login
               </NavLink>}
             </li>
+
+
+            {state.user != null && <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleProfile}
+              >
+                Profile
+              </NavLink>}
+            </li>}
+
             <li className="nav-item">
               { state.user != null && <NavLink
                 exact
@@ -87,6 +107,17 @@ function NavBar() {
                 onClick={handleLogout}
               >
                 Logout
+              </NavLink>}
+            </li>
+            <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                to="/user-profile"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Profile
               </NavLink>}
             </li>
             {/* <li className="nav-item">

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import "../Css/Header.css";
+import "../Css/Login.css"
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from 'axios';
@@ -86,28 +87,112 @@ function Signup() {
 
   };
   return (
-    <div style={{backgroundImage: `url(${Backgroundimg})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center center",
-    minHeight: "90vh",
-  }}>
-    <br/> <br/>
-    <Grid
-      container
-      justifyContent="center"
-      textAlign="center"
-    >
-      <Grid item md={6} xs={10}>
-      <div className="main_card" style={{justifyContent:'center'}}>
-        <br />
-        {/* input field modified  */}
-        <div>
-        <label htmlFor="fileInput">
-                <img
+  //   <div style={{backgroundImage: `url(${Backgroundimg})`,
+  //   backgroundSize: "cover",
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundPosition: "center center",
+  //   minHeight: "90vh",
+  // }}>
+  //   <br/> <br/>
+  //   <Grid
+  //     container
+  //     justifyContent="center"
+  //     textAlign="center"
+  //   >
+  //     <Grid item md={6} xs={10}>
+  //     <div className="main_card" style={{justifyContent:'center'}}>
+  //       <br />
+  //       {/* input field modified  */}
+  //       <div>
+  //       <label htmlFor="fileInput">
+  //               <img
+  //                 src={img}
+  //                 alt=""
+  //                 className="img-upload"
+  //                 onClick={onImageIconClick}
+  //               />
+  //             </label>
+  //             <input
+  //               id="fileInput"
+  //               type="file"
+  //               ref={fileInputRef}
+  //               style={{ display: "none" }}
+  //               accept=".jpeg,.png"
+  //               onChange={onImageChange}
+  //             />
+  //     </div>
+  //        {/* previous input field */}
+  //       {/* <input type = "file" lable="image" accept = ".jpeg ,.png" onChange={(e)=>{setFile(e.target.files[0])}}/> */}
+  //         <br /> 
+  //         <TextField
+  //           value={user}
+  //           onChange={updateUser}
+  //           type="text"
+  //           label="Enter user name"
+  //           variant="standard"
+  //           color="secondary"
+  //           focused
+  //         />
+  //         <br /> <br />
+  //         <TextField
+  //           value={email}
+  //           onChange={updateEmail}
+  //           type="email"
+  //           label="Enter email"
+  //           variant="standard"
+  //           color="secondary"
+  //           focused
+  //         />
+  //         <br /> <br />
+  //         <TextField
+  //           value={password}
+  //           onChange={updatePassword}
+  //           type="password"
+  //           label="Enter password"
+  //           variant="standard"
+  //           color="secondary"
+  //           focused
+  //         />
+  //         <br />
+  //         <Fade
+  //         in={loading}
+  //         style={{
+  //           transitionDelay: loading ? '800ms' : '0ms',
+  //         }}
+  //         unmountOnExit
+  //       >
+  //         <CircularProgress />
+  //       </Fade>
+  //       <br/>
+  //         <Button variant="contained" onClick={handleSubmit}>
+  //           Signup
+  //         </Button>
+  //         <br/> <br />
+  //       </div>
+  //     </Grid>
+  //   </Grid>
+  //   </div>
+
+  <>
+    <div className='main_box'>
+        <Grid container
+          xs={10}
+          md={9}
+          className='grid-container'
+          
+        >
+          <Grid
+            item
+            xs={11}
+            md={3}
+            className="item-1"
+            sx={{justifyContent:'center'}}
+          >
+            <label htmlFor="fileInput">
+                 <img
                   src={img}
                   alt=""
-                  className="img-upload"
+                  className="img-style2"
                   onClick={onImageIconClick}
                 />
               </label>
@@ -119,58 +204,68 @@ function Signup() {
                 accept=".jpeg,.png"
                 onChange={onImageChange}
               />
-      </div>
-         {/* previous input field */}
-        {/* <input type = "file" lable="image" accept = ".jpeg ,.png" onChange={(e)=>{setFile(e.target.files[0])}}/> */}
-          <br /> 
-          <TextField
-            value={user}
-            onChange={updateUser}
-            type="text"
-            label="Enter user name"
-            variant="standard"
-            color="secondary"
-            focused
-          />
-          <br /> <br />
-          <TextField
-            value={email}
-            onChange={updateEmail}
-            type="email"
-            label="Enter email"
-            variant="standard"
-            color="secondary"
-            focused
-          />
-          <br /> <br />
-          <TextField
-            value={password}
+          </Grid>
+
+          <Grid item xs={11} md={8} sx={{ textAlign: "center" }}>
+            <br />
+            <TextField
+              sx={{ margin: "10px", width: "80%" }}
+              required
+              value={user}
+              onChange={updateUser}
+              type="text"
+              id="outlined-required"
+              label="Enter User Name"
+              placeholder="user"
+              focused
+            />
+            <br />
+            <TextField
+              sx={{ margin: "10px", width: "80%" }}
+              required
+              value={email}
+              onChange={updateEmail}
+              id="outlined-required"
+              type="email"
+              label="Enter email"
+              placeholder="abcd@gmail.com"
+              focused
+            />
+            <br />
+            <TextField
+              sx={{ margin: "10px", width: "80%" }}
+              required
+              value={password}
             onChange={updatePassword}
-            type="password"
+              id="outlined-required"
+              type="password"
             label="Enter password"
-            variant="standard"
-            color="secondary"
-            focused
-          />
-          <br />
-          <Fade
-          in={loading}
-          style={{
-            transitionDelay: loading ? '800ms' : '0ms',
-          }}
-          unmountOnExit
-        >
-          <CircularProgress />
-        </Fade>
-        <br/>
-          <Button variant="contained" onClick={handleSubmit}>
-            Signup
-          </Button>
-          <br/> <br />
-        </div>
-      </Grid>
-    </Grid>
+              placeholder="*****"
+              focused
+            />
+            <br/>
+            <Fade
+              in={loading}
+              style={{
+                transitionDelay: loading ? "800ms" : "0ms",
+              }}
+              unmountOnExit
+            >
+              <CircularProgress />
+            </Fade>
+            <br />
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              sx={{ fontSize: "20px" }}
+            >
+              Signup
+            </Button>
+            <br /> <br />
+          </Grid>
+        </Grid>
     </div>
+  </>
   );
 }
 

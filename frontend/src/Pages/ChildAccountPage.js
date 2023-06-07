@@ -8,7 +8,7 @@ import PersonalDetails from '../Component/PersonalDetails';
 import CaseDetails from '../Component/CaseDetails';
 import ScheduleDetails from '../Component/ScheduleDetails';
 import ProcessDetails from '../Component/ProcessDetails';
-
+import { useSelector } from 'react-redux';
 import {useParams} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -58,7 +58,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChildAccountPage(){
 
-    const classes = useStyles();
+
+    var state = useSelector((state) => ({ ...state }));
+
+    const paperStyle = {
+        padding:20,
+        width:'80vw',
+        margin:'50px auto',
+    }
 
     const uid = useParams().id;
     console.log(uid);
@@ -100,7 +107,7 @@ export default function ChildAccountPage(){
                                 <TabList onChange={handleChange} variant='scrollable' scrollButtons='auto'>
                                     <Tab label="Personal Details" value='0' />
                                     <Tab label="Case Detail" value='1' />
-                                    <Tab label="Schedule" value='2' />
+                                    {state.user != null && state.user.role == "manager" && <Tab label="Schedule" value='2' />}
                                     <Tab label='Process' value='3' />
                                 </TabList>
                             </Box>

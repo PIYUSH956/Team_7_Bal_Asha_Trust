@@ -16,7 +16,7 @@ router.get("/get-user/:id", getUserDetail);
 
 // Route to update user profile
 
-router.put("/update-profile/:id" , updateUserProfile);
+router.post("/update-profile" , updateUserProfile);
 
 //route to get all user
 
