@@ -17,8 +17,8 @@ function HomePage() {
    
    <section className="header-img">
      <div className="header-text-box">
-     <Typography sx={{fontSize:"100px", fontFamily:"initial"}}>Bal Asha Trust</Typography>
-     <Typography sx={{fontSize:"25px",fontFamily:"-moz-initial"}}>where every child has a future</Typography>
+     <Typography sx={{fontSize:"100px", fontFamily:"var(--sopot-font-two)", fontWeight:"700"}}>Bal Asha Trust</Typography>
+     <Typography sx={{fontSize:"25px",fontFamily:"var(--sopot-font-two)" ,fontWeight:"700"}}>where every child has a future</Typography>
      </div>
    </section>
 

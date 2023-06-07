@@ -60,6 +60,7 @@ export default function ChildAccountPage(){
 
 
     var state = useSelector((state) => ({ ...state }));
+    const classes = useStyles();
 
     const paperStyle = {
         padding:20,
@@ -161,7 +162,7 @@ export default function ChildAccountPage(){
                         justifyContent:'space-between',
                         flexDirection: {xs:'column' , md: "row" },
                     }}>
-                        <Paper elevation={10} className={classes.paper}>
+                        <Paper elevation={10} className={classes.paperStyle}>
                             <Grid>
                                 <Typography style={headingStyle} >Reason for Admission</Typography>
                             </Grid>
