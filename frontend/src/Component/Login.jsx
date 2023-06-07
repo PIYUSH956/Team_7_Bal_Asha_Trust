@@ -34,14 +34,8 @@ function Login() {
   let dispatch = useDispatch();
   console.log(state);
   
-  if(state.user != null && state.user.role == "root"){
+  if(state.user != null){
     navigate("/dashboard");
-  }
-  if(state.user != null && state.user.role == "manager"){
-    navigate("/manager-dashboard");
-  }
-  if(state.user != null && state.user.role == "admin"){
-    navigate("/admin-dashboard");
   }
 
 
@@ -69,12 +63,7 @@ function Login() {
 
       alert("Succesfully Logged In");
       //Role based redirecting  Right now for only root 
-      if(payload.role == "root")
       navigate("/dashboard");
-      if(payload.role == "manager")
-      navigate("/manager-dashboard");
-      if(payload.role == "admin")
-      navigate("/admin-dashboard");
     } catch (err) {
       console.log(err);
       if(err.resoonse == null){

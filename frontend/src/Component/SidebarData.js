@@ -5,12 +5,12 @@ import OnGoingIcon from '@mui/icons-material/Assignment';
 import CompletedIcon from '@mui/icons-material/AssignmentTurnedIn';
 import SocailWorkersIcon from '@mui/icons-material/Group';
 import SocialWorkerDashboard from "../Pages/SocialWorkerDashboard";
-
-export const SidebarData= [ 
+import { useSelector } from "react-redux";
+const SidebarData= [ 
     {
         title: "Dashboard",
         icon: <DashboardIcon/>,
-        link: "/manager-dashboard",
+        link: "/dashboard",
     },
     {
         title: "Pending Cases",
@@ -30,3 +30,7 @@ export const SidebarData= [
         link: "/child-table",
     },
 ]
+
+
+export default  SidebarData;
+

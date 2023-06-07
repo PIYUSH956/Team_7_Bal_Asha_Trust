@@ -17,62 +17,108 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CaseManagerDashboard from './CaseManagerDashboard';
-import { SidebarData } from '../Component/SidebarData';
+import SidebarData  from '../Component/SidebarData';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import Badge from '@mui/material/Badge';
+import { useSelector,useDispatch } from 'react-redux';
 import "../Css/Sidebar.css";
+
 const drawerWidth = 240;
 
+const profileItems = ["Profile", "Dashboard", "Logout"];
 
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${drawerWidth}px`,
     ...(open && {
-      transition: theme.transitions.create('margin', {
+      transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginLeft: 0,
     }),
-  }),
+  })
 );
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+
+
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+  transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  justifyContent: "flex-end",
 }));
 
 export default function PersistentDrawerLeft() {
+
+  var state = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleLogout = ()=>{
+    
+    localStorage.clear();
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
+    navigate("/")
+  }
+  const handleCloseUserMenu = (e,setting) => {
+    if(setting == "Logout")
+    {
+      handleLogout();
+    }
+    setAnchorElUser(null);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -82,86 +128,136 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  
+
+  const handleClickOnProfile = (e)=>{
+    console.log("C");
+  }
+
+
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} >
-        <Toolbar sx={{ backgroundColor: '#ffe2cb' }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon sx={{ color: '#ff8100' }} />
-          </IconButton>
-          <p  className="heading-item" >
-            Bal Asha Trust
-          </p>
+      <AppBar position="static" open={open}>
+        <Toolbar sx={{ backgroundColor: "#ffe2cb" }}>
+          <Box sx={{ display: "flex" }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon sx={{ color: "#ff8100" }} />
+            </IconButton>
+            <p className="heading-item">Bal Asha Trust</p>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={17} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <Tooltip title="Open Profile">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src={state.user.image} />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {profileItems.map((setting) => (
+                <MenuItem  key={setting} onClick={(e)=>handleCloseUserMenu(e,setting)}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
         </Toolbar>
       </AppBar>
 
-      <div >
-      <Drawer 
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+      <div>
+        <Drawer
+          sx={{
             width: drawerWidth,
-            boxSizing: 'border-box',
-            backgroundColor: '#ffe2cb',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+              backgroundColor: "#ffe2cb",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <p className="subheading-item">Case Manager</p>
 
-        <DrawerHeader>
-        
-        <p  className="subheading-item" >
-            Case Manager
-          </p>
-        
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#ff8100' }} /> : <ChevronRightIcon sx={{ color: '#ff8100' }} />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List  className="sidebarr">
-          {SidebarData.map((val, key) => {
-            return (
-                <>
-                <ListItem key={key}
-                className="rowitem"
-                onClick={(e)=>{navigate(val.link)}}
-                id={window.location.pathname == val.link ? "active" : ""}
-                disablePadding 
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon sx={{ color: "#ff8100" }} />
+              ) : (
+                <ChevronRightIcon sx={{ color: "#ff8100" }} />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List className="sidebarr">
+            {SidebarData.map((val, key) => {
+              return (
+                <ListItem
+                  key={key}
+                  className="rowitem"
+                  id={window.location.pathname == val.link ? "active" : ""}
+                  disablePadding
+                  onClick={() => {
+                    navigate(val.link);
+                  }}
                 >
-                    <ListItemButton>
-                        <ListItemIcon>
-                        {React.cloneElement(val.icon, { style: { color: window.location.pathname == val.link?'white': '#ff8100' } })}     
-                        </ListItemIcon>
-                        <ListItemText primary={val.title} />
-                    </ListItemButton>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      {React.cloneElement(val.icon, {
+                        style: {
+                          color:
+                            window.location.pathname == val.link
+                              ? "white"
+                              : "#ff8100",
+                        },
+                      })}
+                    </ListItemIcon>
+                    <ListItemText primary={val.title} />
+                  </ListItemButton>
                 </ListItem>
-                <NavLink to={val.link}></NavLink>
-                </>
-            );
-          })}
-          
-        </List>
-        
-      </Drawer>
-
-
-      
+              );
+            })}
+          </List>
+        </Drawer>
       </div>
       <Main open={open} className="dashboard-back">
         <DrawerHeader />
-        {/* <CaseManagerDashboard/> */}
       </Main>
     </Box>
   );
