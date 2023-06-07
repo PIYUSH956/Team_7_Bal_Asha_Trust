@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChildAccountPage(){
 
-
+    const classes = useStyles();
     var state = useSelector((state) => ({ ...state }));
 
     const paperStyle = {

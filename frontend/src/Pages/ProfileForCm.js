@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import { Grid, Paper } from "@mui/material";
 import React from "react";
 import Temp from "../Component/Temp";
-import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
