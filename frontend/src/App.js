@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import Login from './Component/Login';
 import Dashboard from './Pages/Dashboard';
+import AboutPage from './Pages/AboutPage'
+import ContactPage from './Pages/ContactPage';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
 
@@ -45,6 +47,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="*" element={<PageNotFound />} />
+
+        <Route path="about" element={<AboutPage />} />
+
+        <Route path="contact" element={<ContactPage/>} />
 
         {(state.user != null && state.user.role == "root") &&  <Route path="/dashboard" element={<Dashboard />} /> }
 

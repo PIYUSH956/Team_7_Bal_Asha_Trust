@@ -1,0 +1,49 @@
+  .top-div h2 {
+    margin-bottom: 20px;
+    color: #555;
+    text-align: center;
+  }
+  
+  .divider {
+    margin: 20px 0;
+    height: 30px;
+  }
+  
+  .description {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: dimgray;
+  }
+  
+  .award {
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    color: #555555;
+    font-size: 15px;
+  }
+  
+  .top-div {
+    text-align: center;
+    margin: 50px 0;
+    background-color: #e8f0fe;
+    padding: 60px 40px;
+  }
+  
+  .paragraph {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  .bottom-div {
+    text-align: center;
+    background-color: #e8f0fe;
+    padding: 60px 40px;
+    width: 100%;
+  }
+
+  .content{
+    width: 80%;
+    margin-left: 170px;
+  }
