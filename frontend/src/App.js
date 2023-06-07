@@ -19,6 +19,7 @@ import PdfGenerator from './Component/PdfGenerator';
 import Dash from './Pages/Dash';
 import ProfileForCm from './Pages/ProfileForCm';
 import Abandond from './Pages/Abandond';
+import ChildTable from './Component/ChildTable';
 
 function App() {
 
@@ -52,7 +53,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
-        {/* <Route path="/dash" element={<Dash />} /> */}
+        <Route path="/child-table" element={<ChildTable />} /> 
 
         <Route path="/abandond" element={<Abandond />} />
 

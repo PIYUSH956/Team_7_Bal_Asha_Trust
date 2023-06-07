@@ -83,8 +83,8 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{ backgroundColor: 'rgb(31, 24, 71)' }}>
-        <Toolbar>
+      <AppBar position="fixed" open={open} >
+        <Toolbar sx={{ backgroundColor: '#ffe2cb' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -92,11 +92,11 @@ export default function PersistentDrawerLeft() {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon sx={{ color: 'white' }} />
+            <MenuIcon sx={{ color: '#ff8100' }} />
           </IconButton>
-          <Typography variant="h5" noWrap component="div">
+          <p  className="heading-item" >
             Bal Asha Trust
-          </Typography>
+          </p>
         </Toolbar>
       </AppBar>
 
@@ -108,7 +108,7 @@ export default function PersistentDrawerLeft() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundColor: 'rgb(31, 24, 71)',
+            backgroundColor: '#ffe2cb',
           },
         }}
         variant="persistent"
@@ -119,12 +119,12 @@ export default function PersistentDrawerLeft() {
 
         <DrawerHeader>
         
-        <Typography variant="h5" noWrap component="div" sx={{ color: 'white' }}>
+        <p  className="subheading-item" >
             Case Manager
-          </Typography>
+          </p>
         
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: 'white' }} /> : <ChevronRightIcon sx={{ color: 'white' }} />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#ff8100' }} /> : <ChevronRightIcon sx={{ color: '#ff8100' }} />}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -140,7 +140,7 @@ export default function PersistentDrawerLeft() {
                  }}>
                     <ListItemButton>
                         <ListItemIcon>
-                        {React.cloneElement(val.icon, { style: { color: 'white' } })}     
+                        {React.cloneElement(val.icon, { style: { color: window.location.pathname == val.link?'white': '#ff8100' } })}     
                         </ListItemIcon>
                         <ListItemText primary={val.title} />
                     </ListItemButton>
@@ -152,7 +152,7 @@ export default function PersistentDrawerLeft() {
         
       </Drawer>
       </div>
-      <Main open={open}>
+      <Main open={open} className="dashboard-back">
         <DrawerHeader />
         {/* <CaseManagerDashboard/> */}
       </Main>

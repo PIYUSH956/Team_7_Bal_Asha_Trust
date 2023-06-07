@@ -1,0 +1,14 @@
+.card-item{
+   height: 400px;
+   padding: 30px;
+   width: 400px;
+   /* box-shadow: 20px 80px 50px rgba(157, 46, 46, 0.2);
+   border-radius: 50%; */
+}
+.grid-item{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  /* box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 10%; */
+}

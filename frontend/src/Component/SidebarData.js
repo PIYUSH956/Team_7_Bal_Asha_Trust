@@ -15,18 +15,18 @@ export const SidebarData= [
     {
         title: "Not Assigned Cases",
         icon: <NotAssignedIcon/>,
-        link: "/dashboard",
+        link: "/child-table",
     },{
         title: "On Going Cases",
         icon: <OnGoingIcon/>,
-        link: "/dashboard",
+        link: "/child-table",
     },{
         title: "Completed Cases",
         icon: <CompletedIcon/>,
-        link: "/dashboard",
+        link: "/child-table",
     },{
         title: "Social Workers",
         icon: <SocailWorkersIcon/>,
-        link: "/dashboard",
+        link: "/child-table",
     },
 ]
