@@ -15,6 +15,8 @@ import AdminDashboard from './Pages/AdminDashboard';
 import ChildAccountPage from './Pages/ChildAccountPage';
 import PdfGenerator from './Component/PdfGenerator';
 import ProfileForCm from './Pages/ProfileForCm';
+import Abandond from './Pages/Abandond';
+
 function App() {
 
   let dispatch = useDispatch();
@@ -47,6 +49,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
+
+        <Route path="/abandond" element={<Abandond />} />
+
+        <Route path="/profile" element={<ProfileForCm />} />
+        
 
         <Route path="*" element={<PageNotFound />} />
 
