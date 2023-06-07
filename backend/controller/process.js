@@ -1,5 +1,4 @@
 const Process = require('../models/process');
-
 exports.createProcess = async (req, res) => {
     const processData = req.body;
     processData.caseID = req.param.id;

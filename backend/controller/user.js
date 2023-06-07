@@ -46,10 +46,10 @@ exports.updateUserProfile = async (req, res) => {
 exports.getAllUser = async (req, res, next) => {
     try {
       const users = await User.find();
-      res.send(users);
+      res.status(200).send(users);
     } catch (error) {
-      next(error);
-      return;
+        console.error(error);
+        return res.status(400).json({ message: "Error" });
     }
   };
 
