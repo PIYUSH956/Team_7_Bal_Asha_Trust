@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Grid, Select, Typography  , Box, Button, MenuItem, Input} from "@mui/material";
+import { TextField ,Grid, Select, Typography  , Box, Button, MenuItem, Input} from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import Brightness1RoundedIcon from '@mui/icons-material/Brightness1Rounded';
 
 const paperStyle = {
@@ -17,15 +18,26 @@ const styleTypo = {
 
 export default function ProcessStep2 (){
 
-    const [submitChildReportDate , setSubmitChildReportDate] = useState('');
+    const [submitChildReportDate , setSubmitChildReportDate] = useState();
     const [dcpuNOC , setDCPUNOC] = useState('');
-    const [dcpuNOCDate , setDCPUNOCDate] = useState('');
+    const [dcpuNOCDate , setDCPUNOCDate] = useState();
     const [finalReport , setFinalReport] = useState('');
-    const [finalReportDate , setFinalReportDate] = useState('');
+    const [finalReportDate , setFinalReportDate] = useState();
+    const [desc1 , setDesc1] = useState('');
+    const [desc2 , setDesc2] = useState('');
+    const [desc3 , setDesc3] = useState('');
     const [status1, setStatus1] = useState('pending');
     const [status2, setStatus2] = useState('pending');
     const [status3, setStatus3] = useState('pending');
-    
+
+    const downloadDCPUNOC = (event) => {
+
+    }
+
+    const downloadFinalReportFromCCI = (event) =>{
+
+    }
+
     // For the Purpose of setting the color to Status field
     const [backgroundColor1 , setbackgroundColor1] = useState('red');
     const [backgroundColor2 , setbackgroundColor2] = useState('red');
@@ -97,9 +109,8 @@ export default function ProcessStep2 (){
     return(
         <>
             <Grid>
-
                     <Box sx={{mt:2}}>
-                        <h6>Submit Child's Report for DCPU for NOC</h6>
+                        <h6>Submit Child's Report for District Child Protection Unit(DCPU) for No Objection Certificate(NOC)</h6>
                         <Grid sx={{pl:2}}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
@@ -107,8 +118,9 @@ export default function ProcessStep2 (){
                                     onChange={(e) => setSubmitChildReportDate(e.target.value)}
                                     slotProps={{ textField : {size : 'small'}}} />
                             </LocalizationProvider>
-                            <Select value={status1}
-                                    onChange={handleStatus1} 
+                            <Select 
+                                value={status1}
+                                onChange={handleStatus1} 
                                     sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor1}}>
                                     <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
                                         Pending
@@ -119,12 +131,21 @@ export default function ProcessStep2 (){
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
                                         Completed
                                     </MenuItem>
-                                </Select>
+                            </Select>
+                            <Grid mt={1}>
+                                <TextField 
+                                    value={desc1}
+                                    onChange={(e) => setDesc1(e.target.value)}
+                                    multiline 
+                                    maxRows={3} 
+                                    placeholder='Description' 
+                                />
+                            </Grid>
                         </Grid>
                     </Box>
 
                     <Box sx={{mt:2}}>
-                        <h6>Receive DCPU NOC</h6>
+                        <h6>Receive District Child Protection Unit(DCPU) No Objection Certificate(NOC)</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}></Typography>
                             <Input
@@ -151,12 +172,28 @@ export default function ProcessStep2 (){
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
                                         Completed
                                     </MenuItem>
-                                </Select>
+                            </Select>
+                            <Button
+                                onClick={downloadDCPUNOC} 
+                                variant='contained' 
+                                sx={{ml:1}}
+                            >
+                                <FileDownloadIcon />
+                            </Button>
+                            <Grid mt={1}>
+                                <TextField 
+                                    value={desc2}
+                                    onChange={(e) => setDesc2(e.target.value)}
+                                    multiline 
+                                    maxRows={3} 
+                                    placeholder='Description' 
+                                />
+                            </Grid>
                         </Grid>
                     </Box>
 
                     <Box sx={{mt:2}}>
-                        <h6>Final Report from CCI</h6>
+                        <h6>Final Report from Child Care Institution(CCI)</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}></Typography>
                             <Input
@@ -184,7 +221,23 @@ export default function ProcessStep2 (){
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
                                         Completed
                                     </MenuItem>
-                                </Select>
+                            </Select>
+                            <Button
+                                onClick={downloadFinalReportFromCCI} 
+                                variant='contained' 
+                                sx={{ml:1}}
+                            >
+                                <FileDownloadIcon />
+                            </Button>
+                            <Grid mt={1}>
+                                <TextField 
+                                    value={desc3}
+                                    onChange={(e) => setDesc3(e.target.value)}
+                                    multiline 
+                                    maxRows={3} 
+                                    placeholder='Description' 
+                                />
+                            </Grid>
                         </Grid>
                     </Box>
 
