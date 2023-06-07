@@ -7,24 +7,27 @@ import {
   Typography
 } from "@mui/material";
 import "../Css/ListItemComponent.css";
-
+import { useNavigate } from "react-router-dom";
 const ListItemComponent = (props) => {
+  const navigate = useNavigate();
   const handleClick = (event) => {
-    console.log("clicked on " + props.id);
+
+    console.log("clicked on " + props.uid);
+    navigate(`/profile/${props.uid}`);
   };
 
   return (
     <>
-      <ListItemButton onClick={handleClick} className="z">
-        <ListItem>
+      <ListItemButton onClick={handleClick} className="z" style={{margin:'0px', paddingLeft:'10px'}}>
+        <ListItem style={{margin:'0px', padding:'0px'}}>
           <ListItemText
             primary={
-              <Typography variant="h5" style={{fontFamily:'"Merriweather", serif', fontSize:'18px', fontWeight:'bold', color:"#2a1818"}}>
+              <Typography variant="h5" style={{fontFamily:'"Merriweather", serif', fontSize:'12px', fontWeight:'bold', color:"#2a1818"}}>
                 {`ID: ${props.id}`}
               </Typography>
             }
             secondary={
-              <Typography variant="subtitle1" style={{fontFamily:'"Roboto Slab", serif', fontSize:'19px', color:"#777"}}>
+              <Typography variant="subtitle1" style={{fontFamily:'"Merriweather", serif', fontSize:'12px', color:"#777"}}>
                 {`Age: ${props.age}, Location: ${props.location}`}
               </Typography>
             }

@@ -7,7 +7,6 @@ import AboutPage from './Pages/AboutPage'
 import ContactPage from './Pages/ContactPage';
 import Signup from './Component/Signup';
 import Navbar from './Component/Navbar';
-
 import DemoPage from './Pages/DemoPage';
 import CaseManagerDashboard from './Pages/CaseManagerDashboard';
 import ChildDataForm from './Pages/ChildDataForm';
@@ -15,6 +14,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import PageNotFound from './Pages/PageNotFound';
 import { useEffect } from 'react';
 import AdminDashboard from './Pages/AdminDashboard';
+import ChildAccountPage from './Pages/ChildAccountPage';
+import PdfGenerator from './Component/PdfGenerator';
+import Dash from './Pages/Dash';
+import ProfileForCm from './Pages/ProfileForCm';
+import Abandond from './Pages/Abandond';
+
 function App() {
 
   let dispatch = useDispatch();
@@ -38,7 +43,8 @@ function App() {
 
   return (
     <>
-    <Navbar />
+    <Dash/>
+    {/* <Navbar /> */}
     {/* <Header /> */}
 
       {/* // All routes will go here */}
@@ -46,11 +52,22 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
+        <Route path="/pdf-generator" element={<PdfGenerator />} />
+        {/* <Route path="/dash" element={<Dash />} /> */}
+
+        <Route path="/abandond" element={<Abandond />} />
+
+        <Route path="/profile" element={<ProfileForCm />} />
+        
+
         <Route path="*" element={<PageNotFound />} />
 
         <Route path="about" element={<AboutPage />} />
 
         <Route path="contact" element={<ContactPage/>} />
+        {state.user  != null && <Route path="/profile/:id" element={<ChildAccountPage />} />}
+
+        {state.user  != null && <Route path="/user-profile" element={<ProfileForCm />} />}
 
         {(state.user != null && state.user.role == "root") &&  <Route path="/dashboard" element={<Dashboard />} /> }
 

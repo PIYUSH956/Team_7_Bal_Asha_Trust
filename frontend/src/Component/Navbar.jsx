@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import Logo from "../Images/logo.png";
 import "../Css/Navbar.css";
 
 function NavBar() {
@@ -25,6 +24,8 @@ function NavBar() {
     navigate("/")
   }
 
+
+
   const handleDashboardClick = (e)=>{
     e.preventDefault();
     const role = state.user.role;
@@ -37,14 +38,19 @@ function NavBar() {
     navigate("/manager-dashboard");
   }
 
+  const handleProfile = (e) =>{
+    e.preventDefault();
+    navigate("/profile");
+  }
+
   const handleClick = () => setClick(!click);
   return (
     <>
       <nav className="navbar">
         <div className="nav-container">
           <NavLink exact to="/" className="nav-logo">
-            Bal Asha Trust
-            <HomeIcon />
+            {/* navbar logo added */}
+            <img src={Logo} alt="Bal Asha Trust" />
           </NavLink>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
@@ -80,6 +86,19 @@ function NavBar() {
                 Login
               </NavLink>}
             </li>
+
+
+            {state.user != null && <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleProfile}
+              >
+                Profile
+              </NavLink>}
+            </li>}
+
             <li className="nav-item">
               { state.user != null && <NavLink
                 exact
@@ -88,6 +107,17 @@ function NavBar() {
                 onClick={handleLogout}
               >
                 Logout
+              </NavLink>}
+            </li>
+            <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                to="/user-profile"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Profile
               </NavLink>}
             </li>
             {/* <li className="nav-item">
