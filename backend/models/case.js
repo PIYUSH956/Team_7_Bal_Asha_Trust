@@ -12,19 +12,11 @@ const caseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref:"Child",
       required: true,
+      unique:true,
     },
     assignedWorkerID: {
       type: mongoose.Schema.Types.ObjectId,
       ref:"User",
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-      enum: ["Abandoned", "Parental Guidance", "Surrendered"],
-    },
-    progressStatus: {
-      type: String,
       required: true,
     },
     // Add more important fields as needed

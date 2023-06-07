@@ -13,7 +13,7 @@ const gridStyle = {
    margin : '20px auto',
 }
 
-export default function ProcessDetails() {
+export default function ProcessDetails( props) {
     return(
         <>
             <Grid>
@@ -28,7 +28,7 @@ export default function ProcessDetails() {
                         </AccordionSummary>
                         
                         <AccordionDetails>
-                            <ProcessStep1 />
+                            <ProcessStep1 childData = {props.childData} />
                         </AccordionDetails>
                     </Accordion>
                 </Grid>
