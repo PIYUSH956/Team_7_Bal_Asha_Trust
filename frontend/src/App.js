@@ -14,7 +14,8 @@ import { useEffect } from 'react';
 import AdminDashboard from './Pages/AdminDashboard';
 import ChildAccountPage from './Pages/ChildAccountPage';
 import PdfGenerator from './Component/PdfGenerator';
-import ProfileForCm from '../src/Pages/ProfileForCm';
+import Dash from './Pages/Dash';
+import ProfileForCm from './Pages/ProfileForCm';
 import Abandond from './Pages/Abandond';
 
 function App() {
@@ -40,7 +41,8 @@ function App() {
 
   return (
     <>
-    <Navbar />
+    <Dash/>
+    {/* <Navbar /> */}
     {/* <Header /> */}
 
       {/* // All routes will go here */}
@@ -49,6 +51,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
+        {/* <Route path="/dash" element={<Dash />} /> */}
 
         <Route path="/abandond" element={<Abandond />} />
 
@@ -58,6 +61,8 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
 
         {state.user  != null && <Route path="/profile/:id" element={<ChildAccountPage />} />}
+
+        {state.user  != null && <Route path="/user-profile" element={<ProfileForCm />} />}
 
         {(state.user != null && state.user.role == "root") &&  <Route path="/dashboard" element={<Dashboard />} /> }
 

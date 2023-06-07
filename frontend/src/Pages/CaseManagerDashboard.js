@@ -146,11 +146,11 @@ const CaseManagerDashboard = () => {
     return (
 
         <>
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
+            {/* <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
                 <Typography variant="h3" align="center" fontWeight="bold">
                     Dashboard
                 </Typography>
-            </Box>
+            </Box> */}
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
                 <Typography variant="h4" align="center" fontWeight="bold">
                     Children Information
@@ -212,9 +212,9 @@ const CaseManagerDashboard = () => {
                 <Grid item xs={12} md={2}></Grid>
 
             </Grid>
-            <Grid paddingX={8} paddingY={5}>
+            {/* <Grid paddingX={8} paddingY={5}>
                 <ChildList />
-            </Grid>
+            </Grid> */}
 
 
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
@@ -224,7 +224,7 @@ const CaseManagerDashboard = () => {
             </Box>
 
             <Grid container spacing={3} padding={4} height="50vh" marginBottom={7}>
-                <Grid item xs={12} md={6} >
+                <Grid item xs={12}>
                     <Pie
                         options={{
                             responsive: true,

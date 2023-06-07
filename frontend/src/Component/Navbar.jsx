@@ -24,6 +24,8 @@ function NavBar() {
     navigate("/")
   }
 
+
+
   const handleDashboardClick = (e)=>{
     e.preventDefault();
     const role = state.user.role;
@@ -105,6 +107,17 @@ function NavBar() {
                 onClick={handleLogout}
               >
                 Logout
+              </NavLink>}
+            </li>
+            <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                to="/user-profile"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Profile
               </NavLink>}
             </li>
             {/* <li className="nav-item">

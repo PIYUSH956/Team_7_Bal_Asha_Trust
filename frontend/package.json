@@ -33,7 +33,8 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "styled-components": "^5.3.11",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
