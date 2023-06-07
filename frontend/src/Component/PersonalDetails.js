@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Avatar, Button, IconButton, Input, TextField, Typography } from "@mui/material";
+import { Grid, Avatar , Button, IconButton, Input, TextField, Typography, Paper } from "@mui/material";
 import Box from '@mui/material/Box';
 import profilePhoto from "../Images/LoginImage.jpg"
 import { Label, PhotoCamera } from '@mui/icons-material';
@@ -60,7 +60,21 @@ export default function PersonalDetails(props) {
         },
     ];
 
+    const headingStyle = {
+        color:'gray',
+        fontSize:'18px',
+        fontWeight:"bolder",
+    }
 
+    const contentStyle = {
+        color:'gray',
+    }
+
+    const paperStyle = {
+        padding:20,
+        width:'80vw',
+        margin:'50px auto',
+    }
 
     return (
         <>
@@ -68,63 +82,37 @@ export default function PersonalDetails(props) {
                 display: 'flex',
                 flexDirection: { xs: "column", md: "row" },
                 justifyContent: 'space-between',
-                gap: 4,
             }}>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: { xs: "column", md: "row" },
+                    justifyContent: 'space-around',
+                    gap:4,
+                }}>
                 <Grid align='center'>
                     <Avatar src={props.image} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
-                    <input
-                        accept="image/*"
-                        id="profile-photo-input"
-                        type="file"
-                        onChange={handlePhotoChange}
-                        style={{ display: 'none' }}
-                    />
-
-                    <label htmlFor="profile-photo-input">
-                        <IconButton color="primary" aria-label="upload photo" component="span">
-                            <PhotoCamera />
-                        </IconButton>
-                    </label>
-
-                    <Button style={btnStyle} variant="contained" color="primary" onClick={() => setProfilePhoto(null)}>
-                        Remove
-                    </Button>
-                    <Typography>{props.caseNumber}</Typography>
                 </Grid>
 
                 <Grid>
-                    <Typography>Name</Typography>
-                    <TextField id="standard-basic" value={props.childName} onChange={handleUsername} variant="standard" />
-                    <Typography mt={2}>Gender</Typography>
-                    <TextField
-                        id="outlined-select-gender"
-                        select
-                        value={props.gender}
-                        onChange={(event) => setGender(event.target.value)}
-                        InputLabelProps={{ shrink: false }}
-                        margin="normal"
-                        variant="outlined"
-                        fullWidth
-                    >
-                        {genders.map(option => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <Typography mt={2}>Date Of Birth</Typography>
-                    <TextField id="standard-basic" value={formatDate(props.dateOfBirth)} onChange={(event) => setDistrict(event.target.value)} variant="standard" />
-                   
+                    <Typography variant='h4' fontWeight='bold' sx={{color:'purple'}}>John Fernandis</Typography>
+                    <Typography style={contentStyle} mt={2}>Male</Typography>
+                    <Typography style={contentStyle}>23/07/2000</Typography>
+                </Grid>
+                </Box>
 
+                <Grid>
+                    <Typography style={headingStyle}>District</Typography>
+                    <Typography style={contentStyle}>Mumbai</Typography>
+                    {/* <TextField id="standard-basic" value={props.district} onChange={(event) => setDistrict(event.target.value)} variant="standard" /> */}
+                    <Typography style={headingStyle} mt={5}>State</Typography>
+                    <Typography style={contentStyle}>Maharastra</Typography>
+                    {/* <TextField id="standard-basic" value={props.state} onChange={(event) => setState(event.target.value)} variant="standard" /> */}
                 </Grid>
 
                 <Grid>
-                    <Typography>District</Typography>
-                    <TextField id="standard-basic" value={props.district} onChange={(event) => setDistrict(event.target.value)} variant="standard" />
-                    <Typography mt={2}>State</Typography>
-                    <TextField id="standard-basic" value={props.state} onChange={(event) => setState(event.target.value)} variant="standard" />
-                    <Typography mt={2}>ShelterHome</Typography>
-                    <TextField id="standard-basic" value={props.shelterHome} onChange={(event) => setSelterHome(event.target.value)} variant="standard" multiline maxRows={4} />
+                    <Typography style={headingStyle}>ShelterHome</Typography>
+                    <Typography style={contentStyle}>KVB Trust</Typography>
+                    {/* <TextField id="standard-basic" value={props.shelterHome} onChange={(event) => setSelterHome(event.target.value)} variant="standard" multiline maxRows={4} /> */}
                 </Grid>
             </Box>
         </>
