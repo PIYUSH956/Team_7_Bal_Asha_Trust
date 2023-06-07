@@ -57,7 +57,6 @@ function App() {
 
         <Route path="/abandond" element={<Abandond />} />
 
-        <Route path="/profile" element={<ProfileForCm />} />
         
 
         <Route path="*" element={<PageNotFound />} />
