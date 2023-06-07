@@ -13,9 +13,9 @@ export const SidebarData= [
         link: "/manager-dashboard",
     },
     {
-        title: "Not Assigned Cases",
+        title: "Pending Cases",
         icon: <NotAssignedIcon/>,
-        link: "/child-table",
+        link: "/pending",
     },{
         title: "On Going Cases",
         icon: <OnGoingIcon/>,

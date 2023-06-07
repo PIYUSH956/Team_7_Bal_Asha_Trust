@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CaseManagerDashboard from './CaseManagerDashboard';
 import { SidebarData } from '../Component/SidebarData';
+import { NavLink, useNavigate } from 'react-router-dom';
 import "../Css/Sidebar.css";
 const drawerWidth = 240;
 
@@ -71,6 +72,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -131,13 +133,13 @@ export default function PersistentDrawerLeft() {
         <List  className="sidebarr">
           {SidebarData.map((val, key) => {
             return (
+                <>
                 <ListItem key={key}
                 className="rowitem"
+                onClick={(e)=>{navigate(val.link)}}
                 id={window.location.pathname == val.link ? "active" : ""}
                 disablePadding 
-                 onClick={() => {
-                    window.location.pathname = val.link;
-                 }}>
+                >
                     <ListItemButton>
                         <ListItemIcon>
                         {React.cloneElement(val.icon, { style: { color: window.location.pathname == val.link?'white': '#ff8100' } })}     
@@ -145,12 +147,17 @@ export default function PersistentDrawerLeft() {
                         <ListItemText primary={val.title} />
                     </ListItemButton>
                 </ListItem>
+                <NavLink to={val.link}></NavLink>
+                </>
             );
           })}
           
         </List>
         
       </Drawer>
+
+
+      
       </div>
       <Main open={open} className="dashboard-back">
         <DrawerHeader />

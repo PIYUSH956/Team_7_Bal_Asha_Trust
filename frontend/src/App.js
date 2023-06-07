@@ -19,7 +19,9 @@ import PdfGenerator from './Component/PdfGenerator';
 import Dash from './Pages/Dash';
 import ProfileForCm from './Pages/ProfileForCm';
 import Abandond from './Pages/Abandond';
-import ChildTable from './Component/ChildTable';
+import PendingChildTable from './Component/PendingChildTable';
+import OnGoingChildTable from './Component/OnGoingChildTable';
+import CompletedChildTable from './Component/CompletedChildTable';
 
 function App() {
 
@@ -53,7 +55,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
-        <Route path="/child-table" element={<ChildTable />} /> 
+        <Route path="/pending" element={<PendingChildTable />} /> 
+        <Route path="/on-going" element={<OnGoingChildTable />} /> 
+        <Route path="/completed" element={<CompletedChildTable />} /> 
 
         <Route path="/abandond" element={<Abandond />} />
 
