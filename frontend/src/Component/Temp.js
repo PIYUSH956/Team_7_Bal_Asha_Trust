@@ -147,7 +147,7 @@ export default function Temp(props) {
           <Typography mt={2}>Name</Typography>
           <TextField
             id="standard-basic"
-            value={username}
+            value={props.username}
             onChange={handleUsername}
             variant="standard"
           />
@@ -160,7 +160,7 @@ export default function Temp(props) {
             variant="standard"
           />
 
-          <Typography mt={2}>Name</Typography>
+          <Typography mt={2}>password</Typography>
           <TextField
             id="standard-basic"
             value={password}

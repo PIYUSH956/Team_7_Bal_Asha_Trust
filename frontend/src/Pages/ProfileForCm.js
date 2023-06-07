@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import {useSelector} from 'react-redux';
 
 
 
@@ -31,19 +30,19 @@ const ProfileForCm = () => {
   const [value, setValue] = React.useState("0");
   const [cmData, setCmData] = useState({});
 
-  useEffect(() => {
-    async function fetchData() {
-      try {  console.log(state.user._id);
-        const res = await axios.get(
-          `http://localhost:4000/api/get-user/${state.user._id}`);
-        console.log(res);
-        setCmData(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {  console.log("sche"+state.user._id);
+  //       const res = await axios.get(
+  //         `http://localhost:4000/api/get-user/${state.user._id}`);
+  //       console.log(res);
+  //       setCmData(res.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -61,11 +60,12 @@ const ProfileForCm = () => {
             <Temp
               // image={cmData.image}
   
-              image={cmData.image==null?"":cmData.image}
-              verified={cmData.verified}
-              username={cmData.username}
-              role={cmData.role}
-              email={cmData.email}
+              image={state.user.image==null?"":state.user.image}
+              verified={state.user.verified}
+              username={state.user.username}
+              role={state.user.role}
+              email={state.user.email}
+              
     
             />
           </Box>

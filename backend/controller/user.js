@@ -22,8 +22,21 @@ exports.getUserDetail = async (req, res) => {
 
 //update user profile
 exports.updateUserProfile = async (req, res) => {
-
-
+    const _id=req.body.id;
+    const image=req.body.image;
+    try{
+    const user = await User.findOneAndUpdate({ _id }, { image });
+    if (user) {
+        res.status(200).send({
+            user
+        })
+    } else {
+        console.error(error);
+        return res.status(400).json({ message: "Error" });
+    }
+} catch (error) {
+    return res.status(400).json({ message: "Error" });
+}
 
 
 
