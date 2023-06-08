@@ -4,7 +4,8 @@ const {
     createProcess,
     addAbandon,
     deleteAbandon,
-    getAbandon
+    getAbandon,
+    // updateAbandon
 } = require("../controller/process");
 
 //create process of child
@@ -17,5 +18,7 @@ router.post("/add-abandond", addAbandon);
 router.get("/get-abandond", getAbandon);
 
 router.post("/delete-abandond", deleteAbandon);
+
+// router.post("/update-abandond", updateAbandon);
 
 module.exports = router;

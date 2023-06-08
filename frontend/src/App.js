@@ -59,6 +59,9 @@ function App() {
         <Route path="/on-going" element={<OnGoingChildTable />} /> 
         <Route path="/completed" element={<CompletedChildTable />} /> 
 
+
+        <Route path="/process" element={<CompletedChildTable />} /> 
+
         <Route path="/abandond" element={<Abandond />} />
 
         <Route path="/profile" element={<ProfileForCm />} />

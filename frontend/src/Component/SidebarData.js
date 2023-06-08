@@ -31,6 +31,12 @@ const SidebarData= [
     },
 ]
 
+export function Side(){
 
-export default  SidebarData;
+    var state = useSelector((state) => ({ ...state }));
+
+   
+}
+
+export default SidebarData;
 
