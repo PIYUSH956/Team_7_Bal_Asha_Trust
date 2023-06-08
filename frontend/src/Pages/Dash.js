@@ -136,10 +136,10 @@ export default function PersistentDrawerLeft() {
 
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <>
       <CssBaseline />
       <AppBar position="static" open={open}>
-        <Toolbar sx={{ backgroundColor: "#ffe2cb" }}>
+        <Toolbar sx={{ backgroundColor: "#382A41" }}>
           <Box sx={{ display: "flex" }}>
             <IconButton
               color="inherit"
@@ -148,9 +148,9 @@ export default function PersistentDrawerLeft() {
               edge="start"
               sx={{ mr: 2, ...(open && { display: "none" }) }}
             >
-              <MenuIcon sx={{ color: "#ff8100" }} />
+              <MenuIcon sx={{ color: "white" }} />
             </IconButton>
-            <p className="heading-item">Bal Asha Trust</p>
+            <p className="heading-item" >Bal Asha Trust</p>
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -206,7 +206,7 @@ export default function PersistentDrawerLeft() {
             "& .MuiDrawer-paper": {
               width: drawerWidth,
               boxSizing: "border-box",
-              backgroundColor: "#ffe2cb",
+              backgroundColor: "#382A41",
             },
           }}
           variant="persistent"
@@ -218,9 +218,9 @@ export default function PersistentDrawerLeft() {
 
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "ltr" ? (
-                <ChevronLeftIcon sx={{ color: "#ff8100" }} />
+                <ChevronLeftIcon sx={{ color: "#FFF" }} />
               ) : (
-                <ChevronRightIcon sx={{ color: "#ff8100" }} />
+                <ChevronRightIcon sx={{ color: "#FFF" }} />
               )}
             </IconButton>
           </DrawerHeader>
@@ -244,7 +244,7 @@ export default function PersistentDrawerLeft() {
                           color:
                             window.location.pathname == val.link
                               ? "white"
-                              : "#ff8100",
+                              : "white",
                         },
                       })}
                     </ListItemIcon>
@@ -256,9 +256,9 @@ export default function PersistentDrawerLeft() {
           </List>
         </Drawer>
       </div>
-      <Main open={open} className="dashboard-back">
+      {/* <Main open={open} className="dashboard-back">
         <DrawerHeader />
-      </Main>
-    </Box>
+      </Main> */}
+    </>
   );
 }

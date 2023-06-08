@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 const boxStyle = {
+    marginTop:'2%',
     marginLeft:'10%',
     marginRight:'10%',
 }
@@ -26,7 +27,7 @@ const boxStyle2 = {
 }
 
 const heading ={
-    color:'#ff8100',
+    color:'#44384E',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -39,7 +40,7 @@ const headingStyle = {
     color:'white',
     fontSize:'18px',
     fontWeight:"lighter",
-    backgroundColor:'#ff8100',
+    backgroundColor:'#CD366B',
     padding:10,
     marginTop: '20px',
     marginBottom: '20px',

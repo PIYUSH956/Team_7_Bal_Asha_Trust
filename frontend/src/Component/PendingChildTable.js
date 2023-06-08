@@ -19,14 +19,14 @@ import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   tableHeader: {
-    backgroundColor: '#ffe2cb',
-    color: "#ff8100",
+    backgroundColor: '#392A41',
+    color:'white',
     fontWeight:1000,
    
   },
   hoverRow: {
     '&:hover': {
-      backgroundColor: '#ff8100', // Change this to your desired hover color
+      backgroundColor: '#CD366B', // Change this to your desired hover color
       cursor: 'pointer',
       '& > *': {
         color: 'white', // Change this to your desired hover text color

@@ -1,10 +1,10 @@
 
 .rowitem{
-    color:#ff8100 ;
+    color: white;
 }
 
 #active {
-    background-color: #ff8100  ;
+    background-color: #CD366B;
     color: white;
 }
 .dashboard-back{
@@ -13,12 +13,12 @@
 .heading-item{
     margin-top: 15px;
     font-weight: 700;
-    color: #ff8100;
+    color: white;
     font-size: 30px;
 }
 .subheading-item{
     margin-top: 15px;
     font-weight: 700;
-    color: #ff8100;
+    color: white;
     font-size: 25px;
 }

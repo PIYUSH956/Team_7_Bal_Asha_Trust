@@ -56,7 +56,7 @@ export default function PersonalDetails(props) {
         display : 'flex',
     }
     const headingStyle = {
-        color:'#ff8100',
+        color:'#CD366B',
         fontSize:'18px',
         fontWeight:"bolder",
         marginTop: '25px',
@@ -94,7 +94,7 @@ export default function PersonalDetails(props) {
                     <Avatar src={props.image} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
                 </Grid>
 
-                <Grid style={nameHolder}  sx={{color:'#ff8100',paddingTop: '10px'}}>
+                <Grid style={nameHolder}  sx={{color:'#CD366B',paddingTop: '10px'}}>
                     <Grid item xs={12} md={8}>
                         <Typography variant='h4' fontWeight='bold'>{props.name}</Typography>
                         <Typography style={contentStyle}>{formatString(props.gender)}</Typography>
