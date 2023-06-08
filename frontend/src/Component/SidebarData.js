@@ -24,10 +24,6 @@ const SidebarData= [
         title: "Completed Cases",
         icon: <CompletedIcon/>,
         link: "/child-table",
-    },{
-        title: "Social Workers",
-        icon: <SocailWorkersIcon/>,
-        link: "/user-profile",
     },
 ]
 

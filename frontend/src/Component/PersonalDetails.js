@@ -8,7 +8,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import dayjs from 'dayjs';
 import { DatePicker } from '@mui/lab';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 
 import ProcessIcon from '@mui/icons-material/DeveloperBoard';
@@ -34,6 +37,7 @@ function formatDate(dateString) {
 export default function PersonalDetails(props) {
 
    
+    const navigate = useNavigate();
 
     const btnStyle = {
         width: '20px',
@@ -74,6 +78,14 @@ export default function PersonalDetails(props) {
         margin:'50px auto',
     }
 
+    const handleProcess = () =>{
+
+    }
+
+    const handleSchedule = () =>{
+        navigate(`/${props.category}/${props.id}`);
+    }
+
     return (
         <>
             <Box sx={{
@@ -100,7 +112,8 @@ export default function PersonalDetails(props) {
                         <Typography style={contentStyle}>{formatString(props.gender)}</Typography>
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
-                        <ProcessIcon/>
+                        <ProcessIcon onClick={handleProcess}/>
+                        {props.category == "assigned" ? <AssignmentTurnedInIcon  /> : <AssignmentLateIcon onClick={handleSchedule} /> }
                     </Grid>
                 </Grid>
                 </Box>

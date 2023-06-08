@@ -198,7 +198,7 @@ export default function PersistentDrawerLeft() {
               onClose={handleCloseUserMenu}
             >
               {profileItems.map((setting) => (
-                <MenuItem key={setting} onClick={(e) => handleCloseUserMenu(e, setting)}>
+                <MenuItem   key={setting} onClick={(e) => handleCloseUserMenu(e, setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
