@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
   tableHeader: {
     backgroundColor: '#ffe2cb',
     color: "#ff8100",
-    fontWeight:1000,
-   
+    fontWeight: 1000,
+
   },
   hoverRow: {
     '&:hover': {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
- 
+
 }));
 
 const columns = [
@@ -75,6 +75,7 @@ export default function PendingChildTable() {
   const navigate = useNavigate();
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
+  const [flag,setFlag] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event, newPage) => {
@@ -98,7 +99,7 @@ export default function PendingChildTable() {
       try {
         if (state.user != null && state.user.role == "manager") {
           const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "notAssigned" });
-          console.log(data);
+
           setChildData(data.data);
         }
 
@@ -106,7 +107,7 @@ export default function PendingChildTable() {
 
           var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
           data = data.data;
-          console.log(data);
+
           var tempArr = [];
           for (const item of data) {
             tempArr.push(item.childID);
@@ -122,12 +123,34 @@ export default function PendingChildTable() {
     , []);
 
 
-    const handleCellClick = (e) => {
+  const handleCellClick = (e) => {
 
-      navigate("/profile/" + e._id);
-      localStorage.setItem("temp-profile",JSON.stringify(e));
-      
-    }
+    navigate("/profile/" + e._id);
+    localStorage.setItem("temp-profile", JSON.stringify(e));
+
+  }
+
+
+
+  const handleSort = (e) => {
+    console.log(e);
+    const sorted = [...childData].sort((a, b) => {
+      const aValue = a[e];
+      const bValue = b[e];
+
+      if (flag) {
+        if (aValue < bValue) return -1;
+        if (aValue > bValue) return 1;
+      } else {
+        if (aValue > bValue) return -1;
+        if (aValue < bValue) return 1;
+      }
+    });
+
+    setChildData(sorted);
+    console.log(childData);
+    setFlag(!flag);
+  }
 
 
 
@@ -141,10 +164,11 @@ export default function PendingChildTable() {
               <TableHead   >
                 <TableRow>
                   {columns.map((column) => (
-                    <TableCell 
+                    <TableCell
                       className={classes.tableHeader}
                       key={column.id}
                       align={column.align}
+                      onClick={() => { handleSort(column.id) }}
                       style={{ minWidth: column.minWidth }}
                     >
                       {column.label}
@@ -166,7 +190,7 @@ export default function PendingChildTable() {
                           const value = val[column.id];
                           console.log(column, val);
                           return (
-                            <TableCell onClick={() => {handleCellClick(val)}} className={classes.hoverCell} key={column.id} align={column.align}>
+                            <TableCell onClick={() => { handleCellClick(val) }} className={classes.hoverCell} key={column.id} align={column.align}>
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}
