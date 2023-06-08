@@ -16,6 +16,7 @@ router.post("/get-process-by-category", getProcess);
 
 router.post("/add-abandond", addAbandon);
 
+router.get("/get-abandond", getAbandon);
 
 
 router.post("/delete-abandond", deleteAbandon);
