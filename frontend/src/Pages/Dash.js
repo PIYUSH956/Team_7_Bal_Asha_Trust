@@ -28,7 +28,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import Badge from '@mui/material/Badge';
 import SocailWorkersIcon from '@mui/icons-material/Group';
 import { useSelector, useDispatch } from 'react-redux';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import "../Css/Sidebar.css";
+import NotificationBell from '../Component/NotificationBell';
 
 const drawerWidth = 240;
 
@@ -54,10 +56,8 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 );
 
 const AppBar = styled(MuiAppBar, {
-
-
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+  })(({ theme, open }) => ({
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -91,14 +91,23 @@ export default function PersistentDrawerLeft() {
 
   var state = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-
+  const [drawer,setdrawer]=React.useState(false);
+  const [anchorEl,setAnchorEl]=React.useState(null);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
+  const openNotification=(event)=>{
+    setAnchorEl(event.currentTarget);
+    setdrawer(true);
+  };
 
+  const closeNotification=(event)=>{
+    setdrawer(false);
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -120,9 +129,17 @@ export default function PersistentDrawerLeft() {
     });
     navigate("/")
   }
+
+  const handleProfile = () => {
+    navigate("/user-profile")
+  }
+
   const handleCloseUserMenu = (e, setting) => {
     if (setting == "Logout") {
       handleLogout();
+    }
+    if (setting == "Profile") {
+      handleProfile();
     }
     setAnchorElUser(null);
   };
@@ -167,15 +184,16 @@ export default function PersistentDrawerLeft() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton
+            <NotificationBell
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+              badgeContent={17}
+              id={state.user._id}
+              anchorEl={anchorEl}
+              onClick={openNotification}
+            />
+              
             <Tooltip title="Open Profile">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={state.user.image} />
@@ -227,7 +245,7 @@ export default function PersistentDrawerLeft() {
             state.user.role=="manager" ? "Case Manager" : "Admin"}
           </p>
 
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton sx={{marginTop: "15px"}}onClick={handleDrawerClose}>
               {theme.direction === "ltr" ? (
                 <ChevronLeftIcon sx={{ color: "#ff8100" }} />
               ) : (
@@ -236,7 +254,7 @@ export default function PersistentDrawerLeft() {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List className="sidebarr">
+          <List>
             {SidebarData.map((val, key) => {
               return (
                 <ListItem
@@ -265,8 +283,34 @@ export default function PersistentDrawerLeft() {
               );
             })}
           </List>
-          <List className="sidebarr">
+          <List >
 
+          {state.user.role == "root" &&  
+          <ListItem
+              key={"child-data-form"}
+              className="rowitem"
+              id={window.location.pathname == "/child-data-form" ? "active" : ""}
+              disablePadding
+              onClick={() => {
+                navigate("/child-data-form");
+              }}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {React.cloneElement(<PersonAddIcon />, {
+                    style: {
+                      color:
+                        window.location.pathname == "/child-data-form"
+                          ? "white"
+                          : "#ff8100",
+                    },
+                  })}
+                </ListItemIcon>
+                <ListItemText primary={"New Registration"} />
+              </ListItemButton>
+            </ListItem>}
+          </List>
+          <List >
           {state.user.role == "admin" &&  
           <ListItem
               key={"abandond"}
@@ -291,14 +335,11 @@ export default function PersistentDrawerLeft() {
                 <ListItemText primary={"Abandond"} />
               </ListItemButton>
             </ListItem>}
-
-            
-
           </List>
         </Drawer>
       </div>
       <Main open={open} className="dashboard-back">
-        <DrawerHeader />
+        {/* <DrawerHeader /> */}
       </Main>
     </Box>
   );

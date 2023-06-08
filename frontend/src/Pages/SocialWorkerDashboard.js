@@ -47,10 +47,10 @@ const SocialWorkerDashboard = () => {
     const [dataset1, setDataset1] = useState([]);
 
 
-    const handleRegistration = (e) => {
-        e.preventDefault();
-        navigate("/child-data-form");
-    }
+//   const handleRegistration = (e) =>{
+//       e.preventDefault();
+//       navigate("/child-data-form");
+//   }
 
 
     useEffect(() => {
@@ -90,82 +90,82 @@ const SocialWorkerDashboard = () => {
                     setLabel1(lbl.labels);
                     setDataset1(lbl.count);
 
-                }
-            } catch (err) {
-                console.log(err);
-            }
-
-
-
+            } 
+        } catch (err) {
+            console.log(err);
         }
-        fetchData();
-    }
+    }}
         , []);
 
 
     return (
 
         <>
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <h1 fontWeight="bold">
-                    Dashboard
-                </h1>
-            </Box>
-            <Grid container spacing={3} padding={2}  alignItems="center">
-                <Grid item xs={12} md={2}></Grid>
-                <Grid item xs={12} md={4} className="grid-item">
-                    <Card className="card-item" >
-                        <Pie
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Child Cases Status',
-                                        font: {
-                                            size: 26,
-                                            weight: 'bold',
-                                        },
-                                    },
-                                },
-                                height: 400,
-                                width: 400,
-                            }}
-                            data={{
-                                labels: label1,
-                                datasets: dataset1,
-                            }}
-                        />
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={4} container
-                    direction="column"
-                    alignItems="center"
-                    justify="center">
-                    <Card className="card-item" >
+        <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
+      {/* <Typography variant="h3" align="center" fontWeight="bold">
+        Dashboard
+      </Typography> */}
+    </Box>
+        <Grid container spacing={3} padding={2} sx={{height:'50vh'}} >
+        <Grid item xs={12} md={2}></Grid>
+        <Grid item xs={12} md={4}>
+            <Pie
+                options={{
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                        display: true,
+                        text: 'Number of child cases',
+                        font: {
+                            size: 26,
+                            weight: 'bold',
+                        },
+                        },
+                    },
+                    height: 1000, 
+                    width: 1000,
+                }}
+                data={{
+                    labels: label1,
+                    datasets: dataset1
+                }}
+            />
+        </Grid>
+        <Grid item xs={12} md={4} container
+            direction="column"
+            alignItems="center"
+            justify="center">
+            
+            <Pie
+                options={{
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                        display: true,
+                        text: 'Number of child cases',
+                        font: {
+                            size: 26,
+                            weight: 'bold',
+                        },
+                        },
+                    },
+                    height: 1000, 
+                    width: 1000,
+                }}
+                data={{
+                    labels: label1,
+                    datasets: dataset1
+                }}
+            />
+            
 
-                    <Avatar
-                        alt="Profile Picture"
-                        src={RegisterImage}
-                        style={{
-                            width: '250px',
-                            height: '250px',
-                            borderRadius: '50%',
-                        }}
-                    />
-                    <br />
-                    <button className="btn-clr" variant="contained" onClick={handleRegistration} >
-                        Register New Child
-                    </button>
-
-                    </Card>
-
-                </Grid>
-                <Grid item xs={12} md={2}></Grid>
-            </Grid>
-
-        </>
+        </Grid>
+        <Grid item xs={12} md={2}></Grid>
+        </Grid>
+        {/* <ChildList data = {childData} /> */}
+        </>      
     );
 }
 
