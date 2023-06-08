@@ -8,13 +8,13 @@ exports.verifyAccount = async (req, res) => {
     //checking if the email exsist
     try {
         const _id = req.params.id;
-        const { password } = req.body;
+        
 
         //hash password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const salt = await bcrypt.genSalt(12);
+        const password = await bcrypt.hash(req.body.password, salt);
 
-        const user = await User.findOneAndUpdate({ _id }, { hashedPassword, verified: true })
+        const user = await User.findOneAndUpdate({ _id }, { password, verified: true })
         if (user) {
             res.status(200).send({
                 user

@@ -430,14 +430,6 @@ const Abandond = () => {
 
 
 
-
-
-
-
-
-
-
-
     </>
 }
 export default Abandond;

@@ -27,7 +27,7 @@ const SidebarData= [
     },{
         title: "Social Workers",
         icon: <SocailWorkersIcon/>,
-        link: "/child-table",
+        link: "/user-profile",
     },
 ]
 
