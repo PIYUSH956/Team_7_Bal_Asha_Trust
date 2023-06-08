@@ -22,6 +22,9 @@ import Abandond from './Pages/Abandond';
 import PendingChildTable from './Component/PendingChildTable';
 import OnGoingChildTable from './Component/OnGoingChildTable';
 import CompletedChildTable from './Component/CompletedChildTable';
+import ProcessDetails from './Component/ProcessDetails';
+import ScheduleDetails from './Component/ScheduleDetails';
+
 
 function App() {
 
@@ -58,6 +61,9 @@ function App() {
         <Route path="/pending" element={<PendingChildTable />} /> 
         <Route path="/on-going" element={<OnGoingChildTable />} /> 
         <Route path="/completed" element={<CompletedChildTable />} /> 
+
+        <Route path="/process-details" element={<ProcessDetails/>}/>
+        <Route path="/schedule" element={<ScheduleDetails/>}/>
 
 
         <Route path="/process" element={<CompletedChildTable />} /> 
