@@ -289,7 +289,7 @@ const Abandond = () => {
             <Button variant="contained" onClick={handleAdd}>Add</Button>
         </div>
 
-        <Box
+        {/* <Box
             component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -346,7 +346,7 @@ const Abandond = () => {
 
         <div className={classes.centerButton}>
             <Button variant="contained" onClick={handleUpdate}>Update</Button>
-        </div>
+        </div> */}
 
         <Box
             component="form"

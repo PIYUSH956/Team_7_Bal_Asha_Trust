@@ -16,12 +16,16 @@ import { useEffect } from 'react';
 import AdminDashboard from './Pages/AdminDashboard';
 import ChildAccountPage from './Pages/ChildAccountPage';
 import PdfGenerator from './Component/PdfGenerator';
+import Process from './Pages/Process';
 import Dash from './Pages/Dash';
 import ProfileForCm from './Pages/ProfileForCm';
 import Abandond from './Pages/Abandond';
 import PendingChildTable from './Component/PendingChildTable';
 import OnGoingChildTable from './Component/OnGoingChildTable';
 import CompletedChildTable from './Component/CompletedChildTable';
+import ScheduleDetails from './Component/ScheduleDetails';
+import ProcessDetails from './Component/ProcessDetails';
+
 
 function App() {
 
@@ -59,6 +63,9 @@ function App() {
         <Route path="/on-going" element={<OnGoingChildTable />} /> 
         <Route path="/completed" element={<CompletedChildTable />} /> 
 
+        <Route path="/process-details" element={<ProcessDetails/>}/>
+        <Route path="/schedule" element={<ScheduleDetails/>}/>
+
 
         <Route path="/process" element={<CompletedChildTable />} /> 
 
@@ -81,6 +88,14 @@ function App() {
        
 
         <Route path="/login" element={<Login />} />
+
+
+        <Route path="/schedule" element={<ScheduleDetails />} />
+
+
+        <Route path="/demo-category" element={<Process />} />
+
+        
 
 
         {(state.user != null && state.user.role == "admin") && <Route path="/signup" element={<Signup />} />}
