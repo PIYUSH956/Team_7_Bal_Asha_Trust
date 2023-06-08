@@ -6,21 +6,30 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 
-
 const columns = [
-    { field: 'col0', headerName: 'Name', width: 150 },
-    { field: 'col1', headerName: 'Email', width: 150 },
-    { field: 'col2', headerName: 'Username', width: 150 },
+    { field: 'col0', headerName: 'Name', width: 220 },
+    { field: 'col1', headerName: 'Email', width: 480 },
+    { field: 'col2', headerName: 'Username', width: 250 },
 ];
 
 const categories = [
-    { value: 'Abanduned', label: 'Abanduned' },
-    { value: 'Parental Guidance', label: 'Parental Guidance' },
-    { value: 'Surrendared', label: 'Surrendared' }
+    { value: 'abandoned', label: 'Abandoned' },
+    { value: 'surrendered', label: 'Surrendared by Parents' },
+    { value: 'orphanedNoGuardian', label: 'Orphaned - No Guardian' },
+    { value: 'childAdmittedInCCIByFamily', label: 'Child Admitted In CCI By Family' }
 ];
 
 const btnStyle = {
     marginTop: '50px',
+    fontSize: "15px",
+    backgroundColor: "#ff8100",
+}
+
+const headingstyle = {
+    color:'#ff8100',
+    fontSize:'18px',
+    fontWeight:"bolder",
+    marginBottom: '10px',
 }
 
 export default function App(props) {
@@ -91,36 +100,42 @@ export default function App(props) {
     return (
         <>
             <Box sx={{
-                display: 'flex',
                 flexDirection: { xs: "column", md: "row" },
-                justifyContent: 'space-between',
+                margin: {xs: "5px", md: "50px"},
+                padding: '25px',
             }}>
                 <Grid>
-                    <Box sx={{ display: 'flex', gap: 1, flexDirection: { xs: 'column', md: 'row' } }}>
-                        <Typography>Select Volunteer : </Typography>
-                        <TextField id="standard-basic" variant="standard" value={volunteer.col1} disabled fullWidth />
-                    </Box>
-                    <Box mt={3} sx={{ display: 'flex', gap: 1, flexDirection: { xs: 'column', md: 'row' } }}>
-                        <Typography>Change Category : </Typography>
-                        <TextField
-                            id="standard-select-currency"
-                            select
-                            value={category}
-                            variant="standard"
-                            fullWidth
-                            onChange={(event) => setCategory(event.target.value)}
-                        >
-                            {categories.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Box>
+                    <Grid container spacing={3}>
+                        <Grid sx={{ paddingX: {xs: "5px", md: "100px"}}} item xs={12} md={6}>
+                            <Typography style={headingstyle}>Select Volunteer : </Typography>
+                            <TextField id="standard-basic" variant="standard" value={volunteer.col1} disabled fullWidth />
+                        </Grid>
+                        <Grid sx={{ paddingX: {xs: "5px", md: "100px"}}} item xs={12} md={6}>
+                            <Typography style={headingstyle}>Change Category : </Typography>
+                            <TextField
+                                id="standard-select-currency"
+                                select
+                                value={category}
+                                variant="standard"
+                                fullWidth
+                                onChange={(event) => setCategory(event.target.value)}
+                            >
+                                {categories.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+                    </Grid>
+                    <Grid sx={{ display: 'flex',justifyContent: 'center', alignItems: 'center', marginBottom: {xs: "25px", md: "50px"}}}>
                     <Button style={btnStyle} onClick={handleSchedule} variant="contained">Sechedule the Case</Button>
+                    </Grid>
+                    
                 </Grid>
-                <Grid>
-                    <div style={{ height: 300, width: '100%' }}>
+
+                <Grid sx={{display: 'flex',justifyContent: 'center', alignItems: 'center',}}>
+                    <div style={{ height: 350, width: '80%' }}>
                         <DataGrid rows={row} columns={columns}
                         
                         onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
