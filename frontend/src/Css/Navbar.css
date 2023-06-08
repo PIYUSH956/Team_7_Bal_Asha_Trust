@@ -2,16 +2,31 @@
     margin: 0;
     padding: 0;
   }
+
+  .thm-btn {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    outline: none !important;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all .35s;
+    overflow: hidden;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
   
   .navbar {
-    background: linear-gradient(to bottom, #675cfb, #8994f5);
+    background-color: rgba(255, 255, 255, 0.5);
     display: flex;
+
     height: 80px;
     width: 100%;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 20;
   }
@@ -55,6 +70,9 @@
   
   .nav-item {
     line-height: 40px;
+    margin-top: 5px;
+    background-color: var(--sopot-base);
+    color: var(--sopot-white);
     margin-right: 1rem;
   }
   
@@ -68,18 +86,28 @@
   }
   
   .nav-item:hover:after {
-    width: 100%;
-    background: #604c1a;
+    
   }
   
   .nav-item .active {
-    color: #171b88;
-    border: 1px solid #171b88;
+    
   }
   
   .nav-icon {
     display: none;
   }
+  .btn-clr{
+    background-color: #ff8100;
+    color: white;
+
+    border-radius: 1%;
+  }
+
+
+
+
+
+  
   
   @media screen and (max-width: 960px) {
     .nav-menu {
@@ -95,20 +123,24 @@
     }
   
     .nav-menu.active {
-      background: linear-gradient(to bottom, #675cfb, #8994f5);
+      background:rgba(255, 255, 255, 0.5);
       left: 0px;
       opacity: 1;
       transition: all 0.5s ease;
       z-index: 1;
     }
     .nav-item .active {
-      color: #171b88;
+  
       border: none;
     }
     .nav-links {
       padding: 1.5rem;
       width: 100%;
       display: table;
+    }
+
+    .navbar{
+      background-color: #ff8100;
     }
   
     .nav-icon {
@@ -119,6 +151,23 @@
       transform: translate(-100%, 60%);
       font-size: 1.8rem;
       cursor: pointer;
-      color: #171b88;
+     
+    }
+
+    .btn-clr{
+      background-color: #ff8100;
+      color: white;
+      font-size: 20px;
+      border-radius: 1%;
+    }
+  
+  }
+
+
+
+
+  @media (max-width: 767px) {
+    h6 {
+      font-size: 14px; /* Adjust the font size for mobile screens */
     }
   }

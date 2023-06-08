@@ -8,6 +8,8 @@ import ChildList from "../Component/ChildList";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { Card } from '@material-ui/core';
+import "../Css/CaseManagerDashboard.css";
 
 const generateRandomColors = (numColors) => {
     const colors = [];
@@ -146,85 +148,82 @@ const CaseManagerDashboard = () => {
     return (
 
         <>
-            {/* <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <Typography variant="h3" align="center" fontWeight="bold">
-                    Dashboard
-                </Typography>
-            </Box> */}
+           
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <Typography variant="h4" align="center" fontWeight="bold">
+                <h1  align="center" fontWeight="bold">
                     Children Information
-                </Typography>
+                </h1>
             </Box>
-            <Grid container spacing={3} padding={2} height="50vh">
+            
 
-                <Grid item xs={12} md={2}></Grid>
-                <Grid item xs={12} md={4}>
-                    <Pie
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Child Cases Status',
-                                    font: {
-                                        size: 26,
-                                        weight: 'bold',
-                                    },
-                                },
-                            },
-                            height: 400,
-                            width: 400,
-                        }}
-                        data={{
-                            labels: label2,
-                            datasets: dataset2
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} md={4} >
-                    <Pie
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Region wise Child Cases',
-                                    font: {
-                                        size: 26,
-                                        weight: 'bold',
-                                    },
-                                },
-                            },
-                            height: 400,
-                            width: 400,
-                        }}
-                        data={{
-                            labels: label1,
-                            datasets: dataset1
-                        }}
-                    />
-
-
-                </Grid>
-                <Grid item xs={12} md={2}></Grid>
-
-            </Grid>
-            {/* <Grid paddingX={8} paddingY={5}>
-                <ChildList />
-            </Grid> */}
+        <Grid container spacing={3} padding={2}>
+        <Grid item xs={12} md={2}></Grid>
+        <Grid item xs={12} md={4} className="grid-item">
+          <Card className= "card-item" >
+            <Pie
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  title: {
+                    display: true,
+                    text: 'Child Cases Status',
+                    font: {
+                      size: 26,
+                      weight: 'bold',
+                    },
+                  },
+                },
+                height: 400,
+                width: 400,
+              }}
+              data={{
+                labels: label2,
+                datasets: dataset2,
+              }}
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={4} className="grid-item">
+          <Card className= "card-item">
+            <Pie
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  title: {
+                    display: true,
+                    text: 'Region wise Child Cases',
+                    font: {
+                      size: 26,
+                      weight: 'bold',
+                    },
+                  },
+                },
+                height: 400,
+                width: 400,
+              }}
+              data={{
+                labels: label1,
+                datasets: dataset1,
+              }}
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={2}></Grid>
+      </Grid>
+            
 
 
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <Typography variant="h4" align="center" fontWeight="bold">
+                <h1 variant="h4" align="center" fontWeight="bold">
                     Social Workers Information
-                </Typography>
+                </h1>
             </Box>
-
-            <Grid container spacing={3} padding={4} height="50vh" marginBottom={7}>
-                <Grid item xs={12}>
+            <Grid container spacing={3}  marginBottom={7}>
+                <Grid item xs={12} md={3}></Grid>
+                <Grid item xs={12} md={6} className="grid-item">
+                    <Card className= "card-item">
                     <Pie
                         options={{
                             responsive: true,
@@ -247,12 +246,9 @@ const CaseManagerDashboard = () => {
                             datasets: dataset3
                         }}
                     />
-
-
+                  </Card>  
                 </Grid>
-                <Grid item xs={12} md={6} >
-
-                </Grid>
+                <Grid item xs={12} md={3}></Grid>
             </Grid>
         </>
     );

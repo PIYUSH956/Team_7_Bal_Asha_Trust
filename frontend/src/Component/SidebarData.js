@@ -5,28 +5,38 @@ import OnGoingIcon from '@mui/icons-material/Assignment';
 import CompletedIcon from '@mui/icons-material/AssignmentTurnedIn';
 import SocailWorkersIcon from '@mui/icons-material/Group';
 import SocialWorkerDashboard from "../Pages/SocialWorkerDashboard";
-
-export const SidebarData= [ 
+import { useSelector } from "react-redux";
+const SidebarData= [ 
     {
         title: "Dashboard",
         icon: <DashboardIcon/>,
-        link: "/manager-dashboard",
+        link: "/dashboard",
     },
     {
-        title: "Not Assigned Cases",
+        title: "Pending Cases",
         icon: <NotAssignedIcon/>,
-        link: "/dashboard",
+        link: "/pending",
     },{
         title: "On Going Cases",
         icon: <OnGoingIcon/>,
-        link: "/dashboard",
+        link: "/child-table",
     },{
         title: "Completed Cases",
         icon: <CompletedIcon/>,
-        link: "/dashboard",
+        link: "/child-table",
     },{
         title: "Social Workers",
         icon: <SocailWorkersIcon/>,
         link: "/user-profile",
     },
 ]
+
+export function Side(){
+
+    var state = useSelector((state) => ({ ...state }));
+
+   
+}
+
+export default SidebarData;
+

@@ -1,7 +1,7 @@
 .main_box {
     min-height: 90vh;
     width: 100%;
-    background: #002b5f;
+    background-color:  #ffe2cb;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,4 +40,10 @@
     height: 90%;
     object-fit: cover;
     cursor: pointer;
+}
+.button{
+    background-color: #ff8100;
+}
+.text-color{
+    color: #ff8100;
 }
