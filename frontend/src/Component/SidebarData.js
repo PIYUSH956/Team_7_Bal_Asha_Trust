@@ -27,10 +27,16 @@ const SidebarData= [
     },{
         title: "Social Workers",
         icon: <SocailWorkersIcon/>,
-        link: "/child-table",
+        link: "/user-profile",
     },
 ]
 
+export function Side(){
 
-export default  SidebarData;
+    var state = useSelector((state) => ({ ...state }));
+
+   
+}
+
+export default SidebarData;
 

@@ -40,7 +40,7 @@ function NavBar() {
 
   const handleProfile = (e) =>{
     e.preventDefault();
-    navigate("/profile");
+    navigate("/user-profile");
   }
 
   const handleClick = () => setClick(!click);
@@ -79,6 +79,27 @@ function NavBar() {
             </li>
 
 
+            {state.user != null && <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleProfile}
+              >
+                Profile
+              </NavLink>}
+            </li>}
+
+            <li className="nav-item">
+              { state.user != null && <NavLink
+                exact
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleLogout}
+              >
+                Logout
+              </NavLink>}
+            </li>
          
          
           

@@ -34,7 +34,7 @@ exports.addAbandon = async (req, res) => {
 
             const process = await Abandond.create({
                 $push: {
-                    steps:  req.body  
+                    steps: req.body
                 }
             }
             );
@@ -97,3 +97,46 @@ exports.getAbandon = async (req, res) => {
         res.status(500).json({ error: 'Failed to create process' });
     }
 };
+
+// exports.updateAbandon = async (req, res) => {
+//     const processData = req.body;
+
+//     console.log(req.body);
+//     try {
+
+//         const x = await Abandond.findOne({ _id: uniqueID });
+//         console.log(x);
+//         if (x.steps != null && x.steps.length == 1) {
+//             return res.status(400).json({ message: "Steps can not be empty" });
+//         } else {
+//             const process = await Abandond.findOneAndUpdate({}, {
+//                 $pull: {
+//                     steps: {
+//                         name: req.body.nameD
+//                     }
+//                 }
+//             }
+//             );
+//             console.log(process);
+//             res.status(201).send(process);
+//         }
+
+//     } catch (error) {
+//         res.status(500).json({ error: 'Failed to create process' });
+//     }
+// };
+
+
+exports.getProcess = async (req, res) => {
+    const category = req.body.category;
+    console.log(req.body);
+    if (category == "abandond") {
+        try {
+            const process = await Abandond.find({});
+            return res.status(200).json(process);
+        }
+        catch (err) {
+            return res.status(400).json(err);
+        }
+    }
+}
