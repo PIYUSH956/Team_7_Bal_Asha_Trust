@@ -10,14 +10,20 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Backgroundimg from "../Images/Background.jpg";
 import Checkbox from "@mui/material/Checkbox";
+import { useMediaQuery,useTheme } from '@material-ui/core';
 import img1 from "../Images/loginphoto.jpg";
 import Box from "@mui/material/Box";
 
 import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
+import { borderColor } from "@mui/system";
 
 
 function Login() {
+  
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
@@ -28,14 +34,8 @@ function Login() {
   let dispatch = useDispatch();
   console.log(state);
   
-  if(state.user != null && state.user.role == "root"){
+  if(state.user != null){
     navigate("/dashboard");
-  }
-  if(state.user != null && state.user.role == "manager"){
-    navigate("/manager-dashboard");
-  }
-  if(state.user != null && state.user.role == "admin"){
-    navigate("/admin-dashboard");
   }
 
 
@@ -63,18 +63,15 @@ function Login() {
 
       alert("Succesfully Logged In");
       //Role based redirecting  Right now for only root 
-      if(payload.role == "root")
       navigate("/dashboard");
-      if(payload.role == "manager")
-      navigate("/manager-dashboard");
-      if(payload.role == "admin")
-      navigate("/admin-dashboard");
     } catch (err) {
       console.log(err);
+      if(err.resoonse == null){
+        alert("No Internet Connection");
+      }else{
       alert(err.response.data.message);
-    } finally {
-      setLoading(true);
     }
+  } 
 
   };
 
@@ -145,8 +142,7 @@ function Login() {
       className='main_box'
       >
         <Grid container
-          xs={10}
-          md={9}
+          xs={isMobile ? 12 : 7} md={isMobile ? 6 : 7}
           className='grid-container'
           
         >
@@ -163,10 +159,10 @@ function Login() {
             />
           </Grid>
 
-          <Grid item xs={11} md={6} sx={{ textAlign: "center" }}>
+          <Grid item xs={11} md={6} sx={{ textAlign: "center", color:"#ff8100"}}>
             <br />
             <TextField
-              sx={{ margin: "10px", width: "80%" }}
+              sx={{ margin: "10px", width: "80%", color:"#ff8100" }}
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -177,7 +173,7 @@ function Login() {
             />
             <br />
             <TextField
-              sx={{ margin: "10px", width: "80%" }}
+              sx={{ margin: "10px", width: "80%", color:"#ff8100" }}
               required
               value={password}
               onChange={(e) => {
@@ -195,10 +191,11 @@ function Login() {
               className="item-2"
             >
               <span>
-                <Checkbox label="Remember Me" /> Remember Me
+              <p  className="text-color">
+                <input type ="checkbox" /> Remember Me </p>
               </span>
               <span>
-                <a href="">Forget Password </a>
+                <a href=""><p className="text-color">Forget Password</p></a>
               </span>
             </Grid>
             <br />
@@ -215,7 +212,8 @@ function Login() {
             <Button
               variant="contained"
               onClick={handleSubmit}
-              sx={{ fontSize: "20px" }}
+              sx={{ fontSize: "20px",backgroundColor: "#ff8100"}}
+        
             >
               Login
             </Button>

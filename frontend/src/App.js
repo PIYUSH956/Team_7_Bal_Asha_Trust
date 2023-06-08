@@ -19,6 +19,9 @@ import PdfGenerator from './Component/PdfGenerator';
 import Dash from './Pages/Dash';
 import ProfileForCm from './Pages/ProfileForCm';
 import Abandond from './Pages/Abandond';
+import PendingChildTable from './Component/PendingChildTable';
+import OnGoingChildTable from './Component/OnGoingChildTable';
+import CompletedChildTable from './Component/CompletedChildTable';
 
 function App() {
 
@@ -43,8 +46,7 @@ function App() {
 
   return (
     <>
-    <Dash/>
-    {/* <Navbar /> */}
+    {state.user != null  ? <Dash/> : <Navbar />}
     {/* <Header /> */}
 
       {/* // All routes will go here */}
@@ -53,7 +55,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
-        {/* <Route path="/dash" element={<Dash />} /> */}
+        <Route path="/pending" element={<PendingChildTable />} /> 
+        <Route path="/on-going" element={<OnGoingChildTable />} /> 
+        <Route path="/completed" element={<CompletedChildTable />} /> 
 
         <Route path="/abandond" element={<Abandond />} />
 
@@ -69,12 +73,10 @@ function App() {
 
         {state.user  != null && <Route path="/user-profile" element={<ProfileForCm />} />}
 
-        {(state.user != null && state.user.role == "root") &&  <Route path="/dashboard" element={<Dashboard />} /> }
+        {(state.user != null) && <Route path="/dashboard" element={<Dashboard />} /> }
 
 
-        {(state.user != null && state.user.role == "manager") && <Route path="/manager-dashboard" element={<CaseManagerDashboard />} /> }
-        {(state.user != null && state.user.role == "admin") && <Route path="/admin-dashboard" element={<AdminDashboard />} />  }
-
+       
 
         <Route path="/login" element={<Login />} />
 
@@ -86,9 +88,8 @@ function App() {
         <Route path="/demo" element={<DemoPage />} />
 
 
-        {state.user != null && state.user.role == "manager" && <Route path="/case-manager" element={<CaseManagerDashboard />} />}
-
-        {state.user != null && state.user.verified === true && state.user.role == "root" && <Route path="/child-data-form" element={<ChildDataForm />} />}
+      
+        {state.user != null  && state.user.role == "root" && <Route path="/child-data-form" element={<ChildDataForm />} />}
 
       </Routes>
 

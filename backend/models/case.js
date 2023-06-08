@@ -19,6 +19,12 @@ const caseSchema = new mongoose.Schema(
       ref:"User",
       required: true,
     },
+    status:{
+      type: String,
+      required: true,
+      enum:["onGoing","Completed"],
+      default:"onGoing"
+    }
     // Add more important fields as needed
   },
   { timestamps: true }
