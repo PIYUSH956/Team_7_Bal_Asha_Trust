@@ -35,10 +35,8 @@ export default function Process() {
 
     const [process, setProcess] = useState([]);
 
-    const [date, setDate] = useState([]);
-    const [status, setStatus] = useState([]);
-    const [values, setValue] = useState([]);
     const [status1, setStatus1] = useState('onGoing');
+    const [status2, setStatus2] = useState('onGoing');
 
 
 
@@ -56,10 +54,9 @@ export default function Process() {
         const file = event.target.files[0];
         setFileName(file.name);
         const result = await convertPdfToBase64(file);
-        setValue(result);
+        // setValue(result);
     };
 
-    console.log("P");
     useEffect(() => {
 
         async function fetchData() {
@@ -77,40 +74,31 @@ export default function Process() {
         , []);
 
 
-    const updateDate = (a, b) => {
-
-        console.log(a, b);
-
-    }
-    const updateStatus = (a, b) => {
-        console.log(a, b);
-        setStatus(a);
-    }
-    const updateValue = (a, b) => {
-        console.log(a, b);
-        setValue(a);
-    }
-
-    const handleStatus1 = (event) => {
-        setStatus1(event.target.value);
-        console.log(event);
-    };
-
-
-    const updatePDF = (a, b) => {
-        console.log(a, b);
-
-    }
-
+    
+    
 
 
     const handleSubmit = (name, type, step, part) => {
         // CASEID, NAME, TYPE, VALUE, STEP, PART, DATE, STATUS
-        console.log(name, type, values, step, part, date, status, assignedWorkerID, childID);
-
-
+        // console.log(name, type, values, step, part, date, status, assignedWorkerID, childID);
     }
 
+    const updateNotes=(key,value) => {
+        console.log(key,value);
+    }
+
+    const updatePDF = async(key,value) => {
+        const val= await convertPdfToBase64(value);
+        console.log(key,value);
+    }
+
+    const updateDate=(key,value) => {
+        console.log(key,value);
+    }
+
+    const updateStatus=(key,value) => {
+        console.log(key,value);
+    }
 
     return (<>
 
@@ -141,24 +129,16 @@ export default function Process() {
                                     />
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-                                    {/* <TextField
+                                    <TextField
+                                        key={pro.name}
                                         sx={{ margin: "10px", width: "80%", color: "#ff8100" }}
-                                        value={values}
-                                        onChange={(e) => updateValue(e.target.value, pro.name)}
+                                        value={pro.value}
+                                        onChange={(e) => updateNotes(e.target.value, pro.name)}
                                         id="outlined-required"
-                                        label="Status"
-                                        placeholder="Status"
+                                        label="Notes"
+                                        placeholder="Notes"
                                         focused
-                                    /> */}
-                                    <Select sx={{ml: 1, maxHeight: '40px', margin: "10px", width: "80%" }} value={status1}
-                                        onChange={handleStatus1}>
-                                        <MenuItem value='onGoing' >
-                                            Ongoing
-                                        </MenuItem>
-                                        <MenuItem value='Completed'>
-                                            Completed
-                                        </MenuItem>
-                                    </Select>
+                                    />
                                 </Grid>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
@@ -177,22 +157,27 @@ export default function Process() {
                                     <LocalizationProvider  dateAdapter={AdapterDayjs}>
                                         <DemoContainer sx={{ marginX: "10px", width: "80%"}} components={['DatePicker']}>
                                             <DatePicker
-                                                onChange={(val) => updateDate(val, pro.name)}
+                                                key={pro.name}
+                                                value={pro.date}
+                                                onChange={(val) => updateDate(pro.name,val)}
                                                 label="Current status date" />
                                         </DemoContainer>
                                     </LocalizationProvider>
                                 </Grid>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-                                <TextField
-                                    sx={{ margin: "35px", width: "75%", color: "#ff8100" }}
-                                    value={status}
-                                    onChange={(e) => updateStatus(e.target.value, pro.name)}
-                                    id="outlined-required"
-                                    label="Notes"
-                                    placeholder="Notes"
-                                    focused
-                                />
+                                <Select sx={{ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }} 
+                                        key={pro.name}
+                                        value={pro.status}
+                                        onChange={(val) => updateStatus(pro.name,val.target.value)} 
+                                        >
+                                        <MenuItem value='onGoing' >
+                                            Ongoing
+                                        </MenuItem>
+                                        <MenuItem value='Completed'>
+                                            Completed
+                                        </MenuItem>
+                                </Select>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' }, display:'flex', justifyContent:'center', alignItems:'center'}} >
                             <Button
@@ -231,9 +216,11 @@ export default function Process() {
                                     <Button variant="contained" component="label">
                                         Upload File
                                         <input id="file-upload-button"
+                                            key={pro.name}
+                                            value={pro.value}
                                             type="file"
                                             hidden
-                                            onChange={(e) => { updatePDF(e, pro.name) }} />
+                                            onChange={(e) => { updatePDF(pro.name, e.target.files[0]) }} />
                                     </Button>
                                     {fileName && <Typography sx={{ marginLeft: '10px', marginTop: '17px' }}>{fileName}</Typography>}
                                 </Grid>
@@ -249,27 +236,33 @@ export default function Process() {
                                         placeholder="Discription"
                                         focused
                                     />
-                                    {/* <textarea value={pro.discussion} /> */}
                                 </Grid>
                                 <Grid   item xs={12} md={6}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <DemoContainer sx={{ marginX: "10px", width: "80%"}} components={['DatePicker']}>
-                                            <DatePicker onChange={(val) => updateDate(val, pro.name)} label="Current status date" />
+                                            <DatePicker 
+                                            onChange={(val) => updateDate(pro.name,val)} 
+                                            key={pro.name}
+                                            value={pro.value}
+                                            label="Current status date" />
                                         </DemoContainer>
                                     </LocalizationProvider>
                                 </Grid>
                                 
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-                                <TextField
-                                    sx={{ margin: "35px", width: "75%", color: "#ff8100" }}
-                                    value={status}
-                                    onChange={(e) => updateStatus(e.target.value, pro.name)}
-                                    id="outlined-required"
-                                    label="Notes"
-                                    placeholder="Notes"
-                                    focused
-                                />
+                                <Select sx={{ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }} 
+                                        key={pro.name}
+                                        value={pro.status}
+                                        onChange={(val) => updateStatus(pro.name,val.target.value)} 
+                                        >
+                                        <MenuItem value='onGoing' >
+                                            Ongoing
+                                        </MenuItem>
+                                        <MenuItem value='Completed'>
+                                            Completed
+                                        </MenuItem>
+                                    </Select>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' }, display:'flex', justifyContent:'center', alignItems:'center'}} >
                                 <Button
