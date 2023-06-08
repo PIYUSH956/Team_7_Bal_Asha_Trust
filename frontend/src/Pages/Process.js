@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography, MenuItem, Select } from '@mui/material';
 import { Card } from '@material-ui/core';
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
@@ -37,7 +37,8 @@ export default function Process() {
 
     const [date, setDate] = useState([]);
     const [status, setStatus] = useState([]);
-    const [value, setValue] = useState([]);
+    const [values, setValue] = useState([]);
+    const [status1, setStatus1] = useState('onGoing');
 
 
 
@@ -83,11 +84,17 @@ export default function Process() {
     }
     const updateStatus = (a, b) => {
         console.log(a, b);
+        setStatus(a);
     }
     const updateValue = (a, b) => {
         console.log(a, b);
-
+        setValue(a);
     }
+
+    const handleStatus1 = (event) => {
+        setStatus1(event.target.value);
+        console.log(event);
+    };
 
 
     const updatePDF = (a, b) => {
@@ -99,7 +106,7 @@ export default function Process() {
 
     const handleSubmit = (name, type, step, part) => {
         // CASEID, NAME, TYPE, VALUE, STEP, PART, DATE, STATUS
-        console.log(name, type, value, step, part, date, status, assignedWorkerID, childID);
+        console.log(name, type, values, step, part, date, status, assignedWorkerID, childID);
 
 
     }
@@ -134,34 +141,30 @@ export default function Process() {
                                     />
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-
-                                    <TextField
+                                    {/* <TextField
                                         sx={{ margin: "10px", width: "80%", color: "#ff8100" }}
-                                        value={value}
-                                        onChange={(e) => updateValue(e.target.name, pro.name)}
+                                        value={values}
+                                        onChange={(e) => updateValue(e.target.value, pro.name)}
                                         id="outlined-required"
                                         label="Status"
                                         placeholder="Status"
                                         focused
-                                    />
-                                    {/* <input type="text"/> */}
-                                    {/* Select status from Pending,OnGoing, completed */}
+                                    /> */}
+                                    <Select sx={{ml: 1, maxHeight: '40px', margin: "10px", width: "80%" }} value={status1}
+                                        onChange={handleStatus1}>
+                                        <MenuItem value='onGoing' >
+                                            Ongoing
+                                        </MenuItem>
+                                        <MenuItem value='Completed'>
+                                            Completed
+                                        </MenuItem>
+                                    </Select>
                                 </Grid>
-
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
                                 <Grid item xs={12} md={6}>
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DemoContainer components={['DatePicker']}>
-                                            <DatePicker
-                                                onChange={(val) => updateDate(val, pro.name)}
-                                                label="Current status date" />
-                                        </DemoContainer>
-                                    </LocalizationProvider>
-                                </Grid>
-                                <Grid item xs={12} md={6}>
                                     <TextField
-                                        sx={{ margin: "10px", width: "80%", color: "#ff8100" }}
+                                        sx={{ margin: "10px", width: "80%"}}
                                         value={pro.discussion}
                                         disabled
                                         id="outlined-required"
@@ -170,34 +173,38 @@ export default function Process() {
                                         focused
                                     />
                                 </Grid>
+                                <Grid   item xs={12} md={6}>
+                                    <LocalizationProvider  dateAdapter={AdapterDayjs}>
+                                        <DemoContainer sx={{ marginX: "10px", width: "80%"}} components={['DatePicker']}>
+                                            <DatePicker
+                                                onChange={(val) => updateDate(val, pro.name)}
+                                                label="Current status date" />
+                                        </DemoContainer>
+                                    </LocalizationProvider>
+                                </Grid>
+                            </Grid>
+                            <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
+                                <TextField
+                                    sx={{ margin: "35px", width: "75%", color: "#ff8100" }}
+                                    value={status}
+                                    onChange={(e) => updateStatus(e.target.value, pro.name)}
+                                    id="outlined-required"
+                                    label="Notes"
+                                    placeholder="Notes"
+                                    focused
+                                />
+                            </Grid>
+                            <Grid sx={{ margin: { xs: '10px', md: '25px' }, display:'flex', justifyContent:'center', alignItems:'center'}} >
+                            <Button
+                                variant="contained"
+                                onClick={() => handleSubmit(pro.name, pro.type, pro.step, pro.part)}
+                                sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                            >
+                                Update
+                            </Button>
                             </Grid>
                         </Card>
-
-                        <TextField
-                            sx={{ margin: "10px", width: "80%", color: "#ff8100" }}
-                            value={status}
-                            onChange={(e) => updateStatus(e.target.value, pro.name)}
-                            id="outlined-required"
-                            label="Status"
-                            placeholder="Status"
-                            focused
-                        />
-
-
-
-
                     </Box>
-
-                    <Button
-                        variant="contained"
-                        onClick={() => handleSubmit(pro.name, pro.type, pro.step, pro.part)}
-                        sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
-
-                    >
-                        Update
-                    </Button>
-
-
 
                 </> : <>
 
@@ -208,8 +215,6 @@ export default function Process() {
                     }}>
                         <Card sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-
-
                                 <Grid item xs={12} md={6}>
                                     <TextField
                                         sx={{ padding: "10px", width: "80%", color: "#ff8100" }}
@@ -234,11 +239,6 @@ export default function Process() {
                                 </Grid>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DemoContainer components={['DatePicker']}>
-                                        <DatePicker onChange={(val) => updateDate(val, pro.name)} label="Current status date" />
-                                    </DemoContainer>
-                                </LocalizationProvider>
                                 <Grid item xs={12} md={6}>
                                     <TextField
                                         sx={{ padding: "10px", width: "80%", color: "#ff8100" }}
@@ -251,30 +251,38 @@ export default function Process() {
                                     />
                                     {/* <textarea value={pro.discussion} /> */}
                                 </Grid>
+                                <Grid   item xs={12} md={6}>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <DemoContainer sx={{ marginX: "10px", width: "80%"}} components={['DatePicker']}>
+                                            <DatePicker onChange={(val) => updateDate(val, pro.name)} label="Current status date" />
+                                        </DemoContainer>
+                                    </LocalizationProvider>
+                                </Grid>
+                                
+                            </Grid>
+                            <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
+                                <TextField
+                                    sx={{ margin: "35px", width: "75%", color: "#ff8100" }}
+                                    value={status}
+                                    onChange={(e) => updateStatus(e.target.value, pro.name)}
+                                    id="outlined-required"
+                                    label="Notes"
+                                    placeholder="Notes"
+                                    focused
+                                />
+                            </Grid>
+                            <Grid sx={{ margin: { xs: '10px', md: '25px' }, display:'flex', justifyContent:'center', alignItems:'center'}} >
+                                <Button
+                                    variant="contained"
+                                    onClick={() => handleSubmit(pro.name, pro.type, pro.step, pro.part)}
+                                    sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                                >
+                                    Update
+                                </Button>
                             </Grid>
                         </Card>
-                        <TextField
-                            sx={{ margin: "10px", width: "80%", color: "#ff8100" }}
-                            value={status}
-                            onChange={(e) => updateStatus(e.target.value, pro.name)}
-                            id="outlined-required"
-                            label="Status"
-                            placeholder="Status"
-                            focused
-                        />
-
                     </Box>
 
-
-
-                    <Button
-                        variant="contained"
-                        onClick={() => handleSubmit(pro.name, pro.type, pro.step, pro.part)}
-                        sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
-
-                    >
-                        Update
-                    </Button>
 
                 </>}
             </>);
