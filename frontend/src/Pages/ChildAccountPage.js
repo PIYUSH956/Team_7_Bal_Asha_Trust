@@ -115,7 +115,7 @@ export default function ChildAccountPage(){
                     gender={childData.gender}
                     district={childData.district}
                     age={childData.age}
-                    category={childData.status}
+                    category={childData.childClassification}
                     state={childData.state}
                     shelter={childData.shelter}
                     id={childData._id}

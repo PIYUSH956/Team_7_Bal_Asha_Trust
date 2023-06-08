@@ -15,6 +15,10 @@ const process = new mongoose.Schema({
       type:String,
       required:true,
   },
+  value:{
+    type:String,
+    required:true,
+  },
   step:{
        type:Number,
        required:true,
@@ -28,7 +32,8 @@ const process = new mongoose.Schema({
     type:String,
     require:true,
     enum:["ongoing","pending","completed"]
-  } }]
+  }
+}]
   // newspaperPublication: {
   //   details: String,
   //   date: { type: Date, default: Date.now },

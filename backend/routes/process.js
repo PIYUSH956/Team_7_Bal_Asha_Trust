@@ -6,6 +6,7 @@ const {
     deleteAbandon,
     getAbandon,
     getProcess,
+    updateProcess,
 } = require("../controller/process");
 
 //create process of child
@@ -16,7 +17,11 @@ router.post("/get-process-by-category", getProcess);
 
 router.post("/add-abandond", addAbandon);
 
-router.get("/get-abandond", addAbandon);
+router.get("/get-abandond", getAbandon);
+
+
+router.post("/update-process",updateProcess);
+
 
 router.post("/delete-abandond", deleteAbandon);
 

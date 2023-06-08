@@ -79,11 +79,11 @@ export default function PersonalDetails(props) {
     }
 
     const handleProcess = () =>{
-
+        navigate(`/process/${props.id}/${props.category}`);
     }
 
     const handleSchedule = () =>{
-        navigate(`/${props.category}/${props.id}`);
+        navigate(`/schedule/${props.id}/${props.category}`);
     }
 
     return (

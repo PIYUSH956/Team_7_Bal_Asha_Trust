@@ -90,7 +90,10 @@ function App() {
         <Route path="/login" element={<Login />} />
 
 
-        <Route path="/:category/schedule" element={<ScheduleDetails />} />
+        <Route path="/schedule/:id/:category" element={<ScheduleDetails />} />
+
+
+        <Route path="/process/:id/:category" element={<Process />} />
 
 
         <Route path="/demo-category" element={<Process />} />
