@@ -119,9 +119,17 @@ export default function PersistentDrawerLeft() {
     });
     navigate("/")
   }
+
+  const handleProfile = () => {
+    navigate("/user-profile")
+  }
+
   const handleCloseUserMenu = (e, setting) => {
     if (setting == "Logout") {
       handleLogout();
+    }
+    if (setting == "Profile") {
+      handleProfile();
     }
     setAnchorElUser(null);
   };

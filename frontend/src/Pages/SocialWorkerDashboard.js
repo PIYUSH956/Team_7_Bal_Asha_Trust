@@ -45,10 +45,10 @@ const SocialWorkerDashboard = () => {
   const [dataset1, setDataset1] = useState([]);
 
 
-  const handleRegistration = (e) =>{
-      e.preventDefault();
-      navigate("/child-data-form");
-  }
+//   const handleRegistration = (e) =>{
+//       e.preventDefault();
+//       navigate("/child-data-form");
+//   }
 
 
   useEffect(() => {
@@ -106,7 +106,7 @@ const SocialWorkerDashboard = () => {
         Dashboard
       </Typography> */}
     </Box>
-        <Grid container spacing={3} padding={2} >
+        <Grid container spacing={3} padding={2} sx={{height:'50vh'}} >
         <Grid item xs={12} md={2}></Grid>
         <Grid item xs={12} md={4}>
             <Pie
