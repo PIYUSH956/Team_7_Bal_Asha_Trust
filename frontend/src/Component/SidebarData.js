@@ -27,6 +27,6 @@ export const SidebarData= [
     },{
         title: "Social Workers",
         icon: <SocailWorkersIcon/>,
-        link: "/dashboard",
+        link: "/user-profile",
     },
 ]
