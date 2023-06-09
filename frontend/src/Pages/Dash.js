@@ -358,7 +358,7 @@ export default function PersistentDrawerLeft() {
                     },
                   })}
                 </ListItemIcon>
-                <ListItemText primary={"Abandond"} />
+                <ListItemText primary={"Abandoned"} />
               </ListItemButton>
             </ListItem>
             </>

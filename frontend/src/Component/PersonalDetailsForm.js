@@ -10,6 +10,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import {  Avatar, Button, IconButton} from "@mui/material";
 import profilePhoto from "../Images/LoginImage.jpg"
@@ -75,7 +76,7 @@ export default function PersonalDetailsForm() {
   const dobChange = (e) => {
 
     console.log(e);
-    var date = e.$D + "/" + e.$M + "/" + e.$y;
+    var date = e;
     console.log(date);
     dispatch({
       type: "UPDATE_FORM_DATA",
@@ -142,7 +143,7 @@ export default function PersonalDetailsForm() {
       </Typography>
 
       <Grid align='center'>
-        <Avatar src={profilePhoto} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
+        <Avatar src={state.form != null ? state.form.image : ""} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
         <input
           accept="image/*"
           id="profile-photo-input"
@@ -183,7 +184,7 @@ export default function PersonalDetailsForm() {
         <Grid item xs={12} sm={6}>
           <FormLabel id="dob-picker">Date of Birth</FormLabel>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker value={state.form != null ? state.form.dateOfBirth : ""} onChange={dobChange} />
+            <DatePicker format='DD/MM/YYYY' value={state.form != null ? state.form.dateOfBirth : ""} onChange={dobChange} />
           </LocalizationProvider>
         </Grid>
 

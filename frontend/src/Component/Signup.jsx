@@ -13,14 +13,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import LoginImage from "../Images/LoginImage.jpg"
 import Tooltip from '@mui/material/Tooltip';
 import { refType } from "@mui/utils";
-import {  MenuItem, Select } from '@mui/material';
+import { MenuItem, Select } from '@mui/material';
 
 function Signup() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [email, setEmail] = useState("");
   const [user, setUser] = useState("");
-  const [role, setRole] = useState("root");
+  const [role, setRole] = useState();
+  const [state, setState] = useState();
+  const [district, setDistrict] = useState();
   const [password, setPassword] = useState("");
   const [file, setFile] = useState();
   const [loading, setLoading] = React.useState(false);
@@ -39,6 +41,10 @@ function Signup() {
     }
   };
 
+  const updateRole = (c) => {
+    setRole(c);
+
+  }
   const updateEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -58,19 +64,21 @@ function Signup() {
     if (!user) { alert("not a valid user"); return; }
     if (!password || password.length < 6) { alert("not a valid password"); return; }
     if (file == null) { alert("Please upload Image"); return; }
-    if(role == null) {alert("Please Specified Role"); return; }
+    if (role == null) { alert("Please Specified Role"); return; }
+    if (state == null) { alert("Please Enter State"); return; }
+    if (district == null) { alert("Please Enter District"); return; }
 
 
     const base64 = await convertToBase64(file);
 
     try {
-      const res = await axios.post("http://localhost:4000/api/signup", { username: user, email, password, role, image: base64 });
+      const res = await axios.post("http://localhost:4000/api/signup", { username: user, email, password, role, image: base64, state, district });
       console.log(res);
       alert("Succesfully signed up");
     } catch (err) {
       console.log(err);
-      alert(err.response.data.message);
-    } 
+      alert(err.message);
+    }
 
     setLoading(false);
 
@@ -88,93 +96,10 @@ function Signup() {
       })
     }
 
+
+
   };
   return (
-    //   <div style={{backgroundImage: `url(${Backgroundimg})`,
-    //   backgroundSize: "cover",
-    //   backgroundRepeat: "no-repeat",
-    //   backgroundPosition: "center center",
-    //   minHeight: "90vh",
-    // }}>
-    //   <br/> <br/>
-    //   <Grid
-    //     container
-    //     justifyContent="center"
-    //     textAlign="center"
-    //   >
-    //     <Grid item md={6} xs={10}>
-    //     <div className="main_card" style={{justifyContent:'center'}}>
-    //       <br />
-    //       {/* input field modified  */}
-    //       <div>
-    //       <label htmlFor="fileInput">
-    //               <img
-    //                 src={img}
-    //                 alt=""
-    //                 className="img-upload"
-    //                 onClick={onImageIconClick}
-    //               />
-    //             </label>
-    //             <input
-    //               id="fileInput"
-    //               type="file"
-    //               ref={fileInputRef}
-    //               style={{ display: "none" }}
-    //               accept=".jpeg,.png"
-    //               onChange={onImageChange}
-    //             />
-    //     </div>
-    //        {/* previous input field */}
-    //       {/* <input type = "file" lable="image" accept = ".jpeg ,.png" onChange={(e)=>{setFile(e.target.files[0])}}/> */}
-    //         <br /> 
-    //         <TextField
-    //           value={user}
-    //           onChange={updateUser}
-    //           type="text"
-    //           label="Enter user name"
-    //           variant="standard"
-    //           color="secondary"
-    //           focused
-    //         />
-    //         <br /> <br />
-    //         <TextField
-    //           value={email}
-    //           onChange={updateEmail}
-    //           type="email"
-    //           label="Enter email"
-    //           variant="standard"
-    //           color="secondary"
-    //           focused
-    //         />
-    //         <br /> <br />
-    //         <TextField
-    //           value={password}
-    //           onChange={updatePassword}
-    //           type="password"
-    //           label="Enter password"
-    //           variant="standard"
-    //           color="secondary"
-    //           focused
-    //         />
-    //         <br />
-    //         <Fade
-    //         in={loading}
-    //         style={{
-    //           transitionDelay: loading ? '800ms' : '0ms',
-    //         }}
-    //         unmountOnExit
-    //       >
-    //         <CircularProgress />
-    //       </Fade>
-    //       <br/>
-    //         <Button variant="contained" onClick={handleSubmit}>
-    //           Signup
-    //         </Button>
-    //         <br/> <br />
-    //       </div>
-    //     </Grid>
-    //   </Grid>
-    //   </div>
 
     <>
       <div className='main_box' >
@@ -239,10 +164,37 @@ function Signup() {
               focused
             />
 
-            <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "80%" }}
-        
+            <TextField
+              sx={{ margin: "10px", width: "80%" }}
+              required
+              size="small"
+              // color="warning"
+              value={state}
+              onChange={(e) => { setState(e.target.value) }}
+              id="outlined-required"
+              type="email"
+              label="Enter State"
+              placeholder="abcd@gmail.com"
+              focused
+            />
+
+            <TextField
+              sx={{ margin: "10px", width: "80%" }}
+              required
+              size="small"
+              // color="warning"
+              value={district}
+              onChange={(e) => { setDistrict(e.target.value) }}
+              id="outlined-required"
+              type="email"
+              label="Enter District"
+              placeholder="abcd@gmail.com"
+              focused
+            />
+
+            <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }}
               value={role}
-              onChange={(val) => setRole(role)}
+              onChange={(val) => updateRole(val.target.value)}
             >
               <MenuItem value='root' >
                 Root
@@ -251,7 +203,7 @@ function Signup() {
                 Manager
               </MenuItem>
             </Select>
-           
+
             <br />
             <TextField
               sx={{ margin: "10px", width: "80%" }}
