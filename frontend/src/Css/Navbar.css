@@ -97,7 +97,7 @@
     display: none;
   }
   .btn-clr{
-    background-color: #ff8100;
+    /* background-color: #ff8100; */
     color: white;
 
     border-radius: 1%;

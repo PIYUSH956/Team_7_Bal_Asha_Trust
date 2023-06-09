@@ -70,8 +70,10 @@ function Login() {
         alert("No Internet Connection");
       }else{
       alert(err.response.data.message);
-    }
-  } 
+    } 
+  } finally {
+    setLoading(false);
+  }
 
   };
 
@@ -139,7 +141,7 @@ function Login() {
   return (
     <>
       <div
-      className='main_box'
+      className='main_box' style={{minHeight:'100vh'}}
       >
         <Grid container
           xs={isMobile ? 12 : 7} md={isMobile ? 6 : 7}
@@ -162,7 +164,8 @@ function Login() {
           <Grid item xs={11} md={6} sx={{ textAlign: "center", color:"#ff8100"}}>
             <br />
             <TextField
-              sx={{ margin: "10px", width: "80%", color:"#ff8100" }}
+              sx={{margin: "10px", width: "80%", color:"#ff8100" }}
+              // color="warning"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -174,6 +177,7 @@ function Login() {
             <br />
             <TextField
               sx={{ margin: "10px", width: "80%", color:"#ff8100" }}
+              // color="warning"
               required
               value={password}
               onChange={(e) => {
@@ -190,12 +194,9 @@ function Login() {
               item
               className="item-2"
             >
+              <span> <input type ="checkbox" /> Remember Me </span>
               <span>
-              <p  className="text-color">
-                <input type ="checkbox" /> Remember Me </p>
-              </span>
-              <span>
-                <a href=""><p className="text-color">Forget Password</p></a>
+                <a href="">Forget Password</a>
               </span>
             </Grid>
             <br />
@@ -204,6 +205,7 @@ function Login() {
               style={{
                 transitionDelay: loading ? "800ms" : "0ms",
               }}
+              // color="warning"
               unmountOnExit
             >
               <CircularProgress />
@@ -212,8 +214,7 @@ function Login() {
             <Button
               variant="contained"
               onClick={handleSubmit}
-              sx={{ fontSize: "20px",backgroundColor: "#ff8100"}}
-        
+              sx={{ fontSize: "20px"}}
             >
               Login
             </Button>

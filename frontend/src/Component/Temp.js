@@ -70,17 +70,17 @@ export default function Temp(props) {
 
   }
 
-  const btnStyle = {
-    width: "20px",
-    height: "20px",
-    fontSize: "10px",
-  };
+  // const btnStyle = {
+  //   width: "20px",
+  //   height: "20px",
+  //   fontSize: "10px",
+  // };
 
   console.log("INSIDE TEMP", props);
 
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
@@ -180,7 +180,96 @@ export default function Temp(props) {
 
 
         <Button onClick={handleUpdate}> Update </Button>
-      </Box>
+      </Box> */}
+
+      <Grid container space={2} style={{minHeight:'400px'}}>
+        <Grid item xs={11} md={5}>
+          <div style={{display:'flex', justifyContent:'center', margin:'10px auto'}}>
+          <Avatar
+                src={profilePhoto}
+                alt="Profile Photo"
+                sx={{ width: 150, height: 150 }}
+              />
+              <input
+              accept="image/*"
+              id="profile-photo-input"
+              type="file"
+              src={profilePhoto}
+              onChange={handlePhotoChange}
+              style={{ display: "none" }}
+            />
+
+            
+            {props.verified ? (
+              <VerifiedUserIcon
+                color="success"
+                sx={{ mt: "25px", mt: "25px", ml: "10px", fontSize: 60 }}
+              />
+            ) : (
+              <GppBadTwoToneIcon
+                color="secondary"
+                sx={{ color: "red", mt: "25px", ml: "10px", fontSize: 60 }}
+              />
+            )}
+          </div>
+          <div style={{display:'flex', justifyContent:'center', margin:'20px auto'}}>
+          <label htmlFor="profile-photo-input">
+              <IconButton
+                color="primary"
+                aria-label="upload photo"
+                component="span"
+              >
+                <PhotoCamera />
+              </IconButton>
+            </label>
+
+            <Button
+              style={{width:'20px', height:'20px', fontSize:'10px'}}
+              variant="contained"
+              color="primary"
+              onClick={() => setProfilePhoto(null)}
+            >
+              Remove
+            </Button>
+            </div>
+        </Grid>
+        <Grid item xs={11} md={5} style={{textAlign:'center'}}>
+        <Typography mt={2}>Name</Typography>
+          <TextField
+            id="standard-basic"
+            value={username}
+            onChange={handleUsername}
+            variant="standard"
+          />
+          <Typography mt={2}>Email</Typography>
+          <TextField
+            disabled
+            id="standard-basic"
+            value={props.email}
+            onChange={handleUsername}
+            variant="standard"
+          />
+
+          <Typography mt={2}>Name</Typography>
+          <TextField
+            id="standard-basic"
+            value={password}
+            onChange={handlePassword}
+            variant="standard"
+          />
+
+          <Typography mt={2}>Role</Typography>
+          <TextField
+            disabled
+            id="standard-basic"
+            value={props.role}
+            onChange={handleUsername}
+            variant="standard"
+          />
+          <br/>
+          <Button variant="contained" onClick={handleUpdate} style={{margin:'10px'}}>Update</Button>
+        </Grid>
+      </Grid>
     </>
   );
 }
