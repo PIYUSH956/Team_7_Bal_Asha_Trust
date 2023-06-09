@@ -321,12 +321,9 @@ export default function PersistentDrawerLeft() {
             >
               <ListItemButton>
                 <ListItemIcon>
-                  {React.cloneElement(<SocailWorkersIcon />, {
+                  {React.cloneElement(<PersonAddIcon />, {
                     style: {
-                      color:
-                        window.location.pathname == "/create-new-volunteer"
-                          ? "white"
-                          : "#ff8100",
+                      color:"white"
                     },
                   })}
                 </ListItemIcon>
@@ -357,6 +354,70 @@ export default function PersistentDrawerLeft() {
                 <ListItemText primary={"Abandoned"} />
               </ListItemButton>
             </ListItem>
+
+            <ListItem
+              key={"surrendered"}
+              className="rowitem"
+              id={window.location.pathname == "/surrendered" ? "active" : ""}
+              disablePadding
+              onClick={() => {
+                navigate("/surrendered");
+              }}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {React.cloneElement(<SocailWorkersIcon />, {
+                    style: {
+                      color:"white"
+                    },
+                  })}
+                </ListItemIcon>
+                <ListItemText primary={"Surrendered"} />
+              </ListItemButton>
+            </ListItem>
+
+            <ListItem
+              key={"orphanedNoGuardian"}
+              className="rowitem"
+              id={window.location.pathname == "/orphaned-no-guardian" ? "active" : ""}
+              disablePadding
+              onClick={() => {
+                navigate("/orphaned-no-guardian");
+              }}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {React.cloneElement(<SocailWorkersIcon />, {
+                    style: {
+                      color:"white"
+                    },
+                  })}
+                </ListItemIcon>
+                <ListItemText primary={"Orphaned"} />
+              </ListItemButton>
+            </ListItem>
+
+            <ListItem
+              key={"childAdmittedInCCIByFamily"}
+              className="rowitem"
+              id={window.location.pathname == "/child-admitted-in-cci-by-family" ? "active" : ""}
+              disablePadding
+              onClick={() => {
+                navigate("/child-admitted-in-cci-by-family");
+              }}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {React.cloneElement(<SocailWorkersIcon />, {
+                    style: {
+                      color:"white"
+                    },
+                  })}
+                </ListItemIcon>
+                <ListItemText primary={"Admitted in CCI by Family"} />
+              </ListItemButton>
+            </ListItem>
+
             </>
             
             }

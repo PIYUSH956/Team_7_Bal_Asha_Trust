@@ -46,7 +46,7 @@ export default function App(props) {
 
         async function fetchData() {
             try {
-                var data = await axios.get("http://localhost:4000/api/get-social-worker");
+                var data = await axios.get("http://localhost:4000/api/get-social-worker-for-schedule");
                 console.log(data);
                 data = data.data;
                 var arr = [];

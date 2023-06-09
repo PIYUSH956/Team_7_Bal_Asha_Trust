@@ -120,6 +120,7 @@ export default function ChildAccountPage(){
                     shelter={childData.shelter}
                     id={childData._id}
                     status={childData.status}
+                    caseNumber = {childData.caseNumber}
 
                     
                     />

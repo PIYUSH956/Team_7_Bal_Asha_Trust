@@ -116,6 +116,7 @@ export default function PersonalDetails(props) {
                     <Grid item xs={12} md={8}>
                         <Typography variant='h4' fontWeight='bold'>{props.name}</Typography>
                         <Typography style={contentStyle}>{formatString(props.gender)}</Typography>
+                        <>{props.caseNumber}</>
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
                         <ProcessIcon onClick={handleProcess}/>

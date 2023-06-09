@@ -112,9 +112,10 @@ export default function Process() {
                 </> : <>
 
                     <Box2  
-                     category 
-                     assignedWorkerID
-                     childID
+                      
+                    category ={category}
+                    assignedWorkerID = {assignedWorkerID}
+                    childID = {childID}
                     name={pro.name} desc={pro.description} step={pro.step} part={pro.part} value={pro.value} type={pro.type} date={pro.date} status={pro.status} />
 
 

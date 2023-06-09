@@ -80,9 +80,23 @@ exports.getAllUser = async (req, res, next) => {
     }
 };
 
-
+// API IMP
 exports.getSocialWorker = async (req, res) => {
+    try {
+        const user = await User.find({ role: 'root' }).select('district');
+        if (user) {
+            res.status(200).send(user);
+        } else {
+            console.error(error);
+            return res.status(404).json({ message: "Not Found" });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(400).json({ message: "Error" });
+    }
+};
 
+exports.getSocialWorkerForSchedule = async (req, res) => {
     try {
         const user = await User.find({ role: 'root' }).select("-image");
         if (user) {
@@ -97,10 +111,11 @@ exports.getSocialWorker = async (req, res) => {
     }
 };
 
+// API IMP
 exports.getCaseManager = async (req, res) => {
 
     try {
-        const user = await User.find({ role: 'manager' }).select("-image");
+        const user = await User.find({ role: 'manager' }).select('district');
         if (user) {
             res.status(200).send(user);
         } else {
