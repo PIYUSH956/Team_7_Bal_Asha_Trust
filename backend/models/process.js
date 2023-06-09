@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+const Case = require("../models/case");
 const process = new mongoose.Schema({
   caseID: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"Case",
     required: true,
   },
   data:[{
@@ -31,7 +33,7 @@ const process = new mongoose.Schema({
   },status:{
     type:String,
     require:true,
-    enum:["ongoing","pending","completed"]
+    enum:["onGoing","pending","completed"]
   }
 }]
   // newspaperPublication: {

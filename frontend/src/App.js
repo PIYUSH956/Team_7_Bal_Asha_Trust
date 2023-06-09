@@ -84,6 +84,8 @@ function App() {
 
         {(state.user != null) && <Route path="/dashboard" element={<Dashboard />} /> }
 
+        <Route path="/on-going-cases" element={<OnGoingChildTable />} />
+
 
        
 

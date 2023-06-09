@@ -90,7 +90,7 @@ export default function PendingChildTable() {
 
   const [childData, setChildData] = useState([]);
   var state = useSelector((state) => ({ ...state }));
-  console.log(state);
+
 
 
   useEffect(() => {
@@ -107,8 +107,10 @@ export default function PendingChildTable() {
 
           var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
           data = data.data;
+          
 
           var tempArr = [];
+          console.log(data);
           for (const item of data) {
             tempArr.push(item.childID);
           }
@@ -148,9 +150,10 @@ export default function PendingChildTable() {
     });
 
     setChildData(sorted);
-    console.log(childData);
     setFlag(!flag);
   }
+
+  console.log(childData.length);
 
 
 
@@ -163,7 +166,7 @@ export default function PendingChildTable() {
             <Table stickyHeader aria-label="sticky table">
               <TableHead   >
                 <TableRow>
-                  {columns.map((column) => (
+                  {columns.length != 0 && columns.map((column) => (
                     <TableCell
                       className={classes.tableHeader}
                       key={column.id}
@@ -177,7 +180,7 @@ export default function PendingChildTable() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {childData.length != 0 && childData
+                {/* {childData.length != 0 && childData
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((val) => {
                     return (
@@ -186,7 +189,7 @@ export default function PendingChildTable() {
                         className={classes.hoverRow}
 
                         role="checkbox" tabIndex={-1} key={val.id}>
-                        {columns.map((column) => {
+                        {columns.length != 0 && columns.map((column) => {
                           const value = val[column.id];
                           console.log(column, val);
                           return (
@@ -199,14 +202,14 @@ export default function PendingChildTable() {
                         })}
                       </TableRow>
                     );
-                  })}
+                  })} */}
               </TableBody>
             </Table>
           </TableContainer>
           <TablePagination
             rowsPerPageOptions={[10, 20, 30, 50]}
             component="div"
-            count={ChildrenDetails.length}
+            count={childData.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

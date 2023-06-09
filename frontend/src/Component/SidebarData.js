@@ -19,7 +19,7 @@ const SidebarData= [
     },{
         title: "On Going Cases",
         icon: <OnGoingIcon/>,
-        link: "/child-table",
+        link: "/on-going-cases",
     },{
         title: "Completed Cases",
         icon: <CompletedIcon/>,

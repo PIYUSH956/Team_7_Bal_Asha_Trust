@@ -7,6 +7,7 @@ import { Card } from '@material-ui/core';
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import '../Css/Process.css'
+import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -35,11 +36,20 @@ export default function Process() {
 
     const [process, setProcess] = useState([]);
 
-    const [date, setDate] = useState([]);
-    const [status, setStatus] = useState([]);
-    const [values, setValue] = useState([]);
-    const [status1, setStatus1] = useState('onGoing');
 
+    const [one, setOne] = useState();
+
+    const [two, setTwo] = useState();
+
+    const [three, setThree] = useState();
+
+    const [four, setFour] = useState();
+
+
+    const [status1, setStatus1] = useState('onGoing');
+    const [status2, setStatus2] = useState('onGoing');
+
+    var objData = [];
 
 
 
@@ -52,22 +62,34 @@ export default function Process() {
 
     const [fileName, setFileName] = useState('');
 
-    const handleFileUpload = async (event) => {
-        const file = event.target.files[0];
-        setFileName(file.name);
-        const result = await convertPdfToBase64(file);
-        setValue(result);
-    };
 
-    console.log("P");
+
     useEffect(() => {
 
         async function fetchData() {
             try {
 
-                const data = await axios.post("http://localhost:4000/api/get-process-by-category", { category });
-                console.log(data.data[0].steps);
-                setProcess(data.data[0].steps);
+                const processStep = await axios.post("http://localhost:4000/api/get-process-by-category", { category });
+                const processData = await axios.post("http://localhost:4000/api/get-data-in-process", { childID, assignedWorkerID });
+                const A = processStep.data[0].steps;
+                const B = processData.data.data;
+                console.log(A, B);
+
+                for (var itemA in A) {
+                    for (var itemB in B) {
+                        if (A[itemA].name == B[itemB].name) {
+                            A[itemA].value = B[itemB].value;
+                            A[itemA].status = B[itemB].status;
+                            A[itemA].date = B[itemB].date;
+                        }
+                    }
+                }
+
+                console.log(A);
+
+
+                console.log(processData);
+                setProcess(A);
             } catch (err) {
                 console.log(err);
             }
@@ -77,39 +99,87 @@ export default function Process() {
         , []);
 
 
-    const updateDate = (a, b) => {
 
-        console.log(a, b);
+
+
+
+    const handleSubmit = async (pro) => {
+        console.log(one, two, three, four);
+        const value = pro.type == "pdf" ? (two != null ? two.value : null) : (one != null ? one.value : null);
+        const date = three.value;
+        const status = four.value;
+        console.log(value, date, status);
+
+        try {
+            await axios.post("http://localhost:4000/api/update-process", {
+                category,
+                assignedWorkerID,
+                childID,
+                payload: {
+                    name: pro.name,
+                    type: pro.type,
+                    value,
+                    step: pro.step,
+                    part: pro.part,
+                    date,
+                    status
+                }
+            })
+        } catch (err) {
+
+        }
+    }
+
+    const updateNotes = (key, field, value) => {
+        console.log(key, value);
+        // setOne({
+        //     key, field, value
+        // });
+         const newProcess = []
+         process.map((item)=>{
+            if(item.name == key){
+                item.value = value;
+            }
+            newProcess.push(item);
+        })
+        setProcess(newProcess);
 
     }
-    const updateStatus = (a, b) => {
-        console.log(a, b);
-        setStatus(a);
+
+    const updatePDF = async (key, field, value) => {
+        console.log("A");
+        const val = await convertPdfToBase64(value);
+        setTwo({
+            key, field, value: val
+        })
     }
-    const updateValue = (a, b) => {
-        console.log(a, b);
-        setValue(a);
-    }
 
-    const handleStatus1 = (event) => {
-        setStatus1(event.target.value);
-        console.log(event);
-    };
-
-
-    const updatePDF = (a, b) => {
-        console.log(a, b);
+    const updateDate = (key, field, value) => {
+        console.log(key, value);
+        setThree({
+            key, field, value: value.$d
+        })
 
     }
 
-
-
-    const handleSubmit = (name, type, step, part) => {
-        // CASEID, NAME, TYPE, VALUE, STEP, PART, DATE, STATUS
-        console.log(name, type, values, step, part, date, status, assignedWorkerID, childID);
-
+    const updateStatus = (key, field, value) => {
+        console.log(key, value);
+        setFour({
+            key, field, value
+        })
+        const newProcess = []
+        process.map((item)=>{
+           if(item.name == key){
+               item.status = value;
+           }
+           newProcess.push(item);
+       })
+       setProcess(newProcess);
 
     }
+
+    console.log(process);
+
 
 
     return (<>
@@ -141,30 +211,22 @@ export default function Process() {
                                     />
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-                                    {/* <TextField
+                                    <TextField
+                                        key={pro.name}
                                         sx={{ margin: "10px", width: "80%", color: "#ff8100" }}
-                                        value={values}
-                                        onChange={(e) => updateValue(e.target.value, pro.name)}
+                                        value={pro.value}
+                                        onChange={(e) => updateNotes(pro.name, "notes", e.target.value)}
                                         id="outlined-required"
-                                        label="Status"
-                                        placeholder="Status"
+                                        label="Notes"
+                                        placeholder="Notes"
                                         focused
-                                    /> */}
-                                    <Select sx={{ml: 1, maxHeight: '40px', margin: "10px", width: "80%" }} value={status1}
-                                        onChange={handleStatus1}>
-                                        <MenuItem value='onGoing' >
-                                            Ongoing
-                                        </MenuItem>
-                                        <MenuItem value='Completed'>
-                                            Completed
-                                        </MenuItem>
-                                    </Select>
+                                    />
                                 </Grid>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
                                 <Grid item xs={12} md={6}>
                                     <TextField
-                                        sx={{ margin: "10px", width: "80%"}}
+                                        sx={{ margin: "10px", width: "80%" }}
                                         value={pro.discussion}
                                         disabled
                                         id="outlined-required"
@@ -173,35 +235,40 @@ export default function Process() {
                                         focused
                                     />
                                 </Grid>
-                                <Grid   item xs={12} md={6}>
-                                    <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                                        <DemoContainer sx={{ marginX: "10px", width: "80%"}} components={['DatePicker']}>
+                                <Grid item xs={12} md={6}>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <DemoContainer sx={{ marginX: "10px", width: "80%" }} components={['DatePicker']}>
                                             <DatePicker
-                                                onChange={(val) => updateDate(val, pro.name)}
+                                                key={pro.name}
+                                                value={dayjs(pro.date)}
+                                                onChange={(val) => updateDate(pro.name, "date", val)}
                                                 label="Current status date" />
                                         </DemoContainer>
                                     </LocalizationProvider>
                                 </Grid>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-                                <TextField
-                                    sx={{ margin: "35px", width: "75%", color: "#ff8100" }}
-                                    value={status}
-                                    onChange={(e) => updateStatus(e.target.value, pro.name)}
-                                    id="outlined-required"
-                                    label="Notes"
-                                    placeholder="Notes"
-                                    focused
-                                />
+                                <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }}
+                                    key={pro.name}
+                                    value={pro.status}
+                                    onChange={(val) => updateStatus(pro.name, "status", val.target.value)}
+                                >
+                                    <MenuItem value='onGoing' >
+                                        Ongoing
+                                    </MenuItem>
+                                    <MenuItem value='completed'>
+                                        Completed
+                                    </MenuItem>
+                                </Select>
                             </Grid>
-                            <Grid sx={{ margin: { xs: '10px', md: '25px' }, display:'flex', justifyContent:'center', alignItems:'center'}} >
-                            <Button
-                                variant="contained"
-                                onClick={() => handleSubmit(pro.name, pro.type, pro.step, pro.part)}
-                                sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
-                            >
-                                Update
-                            </Button>
+                            <Grid sx={{ margin: { xs: '10px', md: '25px' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+                                <Button
+                                    variant="contained"
+                                    onClick={() => handleSubmit(pro)}
+                                    sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                                >
+                                    Update
+                                </Button>
                             </Grid>
                         </Card>
                     </Box>
@@ -231,9 +298,10 @@ export default function Process() {
                                     <Button variant="contained" component="label">
                                         Upload File
                                         <input id="file-upload-button"
+                                            key={pro.name}
                                             type="file"
                                             hidden
-                                            onChange={(e) => { updatePDF(e, pro.name) }} />
+                                            onChange={(e) => { updatePDF(pro.name, "notes", e.target.files[0]) }} />
                                     </Button>
                                     {fileName && <Typography sx={{ marginLeft: '10px', marginTop: '17px' }}>{fileName}</Typography>}
                                 </Grid>
@@ -249,32 +317,38 @@ export default function Process() {
                                         placeholder="Discription"
                                         focused
                                     />
-                                    {/* <textarea value={pro.discussion} /> */}
                                 </Grid>
-                                <Grid   item xs={12} md={6}>
+                                <Grid item xs={12} md={6}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DemoContainer sx={{ marginX: "10px", width: "80%"}} components={['DatePicker']}>
-                                            <DatePicker onChange={(val) => updateDate(val, pro.name)} label="Current status date" />
+                                        <DemoContainer sx={{ marginX: "10px", width: "80%" }} components={['DatePicker']}>
+                                            <DatePicker
+                                                onChange={(val) => updateDate(pro.name, "date", val)}
+                                                key={pro.name}
+                                                value={dayjs(pro.date)}
+                                                label="Current status date" />
                                         </DemoContainer>
                                     </LocalizationProvider>
                                 </Grid>
-                                
+
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-                                <TextField
-                                    sx={{ margin: "35px", width: "75%", color: "#ff8100" }}
-                                    value={status}
-                                    onChange={(e) => updateStatus(e.target.value, pro.name)}
-                                    id="outlined-required"
-                                    label="Notes"
-                                    placeholder="Notes"
-                                    focused
-                                />
+                                <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }}
+                                    key={pro.name}
+                                    value={pro.status}
+                                    onChange={(val) => updateStatus(pro.name, "status", val.target.value)}
+                                >
+                                    <MenuItem value='onGoing' >
+                                        Ongoing
+                                    </MenuItem>
+                                    <MenuItem value='completed'>
+                                        Completed
+                                    </MenuItem>
+                                </Select>
                             </Grid>
-                            <Grid sx={{ margin: { xs: '10px', md: '25px' }, display:'flex', justifyContent:'center', alignItems:'center'}} >
+                            <Grid sx={{ margin: { xs: '10px', md: '25px' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
                                 <Button
                                     variant="contained"
-                                    onClick={() => handleSubmit(pro.name, pro.type, pro.step, pro.part)}
+                                    onClick={() => handleSubmit(pro)}
                                     sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
                                 >
                                     Update
