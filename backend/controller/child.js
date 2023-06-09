@@ -84,24 +84,26 @@ exports.getChildData = async (req, res) => {
 
 };
 
+
+// IMP
 exports.getChildDataWithImage = async (req, res) => {
 
   console.log(req.body);
   try {
-
-    
       const data = await Child.find({ _id: req.body._id })
       console.log(data);
       return res.status(200).json(data);
   
   } catch (error) {
     console.log(error);
-
     return res.status(401).json(error.message);
   }
 
 };
 
+
+
+// IMP
 exports.getAllChildData = async (req, res) => {
 
   console.log(req.body);

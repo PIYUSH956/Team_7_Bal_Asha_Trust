@@ -3,6 +3,7 @@ const Child = require('../models/childSchema');
 const Fake = require('../models/fake');
 const Process = require('../models/process');
 
+// IMP
 exports.assignCase = async (req, res) => {
 
 
@@ -24,7 +25,7 @@ exports.assignCase = async (req, res) => {
     }
 
 };
-
+// SOCIAL WORKER DASHBOARD
 exports.assignedCase = async (req, res) => {
 
 
@@ -44,6 +45,8 @@ exports.assignedCase = async (req, res) => {
 
 };
 
+
+// IMP FOR SOCIAL WORKER PENDINGTABLE
 exports.getAssignAndNotGoing= async (req, res) => {
 
 
@@ -85,10 +88,11 @@ exports.getAllCaseForRoot = async (req, res) => {
 
 }
 
+//  IMP
 exports.getOnGoingChildDataForAdmin = async (req, res) => {
 
     try {
-        const abc = await Child.find({ $or: [{ status: "assigned" }, { status: "onGoing" }] })
+        const abc = await Child.find({ $or: [{ status: "assigned" }, { status: "onGoing" }] }).select("-image");
         return res.status(200).json(abc);
     } catch (err) {
         return res.status(400).json(err);
@@ -96,6 +100,7 @@ exports.getOnGoingChildDataForAdmin = async (req, res) => {
 
 }
 
+// IMP
 exports.getPendingChildDataForAdmin = async (req, res) => {
 
     try {

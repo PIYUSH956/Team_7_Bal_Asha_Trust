@@ -87,6 +87,7 @@ export default function PendingChildTable() {
 
   const [childData, setChildData] = useState([]);
   var state = useSelector((state) => ({ ...state }));
+  const [id,setID] = useState(state.user._id);
   console.log(state);
 
 
@@ -95,7 +96,7 @@ export default function PendingChildTable() {
     async function fetchData() {
       try {
         if (state.user != null && (state.user.role == "manager" || state.user.role == "admin")) {
-          const data = await axios.post("http://localhost:4000/api/get-on-going-child-data-for-admin", { status: "assigned" });
+          const data = await axios.post("http://localhost:4000/api/get-on-going-child-data-for-admin");
           console.log("ON GOING", data);
           setChildData(data.data);
         }
@@ -107,7 +108,7 @@ export default function PendingChildTable() {
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            if(item.caseID != null && item.caseID.assignedWorkerID  == state.user._id)
+            if(item.caseID != null)
             tempArr.push(item.caseID.childID);
           }
           setChildData(tempArr);

@@ -68,11 +68,13 @@ const Box2 = (props) => {
             return;
         }
 
+        console.log(props.category, props.assignedWorkerID,props.assignedWorkerID);
+
         try {
             await axios.post("http://localhost:4000/api/update-process", {
                 category : props.category,
                 assignedWorkerID : props.assignedWorkerID,
-                childID:props.assignedWorkerID,
+                childID:props.childID,
                 payload: {
                     name,
                     type,
@@ -83,6 +85,8 @@ const Box2 = (props) => {
                     status
                 }
             })
+
+            alert("Updated");
         } catch (err) {
             alert(err.message);
         }

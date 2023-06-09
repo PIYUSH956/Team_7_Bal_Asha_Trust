@@ -43,7 +43,7 @@ const Box1 = (props) => {
     const handleSubmit = async (pro) => {
 
         
-        console.log(date,value,status);
+        console.log(date,value,status,category,assignedWorkerID,childID);
 
         if (status == null || date == null || value == null) {
             alert("All Field Required");
@@ -65,6 +65,7 @@ const Box1 = (props) => {
                     status
                 }
             })
+            alert("Updated");
         } catch (err) {
             alert(err.message);
         }

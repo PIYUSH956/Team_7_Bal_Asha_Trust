@@ -17,9 +17,6 @@ router.post("/login",  authCheck,  login);
 // Route to create user
 router.post("/signup", authCheck, signup);
 
-//verify user 
-router.put("/verify/:id", authCheck, verifyAccount);
-
 //getUserActivity
 
 router.get("/get-user-activity",getUserActivity);

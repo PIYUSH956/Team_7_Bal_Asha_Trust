@@ -139,36 +139,23 @@ exports.updateProcess = async (req, res) => {
     const category = req.body.category;
     const assignedWorkerID = req.body.assignedWorkerID;
     const childID = req.body.childID;
-
-    //   console.log(req.body);
-
-
-
     if (category == "abandoned") {
 
         try {
             var caseID = await Case.findOne({ childID, assignedWorkerID });
             if (caseID == null) {
                 return res.status(400).json({ message: "Case Not Assigned" });
-
             }
+            await Child.findOneAndUpdate({ _id: childID }, { $set: { status: "onGoing" } });
             caseID = caseID._id;
             const proc = await Process.findOne({ caseID });
-            await Child.findOneAndUpdate({ _id: childID }, { $set: { status: "onGoing" } });
+            
             if (proc == null) {
-
                 const newProcess = {
                     caseID,
                     data: req.body.payload
                 }
-
-                // if (Abandoned(newProcess, req.body.payload, caseID) == false) {
-                //     return res.status(400).json({ message: "Complete All Steps Previously" })
-                // }
-
                 const result = await Process.create(newProcess);
-                // console.log(result);
-
 
                 return res.status(200).json({ message: "Successfully Saved" });
             }
@@ -184,16 +171,8 @@ exports.updateProcess = async (req, res) => {
                     if (req.body.payload.value != null) {
                         existingData.value = req.body.payload.value;
                     }
-
-
-                    // if (Abandoned(proc, req.body.payload, caseID) == false) {
-                    //     return res.status(400).json({ message: "Complete All Steps Previously" })
-                    // }
-
                     const x = await proc.save();
 
-
-                    // console.log(x);
                 } else {
 
 
@@ -201,12 +180,9 @@ exports.updateProcess = async (req, res) => {
 
                     proc.data.push(req.body.payload);
 
-                    // if (Abandoned(proc, req.body.payload, caseID) == false) {
-                    //     return res.status(400).json({ message: "Complete All Steps Previously" })
-                    // }
-
+              
                     const x = await proc.save();
-                    //  console.log(x);
+        
                 }
             }
 
@@ -214,10 +190,11 @@ exports.updateProcess = async (req, res) => {
             return res.status(200).json({ message: "Successfully Saved" });
         } catch (err) {
             console.log(err);
+            return res.status(400).json(err);
         }
-
-
     }
+
+    return res.status(400).json();
 
 
 
@@ -240,40 +217,3 @@ exports.getDataInProcess = async (req, res) => {
     }
 }
 
-const Abandoned = async (data, newItem, caseID) => {
-    const process = await Abandond.find({});
-    // console.log(res);
-    A = process[0].steps;
-    for (const key in A) {
-
-        if (A[key].name == newItem.name) return true;
-
-        const x = await check(caseID, A[key].name, A[key].part, newItem);
-        if (x == false) return false;
-
-
-    }
-
-
-    return true;
-
-
-
-
-}
-
-
-const check = async (caseID, key, st, newItem) => {
-
-    if (key == newItem.name) {
-        console.log(key);
-        return true;
-    }
-
-    const result = await Process.findOne({ caseID, data: { $elemMatch: { name: key } } }, { 'name.status': 1 });
-    if (result == null || result.status == "onGoing") return false;
-
-    return true;
-
-    console.log(key, result, st);
-}

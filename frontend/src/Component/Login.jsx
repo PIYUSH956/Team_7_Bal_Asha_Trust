@@ -49,6 +49,7 @@ function Login() {
 
     try {
       setLoading(true);
+      console.log(email,password);
       const res = await axios.post("http://localhost:4000/api/login", { email, password });
 
       const payload = res.data;
