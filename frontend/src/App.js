@@ -25,6 +25,9 @@ import OnGoingChildTable from './Component/OnGoingChildTable';
 import CompletedChildTable from './Component/CompletedChildTable';
 import ScheduleDetails from './Component/ScheduleDetails';
 import ProcessDetails from './Component/ProcessDetails';
+import Surrendered from './Pages/Surrendered';
+import Orphaned from './Pages/Orphaned';
+import AdmittedInCCI from './Pages/AdmittedInCCI';
 
 
 function App() {
@@ -59,6 +62,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
+        {/* <Route path="/pdf-generator/:id" element={<PdfGenerator />} /> */}
+
+
         <Route path="/pending" element={<PendingChildTable />} /> 
         <Route path="/on-going" element={<OnGoingChildTable />} /> 
         <Route path="/completed" element={<CompletedChildTable />} /> 
@@ -70,8 +76,9 @@ function App() {
         <Route path="/process" element={<CompletedChildTable />} /> 
 
         <Route path="/abandond" element={<Abandond />} />
-
-        
+        <Route path="/surrendered" element={<Surrendered />} />
+        <Route path="/orphaned-no-guardian" element={<Orphaned />} />
+        <Route path="/child-admitted-in-cci-by-family" element={<AdmittedInCCI />} />
 
         <Route path="*" element={<PageNotFound />} />
 
