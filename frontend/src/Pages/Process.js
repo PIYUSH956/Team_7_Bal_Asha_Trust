@@ -36,7 +36,6 @@ export default function Process() {
 
     const [process, setProcess] = useState([]);
 
-<<<<<<< HEAD
 
     const [one, setOne] = useState();
 
@@ -47,8 +46,6 @@ export default function Process() {
     const [four, setFour] = useState();
 
 
-=======
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
     const [status1, setStatus1] = useState('onGoing');
     const [status2, setStatus2] = useState('onGoing');
 
@@ -65,10 +62,6 @@ export default function Process() {
 
     const [fileName, setFileName] = useState('');
 
-<<<<<<< HEAD
-
-
-=======
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         setFileName(file.name);
@@ -76,7 +69,6 @@ export default function Process() {
         // setValue(result);
     };
 
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
     useEffect(() => {
 
         async function fetchData() {
@@ -112,7 +104,6 @@ export default function Process() {
         , []);
 
 
-<<<<<<< HEAD
 
 
 
@@ -195,33 +186,6 @@ export default function Process() {
     console.log(process);
 
 
-=======
-    
-    
-
-
-    const handleSubmit = (name, type, step, part) => {
-        // CASEID, NAME, TYPE, VALUE, STEP, PART, DATE, STATUS
-        // console.log(name, type, values, step, part, date, status, assignedWorkerID, childID);
-    }
-
-    const updateNotes=(key,value) => {
-        console.log(key,value);
-    }
-
-    const updatePDF = async(key,value) => {
-        const val= await convertPdfToBase64(value);
-        console.log(key,value);
-    }
-
-    const updateDate=(key,value) => {
-        console.log(key,value);
-    }
-
-    const updateStatus=(key,value) => {
-        console.log(key,value);
-    }
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
 
     return (<>
 
@@ -256,11 +220,7 @@ export default function Process() {
                                         key={pro.name}
                                         sx={{ margin: "10px", width: "80%", color: "#ff8100" }}
                                         value={pro.value}
-<<<<<<< HEAD
                                         onChange={(e) => updateNotes(pro.name, "notes", e.target.value)}
-=======
-                                        onChange={(e) => updateNotes(e.target.value, pro.name)}
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
                                         id="outlined-required"
                                         label="Notes"
                                         placeholder="Notes"
@@ -285,20 +245,14 @@ export default function Process() {
                                         <DemoContainer sx={{ marginX: "10px", width: "80%" }} components={['DatePicker']}>
                                             <DatePicker
                                                 key={pro.name}
-<<<<<<< HEAD
                                                 value={dayjs(pro.date)}
                                                 onChange={(val) => updateDate(pro.name, "date", val)}
-=======
-                                                value={pro.date}
-                                                onChange={(val) => updateDate(pro.name,val)}
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
                                                 label="Current status date" />
                                         </DemoContainer>
                                     </LocalizationProvider>
                                 </Grid>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-<<<<<<< HEAD
                                 <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }}
                                     key={pro.name}
                                     value={pro.status}
@@ -310,19 +264,6 @@ export default function Process() {
                                     <MenuItem value='completed'>
                                         Completed
                                     </MenuItem>
-=======
-                                <Select sx={{ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }} 
-                                        key={pro.name}
-                                        value={pro.status}
-                                        onChange={(val) => updateStatus(pro.name,val.target.value)} 
-                                        >
-                                        <MenuItem value='onGoing' >
-                                            Ongoing
-                                        </MenuItem>
-                                        <MenuItem value='Completed'>
-                                            Completed
-                                        </MenuItem>
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
                                 </Select>
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
@@ -363,16 +304,9 @@ export default function Process() {
                                         Upload File
                                         <input id="file-upload-button"
                                             key={pro.name}
-<<<<<<< HEAD
                                             type="file"
                                             hidden
                                             onChange={(e) => { updatePDF(pro.name, "notes", e.target.files[0]) }} />
-=======
-                                            value={pro.value}
-                                            type="file"
-                                            hidden
-                                            onChange={(e) => { updatePDF(pro.name, e.target.files[0]) }} />
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
                                     </Button>
                                     {fileName && <Typography sx={{ marginLeft: '10px', marginTop: '17px' }}>{fileName}</Typography>}
                                 </Grid>
@@ -391,28 +325,18 @@ export default function Process() {
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-<<<<<<< HEAD
                                         <DemoContainer sx={{ marginX: "10px", width: "80%" }} components={['DatePicker']}>
                                             <DatePicker
                                                 onChange={(val) => updateDate(pro.name, "date", val)}
                                                 key={pro.name}
                                                 value={dayjs(pro.date)}
                                                 label="Current status date" />
-=======
-                                        <DemoContainer sx={{ marginX: "10px", width: "80%"}} components={['DatePicker']}>
-                                            <DatePicker 
-                                            onChange={(val) => updateDate(pro.name,val)} 
-                                            key={pro.name}
-                                            value={pro.value}
-                                            label="Current status date" />
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
                                         </DemoContainer>
                                     </LocalizationProvider>
                                 </Grid>
 
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
-<<<<<<< HEAD
                                 <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }}
                                     key={pro.name}
                                     value={pro.status}
@@ -425,20 +349,6 @@ export default function Process() {
                                         Completed
                                     </MenuItem>
                                 </Select>
-=======
-                                <Select sx={{ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }} 
-                                        key={pro.name}
-                                        value={pro.status}
-                                        onChange={(val) => updateStatus(pro.name,val.target.value)} 
-                                        >
-                                        <MenuItem value='onGoing' >
-                                            Ongoing
-                                        </MenuItem>
-                                        <MenuItem value='Completed'>
-                                            Completed
-                                        </MenuItem>
-                                    </Select>
->>>>>>> 3c5229f380d89c13b2bf92b959a545ed06bcbb53
                             </Grid>
                             <Grid sx={{ margin: { xs: '10px', md: '25px' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
                                 <Button

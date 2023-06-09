@@ -86,7 +86,7 @@ function App() {
 
         <Route path="/on-going-cases" element={<OnGoingChildTable />} />
 
-
+        <Route path="/completed-cases" element={<CompletedChildTable />} />
        
 
         <Route path="/login" element={<Login />} />
