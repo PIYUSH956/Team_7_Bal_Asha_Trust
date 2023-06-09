@@ -9,7 +9,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 
-
+const heading = {
+  color:'#382A41',
+}
 
 const ProfileForCm = () => {
 
@@ -52,7 +54,7 @@ const ProfileForCm = () => {
       <Grid>
         <Paper elevation={10} style={paperStyle}>
           <Grid align="center">
-            <h4>Profile</h4>
+            <h3 style={heading}>Profile</h3>
           </Grid>
 
           <Box>
