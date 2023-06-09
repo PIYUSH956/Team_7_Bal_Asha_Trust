@@ -46,7 +46,7 @@ export default function Review() {
         if(formatString(key).includes("Date")){
           var dateObject = formData[key];
           console.log(dateObject);
-          var date = dateObject.$D + "/" + dateObject.$M + "/" + dateObject.$y;
+          var date = dateObject.$D + "/" + (dateObject.$M + 1) + "/" + dateObject.$y;
           console.log(date);
           arr.push([formatString(key), date]);
         }else{

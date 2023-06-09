@@ -31,10 +31,11 @@ function App() {
 
   let dispatch = useDispatch();
   var state = useSelector((state) => ({ ...state }));
+  
+  
 
   console.log(state);
   useEffect(() => {
-
     const payload = JSON.parse(localStorage.getItem('user-detail'));
     if (payload != null) {
       dispatch({
@@ -42,8 +43,7 @@ function App() {
         payload,
       });
     }
-    console.log(payload);
-
+    console.log("PAYLOAD", payload);
   }, [])
 
   console.log(state);
@@ -95,7 +95,7 @@ function App() {
         <Route path="/schedule/:id/:category" element={<ScheduleDetails />} />
 
 
-        <Route path="/process/:id/:category" element={<Process />} />
+        {state.user != null && <Route path="/process/:id/:category" element={<Process />} />}
 
 
         <Route path="/demo-category" element={<Process />} />

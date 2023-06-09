@@ -6,7 +6,7 @@ import { Box, Grid, Typography, MenuItem, Select } from '@mui/material';
 import { Card } from '@material-ui/core';
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
-import '../Css/Process.css'
+import '../Css/Process.css'                                                                                                                                                                                                                                                                                                                  
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 function convertPdfToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-
+                                                                                                                                                                                                                                                                                                                                            
         reader.onload = () => {
             const base64String = reader.result.split(',')[1];
             resolve(base64String);
