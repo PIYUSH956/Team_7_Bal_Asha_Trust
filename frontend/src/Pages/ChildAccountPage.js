@@ -9,13 +9,14 @@ import CaseDetails from '../Component/CaseDetails';
 import ScheduleDetails from '../Component/ScheduleDetails';
 import ProcessDetails from '../Component/ProcessDetails';
 import { useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams,useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 const boxStyle = {
+    marginTop:'2%',
     marginLeft:'10%',
     marginRight:'10%',
 }
@@ -26,7 +27,7 @@ const boxStyle2 = {
 }
 
 const heading ={
-    color:'#ff8100',
+    color:'#44384E',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -39,7 +40,7 @@ const headingStyle = {
     color:'white',
     fontSize:'18px',
     fontWeight:"lighter",
-    backgroundColor:'#ff8100',
+    backgroundColor:'#CD366B',
     padding:10,
     marginTop: '20px',
     marginBottom: '20px',
@@ -66,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function ChildAccountPage(){
-
 
     var state = useSelector((state) => ({ ...state }));
     const classes= useStyles();
@@ -115,9 +115,10 @@ export default function ChildAccountPage(){
                     gender={childData.gender}
                     district={childData.district}
                     age={childData.age}
-                    category={childData.status}
+                    category={childData.childClassification}
                     state={childData.state}
                     shelter={childData.shelter}
+                    id={childData._id}
 
                     
                     />

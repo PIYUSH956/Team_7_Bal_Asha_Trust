@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useSelector } from 'react-redux';
 import Box from "@mui/material/Box";
 import { Label, PhotoCamera } from "@mui/icons-material";
 import dayjs from "dayjs";
@@ -31,16 +32,19 @@ function convertToBase64(file) {
 
 
 export default function Temp(props) {
-  const [profilePhoto, setProfilePhoto] = useState(props.image == null ? "" : props.image);
+  var state = useSelector((state) => ({ ...state }));
+
+  const [profilePhoto, setProfilePhoto] = useState(state.user.image == null ? "" : state.user.image);
   const [profilePhoto2, setProfilePhoto2] = useState(null);
   const [username, setUsername] = useState(props.username);
 
   const [password, setPassword] = useState("");
   
-  const handlePhotoChange = (event) => {
+  const handlePhotoChange = async(event) => {
     const file = event.target.files[0];
     setProfilePhoto(URL.createObjectURL(file));
-    setProfilePhoto2(convertToBase64(file));
+    console.log(await convertToBase64(file));
+    setProfilePhoto2(await convertToBase64(file));
   };
 
   const handleUsername = (event) => {
@@ -54,7 +58,7 @@ export default function Temp(props) {
 
     try {
       const image = profilePhoto2
-      const res = await axios.post("http://localhost:4000/api/update-profile", {id : props._id, username, image, password });
+      const res = await axios.post("http://localhost:4000/api/update-profile", {id : state.user._id, username, image, password });
       console.log(res);
     }catch(err){
       console.log(err);
@@ -147,7 +151,7 @@ export default function Temp(props) {
           <Typography mt={2}>Name</Typography>
           <TextField
             id="standard-basic"
-            value={username}
+            value={props.username}
             onChange={handleUsername}
             variant="standard"
           />
@@ -160,7 +164,7 @@ export default function Temp(props) {
             variant="standard"
           />
 
-          <Typography mt={2}>Name</Typography>
+          <Typography mt={2}>password</Typography>
           <TextField
             id="standard-basic"
             value={password}

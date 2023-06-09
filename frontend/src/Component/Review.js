@@ -28,6 +28,7 @@ export default function Review() {
   var formData = state.form;
   console.log(formData);
   const [caseDetails,setCaseDetails] = useState([]);
+  const [image,setImage] = useState();
 
   React.useEffect(()=>{
 
@@ -36,6 +37,12 @@ export default function Review() {
     for(var key in formData){
 
       if (formData.hasOwnProperty(key)) {
+
+        if(key == "image") {
+          setImage(formData[key]);
+          continue;
+        }
+
         if(formatString(key).includes("Date")){
           var dateObject = formData[key];
           console.log(dateObject);
@@ -68,6 +75,7 @@ export default function Review() {
           {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Payment details
           </Typography> */}
+          <img src={image} />
           <Grid container>
             {caseDetails.map((caseDetail,i) => (
               <React.Fragment key={i}>

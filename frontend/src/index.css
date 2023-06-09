@@ -14,5 +14,18 @@ code {
     monospace;
 }
 button{
-  background-color: #ff8100;
+  background-color: #CD366B;
 }
+
+button:hover{
+
+  background-color: #ffe2cb;;
+  font-size: 20px;
+  cursor: pointer;
+  color:#ff8100;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+} 

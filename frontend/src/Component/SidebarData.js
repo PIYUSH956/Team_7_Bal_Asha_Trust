@@ -19,18 +19,20 @@ const SidebarData= [
     },{
         title: "On Going Cases",
         icon: <OnGoingIcon/>,
-        link: "/child-table",
+        link: "/on-going-cases",
     },{
         title: "Completed Cases",
         icon: <CompletedIcon/>,
         link: "/child-table",
-    },{
-        title: "Social Workers",
-        icon: <SocailWorkersIcon/>,
-        link: "/child-table",
     },
 ]
 
+export function Side(){
 
-export default  SidebarData;
+    var state = useSelector((state) => ({ ...state }));
+
+   
+}
+
+export default SidebarData;
 

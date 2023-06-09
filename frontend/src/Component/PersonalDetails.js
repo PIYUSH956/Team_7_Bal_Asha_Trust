@@ -8,7 +8,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import dayjs from 'dayjs';
 import { DatePicker } from '@mui/lab';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 
 import ProcessIcon from '@mui/icons-material/DeveloperBoard';
@@ -34,6 +37,7 @@ function formatDate(dateString) {
 export default function PersonalDetails(props) {
 
    
+    const navigate = useNavigate();
 
     const btnStyle = {
         width: '20px',
@@ -56,7 +60,7 @@ export default function PersonalDetails(props) {
         display : 'flex',
     }
     const headingStyle = {
-        color:'#ff8100',
+        color:'#CD366B',
         fontSize:'18px',
         fontWeight:"bolder",
         marginTop: '25px',
@@ -72,6 +76,14 @@ export default function PersonalDetails(props) {
         padding:20,
         width:'80vw',
         margin:'50px auto',
+    }
+
+    const handleProcess = () =>{
+        navigate(`/process/${props.id}/${props.category}`);
+    }
+
+    const handleSchedule = () =>{
+        navigate(`/schedule/${props.id}/${props.category}`);
     }
 
     return (
@@ -94,13 +106,14 @@ export default function PersonalDetails(props) {
                     <Avatar src={props.image} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
                 </Grid>
 
-                <Grid style={nameHolder}  sx={{color:'#ff8100',paddingTop: '10px'}}>
+                <Grid style={nameHolder}  sx={{color:'#CD366B',paddingTop: '10px'}}>
                     <Grid item xs={12} md={8}>
                         <Typography variant='h4' fontWeight='bold'>{props.name}</Typography>
                         <Typography style={contentStyle}>{formatString(props.gender)}</Typography>
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
-                        <ProcessIcon/>
+                        <ProcessIcon onClick={handleProcess}/>
+                        {props.category == "assigned" ? <AssignmentTurnedInIcon  /> : <AssignmentLateIcon onClick={handleSchedule} /> }
                     </Grid>
                 </Grid>
                 </Box>
