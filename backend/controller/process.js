@@ -205,7 +205,7 @@ exports.getDataInProcess = async (req, res) => {
     const assignedWorkerID = req.body.assignedWorkerID;
     const childID = req.body.childID;
     try {
-        var caseID = await Case.findOne({ childID, assignedWorkerID });
+        var caseID = await Case.findOne({ childID });
         if (caseID == null) {
             return res.status(200).json();
         } else {
