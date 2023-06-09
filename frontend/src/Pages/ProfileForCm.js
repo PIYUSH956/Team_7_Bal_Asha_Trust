@@ -20,11 +20,11 @@ const ProfileForCm = () => {
   var state = useSelector((state) => ({ ...state }));
 
 
-  const paperStyle = {
-    padding: 20,
-    width: "80vw",
-    margin: "50px auto",
-  };
+  // const paperStyle = {
+  //   padding: 20,
+  //   width: "80vw",
+  //   margin: "50px auto",
+  // };
 
   var state = useSelector((state) => ({ ...state }));
 
@@ -51,8 +51,9 @@ const ProfileForCm = () => {
 
   return (
     <>
+      <div style={{minHeight:'100vh', width:'100%',  display:'flex', justifyContent:'center', alignItems:'center'}}>
       <Grid>
-        <Paper elevation={10} style={paperStyle}>
+        <Paper elevation={10} style={{margin:'50px auto', padding:'20px', minWidth:'60vw', borderRadius:'20px'}}>
           <Grid align="center">
             <h3 style={heading}>Profile</h3>
           </Grid>
@@ -72,6 +73,7 @@ const ProfileForCm = () => {
           </Box>
         </Paper>
       </Grid>
+      </div>
     </>
   );
 };
