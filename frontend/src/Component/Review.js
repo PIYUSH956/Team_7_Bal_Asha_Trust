@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
 import {useState} from 'react';
-
+import "../Css/Review.css"
 
 
 // const personalDetail = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
@@ -72,22 +72,24 @@ export default function Review() {
       <Grid container spacing={2}>
         
         <Grid item container direction="column" xs={12}>
-          {/* <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography> */}
-          <img src={image} />
+
+          <Grid display="flex" justifyContent="center" alignItems="center">
+          <img className="image" src={image} />
+          </Grid>
+          
           <Grid container>
             {caseDetails.map((caseDetail,i) => (
               <React.Fragment key={i}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{caseDetail[0]}</Typography>
+                <Grid item xs={6} display="flex" justifyContent="left" alignItems="left">
+                  <Typography fontWeight="700" textAlign="left" gutterBottom>{caseDetail[0]}</Typography>
                 </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{caseDetail[1]}</Typography>
+                <Grid item xs={6} display="flex" justifyContent="left" alignItems="left">
+                  <Typography textAlign="left" gutterBottom>{caseDetail[1]}</Typography>
                 </Grid>
               </React.Fragment>
             ))}
           </Grid>
+          
         </Grid>
       </Grid>
     </React.Fragment>
