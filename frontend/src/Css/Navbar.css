@@ -7,7 +7,7 @@
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     outline: none !important;
     font-size: 16px;
     font-weight: 400;
@@ -85,9 +85,9 @@
     transition: width 0.7s ease, background-color 0.5s ease;
   }
   
-  .nav-item:hover:after {
+  /* .nav-item:hover:after {
     
-  }
+  } */
   
   .nav-item .active {
     background-color: #CD366B;

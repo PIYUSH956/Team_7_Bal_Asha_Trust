@@ -1,16 +1,16 @@
 .main_box {
     min-height: 90vh;
     width: 100%;
-    background-color:  #ffe2cb;
+    background: linear-gradient(to bottom, #8f729c, #543b60);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .grid-container {
-    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f8f4f7, #f68ee1);
     border-radius: 30px;
-    margin: 40px;
+    margin: 40px auto;
     padding: 20px;
     display: flex;
     justify-content: center;
