@@ -22,6 +22,7 @@ const ChildSchema = new mongoose.Schema({
     caseNumber: {
         type: String,
         require: true,
+        unique:true,
         //AUTO GENERATE FORMAT BAT/REGNO/NAME
     },
     gender: {

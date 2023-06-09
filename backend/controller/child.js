@@ -68,12 +68,32 @@ exports.getChildData = async (req, res) => {
   try {
 
     if (req.body.status != null) {
-      const data = await Child.find({ status: req.body.status });
+      const data = await Child.find({ status: req.body.status }).select("-image");
+      console.log(data);
       return res.status(200).json(data);
     }else if(req.body._id != null){
-      const data = await Child.find({ _id: req.body._id });
+      const data = await Child.find({ _id: req.body._id }).select("-image");
+      console.log(data);
       return res.status(200).json(data);
     }
+  } catch (error) {
+    console.log(error);
+
+    return res.status(401).json(error.message);
+  }
+
+};
+
+exports.getChildDataWithImage = async (req, res) => {
+
+  console.log(req.body);
+  try {
+
+    
+      const data = await Child.find({ _id: req.body._id })
+      console.log(data);
+      return res.status(200).json(data);
+  
   } catch (error) {
     console.log(error);
 

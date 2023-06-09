@@ -91,6 +91,7 @@ export default function App(props) {
         try{
             const res = await axios.post("http://localhost:4000/api/assign-case",data);
             console.log(res);
+            alert("Scheduled");
         }catch(err){
             if(err.response == null){
                 alert(err.message);

@@ -3,8 +3,8 @@ const router = express.Router();
 const {
  insertChildData,
  updateChildData,
- getChildData,
- getAllChildData
+ getAllChildData,
+ getChildDataWithImage
 
 } = require("../controller/child");
 
@@ -18,7 +18,7 @@ router.post("/insert-child-data",  insertChildData);
 
 router.put("/update-child",updateChildData);
 
-router.post("/get-child-data",getChildData);
+router.post("/get-child-data-with-image",getChildDataWithImage);
 
 router.post("/get-all-child-data",getAllChildData);
 

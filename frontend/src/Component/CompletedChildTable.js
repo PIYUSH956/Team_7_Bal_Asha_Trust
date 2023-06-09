@@ -100,12 +100,13 @@ export default function CompletedChildTable() {
 
         else if (state.user != null && state.user.role == "root") {
 
-          var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
+          var data = await axios.post("http://localhost:4000/api/get-completed-case", { assignedWorkerID: state.user._id });
           data = data.data;
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            tempArr.push(item.childID);
+            if(item.caseID != null && item.caseID.assignedWorkerID  == state.user._id)
+            tempArr.push(item.caseID.childID);
           }
           setChildData(tempArr);
         }
@@ -151,7 +152,7 @@ export default function CompletedChildTable() {
 
                         role="checkbox" tabIndex={-1} key={val.id}>
                         {columns.map((column) => {
-                          const value = val[column.id];
+                          const value = column.id == null ? null :  val[column.id];
                           console.log(column, val);
                           return (
                             <TableCell className={classes.hoverCell} key={column.id} align={column.align}>
