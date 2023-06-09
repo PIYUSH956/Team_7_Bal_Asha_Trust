@@ -4,16 +4,17 @@ import { Box, Grid, TextField, Typography } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom'
 
 const columns = [
-    { field: 'col0', headerName: 'Name', width: 220 },
     { field: 'col1', headerName: 'Email', width: 480 },
     { field: 'col2', headerName: 'Username', width: 250 },
 ];
 
 const categories = [
-    { value: 'abandoned', label: 'Abandoned' },
+    { value: 'notAssigned', label: 'Not Assigned' },
     { value: 'surrendered', label: 'Surrendared by Parents' },
     { value: 'orphanedNoGuardian', label: 'Orphaned - No Guardian' },
     { value: 'childAdmittedInCCIByFamily', label: 'Child Admitted In CCI By Family' }
@@ -33,12 +34,16 @@ const headingstyle = {
 }
 
 export default function App(props) {
-
+    const param = useParams();
+    const navigate = useNavigate();
     const [volunteer, setVolunteer] = useState({});
-    const [category, setCategory] = useState('Abanduned');
+    const [category, setCategory] = useState(param.category);
+    console.log(param.category);
     const [rootData, setRootData] = useState([]);
     const [row, setRow] = useState([]);
     var state = useSelector((state) => ({ ...state }));
+    const childID = param.id;
+
    
     const managerID = state.user != null ? state.user._id : "";
 
@@ -52,11 +57,10 @@ export default function App(props) {
                 data = data.data;
                 var arr = [];
                 for (const item of data) {
-                    const name = "Abc Xyz";
                     const email = item.email;
                     const id = item._id;
                     const username = item.username;
-                    arr.push({ id, col0: name, col1: email, col2: username });
+                    arr.push({ id,  col1: email, col2: username });
                 }
                 setRow(arr);
                 console.log(arr);
@@ -78,9 +82,9 @@ export default function App(props) {
     };
 
     const handleSchedule= async (e) => {
-        console.log(props.childID,volunteer.id,managerID);
+        console.log(childID,volunteer.id,managerID);
         const data = {
-            childID : props.childID,
+            childID,
             assignedWorkerID : volunteer.id,
             caseManagerID : managerID
         }
@@ -135,9 +139,16 @@ export default function App(props) {
                 </Grid>
 
                 <Grid sx={{display: 'flex',justifyContent: 'center', alignItems: 'center',}}>
-                    <div style={{ height: 350, width: '80%' }}>
+                    <div style={{ height: 550, width: '80%' }}>
                         <DataGrid rows={row} columns={columns}
-                        
+                         sx={{
+                            boxShadow: 2,
+                            border: 2,
+                            borderColor: 'rgb(255, 129, 0)',
+                            '& .MuiDataGrid-cell:hover': {
+                              color: 'rgb(255, 129, 0)',
+                            },
+                          }}
                         onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
                         slots={{ toolbar: GridToolbar }} />
                     </div>

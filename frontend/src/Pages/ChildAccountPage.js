@@ -9,7 +9,7 @@ import CaseDetails from '../Component/CaseDetails';
 import ScheduleDetails from '../Component/ScheduleDetails';
 import ProcessDetails from '../Component/ProcessDetails';
 import { useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams,useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
@@ -115,9 +115,10 @@ export default function ChildAccountPage(){
                     gender={childData.gender}
                     district={childData.district}
                     age={childData.age}
-                    category={childData.status}
+                    category={childData.childClassification}
                     state={childData.state}
                     shelter={childData.shelter}
+                    id={childData._id}
 
                     
                     />

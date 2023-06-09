@@ -30,6 +30,7 @@ import SocailWorkersIcon from '@mui/icons-material/Group';
 import { useSelector, useDispatch } from 'react-redux';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import "../Css/Sidebar.css";
+import NotificationBell from '../Component/NotificationBell';
 
 const drawerWidth = 240;
 
@@ -90,14 +91,23 @@ export default function PersistentDrawerLeft() {
 
   var state = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-
+  const [drawer,setdrawer]=React.useState(false);
+  const [anchorEl,setAnchorEl]=React.useState(null);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
+  const openNotification=(event)=>{
+    setAnchorEl(event.currentTarget);
+    setdrawer(true);
+  };
 
+  const closeNotification=(event)=>{
+    setdrawer(false);
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -174,15 +184,16 @@ export default function PersistentDrawerLeft() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton
+            <NotificationBell
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+              badgeContent={17}
+              id={state.user._id}
+              anchorEl={anchorEl}
+              onClick={openNotification}
+            />
+              
             <Tooltip title="Open Profile">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={state.user.image} />
@@ -205,7 +216,7 @@ export default function PersistentDrawerLeft() {
               onClose={handleCloseUserMenu}
             >
               {profileItems.map((setting) => (
-                <MenuItem key={setting} onClick={(e) => handleCloseUserMenu(e, setting)}>
+                <MenuItem   key={setting} onClick={(e) => handleCloseUserMenu(e, setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

@@ -13,7 +13,7 @@ exports.verifyAccount = async (req, res) => {
         //hash password
         const salt = await bcrypt.genSalt(12);
         const password = await bcrypt.hash(req.body.password, salt);
-
+        console.log(password);
         const user = await User.findOneAndUpdate({ _id }, { password, verified: true })
         if (user) {
             res.status(200).send({

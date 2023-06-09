@@ -100,7 +100,7 @@ export default function PendingChildTable() {
 
         else if (state.user != null && state.user.role == "root") {
 
-          var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
+          var data = await axios.post("http://localhost:4000/api/get-on-going-case", { assignedWorkerID: state.user._id });
           data = data.data;
           console.log(data);
           var tempArr = [];

@@ -3,14 +3,16 @@ import Grid from '@mui/material/Grid';
 import { Pie } from "react-chartjs-2";
 import 'chart.js/auto';
 import RegisterImage from "../Images/registerCoverPhoto.jpg";
-import {useNavigate} from 'react-router-dom';
-import {Typography, Box} from '@mui/material/';
+import { useNavigate } from 'react-router-dom';
+import { Typography, Box } from '@mui/material/';
 import { Button } from '@mui/material';
 import ChildList from "../Component/ChildList";
 import { Avatar } from '@material-ui/core';
 import { useEffect } from "react";
+import { Card } from '@material-ui/core';
 import axios from "axios";
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import "../Css/CaseManagerDashboard.css";
 import { useState } from "react";
 
 
@@ -27,22 +29,22 @@ const generateRandomColors = (numColors) => {
 
 
 const SocialWorkerDashboard = () => {
-    const labels = ["Completed", "Allotted","On Going"],
-    datasets = [
-    {
-      data: [20, 30, 23],
-      backgroundColor: ["#003f5c",  "#bc5090", "#ffa600"]
-    }
-  ];
-  const navigate = useNavigate();
+    const labels = ["Completed", "Allotted", "On Going"],
+        datasets = [
+            {
+                data: [20, 30, 23],
+                backgroundColor: ["#003f5c", "#bc5090", "#ffa600"]
+            }
+        ];
+    const navigate = useNavigate();
 
 
-  var state = useSelector((state) => ({ ...state }));
+    var state = useSelector((state) => ({ ...state }));
 
 
-  const [childData,setChildData] = useState([]);
-  const [label1, setLabel1] = useState([]);
-  const [dataset1, setDataset1] = useState([]);
+    const [childData, setChildData] = useState([]);
+    const [label1, setLabel1] = useState([]);
+    const [dataset1, setDataset1] = useState([]);
 
 
 //   const handleRegistration = (e) =>{
@@ -51,51 +53,49 @@ const SocialWorkerDashboard = () => {
 //   }
 
 
-  useEffect(() => {
+    useEffect(() => {
 
-    async function fetchData() {
-        try {
+        async function fetchData() {
+            try {
 
 
-            function createLabelAndCount1(data) {
-                const cases = {};
+                function createLabelAndCount1(data) {
+                    const cases = {};
 
-                for (const item of data) {
-                    const status = item.childID.status;
-                    if (status in cases) {
-                        cases[status] += 1;
-                    } else {
-                        cases[status] = 1;
+                    for (const item of data) {
+                        const status = item.childID.status;
+                        if (status in cases) {
+                            cases[status] += 1;
+                        } else {
+                            cases[status] = 1;
+                        }
                     }
+                    const labels = Object.keys(cases);
+                    const ldata = Object.values(cases);
+                    const backgroundColor = generateRandomColors(labels.length);
+
+                    return {
+                        labels: labels,
+                        count: [{ data: ldata, backgroundColor }]
+                    };
                 }
-                const labels = Object.keys(cases);
-                const ldata = Object.values(cases);
-                const backgroundColor = generateRandomColors(labels.length);
 
-                return {
-                    labels: labels,
-                    count: [{data:ldata,backgroundColor}]
-                };
-            }
-
-            if (state.user != null) {
-                var data = await axios.post("http://localhost:4000/api/get-assign-case",{assignedWorkerID:state.user._id});
-                data = data.data;
-                setChildData(data);
-                var lbl = createLabelAndCount1(data);
+                if (state.user != null) {
+                    var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
+                    data = data.data;
+                    setChildData(data);
+                    var lbl = createLabelAndCount1(data);
 
 
-                setLabel1(lbl.labels);
-                setDataset1(lbl.count);
+                    setLabel1(lbl.labels);
+                    setDataset1(lbl.count);
 
             } 
         } catch (err) {
             console.log(err);
         }
-    }
-    fetchData();
-}
-    , []);
+    }}
+        , []);
 
 
     return (
@@ -168,5 +168,5 @@ const SocialWorkerDashboard = () => {
         </>      
     );
 }
-      
+
 export default SocialWorkerDashboard;

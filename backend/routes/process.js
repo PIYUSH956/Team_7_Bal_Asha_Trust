@@ -6,17 +6,25 @@ const {
     deleteAbandon,
     getAbandon,
     getProcess,
+    updateProcess,
+    getDataInProcess
 } = require("../controller/process");
 
 //create process of child
 //create-process/case-Id
-router.post("/create-process/:id", createProcess);
+
 
 router.post("/get-process-by-category", getProcess);
 
 router.post("/add-abandond", addAbandon);
 
 router.get("/get-abandond", getAbandon);
+
+
+router.post("/get-data-in-process", getDataInProcess);
+
+
+router.post("/update-process",updateProcess);
 
 
 router.post("/delete-abandond", deleteAbandon);

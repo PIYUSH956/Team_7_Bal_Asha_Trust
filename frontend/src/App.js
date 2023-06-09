@@ -84,13 +84,18 @@ function App() {
 
         {(state.user != null) && <Route path="/dashboard" element={<Dashboard />} /> }
 
+        <Route path="/on-going-cases" element={<OnGoingChildTable />} />
+
 
        
 
         <Route path="/login" element={<Login />} />
 
 
-        <Route path="/schedule" element={<ScheduleDetails />} />
+        <Route path="/schedule/:id/:category" element={<ScheduleDetails />} />
+
+
+        <Route path="/process/:id/:category" element={<Process />} />
 
 
         <Route path="/demo-category" element={<Process />} />

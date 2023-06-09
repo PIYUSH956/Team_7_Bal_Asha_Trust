@@ -1,18 +1,8 @@
 const Process = require('../models/process');
 const Abandond = require('../models/abandond');
+const Case = require('../models/case');
+const Child = require('../models/childSchema');
 var uniqueID = "648053ce4add97f02977923b";
-
-exports.createProcess = async (req, res) => {
-    const processData = req.body;
-    processData.caseID = req.param.id;
-    try {
-        const process = await Process.create(processData);
-        res.status(201).send(process);
-
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to create process' });
-    }
-};
 
 
 
@@ -138,5 +128,81 @@ exports.getProcess = async (req, res) => {
         catch (err) {
             return res.status(400).json(err);
         }
+    }
+}
+
+
+
+exports.updateProcess = async (req, res) => {
+    const category = req.body.category;
+    const assignedWorkerID = req.body.assignedWorkerID;
+    const childID = req.body.childID;
+
+    //   console.log(req.body);
+
+
+
+    if (category == "abandond") {
+
+        try {
+            var caseID = await Case.findOne({ childID, assignedWorkerID });
+            caseID = caseID._id;
+            const proc = await Process.findOne({ caseID });
+            await Child.findOneAndUpdate({_id:childID},{$set:{status:"onGoing"}});
+            if (proc == null) {
+
+                const newProcess = {
+                    caseID,
+                    data: req.body.payload
+                }
+                const result = await Process.create(newProcess);
+                // console.log(result);
+                await Child.findOneAndUpdate({_id:childID},{$set:{status:"onGoing"}});
+                return res.status(200).json({ message: "Successfully Saved" });
+            }
+            else {
+                const existingData = proc.data.find(item => item.name == req.body.payload.name);
+                if (existingData) {
+                    if (req.body.payload.date != null) {
+                        existingData.date = req.body.payload.date;
+                    }
+                    if (req.body.payload.status != null) {
+                        existingData.status = req.body.payload.status;
+                    }
+                    if (req.body.payload.value != null) {
+                        existingData.value = req.body.payload.value;
+                    }
+                    const x = await proc.save();
+                    console.log(x);
+                } else {
+                    proc.data.push(req.body.payload);
+                    const x = await proc.save();
+                    console.log(x);
+                }
+            }
+
+            
+            return res.status(200).json({ message: "Successfully Saved" });
+        } catch (err) {
+            console.log(err);
+        }
+
+
+    }
+
+
+
+}
+
+exports.getDataInProcess = async (req, res) => {
+
+    const assignedWorkerID = req.body.assignedWorkerID;
+    const childID = req.body.childID;
+    try {
+        var caseID = await Case.findOne({ childID, assignedWorkerID });
+        const proc = await Process.findOne({ caseID: caseID._id });
+        return res.status(200).json(proc);
+    } catch (err) {
+        console.log(err);
     }
 }
