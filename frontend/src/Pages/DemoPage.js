@@ -25,29 +25,9 @@ function DemoPage() {
     }
     useEffect(()=>{
 
-        const payload = {
-            email: "temp mail",
-            role: "temp role",
-        };
-
-        console.log(payload);
-        // navigate("/")
-    
-        dispatch({
-            type: "INSERT_FORM_DATA",
-            payload:{
-                name:"Piii",
-            }
-        });
-
-        dispatch({
-            type: "UPDATE_FORM_DATA",
-            payload:{
-                key:"names",
-                value:"Jaiswal"
-            }
-        });
-
+        fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => console.log(response.json()))
+        .then(json => setFile(json));
        
     
 
@@ -101,7 +81,7 @@ function DemoPage() {
         <>
             <input type="file" lable="image" accept=".jpeg ,.png" onChange={(e) => { setFile(e.target.files[0]) }} />
             <button onClick={handleClick}> Submit </button>
-            <h1>I am Demo Page </h1>
+            <h1>{file}</h1>
             <img src={b} />
         </>
     );

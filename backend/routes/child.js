@@ -11,15 +11,19 @@ const {
 
 
 // Route to Insert Child Data
-router.post("/insert-child-data",  insertChildData);
+router.post("/insert-child-data",  insertChildData); // KAAM KI HAI
 
 
 // route to update child data 
 
 router.put("/update-child",updateChildData);
 
+
+// IMP
 router.post("/get-child-data-with-image",getChildDataWithImage);
 
+
+// IMP
 router.post("/get-all-child-data",getAllChildData);
 
 
