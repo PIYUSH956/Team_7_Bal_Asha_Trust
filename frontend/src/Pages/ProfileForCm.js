@@ -51,9 +51,9 @@ const ProfileForCm = () => {
 
   return (
     <>
-      <div style={{minHeight:'100vh', width:'100%', background:'linear-gradient(to bottom, #8f729c, #543b60)', display:'flex', justifyContent:'center', alignItems:'center'}}>
+      <div style={{minHeight:'100vh', width:'100%',  display:'flex', justifyContent:'center', alignItems:'center'}}>
       <Grid>
-        <Paper elevation={10} style={{margin:'50px auto', padding:'20px', minWidth:'60vw', background: 'linear-gradient(to bottom, #f6d2e3, #f18cc7)', borderRadius:'20px'}}>
+        <Paper elevation={10} style={{margin:'50px auto', padding:'20px', minWidth:'60vw', borderRadius:'20px'}}>
           <Grid align="center">
             <h3 style={heading}>Profile</h3>
           </Grid>

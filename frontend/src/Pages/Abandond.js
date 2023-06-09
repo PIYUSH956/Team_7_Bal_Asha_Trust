@@ -116,7 +116,7 @@ const Abandond = () => {
 
         try {
 
-            const po = await axios.post("http://localhost:4000/api/add-abandond", { name, type, step, part, num ,desc});
+            const po = await axios.post("http://localhost:4000/api/add-abandond", { name, type, step, part, num ,description:desc});
             console.log(po);
             index = 0;
             fetchData();
@@ -278,7 +278,7 @@ const Abandond = () => {
                     label="Required"
                     type="text"
                     onChange={(e) => { setDesc(e.target.value) }}
-                    placeholder="part"
+                    placeholder="Description"
                 />
             </div>
 

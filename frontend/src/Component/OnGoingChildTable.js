@@ -92,7 +92,11 @@ export default function PendingChildTable() {
 
     async function fetchData() {
       try {
+<<<<<<< HEAD
         if (state.user != null && state.user.role == "manager") {
+=======
+        if (state.user != null && (state.user.role == "manager" ||state.user.role == "admin")) {
+>>>>>>> e35ecfaa1d9641b81e0c294d7f5252a667c3a2d1
           const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "onGoing" });
           console.log(data);
           setChildData(data.data);

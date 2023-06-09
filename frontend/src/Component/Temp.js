@@ -12,8 +12,8 @@ import { useSelector } from 'react-redux';
 import Box from "@mui/material/Box";
 import { Label, PhotoCamera } from "@mui/icons-material";
 import dayjs from "dayjs";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import GppBadTwoToneIcon from "@mui/icons-material/GppBadTwoTone";
+import VerifiedIcon from '@mui/icons-material/Verified';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import axios from 'axios'; 
 
 function convertToBase64(file) {
@@ -205,14 +205,14 @@ export default function Temp(props) {
 
             
             {props.verified ? (
-              <VerifiedUserIcon
+              <VerifiedIcon
                 color="success"
-                sx={{ mt: "25px", mt: "25px", ml: "10px", fontSize: 60 }}
+                sx={{ mt: "25px", mt: "25px", ml: "10px", fontSize: 30 }}
               />
             ) : (
-              <GppBadTwoToneIcon
+              <ErrorOutlineIcon
                 color="secondary"
-                sx={{ color: "red", mt: "25px", ml: "10px", fontSize: 60 }}
+                sx={{  mt: "25px", ml: "10px", fontSize: 30 }}
               />
             )}
           </div>
@@ -228,7 +228,7 @@ export default function Temp(props) {
             </label>
 
             <Button
-              style={{width:'20px', height:'20px', fontSize:'10px'}}
+              style={{width:'20px', height:'20px',marginTop:'9px', fontSize:'10px'}}
               variant="contained"
               color="primary"
               onClick={() => setProfilePhoto(null)}

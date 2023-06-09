@@ -92,7 +92,7 @@ export default function CompletedChildTable() {
 
     async function fetchData() {
       try {
-        if (state.user != null && state.user.role == "manager") {
+        if (state.user != null && (state.user.role == "manager" || state.user.role == "manager")) {
           const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "completed" });
           console.log(data);
           setChildData(data.data);
