@@ -63,7 +63,6 @@ export default function Process() {
     const [fileName, setFileName] = useState('');
 
 
-
     useEffect(() => {
 
         async function fetchData() {

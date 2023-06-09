@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema({
         require:true,
     },username:{
         type:String,
-        unique:true,
         require:true
     },image:{
         type:String

@@ -17,15 +17,16 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import "../Css/ChildTable.css"
 import { useNavigate } from 'react-router-dom';
+import Grid from "@mui/material/Grid";
 
 
 const useStyles = makeStyles((theme) => ({
-    centerButton: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '10vh', // Optional, to center vertically on the screen
-    },
+    // centerButton: {
+    //     display: 'flex',
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     height: '10vh', // Optional, to center vertically on the screen
+    // },
     hoverRow: {
         '&:hover': {
             backgroundColor: '#ff8100', // Change this to your desired hover color
@@ -225,11 +226,11 @@ const Abandond = () => {
 
     return <>
 
+        <Paper elevation={8} sx={{margin:'50px auto', padding:'10px', width:'80vw'}}>
 
 
 
-
-        <Box
+        {/* <Box
             component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -287,7 +288,87 @@ const Abandond = () => {
 
         <div className={classes.centerButton}>
             <Button variant="contained" onClick={handleAdd}>Add</Button>
-        </div>
+        </div> */}
+
+
+            <Grid container sx={{margin:'10px'}} component="form" noValidate autoComplete='off'>
+                
+                <Grid item xs={11} md={6} sx={{ textAlign:'center'}}>
+                
+                    <TextField
+                        size="small" 
+                        sx={{ margin: "10px", width: "80%" }}
+                        required
+                        id="outlined-required"
+                        onChange={(e) => { setNum(e.target.value) }}
+                        placeholder="Position"
+                        type="number"
+                        focused
+                    />
+                    <br/>
+                    <TextField
+                        size="small"
+                        sx={{ margin: "10px", width: "80%" }}
+                        id="outlined-required"
+                        label="Required"
+                        onChange={(e) => { setName(e.target.value) }}
+                        placeholder='Name'
+                        focused
+                    />
+                    <br/>
+                    <TextField
+                    size="small"
+                    sx={{ margin: "10px", width: "80%" }}
+                        id="outlined-required"
+                        label="Required"
+                        onChange={(e) => { setType(e.target.value) }}
+                        placeholder="text or pdf"
+                        focused
+                    />
+
+                </Grid>
+
+                <Grid item xs={11} md={6} sx={{textAlign: "center"}}>
+                    <TextField
+                        size="small"
+                        sx={{ margin: "10px", width: "80%" }}
+                        id="outlined-required"
+                        label="Required"
+                        type="number"
+                        onChange={(e) => { setStep(e.target.value) }}
+                        placeholder="Step"
+                        focused
+                    />
+                    <br/>
+                    <TextField
+                        size="small"
+                        sx={{ margin: "10px", width: "80%" }}
+                        id="outlined-required"
+                        label="Required"
+                        type="number"
+                        onChange={(e) => { setPart(e.target.value) }}
+                        placeholder="part"
+                        focused
+                    />
+                    <br/>
+                    <TextField
+                        size="small"
+                        sx={{ margin: "10px", width: "80%" }}
+                        id="outlined-required"
+                        label="Required"
+                        type="text"
+                        onChange={(e) => { setDesc(e.target.value) }}
+                        placeholder="part"
+                        focused
+                    />
+                </Grid>
+                <Grid item xs={12} sx={{ textAlign: "center" }}>
+                    <Button variant="contained" onClick={handleUpdate}> Update </Button>
+                </Grid>
+                
+            </Grid>
+
+        </Paper>
 
         {/* <Box
             component="form"
@@ -348,7 +429,7 @@ const Abandond = () => {
             <Button variant="contained" onClick={handleUpdate}>Update</Button>
         </div> */}
 
-        <Box
+        {/* <Box
             component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -369,8 +450,28 @@ const Abandond = () => {
 
         <div className={classes.centerButton}>
             <Button variant="contained" onClick={handleDelete}>Delete</Button>
-        </div>
+        </div> */}
 
+        <Paper elevation={8} sx={{margin:'50px auto', padding:'10px', width:'80vw'}}>
+            <Grid container sx={{margin:'10px'}} component="form" noValidate autoComplete='off'>
+                <Grid item xs={12} sx={{ textAlign:'center'}}>
+                    <TextField
+                    size="small" 
+                        sx={{ margin: "10px", minWidth:'50%' }}
+                        required
+                        id="outlined-required"
+                        onChange={(e) => { setNameD(e.target.value) }}
+                        label="Required"
+                        placeholder='Name'
+                        focused
+                    />
+                </Grid>
+                <Grid item xs={12} sx={{ textAlign: "center" }}>
+                <Button variant="contained" onClick={handleDelete}>Delete</Button>
+                </Grid>
+                
+                </Grid>
+            </Paper>
 
         <div className="table-content">
             <Paper sx={{ width: '90%', overflow: 'hidden' }}>

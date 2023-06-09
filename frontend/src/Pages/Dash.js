@@ -311,8 +311,33 @@ export default function PersistentDrawerLeft() {
             </ListItem>}
           </List>
           <List >
-          {state.user.role == "admin" &&  
+          {state.user.role == "admin" && <> 
+          
           <ListItem
+              key={"Create Volunteer"}
+              className="rowitem"
+              id={window.location.pathname == "/create-new-volunteer" ? "active" : ""}
+              disablePadding
+              onClick={() => {
+                navigate("/create-new-volunteer");
+              }}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {React.cloneElement(<SocailWorkersIcon />, {
+                    style: {
+                      color:
+                        window.location.pathname == "/create-new-volunteer"
+                          ? "white"
+                          : "#ff8100",
+                    },
+                  })}
+                </ListItemIcon>
+                <ListItemText primary={"Create Volunteer"} />
+              </ListItemButton>
+            </ListItem>
+          
+            <ListItem
               key={"abandond"}
               className="rowitem"
               id={window.location.pathname == "/abandond" ? "active" : ""}
@@ -334,7 +359,10 @@ export default function PersistentDrawerLeft() {
                 </ListItemIcon>
                 <ListItemText primary={"Abandond"} />
               </ListItemButton>
-            </ListItem>}
+            </ListItem>
+            </>
+            
+            }
           </List>
         </Drawer>
       </div>

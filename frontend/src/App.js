@@ -103,7 +103,7 @@ function App() {
         
 
 
-        {(state.user != null && state.user.role == "admin") && <Route path="/signup" element={<Signup />} />}
+        { <Route path="/create-new-volunteer" element={<Signup />} />}
 
 
         {/* //TESTING PURPOSE */}

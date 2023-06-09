@@ -1,0 +1,41 @@
+.back {
+    background: linear-gradient(to bottom, #8f729c, #543b60);
+}
+
+.paper1 {
+    background: linear-gradient(to bottom, #f6d2e3, #f18cc7);
+}
+
+.paper2 {
+    background: linear-gradient(to bottom, #b3efed, #8cf1ee);
+}
+
+.paper3 {
+    background: linear-gradient(to bottom, #f5f6c4, #f2f58e);
+}
+
+.paper4 {
+    background: linear-gradient(to bottom, #f6d2c7, #f1a48c);
+}
+
+.cardItem{
+    height: 400px;
+    padding: 30px;
+    width: 400px;
+    cursor: pointer;
+    transition: transform 5.5s, box-shadow 0.5s;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+ }
+ .cardItem:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 10px rgba(246, 7, 7, 0.5);
+ }
+ .gridItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 80px;
+ }
+ /* h1{
+    color:#46039c;
+ } */
