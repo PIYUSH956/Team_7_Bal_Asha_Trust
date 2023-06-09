@@ -30,10 +30,11 @@ import SocailWorkersIcon from '@mui/icons-material/Group';
 import { useSelector, useDispatch } from 'react-redux';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import "../Css/Sidebar.css";
+import { deepPurple, purple } from '@mui/material/colors'; 
 import NotificationBell from '../Component/NotificationBell';
 
 const drawerWidth = 240;
-
+const color = deepPurple[50];
 const profileItems = ["Profile", "Dashboard", "Logout"];
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -183,7 +184,7 @@ export default function PersistentDrawerLeft() {
             <NotificationBell
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit"
+              color={color}
               badgeContent={17}
               id={state.user._id}
               anchorEl={anchorEl}
@@ -307,8 +308,33 @@ export default function PersistentDrawerLeft() {
             </ListItem>}
           </List>
           <List >
-          {state.user.role == "admin" &&  
+          {state.user.role == "admin" && <> 
+          
           <ListItem
+              key={"Create Volunteer"}
+              className="rowitem"
+              id={window.location.pathname == "/create-new-volunteer" ? "active" : ""}
+              disablePadding
+              onClick={() => {
+                navigate("/create-new-volunteer");
+              }}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {React.cloneElement(<SocailWorkersIcon />, {
+                    style: {
+                      color:
+                        window.location.pathname == "/create-new-volunteer"
+                          ? "white"
+                          : "#ff8100",
+                    },
+                  })}
+                </ListItemIcon>
+                <ListItemText primary={"Create Volunteer"} />
+              </ListItemButton>
+            </ListItem>
+          
+            <ListItem
               key={"abandond"}
               className="rowitem"
               id={window.location.pathname == "/abandond" ? "active" : ""}
@@ -328,9 +354,12 @@ export default function PersistentDrawerLeft() {
                     },
                   })}
                 </ListItemIcon>
-                <ListItemText primary={"Abandond"} />
+                <ListItemText primary={"Abandoned"} />
               </ListItemButton>
-            </ListItem>}
+            </ListItem>
+            </>
+            
+            }
           </List>
         </Drawer>
       </div>

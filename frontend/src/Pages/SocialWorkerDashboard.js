@@ -29,14 +29,7 @@ const generateRandomColors = (numColors) => {
 
 
 const SocialWorkerDashboard = () => {
-    const labels = ["Completed", "Allotted", "On Going"],
-        datasets = [
-            {
-                data: [20, 30, 23],
-                backgroundColor: ["#003f5c", "#bc5090", "#ffa600"]
-            }
-        ];
-    const navigate = useNavigate();
+
 
 
     var state = useSelector((state) => ({ ...state }));
@@ -47,22 +40,18 @@ const SocialWorkerDashboard = () => {
     const [dataset1, setDataset1] = useState([]);
 
 
-//   const handleRegistration = (e) =>{
-//       e.preventDefault();
-//       navigate("/child-data-form");
-//   }
+
 
 
     useEffect(() => {
 
         async function fetchData() {
             try {
-
-
                 function createLabelAndCount1(data) {
                     const cases = {};
 
                     for (const item of data) {
+                        if(item.childID == null ) continue;
                         const status = item.childID.status;
                         if (status in cases) {
                             cases[status] += 1;
@@ -83,89 +72,108 @@ const SocialWorkerDashboard = () => {
                 if (state.user != null) {
                     var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
                     data = data.data;
+
+
+                    
+
                     setChildData(data);
+                    console.log("SOCIAL WORKER DASHBOARD", data);
                     var lbl = createLabelAndCount1(data);
 
 
                     setLabel1(lbl.labels);
                     setDataset1(lbl.count);
 
-            } 
-        } catch (err) {
-            console.log(err);
+                }
+            } catch (err) {
+                console.log(err);
+            }
+
+
+
+
+
+
+
+
+
         }
-    }}
+
+        fetchData();
+    }
+
+
         , []);
 
 
     return (
 
         <>
-        <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-      {/* <Typography variant="h3" align="center" fontWeight="bold">
+            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
+                {/* <Typography variant="h3" align="center" fontWeight="bold">
         Dashboard
       </Typography> */}
-    </Box>
-        <Grid container spacing={3} padding={2} sx={{height:'50vh'}} >
-        <Grid item xs={12} md={2}></Grid>
-        <Grid item xs={12} md={4}>
-            <Pie
-                options={{
-                    responsive: true, 
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                        display: true,
-                        text: 'Number of child cases',
-                        font: {
-                            size: 26,
-                            weight: 'bold',
-                        },
-                        },
-                    },
-                    height: 1000, 
-                    width: 1000,
-                }}
-                data={{
-                    labels: label1,
-                    datasets: dataset1
-                }}
-            />
-        </Grid>
-        <Grid item xs={12} md={4} container
-            direction="column"
-            alignItems="center"
-            justify="center">
-            
-            <Pie
-                options={{
-                    responsive: true, 
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                        display: true,
-                        text: 'Number of child cases',
-                        font: {
-                            size: 26,
-                            weight: 'bold',
-                        },
-                        },
-                    },
-                    height: 1000, 
-                    width: 1000,
-                }}
-                data={{
-                    labels: label1,
-                    datasets: dataset1
-                }}
-            />
-            
+            </Box>
+            <Grid container spacing={3} padding={2} sx={{ height: '50vh' }} >
+                <Grid item xs={12} md={2}></Grid>
+                <Grid item xs={12} md={4}>
+                    <Pie
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Number of child cases',
+                                    font: {
+                                        size: 26,
+                                        weight: 'bold',
+                                    },
+                                },
+                            },
+                            height: 1000,
+                            width: 1000,
+                        }}
+                        data={{
+                            labels: label1,
+                            datasets: dataset1
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={4} container
+                    direction="column"
+                    alignItems="center"
+                    justify="center">
 
-        </Grid>
-        <Grid item xs={12} md={2}></Grid>
-        </Grid>
-        {/* <ChildList data = {childData} /> */}
-        </>      
+                    <Pie
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Number of child cases',
+                                    font: {
+                                        size: 26,
+                                        weight: 'bold',
+                                    },
+                                },
+                            },
+                            height: 1000,
+                            width: 1000,
+                        }}
+                        data={{
+                            labels: label1,
+                            datasets: dataset1
+                        }}
+                    />
+
+
+                </Grid>
+                <Grid item xs={12} md={2}></Grid>
+            </Grid>
+            {/* <ChildList data = {childData} /> */}
+        </>
     );
 }
 

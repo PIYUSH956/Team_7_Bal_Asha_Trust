@@ -84,7 +84,7 @@ exports.getAllUser = async (req, res, next) => {
 exports.getSocialWorker = async (req, res) => {
 
     try {
-        const user = await User.find({ role: 'root' });
+        const user = await User.find({ role: 'root' }).select("-image");
         if (user) {
             res.status(200).send(user);
         } else {
@@ -100,7 +100,7 @@ exports.getSocialWorker = async (req, res) => {
 exports.getCaseManager = async (req, res) => {
 
     try {
-        const user = await User.find({ role: 'case manager' });
+        const user = await User.find({ role: 'manager' }).select("-image");
         if (user) {
             res.status(200).send(user);
         } else {

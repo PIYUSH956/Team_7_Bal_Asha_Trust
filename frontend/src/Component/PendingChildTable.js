@@ -96,21 +96,22 @@ export default function PendingChildTable() {
 
     async function fetchData() {
       try {
-        if (state.user != null && state.user.role == "manager") {
-          const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "notAssigned" });
+        if (state.user != null && (state.user.role == "manager" || state.user.role == "admin")) {
+          const data = await axios.post("http://localhost:4000/api/get-pending-child-data-for-admin", { status: "notAssigned" });
 
           setChildData(data.data);
         }
 
         else if (state.user != null && state.user.role == "root") {
 
-          var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
+          var data = await axios.post("http://localhost:4000/api/get-assign-and-not-going-case", { assignedWorkerID: state.user._id });
           data = data.data;
           
 
           var tempArr = [];
-          console.log(data);
+        
           for (const item of data) {
+            if(item.childID != null)
             tempArr.push(item.childID);
           }
           setChildData(tempArr);
@@ -179,7 +180,7 @@ export default function PendingChildTable() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* {childData.length != 0 && childData
+                {childData.length != 0 && childData
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((val) => {
                     return (
@@ -189,7 +190,7 @@ export default function PendingChildTable() {
 
                         role="checkbox" tabIndex={-1} key={val.id}>
                         {columns.length != 0 && columns.map((column) => {
-                          const value = val[column.id];
+                          const value =  column.id  == null ? null : val[column.id];
                           console.log(column, val);
                           return (
                             <TableCell onClick={() => { handleCellClick(val) }} className={classes.hoverCell} key={column.id} align={column.align}>
@@ -201,7 +202,7 @@ export default function PendingChildTable() {
                         })}
                       </TableRow>
                     );
-                  })} */}
+                  })}
               </TableBody>
             </Table>
           </TableContainer>

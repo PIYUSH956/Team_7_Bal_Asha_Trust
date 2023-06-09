@@ -1,111 +1,3 @@
-// import * as React from 'react';
-// import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
-// import Container from '@mui/material/Container';
-// import { styled } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Grid';
-// import { useNavigate } from 'react-router-dom';
-
-// export default function AdminDashboard() {
-
-//   const navigate = useNavigate();
-//   const Item = styled(Paper)(({ theme }) => ({
-//     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//     ...theme.typography.body2,
-//     padding: theme.spacing(1),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-//   }));
-
-//   const  handleCreateLogin = (e) =>{
-//     e.preventDefault();
-//     navigate("/signup");
-//   }
-
-//   return (
-
-    
-//     <>
-
-
-
-
-
-//     <Box sx={{ flexGrow: 1 }}>
-//       <Grid container spacing={2}>
-//         <Grid item xs={4}>
-//         <Card sx={{ maxWidth: 345 }}>
-//       <CardMedia
-//         sx={{ height: 140 }}
-//         image = "../src/Images/LoginImage.jpg"
-//         title="green iguana"
-//       />
-//       <CardContent>
-//         <Typography gutterBottom variant="h5" component="div">
-//           Volunteer
-//         </Typography>
-//         <Typography variant="body2" color="text.secondary">
-//         Alone we can do so little; together we can do so much
-//         </Typography>
-//       </CardContent>
-//       <CardActions>
-//         <Button size="small" onClick = {handleCreateLogin}>Create Login</Button>
-        
-//       </CardActions>
-//     </Card>
-
-//         </Grid>
-//         <Grid item xs={4}>
-//         <Card sx={{ maxWidth: 345 }}>
-//       <CardMedia
-//         sx={{ height: 140 }}
-//         image = "../src/Images/LoginImage.jpg"
-//         title="green iguana"
-//       />
-//       <CardContent>
-//         <Typography gutterBottom variant="h5" component="div">
-//           Lizard
-//         </Typography>
-//         <Typography variant="body2" color="text.secondary">
-//           Lizards are a widespread group of squamate reptiles, with over 6,000
-//           species, ranging across all continents except Antarctica
-//         </Typography>
-//       </CardContent>
-//       <CardActions>
-//         <Button size="small">Share</Button>
-//         <Button size="small">Learn More</Button>
-//       </CardActions>
-//     </Card>
-
-//         </Grid>
-//         <Grid item xs={4}>
-         
-//         </Grid>
-//         <Grid item xs={8}>
-         
-//         </Grid>
-//       </Grid>
-//     </Box>
- 
-
-
-    
-   
-   
-  
-
-//     </>
-//   );
-// }
-
-
-
 
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
@@ -143,7 +35,7 @@ function formatString(inputString) {
 
 
 
-const CaseManagerDashboard = () => {
+const AdminDashboard = () => {
     const labels1 = ["Assigned", "Not Assigned", "Completed"],
         labels2 = ["Andheri", "Borivali", "Kurla"],
         datasets = [
@@ -157,9 +49,11 @@ const CaseManagerDashboard = () => {
     const [label1, setLabel1] = useState([]);
     const [label2, setLabel2] = useState([]);
     const [label3, setLabel3] = useState([]);
+    const [label4, setLabel4] = useState([]);
     const [dataset3, setDataset3] = useState([]);
     const [dataset1, setDataset1] = useState([]);
     const [dataset2, setDataset2] = useState([]);
+    const [dataset4, setDataset4] = useState([]);
 
 
 
@@ -214,12 +108,13 @@ const CaseManagerDashboard = () => {
                     };
                 }
                 
+                
 
 
                 if (state.user != null) {
                     var data = await axios.post("http://localhost:4000/api/get-all-child-data");
                     data = data.data;
-                    console.log(data);
+                    console.log("CHILD",data);
 
                     
                     var pie1 = (createLabelAndCount1(data));
@@ -230,9 +125,15 @@ const CaseManagerDashboard = () => {
                     setDataset2(pie2.count)
 
                     var rData = await axios.get("http://localhost:4000/api/get-social-worker");
+                    var mData = await axios.get("http://localhost:4000/api/get-case-manager");
                     rData = rData.data;
-
+                    mData = mData.data;
+                    console.log("SOCIAL",rData);
+                    console.log("MANAGER",mData);
                     var pie3 = (createLabelAndCount1(rData));
+                    var pie4 = createLabelAndCount1(mData);
+                    setLabel4(pie4.labels);
+                    setDataset4(pie4.count)
                     setLabel3(pie3.labels);
                     setDataset3(pie3.count)
 
@@ -355,7 +256,7 @@ const CaseManagerDashboard = () => {
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'Region wise Social Workers',
+                                    text: 'Region wise Managers',
                                     font: {
                                         size: 26,
                                         weight: 'bold',
@@ -366,8 +267,8 @@ const CaseManagerDashboard = () => {
                             width: 400,
                         }}
                         data={{
-                            labels: label3,
-                            datasets: dataset3
+                            labels: label4,
+                            datasets: dataset4
                         }}
                     />
                   </Card>  
@@ -379,5 +280,5 @@ const CaseManagerDashboard = () => {
     );
 }
 
-export default CaseManagerDashboard;
+export default AdminDashboard;
 

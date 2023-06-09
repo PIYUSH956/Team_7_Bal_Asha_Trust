@@ -110,7 +110,7 @@ const CaseManagerDashboard = () => {
                 if (state.user != null && state.user.role == "manager") {
                     var data = await axios.post("http://localhost:4000/api/get-all-child-data");
                     data = data.data;
-                    console.log(data);
+                    console.log("CASE MANAGER",data);
 
                     
                     var pie1 = (createLabelAndCount1(data));

@@ -23,7 +23,7 @@ const SidebarData= [
     },{
         title: "Completed Cases",
         icon: <CompletedIcon/>,
-        link: "/child-table",
+        link: "/completed-cases",
     },
 ]
 

@@ -12,6 +12,7 @@ import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { useNavigate } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import MenuItem from '@mui/material/MenuItem';
 
 import ProcessIcon from '@mui/icons-material/DeveloperBoard';
@@ -34,9 +35,11 @@ function formatDate(dateString) {
     return finalString;
 }
 
+
 export default function PersonalDetails(props) {
 
    
+    var state = useSelector((state) => ({ ...state }));
     const navigate = useNavigate();
 
     const btnStyle = {
@@ -83,7 +86,10 @@ export default function PersonalDetails(props) {
     }
 
     const handleSchedule = () =>{
+        if(state.user.role == "manager" || 
+        state.user.role == "admin"){
         navigate(`/schedule/${props.id}/${props.category}`);
+        }
     }
 
     return (
@@ -113,14 +119,15 @@ export default function PersonalDetails(props) {
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
                         <ProcessIcon onClick={handleProcess}/>
-                        {props.category == "assigned" ? <AssignmentTurnedInIcon  /> : <AssignmentLateIcon onClick={handleSchedule} /> }
+                      {(state.user.role != "root"  &&  props.status == "assigned")  && <AssignmentTurnedInIcon  />  }
+                      {(state.user.role != "root"  &&  props.status == "notAssigned") && <AssignmentLateIcon onClick={handleSchedule} />}
                     </Grid>
                 </Grid>
                 </Box>
 
                 <Grid>
                     <Typography style={headingStyle}>Age</Typography>
-                    <Typography style={contentStyle}>{props.age + " Years"}</Typography>
+                    <Typography style={contentStyle}>{props.age }</Typography>
 
                     <Typography style={headingStyle}>Date of Birth</Typography>
                     <Typography style={contentStyle}>{formatDate(props.dateOfBirth)}</Typography>

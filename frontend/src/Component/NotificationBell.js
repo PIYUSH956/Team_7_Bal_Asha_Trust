@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux';
 import axios from 'axios'
 
 
-const NotificationBell = ({ iconColor , id }) => {
+const NotificationBell = ({ color , id }) => {
     const [open, setOpen] = React.useState(false);
     const [clearMessage, setClearMessage] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);

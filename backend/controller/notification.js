@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 exports.notifyWorker = async (req, res) => {
 
     const {workerID,message}=req.body;
-
+     console.log(req.body);
    
   
 

@@ -1,22 +1,27 @@
 const Child = require('../models/childSchema');
 
 
-function calculateAgeFromDOB(dobString) {
-  const dob = new Date(dobString);
-  const currentDate = new Date();
-  const age = currentDate.getUTCFullYear() - dob.getUTCFullYear();
-  const hasNotHadBirthday = (
-    currentDate.getUTCMonth() < dob.getUTCMonth() ||
-    (currentDate.getUTCMonth() === dob.getUTCMonth() && currentDate.getUTCDate() < dob.getUTCDate())
-  );
-  const finalAge = hasNotHadBirthday ? age - 1 : age;
-  return finalAge;
+function calculateAge(birthdate) {
+  
+  var today = new Date();
+  var birthdate = new Date(birthdate);
+
+  var age = today.getFullYear() - birthdate.getFullYear();
+
+  var monthDiff = today.getMonth() - birthdate.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
+    age--;
+    monthDiff += 12;
+  }
+
+  return age + " years and " + monthDiff + " months";
 }
 
 exports.insertChildData = async (req, res) => {
 
-  console.log(req.body);
-  var age = calculateAgeFromDOB(req.body.dateOfBirth);
+
+  var age = calculateAge(req.body.dateOfBirth);
   console.log(age);
 
   var cnt = await Child.count({}) + 1;
@@ -32,9 +37,9 @@ exports.insertChildData = async (req, res) => {
 
   req.body.age = age;
   req.body.caseNumber = caseNumber;
-  req.body.childClassification = "Abandoned";
+  req.body.childClassification = "abandoned";
+  console.log(age);
 
-  console.log(req.body);
 
   try {
     const newChild = new Child(req.body);
@@ -63,12 +68,32 @@ exports.getChildData = async (req, res) => {
   try {
 
     if (req.body.status != null) {
-      const data = await Child.find({ status: req.body.status });
+      const data = await Child.find({ status: req.body.status }).select("-image");
+      console.log(data);
       return res.status(200).json(data);
     }else if(req.body._id != null){
-      const data = await Child.find({ _id: req.body._id });
+      const data = await Child.find({ _id: req.body._id }).select("-image");
+      console.log(data);
       return res.status(200).json(data);
     }
+  } catch (error) {
+    console.log(error);
+
+    return res.status(401).json(error.message);
+  }
+
+};
+
+exports.getChildDataWithImage = async (req, res) => {
+
+  console.log(req.body);
+  try {
+
+    
+      const data = await Child.find({ _id: req.body._id })
+      console.log(data);
+      return res.status(200).json(data);
+  
   } catch (error) {
     console.log(error);
 

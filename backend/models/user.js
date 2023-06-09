@@ -18,13 +18,19 @@ const userSchema = new mongoose.Schema({
         require:true,
     },username:{
         type:String,
-        unique:true,
         require:true
     },image:{
         type:String
     },verified:{
         type:Boolean,
         default:false
+    },
+    state:{
+        type:String,
+        require:true,
+    },district:{
+        type:String,
+        require:true,
     }
     },
     {timestamps:true}

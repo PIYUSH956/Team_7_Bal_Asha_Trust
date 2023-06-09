@@ -14,6 +14,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import "../Css/ChildTable.css"
 import ChildrenDetails from "./ChildrenDetails";
+import {useNavigate} from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
- 
+
 }));
 
 const columns = [
@@ -69,6 +70,7 @@ const columns = [
 ];
 
 export default function PendingChildTable() {
+  const navigate = useNavigate();
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -92,9 +94,9 @@ export default function PendingChildTable() {
 
     async function fetchData() {
       try {
-        if (state.user != null && state.user.role == "manager") {
-          const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "notAssigned" });
-          console.log(data);
+        if (state.user != null && (state.user.role == "manager" || state.user.role == "admin")) {
+          const data = await axios.post("http://localhost:4000/api/get-on-going-child-data-for-admin", { status: "assigned" });
+          console.log("ON GOING", data);
           setChildData(data.data);
         }
 
@@ -105,7 +107,8 @@ export default function PendingChildTable() {
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            tempArr.push(item.childID);
+            if(item.caseID != null && item.caseID.assignedWorkerID  == state.user._id)
+            tempArr.push(item.caseID.childID);
           }
           setChildData(tempArr);
         }
@@ -116,6 +119,13 @@ export default function PendingChildTable() {
     fetchData();
   }
     , []);
+
+  const handleCellClick = (e) => {
+
+    navigate("/profile/" + e._id);
+    localStorage.setItem("temp-profile", JSON.stringify(e));
+
+  }
 
 
 
@@ -155,7 +165,9 @@ export default function PendingChildTable() {
                           const value = val[column.id];
                           console.log(column, val);
                           return (
-                            <TableCell className={classes.hoverCell} key={column.id} align={column.align}>
+                            <TableCell
+                            onClick={() => { handleCellClick(val) }} className={classes.hoverCell} key={column.id} align={column.align}
+                            className={classes.hoverCell} key={column.id} align={column.align}>
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}

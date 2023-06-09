@@ -181,7 +181,7 @@ export default function ChildDataForm() {
         
       }
       catch(err){
-        alert(err.response.data.message);
+        alert(err.message);
         console.log(err);
       }
       

@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const UserActivity = require('../models/userActivity');
 const bcrypt = require("bcrypt");
 
 // function to verify user account
@@ -36,6 +37,7 @@ exports.login = async (req, res) => {
     //validating user data
 
     console.log(req.body);
+
     //checking if the email exsist
     try {
         const user = await User.findOne({ email: req.body.email });
@@ -52,6 +54,21 @@ exports.login = async (req, res) => {
             console.error(error);
             return res.status(400).json({ message: "Incorrect Passward" });
         }
+
+        const userID=user._id;
+        const email=user.email;
+        try{
+
+        const res=await UserActivity.findOneAndDelete({userID});
+        const activity=new UserActivity({userID,email});
+        const data =await activity.save();
+        console.log(data);
+
+        }catch(error){
+          return res.status(400).json({messsage:"error in userAcitivty"});
+        }
+
+
         return res.status(200).send(user);
         //   await User.updateOne({email: req.body.email}, {token: req.body.token})
 
@@ -96,9 +113,15 @@ exports.signup = async (req, res) => {
    }
 };
 
+exports.getUserActivity = async (req, res) => {
 
+    try{
 
-
-
+        const data = await UserActivity.find();
+        return res.status(200).send(data);
+    }catch(error){
+        return res.status(401).json({ message: "Invalid Request" })
+    }
+};
 
 

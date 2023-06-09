@@ -12,8 +12,8 @@ import { useSelector } from 'react-redux';
 import Box from "@mui/material/Box";
 import { Label, PhotoCamera } from "@mui/icons-material";
 import dayjs from "dayjs";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import GppBadTwoToneIcon from "@mui/icons-material/GppBadTwoTone";
+import VerifiedIcon from '@mui/icons-material/Verified';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import axios from 'axios'; 
 
 function convertToBase64(file) {
