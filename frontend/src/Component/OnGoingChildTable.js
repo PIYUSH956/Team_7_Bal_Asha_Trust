@@ -167,7 +167,7 @@ export default function PendingChildTable() {
                           return (
                             <TableCell
                             onClick={() => { handleCellClick(val) }} className={classes.hoverCell} key={column.id} align={column.align}
-                            className={classes.hoverCell} key={column.id} align={column.align}>
+                            >
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}

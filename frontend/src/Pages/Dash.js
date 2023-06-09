@@ -35,7 +35,7 @@ import NotificationBell from '../Component/NotificationBell';
 
 const drawerWidth = 240;
 const color = deepPurple[50];
-const profileItems = ["Profile", "Dashboard", "Logout"];
+const profileItems = ["Profile", "Logout"];
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({

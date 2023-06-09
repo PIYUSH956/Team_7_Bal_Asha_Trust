@@ -20,12 +20,6 @@ const categories = [
     { value: 'childAdmittedInCCIByFamily', label: 'Child Admitted In CCI By Family' }
 ];
 
-const btnStyle = {
-    marginTop: '50px',
-    fontSize: "15px",
-    backgroundColor: "#382A41",
-}
-
 const headingstyle = {
     color:'#CD366B',
     fontSize:'18px',
@@ -134,14 +128,11 @@ export default function App(props) {
                         </Grid>
                     </Grid>
                     <Grid sx={{ display: 'flex',justifyContent: 'center', alignItems: 'center', marginBottom: {xs: "25px", md: "50px"}}}>
-                    <Button sx={{
-                            ':hover' : {
-                                bgcolor : '#CD366B',
-                                color:'white',
-                            },
-                        }} 
-                        
-                        style={btnStyle} 
+                    <Button 
+                        sx={{ mt:'50px' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                            bgcolor: "#CD366B",
+                            color: "white"
+                        }}}
                         onClick={handleSchedule} 
                         variant="contained"
                     >
