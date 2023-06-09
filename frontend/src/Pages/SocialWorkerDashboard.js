@@ -29,14 +29,7 @@ const generateRandomColors = (numColors) => {
 
 
 const SocialWorkerDashboard = () => {
-    const labels = ["Completed", "Allotted", "On Going"],
-        datasets = [
-            {
-                data: [20, 30, 23],
-                backgroundColor: ["#003f5c", "#bc5090", "#ffa600"]
-            }
-        ];
-    const navigate = useNavigate();
+
 
 
     var state = useSelector((state) => ({ ...state }));
@@ -47,19 +40,14 @@ const SocialWorkerDashboard = () => {
     const [dataset1, setDataset1] = useState([]);
 
 
-//   const handleRegistration = (e) =>{
-//       e.preventDefault();
-//       navigate("/child-data-form");
-//   }
+
 
 
     useEffect(() => {
 
         async function fetchData() {
             try {
-
-
-                function createLabelAndCount1(data) {
+                   function createLabelAndCount1(data) {
                     const cases = {};
 
                     for (const item of data) {
@@ -84,6 +72,7 @@ const SocialWorkerDashboard = () => {
                     var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
                     data = data.data;
                     setChildData(data);
+                    console.log("SOCIAL WORKER DASHBOARD",data);
                     var lbl = createLabelAndCount1(data);
 
 
@@ -94,7 +83,21 @@ const SocialWorkerDashboard = () => {
         } catch (err) {
             console.log(err);
         }
-    }}
+
+     
+  
+  
+  
+  
+  
+  
+  
+    }
+
+    fetchData();
+}
+
+   
         , []);
 
 

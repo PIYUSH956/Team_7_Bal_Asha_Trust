@@ -24,6 +24,13 @@ const userSchema = new mongoose.Schema({
     },verified:{
         type:Boolean,
         default:false
+    },
+    state:{
+        type:String,
+        require:true,
+    },district:{
+        type:String,
+        require:true,
     }
     },
     {timestamps:true}

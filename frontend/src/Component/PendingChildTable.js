@@ -97,9 +97,9 @@ export default function PendingChildTable() {
 
     async function fetchData() {
       try {
-        if (state.user != null && (state.user.role == "manager" ||state.user.role == "admin")) {
+        if (state.user != null && (state.user.role == "manager")) {
           const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "notAssigned" });
-          console.log(data);
+
           setChildData(data.data);
         }
 
@@ -110,7 +110,7 @@ export default function PendingChildTable() {
           
 
           var tempArr = [];
-          console.log(data);
+          console.log("ASSIGNED",data);
           for (const item of data) {
             tempArr.push(item.childID);
           }
@@ -180,7 +180,7 @@ export default function PendingChildTable() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {childData.length != 0 && childData
+                {/* {childData.length != 0 && childData
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((val) => {
                     return (
@@ -202,7 +202,7 @@ export default function PendingChildTable() {
                         })}
                       </TableRow>
                     );
-                  })}
+                  })} */}
               </TableBody>
             </Table>
           </TableContainer>
