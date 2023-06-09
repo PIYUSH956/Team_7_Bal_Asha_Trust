@@ -5,7 +5,9 @@ const {
   login,
   signup,
   verifyAccount,
+  getUserActivity
 } = require("../controller/auth");
+const { trackUser } = require("../controller/trackUser");
 
 
 
@@ -18,5 +20,9 @@ router.post("/signup", authCheck, signup);
 //verify user 
 router.put("/verify/:id", authCheck, verifyAccount);
 
+//getUserActivity
 
+router.get("/get-user-activity",getUserActivity);
+
+router.get("/send-mail",trackUser);
 module.exports = router ;

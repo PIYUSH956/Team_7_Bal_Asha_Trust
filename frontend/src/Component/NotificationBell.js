@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux';
 import axios from 'axios'
 
 
-const NotificationBell = ({ iconColor , id }) => {
+const NotificationBell = ({ color , id }) => {
     const [open, setOpen] = React.useState(false);
     const [clearMessage, setClearMessage] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -68,7 +68,7 @@ const NotificationBell = ({ iconColor , id }) => {
         <Box component="div" sx={{ display: 'inline' }}>
             <Tooltip title={notifications.length ? newNotifications : noNotifications}>
                 <IconButton
-                    color={iconColor}
+                    color={color}
                     onClick={notifications.length ? handleOpen : null}
                     anchorEl={anchorEl}
                 >

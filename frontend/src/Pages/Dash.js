@@ -30,10 +30,11 @@ import SocailWorkersIcon from '@mui/icons-material/Group';
 import { useSelector, useDispatch } from 'react-redux';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import "../Css/Sidebar.css";
+import { deepPurple, purple } from '@mui/material/colors'; 
 import NotificationBell from '../Component/NotificationBell';
 
 const drawerWidth = 240;
-
+const color = deepPurple[50];
 const profileItems = ["Profile", "Dashboard", "Logout"];
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -187,7 +188,7 @@ export default function PersistentDrawerLeft() {
             <NotificationBell
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit"
+              color={color}
               badgeContent={17}
               id={state.user._id}
               anchorEl={anchorEl}

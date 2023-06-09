@@ -7,10 +7,15 @@ exports.assignCase = async (req, res) => {
 
 
     console.log(req.body);
-
+    const workerID=req.body.assignedWorkerID;
+    const message="New Child case is assigned to you ";
     try {
+
         const newCase = await Case.create(req.body);
         const x = await Child.findOneAndUpdate({ _id: req.body.childID }, { $set: { status: "assigned" } })
+        const notification = new Notification({workerID,message});
+        const data = await notification.save();
+        //assignedWorkerID
         res.status(201).send(newCase);
 
     } catch (error) {
@@ -72,7 +77,7 @@ exports.getAllCaseForRoot = async (req, res) => {
         });
         console.log(x);
         res.status(201).send(x);
-
+        
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Already Assigned to Other Volunteer" });
