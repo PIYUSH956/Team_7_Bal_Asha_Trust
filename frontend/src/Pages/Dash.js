@@ -165,7 +165,7 @@ export default function PersistentDrawerLeft() {
     <>
       <CssBaseline />
       <AppBar position="static" open={open}>
-        <Toolbar sx={{ backgroundColor: "#382A41" }}>
+        <Toolbar sx={{ backgroundColor: "#382A41" ,display:'flex' , justifyContent:'space-between'}}>
           <Box sx={{ display: "flex" }}>
             <IconButton
               color="inherit"
@@ -179,11 +179,7 @@ export default function PersistentDrawerLeft() {
             <p className="heading-item" >Bal Asha Trust</p>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0}}>
             <NotificationBell
               size="large"
               aria-label="show 17 new notifications"
@@ -302,7 +298,7 @@ export default function PersistentDrawerLeft() {
                       color:
                         window.location.pathname == "/child-data-form"
                           ? "white"
-                          : "#ff8100",
+                          : "white",
                     },
                   })}
                 </ListItemIcon>
@@ -328,7 +324,7 @@ export default function PersistentDrawerLeft() {
                       color:
                         window.location.pathname == "/abandond"
                           ? "white"
-                          : "#ff8100",
+                          : "white",
                     },
                   })}
                 </ListItemIcon>

@@ -194,9 +194,9 @@ function Login() {
               item
               className="item-2"
             >
-              <span> <input type ="checkbox" /> Remember Me </span>
+              <span className="anchor"> <input type ="checkbox" /> Remember Me </span>
               <span>
-                <a href="">Forget Password</a>
+                <a href="" className="anchor">Forget Password</a>
               </span>
             </Grid>
             <br />
@@ -214,7 +214,10 @@ function Login() {
             <Button
               variant="contained"
               onClick={handleSubmit}
-              sx={{ fontSize: "20px"}}
+              sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                bgcolor: "#CD366B",
+                color: "white"
+              }}}
             >
               Login
             </Button>

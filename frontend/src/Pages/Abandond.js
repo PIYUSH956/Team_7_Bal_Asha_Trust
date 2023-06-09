@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     // },
     hoverRow: {
         '&:hover': {
-            backgroundColor: '#ff8100', // Change this to your desired hover color
+            backgroundColor: '#CD366B', // Change this to your desired hover color
             cursor: 'pointer',
             '& > *': {
                 color: 'white', // Change this to your desired hover text color
@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     tableHeader: {
-        backgroundColor: '#ffe2cb',
-        color: "#ff8100",
+        backgroundColor: '#382A41',
+        color: "white",
         fontWeight: 1000,
 
     },
@@ -363,7 +363,16 @@ const Abandond = () => {
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
-                    <Button variant="contained" onClick={handleUpdate}> Update </Button>
+                    <Button 
+                        variant="contained" 
+                        onClick={handleUpdate}
+                        sx={{color:'white' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                            bgcolor: "#CD366B",
+                            color: "white"
+                          }}}
+                    > 
+                        Update 
+                    </Button>
                 </Grid>
                 
             </Grid>
@@ -467,7 +476,16 @@ const Abandond = () => {
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
-                <Button variant="contained" onClick={handleDelete}>Delete</Button>
+                <Button 
+                    variant="contained" 
+                    onClick={handleDelete}
+                    sx={{color:'white' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#CD366B",
+                        color: "white"
+                      }}}
+                >
+                    Delete
+                </Button>
                 </Grid>
                 
                 </Grid>
@@ -498,13 +516,14 @@ const Abandond = () => {
                                     return (
                                         <TableRow
 
+                                            className={classes.hoverRow}
                                             role="checkbox" tabIndex={-1} key={val.id}>
                                             {columns.map((column) => {
 
                                                 const value = column.id == "position" ? index++ : val[column.id];
                                                 console.log(column, val);
                                                 return (
-                                                    <TableCell className={classes.hoverCell} key={column.id} align={column.align}>
+                                                    <TableCell key={column.id} align={column.align}>
                                                         {column.format && typeof value === 'number'
                                                             ? column.format(value)
                                                             : value}

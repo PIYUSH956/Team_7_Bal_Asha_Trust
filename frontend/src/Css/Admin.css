@@ -1,6 +1,6 @@
-.back {
+/* .back {
     background: linear-gradient(to bottom, #8f729c, #543b60);
-}
+} */
 
 .paper1 {
     background: linear-gradient(to bottom, #f6d2e3, #f18cc7);
@@ -36,6 +36,7 @@
     align-items: center;
     border-radius: 80px;
  }
- /* h1{
-    color:#46039c;
- } */
+
+ h1{
+    color: black;
+ }

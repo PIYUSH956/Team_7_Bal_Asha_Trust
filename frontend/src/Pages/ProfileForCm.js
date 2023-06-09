@@ -8,6 +8,17 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+const boxStyle = {
+  marginTop:'2%',
+  marginLeft:'10%',
+  marginRight:'10%',
+}
+
+const paperStyle = {
+  padding:20,
+  width:'80vw',
+  margin:'80px auto',
+}
 
 const heading = {
   color:'#382A41',
@@ -51,11 +62,10 @@ const ProfileForCm = () => {
 
   return (
     <>
-      <div style={{minHeight:'100vh', width:'100%', background:'linear-gradient(to bottom, #8f729c, #543b60)', display:'flex', justifyContent:'center', alignItems:'center'}}>
-      <Grid>
-        <Paper elevation={10} style={{margin:'50px auto', padding:'20px', minWidth:'60vw', background: 'linear-gradient(to bottom, #f6d2e3, #f18cc7)', borderRadius:'20px'}}>
+      <Box style={boxStyle}>
+        <Paper elevation={10} style={paperStyle}>
           <Grid align="center">
-            <h3 style={heading}>Profile</h3>
+            <h2 style={heading}>Profile</h2>
           </Grid>
 
           <Box>
@@ -72,8 +82,7 @@ const ProfileForCm = () => {
             />
           </Box>
         </Paper>
-      </Grid>
-      </div>
+      </Box>
     </>
   );
 };

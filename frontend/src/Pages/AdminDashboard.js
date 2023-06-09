@@ -258,7 +258,7 @@ const CaseManagerDashboard = () => {
 
         <div style={{minHeight:'100vh', width:'100%', textAlign:'center', padding:'20px'}} className='back'>
         
-        <h1 style={{color:'#46039c'}}> Children Information </h1>
+        <h1> Children Information </h1>
 
         <Grid container spacing={3} padding={2} sx={{justifyContent:'center'}}>
         <Grid item xs={12} md={4} className="gridItem">
@@ -318,7 +318,7 @@ const CaseManagerDashboard = () => {
             
 
 
-          <h1 fontWeight="bold" style={{color:'#46039c'}}> Social Workers Information </h1>
+          <h1 fontWeight="bold" > Social Workers Information </h1>
             <Grid container spacing={6}  marginBottom={7} sx={{justifyContent:'center'}}>
                 <Grid item xs={12} md={4} className="gridItem">
                     <Card className= "cardItem paper3" style={{borderRadius:'25px'}}>
