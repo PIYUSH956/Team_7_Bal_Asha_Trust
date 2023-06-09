@@ -23,11 +23,11 @@ const categories = [
 const btnStyle = {
     marginTop: '50px',
     fontSize: "15px",
-    backgroundColor: "#ff8100",
+    backgroundColor: "#382A41",
 }
 
 const headingstyle = {
-    color:'#ff8100',
+    color:'#CD366B',
     fontSize:'18px',
     fontWeight:"bolder",
     marginBottom: '10px',
@@ -133,7 +133,19 @@ export default function App(props) {
                         </Grid>
                     </Grid>
                     <Grid sx={{ display: 'flex',justifyContent: 'center', alignItems: 'center', marginBottom: {xs: "25px", md: "50px"}}}>
-                    <Button style={btnStyle} onClick={handleSchedule} variant="contained">Sechedule the Case</Button>
+                    <Button sx={{
+                            ':hover' : {
+                                bgcolor : '#CD366B',
+                                color:'white',
+                            },
+                        }} 
+                        
+                        style={btnStyle} 
+                        onClick={handleSchedule} 
+                        variant="contained"
+                    >
+                        Sechedule the Case
+                    </Button>
                     </Grid>
                     
                 </Grid>
@@ -144,9 +156,9 @@ export default function App(props) {
                          sx={{
                             boxShadow: 2,
                             border: 2,
-                            borderColor: 'rgb(255, 129, 0)',
+                            borderColor: '#382A41',
                             '& .MuiDataGrid-cell:hover': {
-                              color: 'rgb(255, 129, 0)',
+                              color: '#CD366B',
                             },
                           }}
                         onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}

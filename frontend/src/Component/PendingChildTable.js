@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   tableHeader: {
     backgroundColor: '#392A41',
     color:'white',
-    fontWeight:1000,
    
   },
   hoverRow: {

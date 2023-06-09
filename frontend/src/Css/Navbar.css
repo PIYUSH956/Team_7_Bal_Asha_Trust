@@ -18,7 +18,7 @@
 }
   
   .navbar {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #382A41;
     display: flex;
 
     height: 80px;
@@ -58,7 +58,7 @@
   }
   
   .nav-links {
-    color: #270808;
+    color: #CD366B;
     text-decoration: none;
     padding: 0.5rem 1rem;
     height: 100%;
@@ -90,17 +90,18 @@
   }
   
   .nav-item .active {
-    
+    background-color: #CD366B;
   }
   
   .nav-icon {
     display: none;
   }
+
   .btn-clr{
-    background-color: #ff8100;
+    background-color: #69BF64 ;
     color: white;
 
-    border-radius: 1%;
+    border-radius: 5%;
   }
 
 
@@ -123,7 +124,7 @@
     }
   
     .nav-menu.active {
-      background:rgba(255, 255, 255, 0.5);
+      background: #382A41;
       left: 0px;
       opacity: 1;
       transition: all 0.5s ease;
@@ -140,7 +141,7 @@
     }
 
     .navbar{
-      background-color: #ff8100;
+      background-color: #382A41;
     }
   
     .nav-icon {
@@ -155,7 +156,7 @@
     }
 
     .btn-clr{
-      background-color: #ff8100;
+      background-color: #69BF64;
       color: white;
       font-size: 20px;
       border-radius: 1%;
