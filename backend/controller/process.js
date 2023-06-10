@@ -131,7 +131,25 @@ exports.getProcess = async (req, res) => {
     }
 }
 
+//COMPLETION CONDITION CHECKING
+exports.getValuePresent = async(req,res) => {
+    const key = req.body.key;
+    const childID = req.body.childID;
+    console.log(key,childID);
+    try{
+        const result = await Process.find({childID,data:{$elemMatch:{name:key}}},{"data.$":1});
+    //    console.log(result[0].data[0].status);
+        if(result == null || result[0] == null || result[0].data[0] == null)  return res.status(200).json({m:false});
+        if(result != null && result[0].data[0].status  == "completed") return res.status(200).json({m:true});
+        return res.status(200).json({m:false});
 
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({message:err.message});
+    }
+
+    
+}
 
 exports.updateProcess = async (req, res) => {
 
@@ -148,14 +166,20 @@ exports.updateProcess = async (req, res) => {
             }
             await Child.findOneAndUpdate({ _id: childID }, { $set: { status: "onGoing" } });
             caseID = caseID._id;
+            console.log(caseID);
             const proc = await Process.findOne({ caseID });
-            
+            console.log(proc);
             if (proc == null) {
-                const newProcess = {
-                    caseID,
-                    data: req.body.payload
-                }
-                const result = await Process.create(newProcess);
+                const newProc = new Process({ caseID: caseID });
+                newProc.data.push(req.body.payload);
+                
+                newProc.save()
+                  .then(savedProc => {
+                    console.log(savedProc);
+                  })
+                  .catch(error => {
+                    console.error(error);
+                  });
 
                 return res.status(200).json({ message: "Successfully Saved" });
             }
@@ -171,14 +195,22 @@ exports.updateProcess = async (req, res) => {
                     if (req.body.payload.value != null) {
                         existingData.value = req.body.payload.value;
                     }
-                    const x = await proc.save();
+                    existingData.save()
+                    .then(savedProc => {
+                      console.log(savedProc);
+                    })
+                    .catch(error => {
+                      console.error(error);
+                    });
+                    return res.status(200).json({ message: "Successfully Saved" });
 
                 } else {
 
 
 
+                    console.log("ELSE",proc);
 
-                    proc.data.push(req.body.payload);
+                    
 
               
                     const x = await proc.save();

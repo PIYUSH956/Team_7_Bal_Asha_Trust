@@ -4,7 +4,8 @@ const {
  insertChildData,
  updateChildData,
  getAllChildData,
- getChildDataWithImage
+ getChildDataWithImage,
+ getCompletedChildData
 
 } = require("../controller/child");
 
@@ -26,5 +27,6 @@ router.post("/get-child-data-with-image",getChildDataWithImage);
 // IMP
 router.post("/get-all-child-data",getAllChildData);
 
+router.post("/get-completed-child-data",getCompletedChildData);
 
 module.exports = router ;

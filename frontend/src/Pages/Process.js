@@ -65,7 +65,34 @@ export default function Process() {
     fetchData();
   }, []);
 
-  console.log(process);
+  const handleProcessComplete = async (e) => {
+    e.preventDefault();
+    for (var item in process) {
+      try {
+        const res = await axios.post("http://localhost:4000/api/get-value-present", { key: process[item].name, childID });
+        console.log(process[item].name, res.data);
+        if (res.data.m == false) {
+          alert(`Complete ${process[item].name} Steps`);
+          return;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    // SET STATUS COMPLETED
+
+    try {
+      const res = await axios.post("http://localhost:4000/api/change-to-completed", {childID });
+      alert("Completed Succesfully");
+      console.log(res);
+    } catch (err) {
+      alert(err.message);
+      console.log(err);
+    }
+
+
+  }
 
   return (
     <>
@@ -110,7 +137,7 @@ export default function Process() {
                   type="file"
                   hidden
                   disabled={!(state.user.role == "root")}
-                  // onChange={(e) => { updatePDF(e.target.files[0]) }}
+                // onChange={(e) => { updatePDF(e.target.files[0]) }}
                 />
               </Button>
               {/* {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>} */}
@@ -137,6 +164,7 @@ export default function Process() {
                 variant="contained"
                 // onClick={handleCompleted}
                 sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                onClick={handleProcessComplete}
               >
                 Process Completed
               </Button>

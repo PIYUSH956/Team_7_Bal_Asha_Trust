@@ -9,7 +9,9 @@ const {
     completedCase,
     getOnGoingChildDataForAdmin,
     getAllCaseForRoot,
-    getAssignAndNotGoing
+    getAssignAndNotGoing,
+    changeToCompleted,
+    getCaseDetail
 } = require("../controller/case");
 
 //assign case of child
@@ -29,5 +31,11 @@ router.post("/get-on-going-child-data-for-admin",getOnGoingChildDataForAdmin); /
 router.post("/get-assign-and-not-going-case",getAssignAndNotGoing);
 router.post("/get-on-going-case", onGoingCases);
 router.post("/fake-api", fakeApiController);
+
+//IMP
+router.post("/change-to-completed",changeToCompleted);
+
+router.post("/get-case-detail",getCaseDetail);
+
 
 module.exports = router;

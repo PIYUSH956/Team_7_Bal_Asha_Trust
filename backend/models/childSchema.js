@@ -45,7 +45,7 @@ const ChildSchema = new mongoose.Schema({
                 if (match) {
                     var year = parseInt(match[1]);
                     year = Number(year);
-                    return year >= 0 && year < 18;
+                    return year >= '0' && year < '18';
                 }
             },
             message: 'Value must be less than 18 and greater then 0'

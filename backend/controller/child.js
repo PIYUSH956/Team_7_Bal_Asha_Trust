@@ -120,3 +120,14 @@ exports.getAllChildData = async (req, res) => {
   }
 
 };
+
+
+//IMP 
+exports.getCompletedChildData = async (req,res) =>{
+  try{
+    const data = await Child.find({status:"completed"});
+    return res.status(200).json(data);
+  }catch(err){
+    return res.status(400).json(err);
+  }
+}

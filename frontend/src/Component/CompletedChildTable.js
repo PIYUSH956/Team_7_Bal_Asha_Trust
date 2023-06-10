@@ -93,7 +93,7 @@ export default function CompletedChildTable() {
     async function fetchData() {
       try {
         if (state.user != null && (state.user.role == "manager" || state.user.role == "admin")) {
-          const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "completed" });
+          const data = await axios.post("http://localhost:4000/api/get-completed-child-data");
           console.log(data);
           setChildData(data.data);
         }
@@ -105,7 +105,7 @@ export default function CompletedChildTable() {
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            if(item.caseID != null && item.caseID.assignedWorkerID  == state.user._id)
+            if(item.caseID != null && item.caseID.childID != null)
             tempArr.push(item.caseID.childID);
           }
           setChildData(tempArr);
@@ -117,6 +117,24 @@ export default function CompletedChildTable() {
     fetchData();
   }
     , []);
+
+
+    const handleCellClick = async (id) =>{
+
+      const profileDetail = id;
+      const childID = id._id;
+      console.log(profileDetail);
+      console.log(childID);
+      try{
+          const result = await axios.post("http://localhost:4000/api/get-case-detail",{childID});
+          const workerDetail = result.data.worker;
+          const processDetail = result.data.process;
+          // SHOW THIS IN PDF AS DOWNLOADABLE
+      }catch(err){
+          alert(err.message);
+      }
+
+    }
 
 
 
@@ -155,7 +173,7 @@ export default function CompletedChildTable() {
                           const value = column.id == null ? null :  val[column.id];
                           console.log(column, val);
                           return (
-                            <TableCell className={classes.hoverCell} key={column.id} align={column.align}>
+                            <TableCell   onClick={() => { handleCellClick(val) }} className={classes.hoverCell} key={column.id} align={column.align}>
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}
