@@ -73,6 +73,7 @@ const paperStyle = {
 
 export default function Temp(props) {
   var state = useSelector((state) => ({ ...state }));
+  const URL = process.env.REACT_APP_URL;
 
   const [profilePhoto, setProfilePhoto] = useState(state.user.image == null ? "" : state.user.image);
   const [profilePhoto2, setProfilePhoto2] = useState(null);
@@ -98,7 +99,7 @@ export default function Temp(props) {
 
     try {
       const image = profilePhoto2
-      const res = await axios.post("http://localhost:4000/api/update-profile", {id : state.user._id, username, image, password });
+      const res = await axios.post(URL + "/update-profile", {id : state.user._id, username, image, password });
       console.log(res);
     }catch(err){
       console.log(err);

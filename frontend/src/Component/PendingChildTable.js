@@ -77,6 +77,7 @@ export default function PendingChildTable() {
   const [page, setPage] = React.useState(0);
   const [flag, setFlag] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const URL = process.env.REACT_APP_URL;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -97,16 +98,13 @@ export default function PendingChildTable() {
           state.user != null &&
           (state.user.role == "manager" || state.user.role == "admin")
         ) {
-          const data = await axios.post(
-            "http://localhost:4000/api/get-pending-child-data-for-admin"
+          const data = await axios.post(URL + 
+            "/get-pending-child-data-for-admin"
           );
 
           setChildData(data.data);
         } else if (state.user != null && state.user.role == "root") {
-          var data = await axios.post(
-            "http://localhost:4000/api/get-assign-and-not-going-case",
-            { assignedWorkerID: state.user._id }
-          );
+          var data = await axios.get(URL+"/get-assign-and-not-going-case",{ params:{ assignedWorkerID: state.user._id }}    );
           data = data.data;
 
           var tempArr = [];

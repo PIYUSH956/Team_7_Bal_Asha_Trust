@@ -36,6 +36,8 @@ function convertToBase64(file) {
 export default function PersonalDetailsForm() {
 
 
+  const URL = process.env.REACT_APP_URL;
+
   const btnStyle = {
     width: '20px',
     height: '20px',

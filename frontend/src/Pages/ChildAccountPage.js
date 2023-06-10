@@ -82,13 +82,14 @@ export default function ChildAccountPage(){
 
     const [value, setValue] = React.useState('0');
     const [childData,setChildData] = useState({}); 
+    const URL = process.env.REACT_APP_URL;
 
   useEffect(()=>{
 
     async function fetchData() {
       try {
         
-        const data = await axios.post("http://localhost:4000/api/get-child-data-with-image",{_id:uid});
+        const data = await axios.post(URL + "/get-child-data-with-image",{_id:uid});
         console.log(data);
         setChildData(data.data[0]);
       } catch (err) {

@@ -74,6 +74,7 @@ export default function CompletedChildTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const URL = process.env.REACT_APP_URL;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -95,14 +96,14 @@ export default function CompletedChildTable() {
           state.user != null &&
           (state.user.role == "manager" || state.user.role == "admin")
         ) {
-          const data = await axios.post(
-            "http://localhost:4000/api/get-completed-child-data"
+          const data = await axios.post(URL + 
+            "/get-completed-child-data"
           );
           console.log(data);
           setChildData(data.data);
         } else if (state.user != null && state.user.role == "root") {
-          var data = await axios.post(
-            "http://localhost:4000/api/get-completed-case-for-root",
+          var data = await axios.post(URL + 
+            "/get-completed-case-for-root",
             { assignedWorkerID: state.user._id }
           );
           data = data.data;

@@ -48,7 +48,7 @@ const Box2 = (props) => {
     const [part, setPart] = useState(props.part);
     const [step, setStep] = useState(props.step);
     console.log(desc);
-
+    const URL = process.env.REACT_APP_URL;
     const [value, setValue] = useState(props.value);
     const [date, setDate] = useState(props.date);
     const [status, setStatus] = useState(props.status);
@@ -73,7 +73,7 @@ const Box2 = (props) => {
         console.log(props.category, props.assignedWorkerID,props.assignedWorkerID);
 
         try {
-            await axios.post("http://localhost:4000/api/update-process", {
+            await axios.post(URL + "/update-process", {
                 category : props.category,
                 assignedWorkerID : props.assignedWorkerID,
                 childID:props.childID,
