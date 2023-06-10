@@ -145,9 +145,8 @@ function Signup() {
               onChange={updateUser}
               type="text"
               id="outlined-required"
-              label="Enter User Name"
-              placeholder="user"
-              focused
+              label="User Name"
+              
             />
             <br />
             <TextField
@@ -159,9 +158,7 @@ function Signup() {
               onChange={updateEmail}
               id="outlined-required"
               type="email"
-              label="Enter email"
-              placeholder="abcd@gmail.com"
-              focused
+              label="Email"
             />
 
             <TextField
@@ -173,9 +170,7 @@ function Signup() {
               onChange={(e) => { setState(e.target.value) }}
               id="outlined-required"
               type="email"
-              label="Enter State"
-              placeholder="abcd@gmail.com"
-              focused
+              label="State"
             />
 
             <TextField
@@ -187,12 +182,10 @@ function Signup() {
               onChange={(e) => { setDistrict(e.target.value) }}
               id="outlined-required"
               type="email"
-              label="Enter District"
-              placeholder="abcd@gmail.com"
-              focused
+              label="District"
             />
 
-            <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "75%" }}
+            <Select sx={{ ml: 1, maxHeight: '40px', margin: "35px", width: "80%" }}
               value={role}
               onChange={(val) => updateRole(val.target.value)}
             >
@@ -214,9 +207,7 @@ function Signup() {
               onChange={updatePassword}
               id="outlined-required"
               type="password"
-              label="Enter password"
-              placeholder="*****"
-              focused
+              label="Password"
             />
             <br />
             <Fade
