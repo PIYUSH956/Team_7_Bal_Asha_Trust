@@ -87,7 +87,7 @@ export default function PendingChildTable() {
 
   const [childData, setChildData] = useState([]);
   var state = useSelector((state) => ({ ...state }));
-  const [id,setID] = useState(state.user._id);
+  // const [id,setID] = useState(state.user._id);
   console.log(state);
 
 
@@ -107,9 +107,13 @@ export default function PendingChildTable() {
           data = data.data;
           console.log(data);
           var tempArr = [];
-          for (const item of data) {
-            if(item.caseID != null)
+          for (const item in data) {
+            console.log(item);
+            console.log(data[item]);
+            if(item.caseID != null){
+              console.log(item);
             tempArr.push(item.caseID.childID);
+            }
           }
           setChildData(tempArr);
         }
@@ -153,7 +157,7 @@ export default function PendingChildTable() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {childData.length != 0 && childData
+                {childData.length !=0 && childData
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((val) => {
                     return (
@@ -163,7 +167,7 @@ export default function PendingChildTable() {
 
                         role="checkbox" tabIndex={-1} key={val.id}>
                         {columns.map((column) => {
-                          const value = val[column.id];
+                          const value = column.id == null ? null :  val[column.id];
                           console.log(column, val);
                           return (
                             <TableCell

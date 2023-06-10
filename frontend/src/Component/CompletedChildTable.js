@@ -100,13 +100,13 @@ export default function CompletedChildTable() {
 
         else if (state.user != null && state.user.role == "root") {
 
-          var data = await axios.post("http://localhost:4000/api/get-completed-case", { assignedWorkerID: state.user._id });
+          var data = await axios.post("http://localhost:4000/api/get-completed-case-for-root", { assignedWorkerID: state.user._id });
           data = data.data;
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            if(item.caseID != null && item.caseID.childID != null)
-            tempArr.push(item.caseID.childID);
+            if(item.childID != null)
+            tempArr.push(item.childID);
           }
           setChildData(tempArr);
         }

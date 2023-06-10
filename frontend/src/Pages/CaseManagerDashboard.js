@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import { Pie } from "react-chartjs-2";
+import { Pie,  getElementAtEvent } from "react-chartjs-2";
 import 'chart.js/auto';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Box } from '@mui/material/';
@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
+import { useRef } from 'react';
 import "../Css/CaseManagerDashboard.css";
 
 const generateRandomColors = (numColors) => {
@@ -55,6 +56,7 @@ const CaseManagerDashboard = () => {
 
 
     var state = useSelector((state) => ({ ...state }));
+
 
 
 
@@ -145,6 +147,22 @@ const CaseManagerDashboard = () => {
 
     console.log(label1, label2,dataset1,dataset2);
 
+
+
+    const chartRef = useRef();
+    const navigate = useNavigate();
+    const onClick = (event) => {
+        var index = (getElementAtEvent(chartRef.current, event));
+
+        const x = (label2[index[0].index]);
+        if (x == "onGoing")
+            navigate("/on-going-cases");
+        else if (x == "completed")
+            navigate("/completed");
+        else if(x == "pending")
+            navigate("/pending");
+    }
+
     return (
 
         <>
@@ -173,6 +191,11 @@ const CaseManagerDashboard = () => {
                       weight: 'bold',
                     },
                   },
+
+                  legend: {
+                    display: true,
+                    position: "bottom"
+                }
                 },
                 height: 400,
                 width: 400,
@@ -199,6 +222,10 @@ const CaseManagerDashboard = () => {
                       weight: 'bold',
                     },
                   },
+                  legend: {
+                    display: true,
+                    position: "bottom"
+                }
                 },
                 height: 400,
                 width: 400,
@@ -236,7 +263,13 @@ const CaseManagerDashboard = () => {
                                         size: 26,
                                         weight: 'bold',
                                     },
+
+                                    
                                 },
+                                legend: {
+                                    display: true,
+                                    position: "bottom"
+                                }
                             },
                             height: 400,
                             width: 400,

@@ -77,6 +77,8 @@ export default function Process() {
         }
       } catch (err) {
         console.log(err);
+        alert(err.message);
+        return;
       }
     }
 

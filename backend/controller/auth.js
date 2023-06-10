@@ -85,14 +85,14 @@ exports.login = async (req, res) => {
 // FUNCTION TO SIGN UP USER
 exports.signup = async (req, res) => {
 
-   const { email, password, username, image, role } = req.body;
+   const { email, password, username, image, role,state,district } = req.body;
 
    try {
       // Enrypting password
       bcrypt.hash(password, 12, function (err, has) {
          if (!err) {
               
-               const x = new User({ email, password: has, username, image, role });
+               const x = new User({ email, password: has, username, image, role,state,district });
       
                x.save(function(error,result){
                  if(error){
