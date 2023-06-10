@@ -77,47 +77,63 @@ const [desc, setDesc] = useState("");
 const [steps, setSteps] = useState([]);
 
 
-// useEffect(() => {
+useEffect(() => {
 
-//     async function fetchData() {
-//         try {
+    async function fetchData() {
+        try {
 
-//             const p = await axios.get("http://localhost:4000/api/get-abandond");
-//             console.log(p.data);
-//             console.log(p.data[0].steps);
-//             setSteps(p.data[0].steps);
+            const p = await axios.get("http://localhost:4000/api/get-surrendered");
+            console.log(p.data);
+            console.log(p.data[0].steps);
+            setSteps(p.data[0].steps);
 
-//         } catch (err) {
-//             console.log(err);
-//         }
-//     }
-//     fetchData();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    fetchData();
 
-// }, []);
+}, []);
 
 
 const handleDelete = async (e) => {
-//     console.log(nameD);
-//     try {
-//         const pp = await axios.post("http://localhost:4000/api/delete-abandond", { nameD });
-//         console.log(pp);
-//         index = 0;
-//         fetchData();
-//     } catch (err) {
-//         console.log(err);
-//     }
-//     try {
-//         const p = await axios.get("http://localhost:4000/api/get-abandond");
-//         console.log(p.data);
-//         console.log(p.data[0].steps);
-//         setSteps(p.data[0].steps);
-//     } catch (err) {
-//         console.log(err);
-//     }
+    console.log(nameD);
+    try {
+        const pp = await axios.post("http://localhost:4000/api/delete-surrendered", { nameD });
+        console.log(pp);
+        index = 0;
+        fetchData();
+    } catch (err) {
+        console.log(err);
+    }
+    try {
+        const p = await axios.get("http://localhost:4000/api/get-surrendered");
+        console.log(p.data);
+        console.log(p.data[0].steps);
+        setSteps(p.data[0].steps);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 
 const handleUpdate = async (e) => {
+
+    console.log(name, type, step, part, num);
+
+    try {
+
+        const po = await axios.post("http://localhost:4000/api/add-surrendered", { name, type, step, part, num ,description:desc});
+        console.log(po);
+        index = 0;
+        fetchData();
+
+      
+
+    } catch (err) {
+        console.log(err);
+    }
+
 //     console.log(nameD);
 //     try {
 //         const pp = await axios.post("http://localhost:4000/api/update-abandond", { uname, utype, ustep, upart, unum , udesc });
@@ -139,16 +155,16 @@ const handleUpdate = async (e) => {
 
 
 
-// const fetchData  = async ()=>{
-//     try{
-//     const p = await axios.get("http://localhost:4000/api/get-abandond");
-//     console.log(p.data);
-//     console.log(p.data[0].steps);
-//     setSteps(p.data[0].steps);
-//     }catch(err){
+const fetchData  = async ()=>{
+    try{
+    const p = await axios.get("http://localhost:4000/api/get-surrendered");
+    console.log(p.data);
+    console.log(p.data[0].steps);
+    setSteps(p.data[0].steps);
+    }catch(err){
 
-//     }
-// }
+    }
+}
 
 
 

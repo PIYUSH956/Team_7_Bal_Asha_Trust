@@ -2,6 +2,9 @@ const Process = require('../models/process');
 const Abandond = require('../models/abandond');
 const Case = require('../models/case');
 const Child = require('../models/childSchema');
+const Orphaned = require('../models/orphaned');
+const Surrendered = require('../models/surrendered');
+const AdmittedInCCI = require('../models/admittedInCCI');
 var uniqueID = "648053ce4add97f02977923b";
 
 
@@ -9,6 +12,7 @@ var uniqueID = "648053ce4add97f02977923b";
 exports.addAbandon = async (req, res) => {
     const processData = req.body;
     const num = req.body.num;
+    console.log(req.body);
     delete (req.body.num);
     req.body.step = Number(req.body.step);
     req.body.part = Number(req.body.part);
@@ -16,7 +20,7 @@ exports.addAbandon = async (req, res) => {
     try {
 
         const cnt = await Abandond.countDocuments({});
-
+          console.log("cnt"+cnt);
 
         if (cnt == 0) {
 
@@ -88,6 +92,9 @@ exports.getAbandon = async (req, res) => {
     }
 };
 
+
+
+
 // exports.updateAbandon = async (req, res) => {
 //     const processData = req.body;
 
@@ -123,6 +130,30 @@ exports.getProcess = async (req, res) => {
     if (category == "abandoned") {
         try {
             const process = await Abandond.find({});
+            return res.status(200).json(process);
+        }
+        catch (err) {
+            return res.status(400).json(err);
+        }
+    }else if (category == "orphanedNoGuardian") {
+        try {
+            const process = await Orphaned.find({});
+            return res.status(200).json(process);
+        }
+        catch (err) {
+            return res.status(400).json(err);
+        }
+    }else if (category == "surrendered") {
+        try {
+            const process = await Surrendered.find({});
+            return res.status(200).json(process);
+        }
+        catch (err) {
+            return res.status(400).json(err);
+        }
+    }else if (category == "childAdmittedInCCIByFamily") {
+        try {
+            const process = await AdmittedInCCI.find({});
             return res.status(200).json(process);
         }
         catch (err) {
