@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     tableHeader: {
-        backgroundColor: '#ffe2cb',
-        color: "#ff8100",
+        backgroundColor: '#382A41',
+        color: "white",
         fontWeight: 1000,
 
     },
@@ -123,7 +123,7 @@ const handleUpdate = async (e) => {
 
     try {
 
-        const po = await axios.post("http://localhost:4000/api/add-surrendered", { name, type, step, part, num ,desc});
+        const po = await axios.post("http://localhost:4000/api/add-surrendered", { name, type, step, part, num ,description:desc});
         console.log(po);
         index = 0;
         fetchData();
@@ -257,7 +257,16 @@ return <>
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
-                    <Button variant="contained" onClick={handleUpdate}> Update </Button>
+                    <Button 
+                        variant="contained" 
+                        onClick={handleUpdate}
+                        sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                            bgcolor: "#CD366B",
+                            color: "white"
+                        }}}
+                    > 
+                        Update 
+                    </Button>
                 </Grid>
                 
             </Grid>
@@ -279,7 +288,16 @@ return <>
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
-                <Button variant="contained" onClick={handleDelete}>Delete</Button>
+                <Button 
+                    variant="contained" 
+                    onClick={handleDelete}
+                    sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#CD366B",
+                        color: "white"
+                    }}}
+                >
+                    Delete
+                </Button>
                 </Grid>
                 
                 </Grid>

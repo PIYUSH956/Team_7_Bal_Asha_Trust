@@ -68,7 +68,7 @@ const NotificationBell = ({ color , id }) => {
         <Box component="div" sx={{ display: 'inline' }}>
             <Tooltip title={notifications.length ? newNotifications : noNotifications}>
                 <IconButton
-                    color={color}
+                    color='inherit'
                     onClick={notifications.length ? handleOpen : null}
                     anchorEl={anchorEl}
                 >

@@ -143,7 +143,10 @@ return (
                     {/* <textarea value={pro.name} /> */}
                 </Grid>
                 <Grid item xs={12} md={4} sx={{ display: 'flex', height: "50%", marginLeft: '10px', marginTop: '17px', width: "80%" }}>
-                    <Button variant="contained" component="label">
+                    <Button variant="contained" component="label" sx={{bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#382A41",
+                        color: "white"
+                    }}}>
                         {value == null ? "Upload File" : "Uploaded"}
                         <input id="file-upload-button"
 
@@ -202,7 +205,10 @@ return (
                 <Button
                     variant="contained"
                     onClick={handleSubmit}
-                    sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                    sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#CD366B",
+                        color: "white"
+                      }}}
                 >
                     Update
                 </Button>

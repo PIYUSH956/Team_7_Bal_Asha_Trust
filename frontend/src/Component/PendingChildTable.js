@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   tableHeader: {
     backgroundColor: '#392A41',
     color:'white',
-    fontWeight:1000,
    
   },
   hoverRow: {
@@ -98,7 +97,7 @@ export default function PendingChildTable() {
     async function fetchData() {
       try {
         if (state.user != null && (state.user.role == "manager" || state.user.role == "admin")) {
-          const data = await axios.post("http://localhost:4000/api/get-pending-child-data-for-admin", { status: "notAssigned" });
+          const data = await axios.post("http://localhost:4000/api/get-pending-child-data-for-admin");
 
           setChildData(data.data);
         }

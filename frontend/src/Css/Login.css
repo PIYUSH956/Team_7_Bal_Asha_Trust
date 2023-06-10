@@ -1,15 +1,15 @@
 .main_box {
     min-height: 90vh;
     width: 100%;
-    background: linear-gradient(to bottom, #8f729c, #543b60);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .grid-container {
-    background: linear-gradient(to bottom, #f8f4f7, #f68ee1);
-    border-radius: 30px;
+    border: 1px solid gray;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    border-radius: 20px;
     margin: 40px auto;
     padding: 20px;
     display: flex;
@@ -18,6 +18,8 @@
 }
 
 .item-1 {
+    background-color: #382A41;
+    border-radius: 20px;
     padding: 25px;
     justify-content: center;
     overflow: hidden;
@@ -41,12 +43,28 @@
     object-fit: cover;
     cursor: pointer;
 }
-/* .button{
-    background-color: #ff8100;
+
+.button{
+    background-color: #CD366B;
 }
 .text-color{
-    color: #ff8100;
+    /* color: #; */
 }
+
+.anchor{
+    text-decoration: none;
+    color: #382A41;
+    font-weight: 500;
+}
+
+.anchor:hover{
+    color: #CD366B;
+}
+
+.btn{
+    background-color: #382A41;
+}
+
 /* 
 button {
     background-color: #ff8100;

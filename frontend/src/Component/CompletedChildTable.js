@@ -18,12 +18,12 @@ import ChildrenDetails from "./ChildrenDetails";
 
 const useStyles = makeStyles((theme) => ({
   tableHeader: {
-    backgroundColor: 'black',
+    backgroundColor: '#382A41',
     color: 'white',
   },
   hoverRow: {
     '&:hover': {
-      backgroundColor: '#ff8100', // Change this to your desired hover color
+      backgroundColor: '#CD366B', // Change this to your desired hover color
       cursor: 'pointer',
       '& > *': {
         color: 'white', // Change this to your desired hover text color
@@ -93,7 +93,7 @@ export default function CompletedChildTable() {
     async function fetchData() {
       try {
         if (state.user != null && (state.user.role == "manager" || state.user.role == "admin")) {
-          const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "completed" });
+          const data = await axios.post("http://localhost:4000/api/get-completed-child-data");
           console.log(data);
           setChildData(data.data);
         }
@@ -105,7 +105,7 @@ export default function CompletedChildTable() {
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            if(item.caseID != null && item.caseID.assignedWorkerID  == state.user._id)
+            if(item.caseID != null && item.caseID.childID != null)
             tempArr.push(item.caseID.childID);
           }
           setChildData(tempArr);
@@ -119,6 +119,24 @@ export default function CompletedChildTable() {
     , []);
 
 
+    const handleCellClick = async (id) =>{
+
+      const profileDetail = id;
+      const childID = id._id;
+      console.log(profileDetail);
+      console.log(childID);
+      try{
+          const result = await axios.post("http://localhost:4000/api/get-case-detail",{childID});
+          const workerDetail = result.data.worker;
+          const processDetail = result.data.process;
+          // SHOW THIS IN PDF AS DOWNLOADABLE
+      }catch(err){
+          alert(err.message);
+      }
+
+    }
+
+
 
 
 
@@ -128,13 +146,14 @@ export default function CompletedChildTable() {
         <Paper sx={{ width: '90%', overflow: 'hidden' }}>
           <TableContainer sx={{ maxHeight: 580 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableHead className={classes.tableHeader} >
+              <TableHead>
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
+                      className={classes.tableHeader}
                     >
                       {column.label}
                     </TableCell>
@@ -155,7 +174,7 @@ export default function CompletedChildTable() {
                           const value = column.id == null ? null :  val[column.id];
                           console.log(column, val);
                           return (
-                            <TableCell className={classes.hoverCell} key={column.id} align={column.align}>
+                            <TableCell   onClick={() => { handleCellClick(val) }} className={classes.hoverCell} key={column.id} align={column.align}>
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}

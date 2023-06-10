@@ -19,12 +19,12 @@ import {useNavigate} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   tableHeader: {
-    backgroundColor: 'black',
+    backgroundColor: '#382A41',
     color: 'white',
   },
   hoverRow: {
     '&:hover': {
-      backgroundColor: '#ff8100', // Change this to your desired hover color
+      backgroundColor: '#CD366B', // Change this to your desired hover color
       cursor: 'pointer',
       '& > *': {
         color: 'white', // Change this to your desired hover text color
@@ -138,13 +138,14 @@ export default function PendingChildTable() {
         <Paper sx={{ width: '90%', overflow: 'hidden' }}>
           <TableContainer sx={{ maxHeight: 580 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableHead className={classes.tableHeader} >
+              <TableHead>
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
+                      className={classes.tableHeader}
                     >
                       {column.label}
                     </TableCell>
@@ -167,7 +168,7 @@ export default function PendingChildTable() {
                           return (
                             <TableCell
                             onClick={() => { handleCellClick(val) }} className={classes.hoverCell} key={column.id} align={column.align}
-                            className={classes.hoverCell} key={column.id} align={column.align}>
+                            >
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}

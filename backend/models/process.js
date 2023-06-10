@@ -10,7 +10,6 @@ const process = new mongoose.Schema({
     name: {
       type:String,
       unique:true,
-      required:true,
   },
   type:{
       enum:["text","pdf"],

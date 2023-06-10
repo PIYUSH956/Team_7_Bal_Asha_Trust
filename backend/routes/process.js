@@ -7,7 +7,8 @@ const {
     getAbandon,
     getProcess,
     updateProcess,
-    getDataInProcess
+    getDataInProcess,
+    getValuePresent
 } = require("../controller/process");
 
 const {
@@ -35,6 +36,8 @@ router.post("/add-abandond", addAbandon);
 router.get("/get-abandond", getAbandon);
 
 router.post("/delete-abandond", deleteAbandon);
+router.post("/get-value-present", getValuePresent);
+
 
 //routes for orphaned process
 router.post("/add-orphaned", addOrphaned);

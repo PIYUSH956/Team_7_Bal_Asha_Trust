@@ -108,15 +108,15 @@ export default function PersonalDetails(props) {
                     gap:4,
                     marginTop:'30px',
                 }}>
-                <Grid align='center'>
+                <Grid align='center' sx={{color:'#CD366B',paddingTop: '10px'}}>
                     <Avatar src={props.image} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
+                    <Typography variant='h6' fontWeight='bold'>{props.caseNumber}</Typography>
                 </Grid>
 
                 <Grid style={nameHolder}  sx={{color:'#CD366B',paddingTop: '10px'}}>
                     <Grid item xs={12} md={8}>
                         <Typography variant='h4' fontWeight='bold'>{props.name}</Typography>
                         <Typography style={contentStyle}>{formatString(props.gender)}</Typography>
-                        <>{props.caseNumber}</>
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
                         <ProcessIcon onClick={handleProcess}/>

@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Backgroundimg from "../Images/Background.jpg";
 import Checkbox from "@mui/material/Checkbox";
 import { useMediaQuery,useTheme } from '@material-ui/core';
-import img1 from "../Images/loginphoto.jpg";
+import img1 from "../Images/LoginPageImage.jpg";
 import Box from "@mui/material/Box";
 
 import Fade from '@mui/material/Fade';
@@ -195,9 +195,9 @@ function Login() {
               item
               className="item-2"
             >
-              <span> <input type ="checkbox" /> Remember Me </span>
+              <span className="anchor"> <input type ="checkbox" /> Remember Me </span>
               <span>
-                <a href="">Forget Password</a>
+                <a href="" className="anchor">Forget Password</a>
               </span>
             </Grid>
             <br />
@@ -215,7 +215,10 @@ function Login() {
             <Button
               variant="contained"
               onClick={handleSubmit}
-              sx={{ fontSize: "20px"}}
+              sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                bgcolor: "#CD366B",
+                color: "white"
+              }}}
             >
               Login
             </Button>

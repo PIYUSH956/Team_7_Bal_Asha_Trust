@@ -166,15 +166,18 @@ export default function PersonalDetailsForm() {
         />
 
         <label htmlFor="profile-photo-input">
-          <IconButton color="primary" aria-label="upload photo" component="span">
+          <IconButton 
+            color="primary" 
+            aria-label="upload photo" 
+            component="span"
+            sx={{mt: 3, ml: 1, color:'white' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+              bgcolor: "#CD366B",
+              color: "white"
+            }}}
+          >
             <PhotoCamera />
           </IconButton>
         </label>
-
-        <Button style={btnStyle} variant="contained" color="primary" onClick={() => setProfilePhoto(null)}>
-          Remove
-        </Button>
-
       </Grid>
 
 

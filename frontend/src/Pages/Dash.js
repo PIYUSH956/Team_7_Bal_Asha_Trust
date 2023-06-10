@@ -32,10 +32,11 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import "../Css/Sidebar.css";
 import { deepPurple, purple } from '@mui/material/colors'; 
 import NotificationBell from '../Component/NotificationBell';
+import Logo from "../Images/logo.png";
 
 const drawerWidth = 240;
 const color = deepPurple[50];
-const profileItems = ["Profile", "Dashboard", "Logout"];
+const profileItems = ["Profile", "Logout"];
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -166,7 +167,7 @@ export default function PersistentDrawerLeft() {
     <>
       <CssBaseline />
       <AppBar position="static" open={open}>
-        <Toolbar sx={{ backgroundColor: "#382A41" }}>
+        <Toolbar sx={{ backgroundColor: "#382A41" ,display:'flex' , justifyContent:'space-between'}}>
           <Box sx={{ display: "flex" }}>
             <IconButton
               color="inherit"
@@ -177,14 +178,12 @@ export default function PersistentDrawerLeft() {
             >
               <MenuIcon sx={{ color: "white" }} />
             </IconButton>
-            <p className="heading-item" >Bal Asha Trust</p>
+            <NavLink exact to="/" className="nav-logo">
+              <img src={Logo} alt="Bal Asha Trust" />
+            </NavLink>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0}}>
             <NotificationBell
               size="large"
               aria-label="show 17 new notifications"
@@ -303,7 +302,7 @@ export default function PersistentDrawerLeft() {
                       color:
                         window.location.pathname == "/child-data-form"
                           ? "white"
-                          : "#ff8100",
+                          : "white",
                     },
                   })}
                 </ListItemIcon>
@@ -348,7 +347,10 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   {React.cloneElement(<SocailWorkersIcon />, {
                     style: {
-                      color:"white"
+                      color:
+                        window.location.pathname == "/abandond"
+                          ? "white"
+                          : "white",
                     },
                   })}
                 </ListItemIcon>
