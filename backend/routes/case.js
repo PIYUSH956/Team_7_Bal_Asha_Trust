@@ -12,7 +12,7 @@ const {
     getAllCaseForRoot,
     getAssignAndNotGoing,
     changeToCompleted,
-    getCaseDetail
+    getCaseDetail,
 } = require("../controller/case");
 
 //assign case of child
@@ -21,6 +21,8 @@ router.post("/assign-case", assignCase);
 
 // IMP FOR SOCIAL WORKER DASHBOARD GRAPH
 router.post("/get-assign-case", assignedCase);
+
+// IMP FOR ROOT
 router.post("/get-all-case-for-root", getAllCaseForRoot);
 
 router.post("/get-completed-case", completedCase);

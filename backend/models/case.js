@@ -22,7 +22,7 @@ const caseSchema = new mongoose.Schema(
     status:{
       type: String,
       required: true,
-      enum:["onGoing","Completed"],
+      enum:["onGoing","completed"],
       default:"onGoing"
     }
     // Add more important fields as needed

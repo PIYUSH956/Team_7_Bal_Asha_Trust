@@ -172,16 +172,16 @@ exports.onGoingCases = async (req, res) => {
 exports.completedCase = async (req, res) => {
 
 
-    console.log(req.body);
+    console.log("COMPLETED",req.body);
 
     try {
 
         const x = await Process.find({}).populate({
             path: "caseID",
             match: { assignedWorkerID: req.body.assignedWorkerID },
+            match: { status: "completed" },
             populate: {
                 path: "childID",
-                match: { status: "completed" }
             }
         }
         );

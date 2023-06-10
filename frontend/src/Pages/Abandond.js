@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
+import DeleteIcon from '@mui/icons-material/Delete';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -115,12 +116,12 @@ const Abandond = () => {
 
         try {
 
-            const po = await axios.post("http://localhost:4000/api/add-abandond", { name, type, step, part, num ,description: desc});
+            const po = await axios.post("http://localhost:4000/api/add-abandond", { name, type, step, part, num, desc });
             console.log(po);
             index = 0;
             fetchData();
 
-          
+
 
         } catch (err) {
             console.log(err);
@@ -131,78 +132,14 @@ const Abandond = () => {
 
 
 
-    const handleDelete = async (e) => {
 
-
-        console.log(nameD);
-
-        try {
-
-            const pp = await axios.post("http://localhost:4000/api/delete-abandond", { nameD });
-            console.log(pp);
-            index = 0;
-
-            fetchData();
-
-         
-
-
-        } catch (err) {
-            console.log(err);
-        }
-
+    const fetchData = async () => {
         try {
             const p = await axios.get("http://localhost:4000/api/get-abandond");
             console.log(p.data);
             console.log(p.data[0].steps);
             setSteps(p.data[0].steps);
         } catch (err) {
-            console.log(err);
-        }
-
-
-    }
-
-
-    const handleUpdate = async (e) => {
-
-
-        console.log(nameD);
-
-        try {
-
-            const pp = await axios.post("http://localhost:4000/api/update-abandond", { uname, utype, ustep, upart, unum , udesc });
-            console.log(pp);
-            index = 0;
-            fetchData();
-
-          
-
-        } catch (err) {
-            console.log(err);
-        }
-
-        try {
-            const p = await axios.get("http://localhost:4000/api/get-abandond");
-            console.log(p.data);
-            console.log(p.data[0].steps);
-            setSteps(p.data[0].steps);
-        } catch (err) {
-            console.log(err);
-        }
-
-
-    }
-
-
-
-    const fetchData  = async ()=>{
-        try{
-        const p = await axios.get("http://localhost:4000/api/get-abandond");
-        console.log(p.data);
-        console.log(p.data[0].steps);
-        setSteps(p.data[0].steps);
-        }catch(err){
 
         }
     }
@@ -211,7 +148,7 @@ const Abandond = () => {
 
 
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(20);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -221,6 +158,36 @@ const Abandond = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const deleteButton = async (a) => {
+        console.log(a);
+        const nameD = a.name;
+        try {
+
+            const pp = await axios.post("http://localhost:4000/api/delete-abandond", { nameD });
+            console.log(pp);
+            index = 0;
+
+            fetchData();
+
+
+
+
+        } catch (err) {
+            console.log(err);
+        }
+
+        try {
+            const p = await axios.get("http://localhost:4000/api/get-abandond");
+            console.log(p.data);
+            console.log(p.data[0].steps);
+            setSteps(p.data[0].steps);
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
 
 
     return <>
@@ -289,16 +256,12 @@ const Abandond = () => {
                     placeholder="Part"
                     sx={{ margin: "10px", width: "80%" }}
                 />
-                </Grid>
-                <Grid>
-                 <TextField
-                    size='small'
+                <TextField
                     id="outlined-required"
                     label="Required"
                     type="text"
                     onChange={(e) => { setDesc(e.target.value) }}
                     placeholder="Description"
-                    sx={{ margin: "10px", width: "80%" }}
                 />
                 </Grid>
                 </Grid>
@@ -307,106 +270,23 @@ const Abandond = () => {
 
 
         <div className={classes.centerButton}>
-            <Button 
-                variant="contained" 
+            <Button
+                variant="contained"
                 onClick={handleAdd}
-                sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
-                    bgcolor: "#CD366B",
-                    color: "white"
-                  }}}
+                sx={{
+                    bgcolor: '#382A41', fontSize: '15px', ":hover": {
+                        bgcolor: "#CD366B",
+                        color: "white"
+                    }
+                }}
             >
                 Add Step
             </Button>
         </div>
     </Paper>
 
-        {/* <Box
-            component="form"
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-        >
-            <div>
-                <TextField
-                    id="outlined-required"
-                    label="Required"
-                    type="number"
-                    onChange={(e) => { setUnum(e.target.value) }}
-                    placeholder="Position"
-                />
-                <TextField
-                    required
-                    id="outlined-required"
-                    onChange={(e) => { setUname(e.target.value) }}
-                    label="Required"
-                    placeholder='Name'
-                />
-                <TextField
-                    id="outlined-required"
-                    label="Required"
-                    onChange={(e) => { setUtype(e.target.value) }}
-                    placeholder="text or pdf"
-                />
-                <TextField
-                    id="outlined-required"
-                    label="Required"
-                    type="number"
-                    onChange={(e) => { setUstep(e.target.value) }}
-                    placeholder="Step"
-                />
-                <TextField
-                    id="outlined-required"
-                    label="Required"
-                    type="number"
-                    onChange={(e) => { setUpart(e.target.value) }}
-                    placeholder="part"
-                />
-                <TextField
-                    id="outlined-required"
-                    label="Required"
-                    type="text"
-                    onChange={(e) => { setUdesc(e.target.value) }}
-                    placeholder="part"
-                />
-            </div>
 
-
-        </Box>
-
-        <div className={classes.centerButton}>
-            <Button variant="contained" onClick={handleUpdate}>Update</Button>
-        </div> */}
-
-<Paper elevation={8} sx={{margin:'50px auto', padding:'10px', width:'80vw'}}>
-            <Grid container sx={{margin:'10px'}} component="form" noValidate autoComplete='off'>
-                <Grid item xs={12} sx={{ textAlign:'center'}}>
-                    <TextField
-                    size="small" 
-                        sx={{ margin: "10px", minWidth:'50%' }}
-                        required
-                        id="outlined-required"
-                        onChange={(e) => { setNameD(e.target.value) }}
-                        label="Name"
-
-                    />
-                </Grid>
-                <Grid item xs={12} sx={{ textAlign: "center" }}>
-                <Button 
-                    variant="contained" 
-                    onClick={handleDelete}
-                    sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
-                        bgcolor: "#CD366B",
-                        color: "white"
-                    }}}
-                >
-                    Delete Step
-                </Button>
-                </Grid>
-                
-                </Grid>
-            </Paper>
+      
 
 
         <div className="table-content">
@@ -433,8 +313,10 @@ const Abandond = () => {
                                 .map((val) => {
                                     return (
                                         <TableRow
+                                            onDoubleClick={(e) => deleteButton(val)}
 
                                             className={classes.hoverRow}
+
                                             role="checkbox" tabIndex={-1} key={val.id}>
                                             {columns.map((column) => {
 
@@ -445,6 +327,7 @@ const Abandond = () => {
                                                         {column.format && typeof value === 'number'
                                                             ? column.format(value)
                                                             : value}
+
                                                     </TableCell>
                                                 );
                                             })}

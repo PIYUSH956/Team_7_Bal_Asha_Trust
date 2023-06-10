@@ -78,6 +78,8 @@ const ProfileForCm = () => {
               username={state.user.username}
               role={state.user.role}
               email={state.user.email}
+              district = {state.user.district}
+              state = {state.user.state}
               
     
             />

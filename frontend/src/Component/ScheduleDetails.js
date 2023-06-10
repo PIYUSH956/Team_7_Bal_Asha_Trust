@@ -32,7 +32,6 @@ export default function App(props) {
     const navigate = useNavigate();
     const [volunteer, setVolunteer] = useState({});
     const [category, setCategory] = useState(param.category);
-    console.log(param.category);
     const [rootData, setRootData] = useState([]);
     const [row, setRow] = useState([]);
     var state = useSelector((state) => ({ ...state }));
@@ -96,6 +95,27 @@ export default function App(props) {
     };
 
 
+    const handleChangeCategoery = async (e) => {
+
+        console.log(category);
+        
+        
+     
+        try{
+            const res = await axios.post("http://localhost:4000/api/change-category",childID,category);
+            console.log(res);
+            alert("Changed");
+        }catch(err){
+            if(err.response == null){
+                alert(err.message);
+            }else{
+                alert(err.response.data.message);
+            }
+        }
+
+    }
+
+
     return (
         <>
             <Box sx={{
@@ -119,8 +139,9 @@ export default function App(props) {
                                 fullWidth
                                 onChange={(event) => setCategory(event.target.value)}
                             >
+                                
                                 {categories.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
+                                    <MenuItem   key={option.value} value={option.value}>
                                         {option.label}
                                     </MenuItem>
                                 ))}
@@ -138,6 +159,16 @@ export default function App(props) {
                     >
                         Sechedule the Case
                     </Button>
+                    {/* <Button 
+                        sx={{ mt:'50px' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                            bgcolor: "#CD366B",
+                            color: "white"
+                        }}}
+                        onClick={handleChangeCategoery} 
+                        variant="contained"
+                    >
+                        Change Category
+                    </Button> */}
                     </Grid>
                     
                 </Grid>

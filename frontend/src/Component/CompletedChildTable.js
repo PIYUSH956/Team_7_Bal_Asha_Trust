@@ -137,6 +137,7 @@ export default function CompletedChildTable() {
       );
       const workerDetail = result.data.worker;
       const processDetail = result.data.process;
+      console.log(workerDetail,processDetail);
       // SHOW THIS IN PDF AS DOWNLOADABLE
     } catch (err) {
       alert(err.message);

@@ -10,6 +10,7 @@ import "../Css/Process.css";
 import { useSelector } from "react-redux";
 import Box1 from "../Component/Box1";
 import Box2 from "../Component/Box2";
+import JsPDF from "jspdf";
 
 export default function Process() {
   const [process, setProcess] = useState([]);
@@ -98,8 +99,45 @@ export default function Process() {
 
   }
 
+
+  const generatePdf = () => {
+    try {
+      const report = new JsPDF("portrait", "pt", [795.28, 1241.89]);
+
+      report.html(document.querySelector("#report"), {}).then(() => {
+        report.save();
+      });
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+  };
+
   return (
-    <>
+    <div>
+     {/* <div onClick={generatePdf} id = "report" style={{ width: '210mm', height: '297mm', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ marginBottom: '20px' }}>
+        <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Child Name:</p>
+        <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Case Manager:</p>
+      </div>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid #ccc' }}>Steps</th>
+            <th style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid #ccc' }}>Type</th>
+            <th style={{ padding: '10px', textAlign: 'left', borderBottom: '1px solid #ccc' }}>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {process.map((item, index) => (
+            <tr key={index}>
+              <td style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>{item.name}</td>
+              <td style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>{item.type}</td>
+              <td style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>{item.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div> */}
       {process.map((pro) => {
         return (
           <>
@@ -206,6 +244,6 @@ export default function Process() {
         </Card>
       </Box>
 
-    </>
+    </div>
   );
 }

@@ -120,7 +120,7 @@ export default function PersonalDetails(props) {
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
                         <ProcessIcon onClick={handleProcess}/>
-                      {(state.user.role != "root"  &&  (props.status == "assigned" || props.status == "onGoing"))  && <AssignmentTurnedInIcon  />  }
+                      {(state.user.role != "root"  &&  (props.status == "assigned" || props.status == "onGoing"))  && <AssignmentTurnedInIcon onClick={handleSchedule}  />  }
                       
                       {(state.user.role != "root"  &&  props.status == "notAssigned") && <AssignmentLateIcon onClick={handleSchedule} />}
                     </Grid>

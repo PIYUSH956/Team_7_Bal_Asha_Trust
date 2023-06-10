@@ -1,6 +1,5 @@
 import React from "react";
 import Grid from '@mui/material/Grid';
-import { Pie } from "react-chartjs-2";
 import 'chart.js/auto';
 import RegisterImage from "../Images/registerCoverPhoto.jpg";
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +13,8 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import "../Css/CaseManagerDashboard.css";
 import { useState } from "react";
+import { useRef } from 'react';
+import { Pie, getElementAtEvent } from "react-chartjs-2";
 
 
 const generateRandomColors = (numColors) => {
@@ -38,6 +39,8 @@ const SocialWorkerDashboard = () => {
     const [childData, setChildData] = useState([]);
     const [label1, setLabel1] = useState([]);
     const [dataset1, setDataset1] = useState([]);
+    const [label2, setLabel2] = useState([]);
+    const [dataset2, setDataset2] = useState([]);
 
 
 
@@ -51,7 +54,7 @@ const SocialWorkerDashboard = () => {
                     const cases = {};
 
                     for (const item of data) {
-                        if(item.childID == null ) continue;
+                        if (item.childID == null) continue;
                         const status = item.childID.status;
                         if (status in cases) {
                             cases[status] += 1;
@@ -69,20 +72,45 @@ const SocialWorkerDashboard = () => {
                     };
                 }
 
+                function createLabelAndCount2(data) {
+                    const cases = {};
+
+                    for (const item of data) {
+                        if (item.childID == null) continue;
+                        const district = item.childID.district;
+                        if (district in cases) {
+                            cases[district] += 1;
+                        } else {
+                            cases[district] = 1;
+                        }
+                    }
+                    const labels = Object.keys(cases);
+                    const ldata = Object.values(cases);
+                    const backgroundColor = generateRandomColors(labels.length);
+
+                    return {
+                        labels: labels,
+                        count: [{ data: ldata, backgroundColor }]
+                    };
+                }
+
                 if (state.user != null) {
                     var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
                     data = data.data;
 
 
-                    
+
 
                     setChildData(data);
                     console.log("SOCIAL WORKER DASHBOARD", data);
                     var lbl = createLabelAndCount1(data);
+                    var lbl2 = createLabelAndCount2(data);
 
 
                     setLabel1(lbl.labels);
                     setDataset1(lbl.count);
+                    setLabel2(lbl2.labels);
+                    setDataset2(lbl2.count);
 
                 }
             } catch (err) {
@@ -105,6 +133,22 @@ const SocialWorkerDashboard = () => {
 
         , []);
 
+    const chartRef = useRef();
+    const navigate = useNavigate();
+    const onClick = (event) => {
+        var index = (getElementAtEvent(chartRef.current, event));
+
+        const x = (label1[index[0].index]);
+        if (x == "onGoing")
+            navigate("/on-going-cases");
+        else if (x == "completed")
+            navigate("/completed");
+        else if (x == "pending")
+            navigate("/pending");
+    }
+
+
+
 
     return (
 
@@ -116,58 +160,71 @@ const SocialWorkerDashboard = () => {
             </Box>
             <Grid container spacing={3} padding={2} sx={{ height: '50vh' }} >
                 <Grid item xs={12} md={2}></Grid>
-                <Grid item xs={12} md={4} className='card-item'>
-                    <Pie
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Number of child cases',
-                                    font: {
-                                        size: 26,
-                                        weight: 'bold',
+                <Grid item xs={12} md={4} >
+                    <Card className="cardItem paper1" onClick={onClick} style={{ borderRadius: '25px' }}>
+                        <Pie
+                            ref={chartRef}
+                            onClick={onClick}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Child Cases',
+                                        font: {
+                                            size: 26,
+                                            weight: 'bold',
+                                        },
                                     },
+                                    legend: {
+                                        display: true,
+                                        position: "bottom"
+                                    }
                                 },
-                            },
-                            height: 1000,
-                            width: 1000,
-                        }}
-                        data={{
-                            labels: label1,
-                            datasets: dataset1
-                        }}
-                    />
+                                height: 1000,
+                                width: 1000,
+                            }}
+                            data={{
+                                labels: label1,
+                                datasets: dataset1
+                            }}
+                        />
+                    </Card>
                 </Grid>
                 <Grid item xs={12} md={4} container
                     className="card-item"
                     direction="column"
                     alignItems="center"
                     justify="center">
-
-                    <Pie
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Number of child cases',
-                                    font: {
-                                        size: 26,
-                                        weight: 'bold',
+                    <Card className="cardItem paper1" style={{ borderRadius: '25px' }}>
+                        <Pie
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Child Region Wise',
+                                        font: {
+                                            size: 26,
+                                            weight: 'bold',
+                                        },
                                     },
+                                    legend: {
+                                        display: true,
+                                        position: "bottom"
+                                    }
                                 },
-                            },
-                            height: 1000,
-                            width: 1000,
-                        }}
-                        data={{
-                            labels: label1,
-                            datasets: dataset1
-                        }}
-                    />
+                                height: 1000,
+                                width: 1000,
+                            }}
+                            data={{
+                                labels: label2,
+                                datasets: dataset2
+                            }}
+                        />
+                    </Card>
 
 
                 </Grid>

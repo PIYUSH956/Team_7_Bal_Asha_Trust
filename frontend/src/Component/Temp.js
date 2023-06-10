@@ -144,7 +144,7 @@ export default function Temp(props) {
 
                 <Grid style={nameHolder}  sx={{color:'#CD366B',paddingTop: '10px'}}>
                     <Grid item xs={12} md={8}>
-                        <Typography variant='h4' fontWeight='bold'>Name</Typography>
+                        <Typography variant='h4' fontWeight='bold'>{props.username}</Typography>
                     </Grid>
                 </Grid>
                 </Box>

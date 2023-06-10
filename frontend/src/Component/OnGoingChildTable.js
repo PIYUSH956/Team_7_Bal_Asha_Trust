@@ -181,7 +181,7 @@ export default function PendingChildTable() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {childData.length != 1 &&
+                    {childData.length != 0 &&
                       childData
                         .slice(
                           page * rowsPerPage,
