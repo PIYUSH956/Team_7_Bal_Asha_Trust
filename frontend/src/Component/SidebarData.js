@@ -25,11 +25,11 @@ const SidebarData= [
         icon: <CompletedIcon/>,
         link: "/completed-cases",
     },
-    {
-        title: "Newspaper Article",
-        icon: <CompletedIcon/>,
-        link: "/pdf-generator",
-    },
+    // {
+    //     title: "Newspaper Article",
+    //     icon: <CompletedIcon/>,
+    //     link: "/pdf-generator",
+    // },
 ]
 
 export function Side(){

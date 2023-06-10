@@ -148,18 +148,16 @@ const CaseManagerDashboard = () => {
     return (
 
         <>
+
+        <div style={{minHeight:'100vh', width:'100%', textAlign:'center', padding:'20px'}}>
            
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <h1  align="center" fontWeight="bold">
-                    Children Information
-                </h1>
-            </Box>
+        <br/> <h1> Children Information </h1>
             
 
-        <Grid container spacing={3} padding={2}>
-        <Grid item xs={12} md={2}></Grid>
-        <Grid item xs={12} md={4} className="grid-item">
-          <Card className= "card-item" >
+        <Grid container spacing={3} padding={2} sx={{justifyContent:'center'}}>
+        {/* <Grid item xs={12} md={2}></Grid> */}
+        <Grid item xs={12} md={4} mt={2}className="grid-item">
+          <Card className= "card-item" style={{borderRadius:'25px', transition:'transform 5.5s, box-shadow 0.5s'}}>
             <Pie
               options={{
                 responsive: true,
@@ -184,8 +182,8 @@ const CaseManagerDashboard = () => {
             />
           </Card>
         </Grid>
-        <Grid item xs={12} md={4} className="grid-item">
-          <Card className= "card-item">
+        <Grid item xs={12} md={4} mt={2}className="grid-item">
+          <Card className= "card-item" style={{borderRadius:'25px', transition:'transform 5.5s, box-shadow 0.5s'}}>
             <Pie
               options={{
                 responsive: true,
@@ -210,7 +208,7 @@ const CaseManagerDashboard = () => {
             />
           </Card>
         </Grid>
-        <Grid item xs={12} md={2}></Grid>
+        {/* <Grid item xs={12} md={2}></Grid> */}
       </Grid>
             
 
@@ -223,7 +221,7 @@ const CaseManagerDashboard = () => {
             <Grid container spacing={3} marginTop={1} marginBottom={7}>
                 <Grid item xs={12} md={3}></Grid>
                 <Grid item xs={12} md={6} className="grid-item">
-                    <Card className= "card-item">
+                    <Card className= "card-item" style={{borderRadius:'25px', transition:'transform 5.5s, box-shadow 0.5s'}}>
                     <Pie
                         options={{
                             responsive: true,
@@ -250,6 +248,8 @@ const CaseManagerDashboard = () => {
                 </Grid>
                 <Grid item xs={12} md={3}></Grid>
             </Grid>
+
+            </div>
         </>
     );
 }

@@ -62,7 +62,7 @@ function Login() {
         payload,
       });
 
-      alert("Succesfully Logged In");
+      // alert("Succesfully Logged In");
       //Role based redirecting  Right now for only root 
       navigate("/dashboard");
     } catch (err) {
@@ -173,7 +173,6 @@ function Login() {
               id="outlined-required"
               label="Email"
               placeholder="abcd@gmai.com"
-              focused
             />
             <br />
             <TextField
@@ -188,7 +187,6 @@ function Login() {
               label="Password"
               type="password"
               placeholder="*****"
-              focused
             />
             <br />
             <Grid
