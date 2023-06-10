@@ -73,82 +73,108 @@ const [part, setPart] = useState(0);
 const [num, setNum] = useState(0);
 const [desc, setDesc] = useState("");
 
+const [uname, setUname] = useState();
+    const [utype, setUtype] = useState();
+    const [ustep, setUstep] = useState(0);
+    const [upart, setUpart] = useState(0);
+    const [unum, setUnum] = useState(0);
+    const [udesc, setUdesc] = useState("");
+
 
 const [steps, setSteps] = useState([]);
 
 
-// useEffect(() => {
+useEffect(() => {
 
-//     async function fetchData() {
-//         try {
+    async function fetchData() {
+        try {
 
-//             const p = await axios.get("http://localhost:4000/api/get-abandond");
-//             console.log(p.data);
-//             console.log(p.data[0].steps);
-//             setSteps(p.data[0].steps);
+            const p = await axios.get("http://localhost:4000/api/get-orphaned");
+            console.log(p.data);
+            console.log(p.data[0].steps);
+            setSteps(p.data[0].steps);
 
-//         } catch (err) {
-//             console.log(err);
-//         }
-//     }
-//     fetchData();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    fetchData();
 
-// }, []);
+}, []);
 
 
 const handleDelete = async (e) => {
-//     console.log(nameD);
-//     try {
-//         const pp = await axios.post("http://localhost:4000/api/delete-abandond", { nameD });
-//         console.log(pp);
-//         index = 0;
-//         fetchData();
-//     } catch (err) {
-//         console.log(err);
-//     }
-//     try {
-//         const p = await axios.get("http://localhost:4000/api/get-abandond");
-//         console.log(p.data);
-//         console.log(p.data[0].steps);
-//         setSteps(p.data[0].steps);
-//     } catch (err) {
-//         console.log(err);
-//     }
+    console.log(nameD);
+    try {
+        const pp = await axios.post("http://localhost:4000/api/delete-orphaned", { nameD });
+        console.log(pp);
+        index = 0;
+        fetchData();
+    } catch (err) {
+        console.log(err);
+    }
+    try {
+        const p = await axios.get("http://localhost:4000/api/get-orphaned");
+        console.log(p.data);
+        console.log(p.data[0].steps);
+        setSteps(p.data[0].steps);
+    } catch (err) {
+        console.log(err);
+    }
 }
-
-
+//change 
 const handleUpdate = async (e) => {
-//     console.log(nameD);
-//     try {
-//         const pp = await axios.post("http://localhost:4000/api/update-abandond", { uname, utype, ustep, upart, unum , udesc });
-//         console.log(pp);
-//         index = 0;
-//         fetchData();
-//     } catch (err) {
-//         console.log(err);
-//     }
-//     try {
-//         const p = await axios.get("http://localhost:4000/api/get-abandond");
-//         console.log(p.data);
-//         console.log(p.data[0].steps);
-//         setSteps(p.data[0].steps);
-//     } catch (err) {
-//         console.log(err);
-//     }
+
+    console.log(name, type, step, part, num);
+
+    try {
+
+        const po = await axios.post("http://localhost:4000/api/add-orphaned", { name, type, step, part, num ,desc});
+        console.log(po);
+        index = 0;
+        fetchData();
+
+      
+
+    } catch (err) {
+        console.log(err);
+    }
+
+
+}
+
+const handleAdd = async (e) => {
+    console.log(nameD);
+    // try {
+    //     const pp = await axios.post("http://localhost:4000/api/update-abandond", { uname, utype, ustep, upart, unum , udesc });
+    //     console.log(pp);
+    //     index = 0;
+    //     fetchData();
+    // } catch (err) {
+    //     console.log(err);
+    // }
+    try {
+        const p = await axios.get("http://localhost:4000/api/get-orphaned");
+        console.log(p.data);
+        console.log(p.data[0].steps);
+        setSteps(p.data[0].steps);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 
 
-// const fetchData  = async ()=>{
-//     try{
-//     const p = await axios.get("http://localhost:4000/api/get-abandond");
-//     console.log(p.data);
-//     console.log(p.data[0].steps);
-//     setSteps(p.data[0].steps);
-//     }catch(err){
+const fetchData  = async ()=>{
+    try{
+    const p = await axios.get("http://localhost:4000/api/get-orphaned");
+    console.log(p.data);
+    console.log(p.data[0].steps);
+    setSteps(p.data[0].steps);
+    }catch(err){
 
-//     }
-// }
+    }
+}
 
 
 
