@@ -179,29 +179,24 @@ return <>
                         required
                         id="outlined-required"
                         onChange={(e) => { setNum(e.target.value) }}
-                        placeholder="Position"
+                        label="Position"
                         type="number"
-                        focused
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
+                        label="Name"
                         onChange={(e) => { setName(e.target.value) }}
-                        placeholder='Name'
-                        focused
                     />
                     <br/>
                     <TextField
                     size="small"
                     sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         onChange={(e) => { setType(e.target.value) }}
-                        placeholder="text or pdf"
-                        focused
+                        label="Text or Pdf"
                     />
 
                 </Grid>
@@ -211,33 +206,27 @@ return <>
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         type="number"
                         onChange={(e) => { setStep(e.target.value) }}
-                        placeholder="Step"
-                        focused
+                        label="Step"
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         type="number"
                         onChange={(e) => { setPart(e.target.value) }}
-                        placeholder="Part"
-                        focused
+                        label="Part"
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         type="text"
                         onChange={(e) => { setDesc(e.target.value) }}
-                        placeholder="Description"
-                        focused
+                        label="Description"
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
@@ -266,9 +255,7 @@ return <>
                         required
                         id="outlined-required"
                         onChange={(e) => { setNameD(e.target.value) }}
-                        label="Required"
-                        placeholder='Name'
-                        focused
+                        label='Name'
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>

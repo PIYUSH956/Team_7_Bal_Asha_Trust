@@ -116,7 +116,7 @@ const SocialWorkerDashboard = () => {
             </Box>
             <Grid container spacing={3} padding={2} sx={{ height: '50vh' }} >
                 <Grid item xs={12} md={2}></Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={4} className='card-item'>
                     <Pie
                         options={{
                             responsive: true,
@@ -141,6 +141,7 @@ const SocialWorkerDashboard = () => {
                     />
                 </Grid>
                 <Grid item xs={12} md={4} container
+                    className="card-item"
                     direction="column"
                     alignItems="center"
                     justify="center">
