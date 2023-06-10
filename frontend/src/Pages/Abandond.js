@@ -18,7 +18,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import "../Css/ChildTable.css"
 import { useNavigate } from 'react-router-dom';
-
+import { Grid } from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
     centerButton: {
@@ -193,51 +193,68 @@ const Abandond = () => {
     return <>
 
 
-
-
-
+<Paper elevation={8} sx={{margin:'50px auto', padding:'10px', width:'80vw'}}>
         <Box
             component="form"
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
             noValidate
             autoComplete="off"
         >
-            <div>
+            <Grid container sx={{margin:'10px'}} component="form" noValidate autoComplete='off'>
+            <Grid item xs={11} md={6} sx={{ textAlign:'center'}}>
+                <Grid>
                 <TextField
+                    size='small'
                     id="outlined-required"
                     label="Required"
                     type="number"
                     onChange={(e) => { setNum(e.target.value) }}
                     placeholder="Position"
+                    sx={{ margin: "10px", width: "80%" }}
                 />
+                </Grid>
+                <Grid>
                 <TextField
+                    size='small'
                     required
                     id="outlined-required"
                     onChange={(e) => { setName(e.target.value) }}
                     label="Required"
                     placeholder='Name'
+                    sx={{ margin: "10px", width: "80%" }}
                 />
+                </Grid>
+                <Grid>
                 <TextField
+                    size='small'
                     id="outlined-required"
                     label="Required"
                     onChange={(e) => { setType(e.target.value) }}
                     placeholder="text or pdf"
+                    sx={{ margin: "10px", width: "80%" }}
                 />
+                </Grid>
+            </Grid>
+            <Grid item xs={11} md={6} sx={{ textAlign:'center'}}>
+                <Grid>
                 <TextField
+                    size='small'
                     id="outlined-required"
                     label="Required"
                     type="number"
                     onChange={(e) => { setStep(e.target.value) }}
                     placeholder="Step"
+                    sx={{ margin: "10px", width: "80%" }}
                 />
+                </Grid>
+                <Grid>
                 <TextField
+                    size='small'
                     id="outlined-required"
                     label="Required"
                     type="number"
                     onChange={(e) => { setPart(e.target.value) }}
-                    placeholder="part"
+                    placeholder="Part"
+                    sx={{ margin: "10px", width: "80%" }}
                 />
                 <TextField
                     id="outlined-required"
@@ -246,9 +263,9 @@ const Abandond = () => {
                     onChange={(e) => { setDesc(e.target.value) }}
                     placeholder="Description"
                 />
-            </div>
-
-
+                </Grid>
+                </Grid>
+            </Grid>
         </Box>
 
 
@@ -263,9 +280,10 @@ const Abandond = () => {
                     }
                 }}
             >
-                Add
+                Add Step
             </Button>
         </div>
+    </Paper>
 
 
       
@@ -320,7 +338,7 @@ const Abandond = () => {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[10, 20, 30, 50]}
+                    rowsPerPageOptions={[20, 30, 50]}
                     component="div"
                     count={steps.length}
                     rowsPerPage={rowsPerPage}

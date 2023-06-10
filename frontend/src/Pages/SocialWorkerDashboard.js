@@ -193,6 +193,7 @@ const SocialWorkerDashboard = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4} container
+                    className="card-item"
                     direction="column"
                     alignItems="center"
                     justify="center">

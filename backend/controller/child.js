@@ -131,3 +131,12 @@ exports.getCompletedChildData = async (req,res) =>{
     return res.status(400).json(err);
   }
 }
+exports.postChangeCategory = async (req,res) =>{
+  try{
+    const data = await Child.findOneAndUpdate({_id:req.body.childID},{$set:{childClassification:req.body.category}});
+    console.log(data);
+    return res.status(200).json(data);
+  }catch(err){
+    return res.status(400).json(err);
+  }
+}

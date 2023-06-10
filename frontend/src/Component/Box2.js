@@ -118,16 +118,17 @@ const downloadPDF = (a, b) => {
     window.open(url, "_blank");
 }
 
-
+const boxStyle = {
+    // backgroundColor: status == "completed" ? '#382a41' : 'initital', 
+     flexDirection: { xs: "column", md: "row" },
+         marginX: { xs: "5px", md: "200px" },
+         padding: '25px',
+   };
 
 
 
 return (
-    <Box sx={{
-        flexDirection: { xs: "column", md: "row" },
-        marginX: { xs: "5px", md: "200px" },
-        padding: '25px',
-    }}>
+    <Box sx={boxStyle}>
         <Card sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
                 <Grid item xs={12} md={6}>

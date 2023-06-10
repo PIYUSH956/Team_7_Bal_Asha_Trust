@@ -173,7 +173,6 @@ function Login() {
               id="outlined-required"
               label="Email"
               placeholder="abcd@gmai.com"
-              focused
             />
             <br />
             <TextField
@@ -188,7 +187,6 @@ function Login() {
               label="Password"
               type="password"
               placeholder="*****"
-              focused
             />
             <br />
             <Grid

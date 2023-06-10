@@ -77,47 +77,63 @@ const [desc, setDesc] = useState("");
 const [steps, setSteps] = useState([]);
 
 
-// useEffect(() => {
+useEffect(() => {
 
-//     async function fetchData() {
-//         try {
+    async function fetchData() {
+        try {
 
-//             const p = await axios.get("http://localhost:4000/api/get-abandond");
-//             console.log(p.data);
-//             console.log(p.data[0].steps);
-//             setSteps(p.data[0].steps);
+            const p = await axios.get("http://localhost:4000/api/get-surrendered");
+            console.log(p.data);
+            console.log(p.data[0].steps);
+            setSteps(p.data[0].steps);
 
-//         } catch (err) {
-//             console.log(err);
-//         }
-//     }
-//     fetchData();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    fetchData();
 
-// }, []);
+}, []);
 
 
 const handleDelete = async (e) => {
-//     console.log(nameD);
-//     try {
-//         const pp = await axios.post("http://localhost:4000/api/delete-abandond", { nameD });
-//         console.log(pp);
-//         index = 0;
-//         fetchData();
-//     } catch (err) {
-//         console.log(err);
-//     }
-//     try {
-//         const p = await axios.get("http://localhost:4000/api/get-abandond");
-//         console.log(p.data);
-//         console.log(p.data[0].steps);
-//         setSteps(p.data[0].steps);
-//     } catch (err) {
-//         console.log(err);
-//     }
+    console.log(nameD);
+    try {
+        const pp = await axios.post("http://localhost:4000/api/delete-surrendered", { nameD });
+        console.log(pp);
+        index = 0;
+        fetchData();
+    } catch (err) {
+        console.log(err);
+    }
+    try {
+        const p = await axios.get("http://localhost:4000/api/get-surrendered");
+        console.log(p.data);
+        console.log(p.data[0].steps);
+        setSteps(p.data[0].steps);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 
 const handleUpdate = async (e) => {
+
+    console.log(name, type, step, part, num);
+
+    try {
+
+        const po = await axios.post("http://localhost:4000/api/add-surrendered", { name, type, step, part, num ,description:desc});
+        console.log(po);
+        index = 0;
+        fetchData();
+
+      
+
+    } catch (err) {
+        console.log(err);
+    }
+
 //     console.log(nameD);
 //     try {
 //         const pp = await axios.post("http://localhost:4000/api/update-abandond", { uname, utype, ustep, upart, unum , udesc });
@@ -139,16 +155,16 @@ const handleUpdate = async (e) => {
 
 
 
-// const fetchData  = async ()=>{
-//     try{
-//     const p = await axios.get("http://localhost:4000/api/get-abandond");
-//     console.log(p.data);
-//     console.log(p.data[0].steps);
-//     setSteps(p.data[0].steps);
-//     }catch(err){
+const fetchData  = async ()=>{
+    try{
+    const p = await axios.get("http://localhost:4000/api/get-surrendered");
+    console.log(p.data);
+    console.log(p.data[0].steps);
+    setSteps(p.data[0].steps);
+    }catch(err){
 
-//     }
-// }
+    }
+}
 
 
 
@@ -177,31 +193,28 @@ return <>
                         size="small" 
                         sx={{ margin: "10px", width: "80%" }}
                         required
-                        id="outlined-required"
+                        id="outlined"
                         onChange={(e) => { setNum(e.target.value) }}
-                        placeholder="Position"
+                        label='Position'
                         type="number"
-                        focused
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
+                        label="Name"
                         onChange={(e) => { setName(e.target.value) }}
-                        placeholder='Name'
-                        focused
+                        
                     />
                     <br/>
                     <TextField
                     size="small"
                     sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
+                        label="Text or Pdf"
                         onChange={(e) => { setType(e.target.value) }}
-                        placeholder="text or pdf"
-                        focused
+                        
                     />
 
                 </Grid>
@@ -211,33 +224,30 @@ return <>
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
+                        label="Step"
                         type="number"
                         onChange={(e) => { setStep(e.target.value) }}
-                        placeholder="Step"
-                        focused
+                        
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
+                        label="Part"
                         type="number"
                         onChange={(e) => { setPart(e.target.value) }}
-                        placeholder="Part"
-                        focused
+                        
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
+                        label="Description"
                         type="text"
                         onChange={(e) => { setDesc(e.target.value) }}
-                        placeholder="Description"
-                        focused
+                        
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
@@ -266,9 +276,8 @@ return <>
                         required
                         id="outlined-required"
                         onChange={(e) => { setNameD(e.target.value) }}
-                        label="Required"
-                        placeholder='Name'
-                        focused
+                        label="Name"
+
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>

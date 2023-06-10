@@ -212,8 +212,6 @@ exports.getCompletedCaseForRoot = async (req,res) =>{
     }
 }
 
-
-
 // IMP
 exports.changeToCompleted = async(req,res) =>{
     try{

@@ -5,7 +5,8 @@ const {
  updateChildData,
  getAllChildData,
  getChildDataWithImage,
- getCompletedChildData
+ getCompletedChildData,
+ postChangeCategory
 
 } = require("../controller/child");
 
@@ -28,5 +29,8 @@ router.post("/get-child-data-with-image",getChildDataWithImage);
 router.post("/get-all-child-data",getAllChildData);
 
 router.post("/get-completed-child-data",getCompletedChildData);
+
+
+router.post("/change-category",postChangeCategory);
 
 module.exports = router ;
