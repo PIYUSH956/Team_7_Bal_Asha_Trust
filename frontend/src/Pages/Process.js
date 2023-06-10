@@ -13,6 +13,7 @@ import Box2 from "../Component/Box2";
 
 export default function Process() {
   const [process, setProcess] = useState([]);
+  // const [value, setValue] = useState(props.value);
 
   const [one, setOne] = useState();
 
@@ -77,7 +78,10 @@ export default function Process() {
         }
       } catch (err) {
         console.log(err);
+        alert(err.message);
+        return;
       }
+      
     }
 
     // SET STATUS COMPLETED
@@ -118,7 +122,8 @@ export default function Process() {
           >
             <Grid item xs={12} md={4}>
               <TextField
-                sx={{ color: "#ff8100" }}
+                variant="standard"
+                // sx={{ color: "#ff8100" }}
                 // value={value}
                 disabled={!(state.user.role == "root")}
                 // onChange={(e) => setValue(e.target.value)}
@@ -129,7 +134,8 @@ export default function Process() {
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              <Button variant="contained" component="label">
+              <Button variant="contained" component="label" sx={{bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#382A41",color: "white"}}}>
                 {/* {value == null ? "Upload File" : "Uploaded"} */}
                 Upload File
                 <input
@@ -146,7 +152,10 @@ export default function Process() {
               <Button
                 variant="contained"
                 // onClick={handleFound}
-                sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                  bgcolor: "#CD366B",
+                  color: "white"
+                }}}
               >
                 Parents Found
               </Button>
@@ -163,7 +172,10 @@ export default function Process() {
               <Button
                 variant="contained"
                 // onClick={handleCompleted}
-                sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                  bgcolor: "#CD366B",
+                  color: "white"
+                }}}
                 onClick={handleProcessComplete}
               >
                 Process Completed

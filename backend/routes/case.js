@@ -8,6 +8,7 @@ const {
     onGoingCases,
     completedCase,
     getOnGoingChildDataForAdmin,
+    getCompletedCaseForRoot,
     getAllCaseForRoot,
     getAssignAndNotGoing,
     changeToCompleted,
@@ -23,7 +24,7 @@ router.post("/get-assign-case", assignedCase);
 router.post("/get-all-case-for-root", getAllCaseForRoot);
 
 router.post("/get-completed-case", completedCase);
-
+router.post("/get-completed-case-for-root", getCompletedCaseForRoot);
 router.post("/get-pending-child-data-for-admin", getPendingChildDataForAdmin); // KAAM KI HAI
 router.post("/get-on-going-child-data-for-admin",getOnGoingChildDataForAdmin); // KAAM KI HAI
 
