@@ -192,5 +192,35 @@ exports.completedCase = async (req, res) => {
         console.log(error);
         res.status(500).json({ message: "Already Assigned to Other Volunteer" });
     }
-
 };
+
+
+
+// IMP
+exports.changeToCompleted = async(req,res) =>{
+    try{
+        const result = await Child.findOneAndUpdate({_id:req.body.childID},{$set:{status:"completed"}});
+        return res.status(200).json({message:"Completed Succesfully"});
+    }catch(err){
+        console.log(err);
+        return result.status(400).json({message:"Some Error Occured"});
+    }
+}
+
+
+// IMP
+exports. getCaseDetail = async (req,res) =>{
+     
+    const childID = req.body.childID;
+    try{
+    const result = await Case.find({childID}).populate("assignedWorkerID");
+    const process = await Process.find({caseID:result[0]._id});
+    console.log(process);
+    return res.status(200).json({worker:result[0].assignedWorkerID,process:process[0].data});
+    console.log(result);
+    }catch(err){
+        console.log(err);
+        return res.status(400).json(err);
+    }
+
+}
