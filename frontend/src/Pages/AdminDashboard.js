@@ -188,7 +188,7 @@ const AdminDashboard = () => {
             />
           </Card>
         </Grid>
-        <Grid item xs={12} md={4} className="gridItem">
+        <Grid item xs={12} md={4} sx={{mb:4}} className="gridItem">
           <Card className= "cardItem paper2"  style={{borderRadius:'25px'}}>
             <Pie
               options={{

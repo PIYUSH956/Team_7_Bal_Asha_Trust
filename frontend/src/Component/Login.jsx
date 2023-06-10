@@ -62,7 +62,7 @@ function Login() {
         payload,
       });
 
-      alert("Succesfully Logged In");
+      // alert("Succesfully Logged In");
       //Role based redirecting  Right now for only root 
       navigate("/dashboard");
     } catch (err) {

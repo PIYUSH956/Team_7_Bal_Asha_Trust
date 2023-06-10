@@ -14,7 +14,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import "../Css/CaseManagerDashboard.css";
 import { useState } from "react";
-
+import "../Css/Admin.css";
 
 const generateRandomColors = (numColors) => {
     const colors = [];
@@ -109,14 +109,18 @@ const SocialWorkerDashboard = () => {
     return (
 
         <>
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
+            {/* <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} > */}
                 {/* <Typography variant="h3" align="center" fontWeight="bold">
         Dashboard
       </Typography> */}
-            </Box>
-            <Grid container spacing={3} padding={2} sx={{ height: '50vh' }} >
-                <Grid item xs={12} md={2}></Grid>
-                <Grid item xs={12} md={4}>
+            {/* </Box> */}
+
+            <div style={{minHeight:'100vh', width:'100%', textAlign:'center', padding:'20px'}} className='back'>
+
+            <Grid container spacing={3} padding={2} sx={{justifyContent:'center'}}>
+                {/* <Grid item xs={12} md={2}></Grid> */}
+                <Grid item xs={12} md={4} sx={{mb:4}} className="gridItem">
+                <Card className= "cardItem paper1" style={{borderRadius:'25px', transition:'transform 5.5s, box-shadow 0.5s'}}>
                     <Pie
                         options={{
                             responsive: true,
@@ -139,12 +143,10 @@ const SocialWorkerDashboard = () => {
                             datasets: dataset1
                         }}
                     />
+                </Card>
                 </Grid>
-                <Grid item xs={12} md={4} container
-                    direction="column"
-                    alignItems="center"
-                    justify="center">
-
+                <Grid item xs={12} md={4} sx={{mb:4}} className="gridItem">
+                <Card className= "cardItem paper1" style={{borderRadius:'25px', transition:'transform 5.5s, box-shadow 0.5s'}}>
                     <Pie
                         options={{
                             responsive: true,
@@ -167,11 +169,13 @@ const SocialWorkerDashboard = () => {
                             datasets: dataset1
                         }}
                     />
-
+                </Card>
 
                 </Grid>
-                <Grid item xs={12} md={2}></Grid>
+                {/* <Grid item xs={12} md={2}></Grid> */}
             </Grid>
+
+            </div>
             {/* <ChildList data = {childData} /> */}
         </>
     );

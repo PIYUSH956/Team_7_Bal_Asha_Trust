@@ -2,6 +2,7 @@
    height: 400px;
    padding: 30px;
    width: 400px;
+   cursor: pointer;
    /* box-shadow: 20px 80px 50px rgba(157, 46, 46, 0.2);
    border-radius: 50%; */
 }
