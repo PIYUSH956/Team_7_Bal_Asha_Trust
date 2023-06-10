@@ -9,13 +9,14 @@ import CaseDetails from '../Component/CaseDetails';
 import ScheduleDetails from '../Component/ScheduleDetails';
 import ProcessDetails from '../Component/ProcessDetails';
 import { useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams,useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 const boxStyle = {
+    marginTop:'2%',
     marginLeft:'10%',
     marginRight:'10%',
 }
@@ -25,17 +26,24 @@ const boxStyle2 = {
     marginRight:'10%',
 }
 
-const paperStyle = {
-    padding:40,
-    width:'80vw',
+const heading ={
+    color:'#44384E',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize:'35px',
+    fontWeight: '700',
+    align: 'center',
 }
 
 const headingStyle = {
     color:'white',
     fontSize:'18px',
     fontWeight:"lighter",
-    backgroundColor:'purple',
+    backgroundColor:'#CD366B',
     padding:10,
+    marginTop: '20px',
+    marginBottom: '20px',
 }
 
 const contentStyle = {
@@ -46,9 +54,11 @@ const useStyles = makeStyles((theme) => ({
     paper: {
       padding: theme.spacing(2),
       [theme.breakpoints.only('xs')]: {
-        marginTop:'20px',
+        margin:'2px',
         width: '80vw', // Custom width for xs breakpoint
       },
+      marginLeft:'5px',
+      marginRight:'5px',
       [theme.breakpoints.only('md')]: {
         width: '25vw', // Custom width for md breakpoint
       },
@@ -58,9 +68,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChildAccountPage(){
 
-    const classes = useStyles();
+    // const classes = useStyles();
     var state = useSelector((state) => ({ ...state }));
-
+    const classes= useStyles();
     const paperStyle = {
         padding:20,
         width:'80vw',
@@ -73,14 +83,12 @@ export default function ChildAccountPage(){
     const [value, setValue] = React.useState('0');
     const [childData,setChildData] = useState({}); 
 
-
-
   useEffect(()=>{
 
     async function fetchData() {
       try {
         
-        const data = await axios.post("http://localhost:4000/api/get-child-data",{_id:uid});
+        const data = await axios.post("http://localhost:4000/api/get-child-data-with-image",{_id:uid});
         console.log(data);
         setChildData(data.data[0]);
       } catch (err) {
@@ -97,10 +105,26 @@ export default function ChildAccountPage(){
 
     return(
         <>
-            <Box style={boxStyle} mt={10}>
+            <Box style={boxStyle} >
+                <h2 style={heading}>Personal Details</h2>
                 <Paper elevation={10} style={paperStyle}>
-                    <PersonalDetails />
+                    <PersonalDetails
+                    
+                    image={childData.image}
+                    name={childData.childName}
+                    dateOfBirth={childData.dateOfBirth}
+                    gender={childData.gender}
+                    district={childData.district}
+                    age={childData.age}
+                    category={childData.childClassification}
+                    state={childData.state}
+                    shelter={childData.shelter}
+                    id={childData._id}
+                    status={childData.status}
+                    caseNumber = {childData.caseNumber}
 
+                    
+                    />
                     <Box>
                         {/* <TabContext value={value} >
                             <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
@@ -151,11 +175,11 @@ export default function ChildAccountPage(){
                             <TabPanel value='3'><ProcessDetails /></TabPanel>
                         </TabContext> */}
                     </Box>
-
                 </Paper>
-                </Box>
-
-                <Box style={boxStyle2} mt={5} mb={10}>
+            </Box>
+                
+            <h2 style={heading}>Case Details</h2>
+            <Box style={boxStyle2} mt={5} mb={10}>
                     <Box sx={{
                         display: 'flex',
                         justifyContent:'space-between',
@@ -166,101 +190,102 @@ export default function ChildAccountPage(){
                                 <Typography style={headingStyle} >Reason for Admission</Typography>
                             </Grid>
                             <Grid> 
-                                <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser element default font size is 16px , but browsers have an option to change this value, so rem </Typography>
+                                <Typography style={contentStyle}>{childData.reasonForAdmission}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Case History</Typography>
+                                <Typography style={headingStyle}>Case History</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.caseHistory}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Document Completed</Typography>
+                                <Typography style={headingStyle}>Document Completed</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.documentCompleted}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Document Pending</Typography>
+                                <Typography style={headingStyle}>Document Pending</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>    
+                                <Typography style={contentStyle}>{childData.documentPending}</Typography>    
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Newspaper Publication Pending Since</Typography>
+                                <Typography style={headingStyle}>Newspaper Publication Pending Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.newsPaperPublicationPending}</Typography>
                             </Grid>
                         </Paper>
 
-                        <Paper elevation={10} className={classes.paper} mt={2}>
+                        <Paper elevation={10} className={classes.paper} >
                             <Grid>
                                 <Typography style={headingStyle} >Reason for Flagging</Typography>
                             </Grid>
                             <Grid>    
-                                <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser element default font size is 16px , but browsers have an option to change this value, so rem ...</Typography>
+                                <Typography style={contentStyle}>{childData.reasonForFlagging}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Last Call Since</Typography>
+                                <Typography style={headingStyle}>Last Call Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.lastCallSince}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Total Shelter Home Stay</Typography>
+                                <Typography style={headingStyle}>Total Shelter Home Stay</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.totalShelterHomeStay}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} >Last Visit Since</Typography>
+                                <Typography style={headingStyle}>Last Visit Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.lastVisitSince}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Police Report Pending Since</Typography>
+                                <Typography style={headingStyle}>Police Report Pending Since</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.policeReportPending}</Typography>
                             </Grid>
-                            <Grid>
-                                <Typography style={headingStyle}  mt={2}>Surrender Pending Status</Typography>
-                            </Grid>
-                            <Grid>
-                                <Typography style={contentStyle}></Typography>
-                            </Grid>
+                            
                         </Paper>
 
-                        <Paper elevation={10} className={classes.paper} mt={2}>
+                        <Paper elevation={10} className={classes.paper} >
                             <Grid>
                                 <Typography style={headingStyle}>Child Welfare Committee Last Review Date</Typography>
                             </Grid>
                             <Grid>    
-                                <Typography style={contentStyle}>Material UI uses rem units for the font size. The browser  element default font size is 16px , but browsers have an option to change this value, so rem ...</Typography>
+                                <Typography style={contentStyle}>{childData.childWelfareCommitteLastReviewDate}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Last Child Welfare Committee Order</Typography>
+                                <Typography style={headingStyle}>Last Child Welfare Committee Order</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.lastChildWelfareCommiteOrder}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Gaurdian</Typography>
+                                <Typography style={headingStyle}>Gaurdian</Typography>
                             </Grid>
                             <Grid>    
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.guardian}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle} mt={2}>Sibling Details</Typography>
+                                <Typography style={headingStyle}>Sibling Details</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={contentStyle}></Typography>
+                                <Typography style={contentStyle}>{childData.siblingDetails}</Typography>
+                            </Grid>
+                            <Grid>
+                                <Typography style={headingStyle}>Surrender Pending Status</Typography>
+                            </Grid>
+                            <Grid>
+                                <Typography style={contentStyle}>{childData.surrenderPending}</Typography>
                             </Grid>
                         </Paper>
                     </Box>
-                </Box>
+            </Box>
         </>
     )
 }

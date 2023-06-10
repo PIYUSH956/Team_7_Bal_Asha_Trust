@@ -10,14 +10,20 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Backgroundimg from "../Images/Background.jpg";
 import Checkbox from "@mui/material/Checkbox";
-import img1 from "../Images/loginphoto.jpg";
+import { useMediaQuery,useTheme } from '@material-ui/core';
+import img1 from "../Images/LoginPageImage.jpg";
 import Box from "@mui/material/Box";
 
 import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
+import { borderColor } from "@mui/system";
 
 
 function Login() {
+  
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
@@ -28,14 +34,8 @@ function Login() {
   let dispatch = useDispatch();
   console.log(state);
   
-  if(state.user != null && state.user.role == "root"){
+  if(state.user != null){
     navigate("/dashboard");
-  }
-  if(state.user != null && state.user.role == "manager"){
-    navigate("/manager-dashboard");
-  }
-  if(state.user != null && state.user.role == "admin"){
-    navigate("/admin-dashboard");
   }
 
 
@@ -49,6 +49,7 @@ function Login() {
 
     try {
       setLoading(true);
+      console.log(email,password);
       const res = await axios.post("http://localhost:4000/api/login", { email, password });
 
       const payload = res.data;
@@ -63,18 +64,17 @@ function Login() {
 
       alert("Succesfully Logged In");
       //Role based redirecting  Right now for only root 
-      if(payload.role == "root")
       navigate("/dashboard");
-      if(payload.role == "manager")
-      navigate("/manager-dashboard");
-      if(payload.role == "admin")
-      navigate("/admin-dashboard");
     } catch (err) {
       console.log(err);
+      if(err.resoonse == null){
+        alert("No Internet Connection");
+      }else{
       alert(err.response.data.message);
-    } finally {
-      setLoading(true);
-    }
+    } 
+  } finally {
+    setLoading(false);
+  }
 
   };
 
@@ -142,11 +142,10 @@ function Login() {
   return (
     <>
       <div
-      className='main_box'
+      className='main_box' style={{minHeight:'100vh'}}
       >
         <Grid container
-          xs={10}
-          md={9}
+          xs={isMobile ? 12 : 7} md={isMobile ? 6 : 7}
           className='grid-container'
           
         >
@@ -163,10 +162,11 @@ function Login() {
             />
           </Grid>
 
-          <Grid item xs={11} md={6} sx={{ textAlign: "center" }}>
+          <Grid item xs={11} md={6} sx={{ textAlign: "center", color:"#ff8100"}}>
             <br />
             <TextField
-              sx={{ margin: "10px", width: "80%" }}
+              sx={{margin: "10px", width: "80%", color:"#ff8100" }}
+              // color="warning"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -177,7 +177,8 @@ function Login() {
             />
             <br />
             <TextField
-              sx={{ margin: "10px", width: "80%" }}
+              sx={{ margin: "10px", width: "80%", color:"#ff8100" }}
+              // color="warning"
               required
               value={password}
               onChange={(e) => {
@@ -194,11 +195,9 @@ function Login() {
               item
               className="item-2"
             >
+              <span className="anchor"> <input type ="checkbox" /> Remember Me </span>
               <span>
-                <Checkbox label="Remember Me" /> Remember Me
-              </span>
-              <span>
-                <a href="">Forget Password </a>
+                <a href="" className="anchor">Forget Password</a>
               </span>
             </Grid>
             <br />
@@ -207,6 +206,7 @@ function Login() {
               style={{
                 transitionDelay: loading ? "800ms" : "0ms",
               }}
+              // color="warning"
               unmountOnExit
             >
               <CircularProgress />
@@ -215,7 +215,10 @@ function Login() {
             <Button
               variant="contained"
               onClick={handleSubmit}
-              sx={{ fontSize: "20px" }}
+              sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                bgcolor: "#CD366B",
+                color: "white"
+              }}}
             >
               Login
             </Button>

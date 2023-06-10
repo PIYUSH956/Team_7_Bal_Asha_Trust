@@ -11,7 +11,7 @@ function Footer(){
         <section className="footer">
         {/* <h4>About Us</h4> */}
         <img src={Logo} />
-        <p>
+        <p className="para">
           The Bal Asha Trust is an awarded charitable organization that helps abandoned and marginalized children in the city of Mumbai. It was founded in 1985.
         </p>
         <div className="icons">
@@ -20,7 +20,7 @@ function Footer(){
           <InstagramIcon sx={{ margin: "0px 5px" }} />
           <LinkedInIcon sx={{ margin: "0px 5px" }} />
         </div>
-        <p style={{marginTop:"5px"}}>Bal Asha © 2019 | All Rights Reserved.</p>
+        <p style={{marginTop:"5px"}} className="para">Bal Asha © 2019 | All Rights Reserved.</p>
       </section>
     );
 }

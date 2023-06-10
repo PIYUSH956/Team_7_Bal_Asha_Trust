@@ -10,24 +10,28 @@ import FormLabel from '@mui/material/FormLabel';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
-import {  Avatar, Button, IconButton} from "@mui/material";
+import { Avatar, Button, IconButton } from "@mui/material";
 import profilePhoto from "../Images/LoginImage.jpg"
+
 import { Label, PhotoCamera } from '@mui/icons-material';
 
 
-function convertToBase64(file){
-  return new Promise((resolve,reject)=>{
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () =>{
-          resolve(fileReader.result)
-      };
-      fileReader.onerror = (error)=>{
-          reject(error);
-      }
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    }
   })
 }
+
+
 
 export default function PersonalDetailsForm() {
 
@@ -36,14 +40,24 @@ export default function PersonalDetailsForm() {
     width: '20px',
     height: '20px',
     fontSize: '10px',
-}
+  }
 
 
   const [profilePhoto, setProfilePhoto] = useState(null);
+
   const handlePhotoChange = async (event) => {
-    const file = await convertToBase64(event.target.files[0])
+    // const width = event.target.files[0].naturalWidth;
+    // const height = event.target.files[0].naturalHeight;
+    const size  = (event.target.files[0].size)/1024;
+    if(size > 50){
+      alert("Image size must be less than 50KB");
+      return;
+    }
+    const file = await convertToBase64(event.target.files[0]);
+
+
     setProfilePhoto(URL.createObjectURL(event.target.files[0]));
-   
+
     dispatch({
       type: "UPDATE_FORM_DATA",
       payload: {
@@ -51,7 +65,7 @@ export default function PersonalDetailsForm() {
         value: file
       }
     });
-};
+  };
 
   var state = useSelector((state) => ({ ...state }));
   console.log(state);
@@ -75,7 +89,7 @@ export default function PersonalDetailsForm() {
   const dobChange = (e) => {
 
     console.log(e);
-    var date = e.$D + "/" + e.$M + "/" + e.$y;
+    var date = e;
     console.log(date);
     dispatch({
       type: "UPDATE_FORM_DATA",
@@ -142,7 +156,7 @@ export default function PersonalDetailsForm() {
       </Typography>
 
       <Grid align='center'>
-        <Avatar src={profilePhoto} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
+        <Avatar src={state.form != null ? state.form.image : ""} alt="Profile Photo" sx={{ width: 150, height: 150 }} />
         <input
           accept="image/*"
           id="profile-photo-input"
@@ -152,15 +166,18 @@ export default function PersonalDetailsForm() {
         />
 
         <label htmlFor="profile-photo-input">
-          <IconButton color="primary" aria-label="upload photo" component="span">
+          <IconButton 
+            color="primary" 
+            aria-label="upload photo" 
+            component="span"
+            sx={{mt: 3, ml: 1, color:'white' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+              bgcolor: "#CD366B",
+              color: "white"
+            }}}
+          >
             <PhotoCamera />
           </IconButton>
         </label>
-
-        <Button style={btnStyle} variant="contained" color="primary" onClick={() => setProfilePhoto(null)}>
-          Remove
-        </Button>
-      
       </Grid>
 
 
@@ -183,7 +200,7 @@ export default function PersonalDetailsForm() {
         <Grid item xs={12} sm={6}>
           <FormLabel id="dob-picker">Date of Birth</FormLabel>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker value={state.form != null ? state.form.dateOfBirth : ""} onChange={dobChange} />
+            <DatePicker format='DD/MM/YYYY' value={state.form != null ? state.form.dateOfBirth : ""} onChange={dobChange} />
           </LocalizationProvider>
         </Grid>
 

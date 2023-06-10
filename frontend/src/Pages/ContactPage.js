@@ -11,7 +11,7 @@ function ContactPage() {
         <>
             <Grid container sx={{ margin: "100px 0", backgroundColor: "dimgray", color: "white", padding: "30px 0" }} spacing={2}>
                 <Grid item xs={12} sm={6} md={4} sx={{ textAlign: "center" }}>
-                    <LocationOnIcon sx={{ fontSize: 40, marginRight: 2, color: '#F4B400', marginBottom: '10px' }} />
+                    <LocationOnIcon sx={{ fontSize: 40, marginRight: 2, color: '#CD366B', marginBottom: '10px' }} />
                     <div>
                         <Typography sx={{ fontWeight: 'bold', marginBottom: 1 }}>
                             Bal Asha Trust, King George V
@@ -26,7 +26,7 @@ function ContactPage() {
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4} sx={{ textAlign: "center" }} >
-                    <VolunteerActivismIcon sx={{ fontSize: 40, marginRight: 2, color: '#F4B400', marginBottom: '10px' }} />
+                    <VolunteerActivismIcon sx={{ fontSize: 40, marginRight: 2, color: '#CD366B', marginBottom: '10px' }} />
                     <div>
                         <Typography sx={{ fontWeight: 'bold', marginBottom: 1 }}>
                             Bal Asha Child Development Centre,
@@ -45,13 +45,13 @@ function ContactPage() {
 
                 <Grid item xs={12} md={4} sx={{ textAlign: 'center' }}>
                     <div sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <LocationOnIcon sx={{ fontSize: 40, marginBottom: 1, color: '#F4B400', marginBottom: '10px' }} />
+                        <LocationOnIcon sx={{ fontSize: 40, marginBottom: 1, color: '#CD366B', marginBottom: '10px' }} />
                         <div sx={{ display: 'flex', alignItems: 'center', marginBottom: 1 }}>
-                            <LocalPhoneIcon dksjcn sx={{ fontSize: 20, marginRight: 2, color: '#F4B400' }} />
+                            <LocalPhoneIcon dksjcn sx={{ fontSize: 20, marginRight: 2, color: '#CD366B' }} />
                             <span>+91 9930986400</span>
                         </div>
                         <div sx={{ display: 'flex', alignItems: 'center' }}>
-                            <EmailIcon sx={{ fontSize: 20, marginRight: 2, color: '#F4B400' }} />
+                            <EmailIcon sx={{ fontSize: 20, marginRight: 2, color: '#CD366B' }} />
                             <span>info@balashatrust.org</span>
                         </div>
                     </div>

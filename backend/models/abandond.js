@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
+
+
+
 const abandond = new mongoose.Schema(
   {
     steps: [{
@@ -13,6 +16,10 @@ const abandond = new mongoose.Schema(
           enum:["text","pdf"],
           type:String,
           required:true,
+      },
+      description:{
+        type:String,
+        unique:true,
       },
       step:{
            type:Number,

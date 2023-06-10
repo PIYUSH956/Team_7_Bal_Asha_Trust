@@ -40,7 +40,7 @@ function NavBar() {
 
   const handleProfile = (e) =>{
     e.preventDefault();
-    navigate("/profile");
+    navigate("/user-profile");
   }
 
   const handleClick = () => setClick(!click);
@@ -59,32 +59,23 @@ function NavBar() {
                 exact
                 to="/"
                 activeClassName="active"
-                className="nav-links"
+                className="nav-links btn-clr"
                 onClick={handleClick}
               >
                 Home
               </NavLink>
             </li>
-            {state.user != null && <li className="nav-item">
-              <NavLink
-                exact
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleDashboardClick}
-              >
-                Dashboard
-              </NavLink>
-            </li>}
+
             <li className="nav-item">
-              { state.user == null && <NavLink
+              <NavLink
                 exact
                 to="/login"
                 activeClassName="active"
-                className="nav-links"
+                className="nav-links btn-clr"
                 onClick={handleClick}
               >
-                Login
-              </NavLink>}
+               Login
+              </NavLink>
             </li>
 
 
@@ -109,17 +100,10 @@ function NavBar() {
                 Logout
               </NavLink>}
             </li>
-            <li className="nav-item">
-              { state.user != null && <NavLink
-                exact
-                to="/user-profile"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Profile
-              </NavLink>}
-            </li>
+         
+         
+          
+           
             {/* <li className="nav-item">
               <NavLink
                 exact

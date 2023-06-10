@@ -7,6 +7,7 @@ const {
     getOperationManager,
     getCaseManager,
     getAllUser,
+    getSocialWorkerForSchedule,
 } = require("../controller/user");
 
 
@@ -24,9 +25,14 @@ router.get("/get-all-user",getAllUser);
 
 //route to get social workers
 
+
+// IMP
 router.get("/get-social-worker",getSocialWorker);
 
+//IMP
+router.get("/get-social-worker-for-schedule",getSocialWorkerForSchedule)
 
+// IMP
 router.get("/get-case-manager",getCaseManager);
 
 

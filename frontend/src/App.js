@@ -16,18 +16,29 @@ import { useEffect } from 'react';
 import AdminDashboard from './Pages/AdminDashboard';
 import ChildAccountPage from './Pages/ChildAccountPage';
 import PdfGenerator from './Component/PdfGenerator';
+import Process from './Pages/Process';
 import Dash from './Pages/Dash';
 import ProfileForCm from './Pages/ProfileForCm';
 import Abandond from './Pages/Abandond';
+import PendingChildTable from './Component/PendingChildTable';
+import OnGoingChildTable from './Component/OnGoingChildTable';
+import CompletedChildTable from './Component/CompletedChildTable';
+import ScheduleDetails from './Component/ScheduleDetails';
+import ProcessDetails from './Component/ProcessDetails';
+import Surrendered from './Pages/Surrendered';
+import Orphaned from './Pages/Orphaned';
+import AdmittedInCCI from './Pages/AdmittedInCCI';
+
 
 function App() {
 
   let dispatch = useDispatch();
   var state = useSelector((state) => ({ ...state }));
+  
+  
 
   console.log(state);
   useEffect(() => {
-
     const payload = JSON.parse(localStorage.getItem('user-detail'));
     if (payload != null) {
       dispatch({
@@ -35,16 +46,14 @@ function App() {
         payload,
       });
     }
-    console.log(payload);
-
+    console.log("PAYLOAD", payload);
   }, [])
 
   console.log(state);
 
   return (
     <>
-    <Dash/>
-    {/* <Navbar /> */}
+    {state.user != null  ? <Dash/> : <Navbar />}
     {/* <Header /> */}
 
       {/* // All routes will go here */}
@@ -53,12 +62,23 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/pdf-generator" element={<PdfGenerator />} />
-        {/* <Route path="/dash" element={<Dash />} /> */}
+        {/* <Route path="/pdf-generator/:id" element={<PdfGenerator />} /> */}
+
+
+        <Route path="/pending" element={<PendingChildTable />} /> 
+        <Route path="/on-going" element={<OnGoingChildTable />} /> 
+        <Route path="/completed" element={<CompletedChildTable />} /> 
+
+        <Route path="/process-details" element={<ProcessDetails/>}/>
+        <Route path="/schedule" element={<ScheduleDetails/>}/>
+
+
+        <Route path="/process" element={<CompletedChildTable />} /> 
 
         <Route path="/abandond" element={<Abandond />} />
-
-        <Route path="/profile" element={<ProfileForCm />} />
-        
+        <Route path="/surrendered" element={<Surrendered />} />
+        <Route path="/orphaned-no-guardian" element={<Orphaned />} />
+        <Route path="/child-admitted-in-cci-by-family" element={<AdmittedInCCI />} />
 
         <Route path="*" element={<PageNotFound />} />
 
@@ -69,26 +89,36 @@ function App() {
 
         {state.user  != null && <Route path="/user-profile" element={<ProfileForCm />} />}
 
-        {(state.user != null && state.user.role == "root") &&  <Route path="/dashboard" element={<Dashboard />} /> }
+        {(state.user != null) && <Route path="/dashboard" element={<Dashboard />} /> }
 
+        <Route path="/on-going-cases" element={<OnGoingChildTable />} />
 
-        {(state.user != null && state.user.role == "manager") && <Route path="/manager-dashboard" element={<CaseManagerDashboard />} /> }
-        {(state.user != null && state.user.role == "admin") && <Route path="/admin-dashboard" element={<AdminDashboard />} />  }
-
+        <Route path="/completed-cases" element={<CompletedChildTable />} />
+       
 
         <Route path="/login" element={<Login />} />
 
 
-        {(state.user != null && state.user.role == "admin") && <Route path="/signup" element={<Signup />} />}
+        <Route path="/schedule/:id/:category" element={<ScheduleDetails />} />
+
+
+        {state.user != null && <Route path="/process/:id/:category" element={<Process />} />}
+
+
+        <Route path="/demo-category" element={<Process />} />
+
+        
+
+
+        { <Route path="/create-new-volunteer" element={<Signup />} />}
 
 
         {/* //TESTING PURPOSE */}
         <Route path="/demo" element={<DemoPage />} />
 
 
-        {state.user != null && state.user.role == "manager" && <Route path="/case-manager" element={<CaseManagerDashboard />} />}
-
-        {state.user != null && state.user.verified === true && state.user.role == "root" && <Route path="/child-data-form" element={<ChildDataForm />} />}
+      
+        {state.user != null  && state.user.role == "root" && <Route path="/child-data-form" element={<ChildDataForm />} />}
 
       </Routes>
 

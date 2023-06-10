@@ -22,6 +22,7 @@ const ChildSchema = new mongoose.Schema({
     caseNumber: {
         type: String,
         require: true,
+        unique:true,
         //AUTO GENERATE FORMAT BAT/REGNO/NAME
     },
     gender: {
@@ -34,11 +35,18 @@ const ChildSchema = new mongoose.Schema({
         require: true,
     },
     age: {
-        type: Number,
+        type: String,
         require: true,
         validate: {
             validator: function (v) {
-                return v < 18 &&  v >= 0;
+                const regex = /(\d+) years/;
+                const match = v.match(regex);
+
+                if (match) {
+                    var year = parseInt(match[1]);
+                    year = Number(year);
+                    return year >= '0' && year < '18';
+                }
             },
             message: 'Value must be less than 18 and greater then 0'
         }
@@ -50,7 +58,7 @@ const ChildSchema = new mongoose.Schema({
     childClassification: {
         type: String,
         require: true,
-        enum:["abandoned","surrendered","orphanedNoGuardian","childAdmittedInCCIByFamily"]
+        enum: ["abandoned", "surrendered", "orphanedNoGuardian", "childAdmittedInCCIByFamily"]
     },
     reasonForAdmission: {
         type: String,
@@ -97,10 +105,10 @@ const ChildSchema = new mongoose.Schema({
     }, surrenderPending: {
         type: String,
         require: true,
-    }, status:{
-        type:String,
-        enum:["assigned","notAssigned","onGoing","completed"],
-        default:"notAssigned"
+    }, status: {
+        type: String,
+        enum: ["assigned", "notAssigned", "onGoing", "completed"],
+        default: "notAssigned"
     }
 },
     { timestamps: true }

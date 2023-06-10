@@ -33,7 +33,13 @@ function getStepContent(step) {
 }
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#CD366B',
+    },
+  },
+});
 
 export default function ChildDataForm() {
   const [activeStep, setActiveStep] = useState(0);
@@ -175,7 +181,7 @@ export default function ChildDataForm() {
         
       }
       catch(err){
-        alert(err.response.data.message);
+        alert(err.message);
         console.log(err);
       }
       
@@ -231,7 +237,10 @@ export default function ChildDataForm() {
               {getStepContent(activeStep)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                  <Button onClick={handleBack} sx={{mt: 3, ml: 1, color:'white' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                    bgcolor: "#CD366B",
+                    color: "white"
+                  }}}>
                     Back
                   </Button>
                 )}
@@ -239,7 +248,10 @@ export default function ChildDataForm() {
                 <Button
                   variant="contained"
                   onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
+                  sx={{mt: 3, ml: 1, color:'white' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                    bgcolor: "#CD366B",
+                    color: "white"
+                  }}}
                 >
                   {activeStep === steps.length - 1 ? 'Register' : 'Next'}
                 </Button>

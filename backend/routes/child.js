@@ -3,24 +3,30 @@ const router = express.Router();
 const {
  insertChildData,
  updateChildData,
- getChildData,
- getAllChildData
+ getAllChildData,
+ getChildDataWithImage,
+ getCompletedChildData
 
 } = require("../controller/child");
 
 
 
 // Route to Insert Child Data
-router.post("/insert-child-data",  insertChildData);
+router.post("/insert-child-data",  insertChildData); // KAAM KI HAI
 
 
 // route to update child data 
 
 router.put("/update-child",updateChildData);
 
-router.post("/get-child-data",getChildData);
 
+// IMP
+router.post("/get-child-data-with-image",getChildDataWithImage);
+
+
+// IMP
 router.post("/get-all-child-data",getAllChildData);
 
+router.post("/get-completed-child-data",getCompletedChildData);
 
 module.exports = router ;
