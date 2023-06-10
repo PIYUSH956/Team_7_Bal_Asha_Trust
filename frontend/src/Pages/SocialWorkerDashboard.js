@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { Card } from '@material-ui/core';
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import "../Css/CaseManagerDashboard.css";
+import "../Css/Admin.css";
 import { useState } from "react";
 import { useRef } from 'react';
 import { Pie, getElementAtEvent } from "react-chartjs-2";
@@ -153,14 +153,13 @@ const SocialWorkerDashboard = () => {
     return (
 
         <>
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                {/* <Typography variant="h3" align="center" fontWeight="bold">
-        Dashboard
-      </Typography> */}
+            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
+                <Typography variant="h4" align="center" fontWeight="bold">
+                    Cases Information
+                </Typography>
             </Box>
-            <Grid container spacing={3} padding={2} sx={{ height: '50vh' }} >
-                <Grid item xs={12} md={2}></Grid>
-                <Grid item xs={12} md={4} >
+            <Grid container spacing={3} padding={2} sx={{ justifyContent: 'center' }} >
+                <Grid item xs={12} md={4} sx={{ mb: 4 }} className="gridItem">
                     <Card className="cardItem paper1" onClick={onClick} style={{ borderRadius: '25px' }}>
                         <Pie
                             ref={chartRef}
@@ -171,7 +170,7 @@ const SocialWorkerDashboard = () => {
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'Child Cases',
+                                        text: 'Cases Status',
                                         font: {
                                             size: 26,
                                             weight: 'bold',
@@ -192,12 +191,8 @@ const SocialWorkerDashboard = () => {
                         />
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={4} container
-                    className="card-item"
-                    direction="column"
-                    alignItems="center"
-                    justify="center">
-                    <Card className="cardItem paper1" style={{ borderRadius: '25px' }}>
+                <Grid item xs={12} md={4} sx={{ mb: 4 }} className="gridItem">
+                    <Card className="cardItem paper2" style={{ borderRadius: '25px' }}>
                         <Pie
                             options={{
                                 responsive: true,
@@ -205,7 +200,7 @@ const SocialWorkerDashboard = () => {
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'Child Region Wise',
+                                        text: 'Region Wise Cases',
                                         font: {
                                             size: 26,
                                             weight: 'bold',
@@ -225,10 +220,7 @@ const SocialWorkerDashboard = () => {
                             }}
                         />
                     </Card>
-
-
                 </Grid>
-                <Grid item xs={12} md={2}></Grid>
             </Grid>
             {/* <ChildList data = {childData} /> */}
         </>

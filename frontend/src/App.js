@@ -28,8 +28,11 @@ import ProcessDetails from './Component/ProcessDetails';
 import Surrendered from './Pages/Surrendered';
 import Orphaned from './Pages/Orphaned';
 import AdmittedInCCI from './Pages/AdmittedInCCI';
+<<<<<<< HEAD
 import PdfComponent from './Component/PdfComponent';
 import Detail from './Pages/Detail';
+=======
+>>>>>>> 12113452d10916b899a218055e996d7cd77d33df
 
 
 function App() {
@@ -99,8 +102,11 @@ function App() {
        
 
         <Route path="/login" element={<Login />} />
+<<<<<<< HEAD
 
         <Route path = "/completed-detail/:id" element = {<Detail />} />
+=======
+>>>>>>> 12113452d10916b899a218055e996d7cd77d33df
 
 
         <Route path="/schedule/:id/:category" element={<ScheduleDetails />} />

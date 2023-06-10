@@ -114,7 +114,7 @@ export default function Process() {
 
   return (
     <div>
-     {/* <div onClick={generatePdf} id = "report" style={{ width: '210mm', height: '297mm', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+     <div onClick={generatePdf} id = "report" style={{ width: '210mm', height: '297mm', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={{ marginBottom: '20px' }}>
         <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Child Name:</p>
         <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Case Manager:</p>
@@ -137,7 +137,7 @@ export default function Process() {
           ))}
         </tbody>
       </table>
-    </div> */}
+    </div>
       {process.map((pro) => {
         return (
           <>

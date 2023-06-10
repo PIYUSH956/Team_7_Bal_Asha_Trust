@@ -10,7 +10,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import { useRef } from 'react';
-import "../Css/CaseManagerDashboard.css";
+import "../Css/Admin.css";
 
 const generateRandomColors = (numColors) => {
     const colors = [];
@@ -167,17 +167,16 @@ const CaseManagerDashboard = () => {
 
         <>
 
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
-                <h1 align="center" fontWeight="bold">
-                    Children Information
-                </h1>
-            </Box>
+                <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
+                    <Typography variant="h4" align="center" fontWeight="bold">
+                    Cases Information
+                    </Typography>
+                </Box>
 
 
-            <Grid container spacing={3} padding={2}>
-                <Grid item xs={12} md={2}></Grid>
-                <Grid item xs={12} md={4} className="grid-item">
-                    <Card className="card-item" onClick={onClick} >
+            <Grid container spacing={3} padding={2} sx={{ justifyContent: 'center' }}>
+                <Grid item xs={12} md={4} sx={{ mb: 4 }} className="gridItem">
+                    <Card className="cardItem paper1" onClick={onClick} style={{ borderRadius: '25px' }} >
                         <Pie
                             ref={chartRef}
                             options={{
@@ -186,7 +185,7 @@ const CaseManagerDashboard = () => {
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'Child Cases Status',
+                                        text: 'Cases Status',
                                         font: {
                                             size: 26,
                                             weight: 'bold',
@@ -207,8 +206,8 @@ const CaseManagerDashboard = () => {
                         />
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={4} className="grid-item">
-                    <Card className="card-item">
+                <Grid item xs={12} md={4} sx={{ mb: 4 }} className="gridItem">
+                    <Card className="cardItem paper1" onClick={onClick} style={{ borderRadius: '25px' }}>
                         <Pie
                             options={{
                                 responsive: true,
@@ -216,7 +215,7 @@ const CaseManagerDashboard = () => {
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'Region wise Child Cases',
+                                        text: 'Region Wise Cases',
                                         font: {
                                             size: 26,
                                             weight: 'bold',
@@ -237,20 +236,18 @@ const CaseManagerDashboard = () => {
                         />
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={2}></Grid>
             </Grid>
 
 
 
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3}>
-                <h1 variant="h4" align="center" fontWeight="bold">
-                    Social Workers Information
-                </h1>
-            </Box>
-            <Grid container spacing={3} marginBottom={7}>
-                <Grid item xs={12} md={3}></Grid>
-                <Grid item xs={12} md={6} className="grid-item">
-                    <Card className="card-item">
+            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
+                <Typography variant="h4" align="center" fontWeight="bold">
+                Region Wise Distribution 
+                </Typography>
+                </Box>
+            <Grid marginBottom={7} container spacing={3} padding={2} sx={{ justifyContent: 'center' }}>
+                <Grid item xs={12} md={4} sx={{ mb: 4 }} className="gridItem">
+                    <Card className="cardItem paper3" style={{ borderRadius: '25px' }}>
                         <Pie
                             options={{
                                 responsive: true,
@@ -258,7 +255,7 @@ const CaseManagerDashboard = () => {
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'Region wise Social Workers',
+                                        text: 'Social Workers',
                                         font: {
                                             size: 26,
                                             weight: 'bold',
@@ -281,7 +278,6 @@ const CaseManagerDashboard = () => {
                         />
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={3}></Grid>
             </Grid>
 
             

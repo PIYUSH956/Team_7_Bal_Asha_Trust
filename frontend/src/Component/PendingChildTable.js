@@ -153,30 +153,33 @@ export default function PendingChildTable() {
     <>
       {childData.length == 0 ? (
         <>
-        <div className="alert-box">
-          <Card className= "cardItem" sx={{ maxWidth: 445 }}>
-            <CardActionArea>
-              <CardContent
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <img src={img1} alt="child-img" className="img-style" />
-              </CardContent>
-              <CardContent>
-                <Typography
-                  textAlign="center"
-                  gutterBottom
-                  variant="h5"
-                  component="div"
+        <div className="alert-box" >
+          <div style={{border:'1px solid gray', boxShadow:'10px 10px 5px #aaaaaa', padding:'10px', borderRadius:'20px'}}>
+            <Card className= "cardItem" style={{ maxWidth: '445px', backgroundColor:'#382A41', overflow:'hidden', borderRadius:'20px', padding:'25px', transition:'transform 2.5s, box-shadow 0.5s'}}>
+              <CardActionArea>
+                <CardContent
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
                 >
-                  No Pending Cases Currently
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+                  <img src={img1} alt="child-img" className="img-style" />
+                </CardContent>
+                <CardContent>
+                  <Typography
+                    textAlign="center"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    style={{color:'white'}}
+                  >
+                    No Pending Cases Currently
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </div>
         </div>
       </>
       ) : (
