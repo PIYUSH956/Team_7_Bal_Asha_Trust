@@ -286,7 +286,16 @@ const Abandond = () => {
 
 
         <div className={classes.centerButton}>
-            <Button variant="contained" onClick={handleAdd}>Add</Button>
+            <Button 
+                variant="contained" 
+                onClick={handleAdd}
+                sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                    bgcolor: "#CD366B",
+                    color: "white"
+                  }}}
+            >
+                Add
+            </Button>
         </div>
 
         {/* <Box
@@ -368,7 +377,16 @@ const Abandond = () => {
         </Box>
 
         <div className={classes.centerButton}>
-            <Button variant="contained" onClick={handleDelete}>Delete</Button>
+            <Button 
+                variant="contained" 
+                onClick={handleDelete}
+                sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                    bgcolor: "#CD366B",
+                    color: "white"
+                }}}
+            >
+                Delete
+            </Button>
         </div>
 
 

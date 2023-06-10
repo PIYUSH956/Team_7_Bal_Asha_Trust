@@ -233,7 +233,10 @@ function Signup() {
             <Button
               variant="contained"
               onClick={handleSubmit}
-              sx={{ fontSize: "15px" }}
+              sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                bgcolor: "#CD366B",
+                color: "white"
+              }}}
             >
               Signup
             </Button>

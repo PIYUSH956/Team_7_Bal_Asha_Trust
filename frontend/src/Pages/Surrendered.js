@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     tableHeader: {
-        backgroundColor: '#ffe2cb',
-        color: "#ff8100",
+        backgroundColor: '#382A41',
+        color: "white",
         fontWeight: 1000,
 
     },
@@ -241,7 +241,16 @@ return <>
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
-                    <Button variant="contained" onClick={handleUpdate}> Update </Button>
+                    <Button 
+                        variant="contained" 
+                        onClick={handleUpdate}
+                        sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                            bgcolor: "#CD366B",
+                            color: "white"
+                        }}}
+                    > 
+                        Update 
+                    </Button>
                 </Grid>
                 
             </Grid>
@@ -263,7 +272,16 @@ return <>
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
-                <Button variant="contained" onClick={handleDelete}>Delete</Button>
+                <Button 
+                    variant="contained" 
+                    onClick={handleDelete}
+                    sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#CD366B",
+                        color: "white"
+                    }}}
+                >
+                    Delete
+                </Button>
                 </Grid>
                 
                 </Grid>
