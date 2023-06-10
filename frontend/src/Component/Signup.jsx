@@ -14,6 +14,7 @@ import LoginImage from "../Images/LoginImage.jpg"
 import Tooltip from '@mui/material/Tooltip';
 import { refType } from "@mui/utils";
 import { MenuItem, Select } from '@mui/material';
+import { useTranslation } from "react-i18next";
 
 function Signup() {
   const theme = useTheme();
@@ -99,6 +100,9 @@ function Signup() {
 
 
   };
+
+  const {t} = useTranslation();
+
   return (
 
     <>
@@ -190,10 +194,10 @@ function Signup() {
               onChange={(val) => updateRole(val.target.value)}
             >
               <MenuItem value='root' >
-                Root
+                {t('root')}
               </MenuItem>
               <MenuItem value='manager'>
-                Manager
+                {t('Manager')}
               </MenuItem>
             </Select>
 
@@ -229,7 +233,8 @@ function Signup() {
                 color: "white"
               }}}
             >
-              Signup
+              
+              {t('Signup')}
             </Button>
             <br /> <br />
           </Grid>

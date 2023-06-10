@@ -6,6 +6,11 @@ import CompletedIcon from '@mui/icons-material/AssignmentTurnedIn';
 import SocailWorkersIcon from '@mui/icons-material/Group';
 import SocialWorkerDashboard from "../Pages/SocialWorkerDashboard";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
+
+// const {t} = useTranslation();
+
 const SidebarData= [ 
     {
         title: "Dashboard",

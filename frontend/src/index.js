@@ -8,6 +8,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import rootReducer from "./reducers";
+import './i18n'
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = createStore(rootReducer,composeWithDevTools());

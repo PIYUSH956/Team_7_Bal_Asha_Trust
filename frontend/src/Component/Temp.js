@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import axios from 'axios'; 
+import { useTranslation } from "react-i18next";
 
 function convertToBase64(file) {
   return new Promise((resolve, reject) => {
@@ -122,6 +123,8 @@ export default function Temp(props) {
 
   console.log("INSIDE TEMP", props);
 
+  const {t} = useTranslation();
+
   return (
     <>
       <Box sx={{
@@ -144,16 +147,16 @@ export default function Temp(props) {
 
                 <Grid style={nameHolder}  sx={{color:'#CD366B',paddingTop: '10px'}}>
                     <Grid item xs={12} md={8}>
-                        <Typography variant='h4' fontWeight='bold'>Name</Typography>
+                        <Typography variant='h4' fontWeight='bold'>{t('Name')}</Typography>
                     </Grid>
                 </Grid>
                 </Box>
 
                 <Grid>
-                    <Typography style={headingStyle}>Email</Typography>
+                    <Typography style={headingStyle}>{t('Email')}</Typography>
                     <Typography style={contentStyle}>{props.email}</Typography>
 
-                    <Typography style={headingStyle}>Password</Typography>
+                    <Typography style={headingStyle}>{t('Password')}</Typography>
                     <TextField variant="standard"></TextField>
                     <Grid sx={{m:2}}>
                       <Button
@@ -161,20 +164,20 @@ export default function Temp(props) {
                           bgcolor: "#CD366B",
                           color: "white"
                         }}}
-                      > Update Password</Button>
+                      > {t('Update Password')}</Button>
                     </Grid>
                     </Grid>
 
                 <Grid>
-                    <Typography style={headingStyle}>District</Typography>
+                    <Typography style={headingStyle}>{t('District')}</Typography>
                     <Typography style={contentStyle}>{props.district}</Typography>
                     {/* <TextField id="standard-basic" value={props.district} onChange={(event) => setDistrict(event.target.value)} variant="standard" /> */}
                     
-                    <Typography style={headingStyle}>State</Typography>
+                    <Typography style={headingStyle}>{t('State')}</Typography>
                     <Typography style={contentStyle}>{props.state}</Typography>
                     {/* <TextField id="standard-basic" value={props.state} onChange={(event) => setState(event.target.value)} variant="standard" /> */}
                 
-                    <Typography style={headingStyle}>Role</Typography>
+                    <Typography style={headingStyle}>{t('Role')}</Typography>
                     <Typography style={contentStyle}>{props.role}</Typography>
                     
                     </Grid>

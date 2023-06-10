@@ -18,6 +18,7 @@ import TableRow from '@mui/material/TableRow';
 import "../Css/ChildTable.css"
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     centerButton: {
@@ -222,6 +223,8 @@ const Abandond = () => {
         setPage(0);
     };
 
+    const {t} = useTranslation();
+
 
     return <>
 
@@ -315,7 +318,7 @@ const Abandond = () => {
                     color: "white"
                   }}}
             >
-                Add Step
+                {t('Add Step')}
             </Button>
         </div>
     </Paper>
@@ -401,7 +404,7 @@ const Abandond = () => {
                         color: "white"
                     }}}
                 >
-                    Delete Step
+                    {t('Delete Step')}
                 </Button>
                 </Grid>
                 
