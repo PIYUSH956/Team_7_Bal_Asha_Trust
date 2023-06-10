@@ -13,6 +13,7 @@ import Box2 from "../Component/Box2";
 
 export default function Process() {
   const [process, setProcess] = useState([]);
+  // const [value, setValue] = useState(props.value);
 
   const [one, setOne] = useState();
 
@@ -77,7 +78,10 @@ export default function Process() {
         }
       } catch (err) {
         console.log(err);
+        alert(err.message);
+        return;
       }
+      
     }
 
     // SET STATUS COMPLETED
@@ -96,83 +100,6 @@ export default function Process() {
 
   return (
     <>
-      <Box
-        sx={{
-          flexDirection: { xs: "column", md: "row" },
-          marginX: { xs: "5px", md: "200px" },
-          padding: "25px",
-          marginBottom: "20px",
-        }}
-      >
-        <Card
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Grid
-            sx={{ margin: { xs: "10px", md: "25px" } }}
-            container
-            spacing={3}
-          >
-            <Grid item xs={12} md={4}>
-              <TextField
-                sx={{ color: "#ff8100" }}
-                // value={value}
-                disabled={!(state.user.role == "root")}
-                // onChange={(e) => setValue(e.target.value)}
-                id="outlined-required"
-                label="Notes"
-                placeholder="Notes"
-                focused
-              />
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Button variant="contained" component="label">
-                {/* {value == null ? "Upload File" : "Uploaded"} */}
-                Upload File
-                <input
-                  id="file-upload-button"
-                  type="file"
-                  hidden
-                  disabled={!(state.user.role == "root")}
-                // onChange={(e) => { updatePDF(e.target.files[0]) }}
-                />
-              </Button>
-              {/* {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>} */}
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Button
-                variant="contained"
-                // onClick={handleFound}
-                sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
-              >
-                Parents Found
-              </Button>
-            </Grid>
-          </Grid>
-          <Grid
-            sx={{ margin: { xs: "10px", md: "25px" } }}
-            container
-            spacing={3}
-          >
-            <Grid item xs={12} md={4}></Grid>
-            <Grid item xs={12} md={4}></Grid>
-            <Grid item xs={12} md={4}>
-              <Button
-                variant="contained"
-                // onClick={handleCompleted}
-                sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
-                onClick={handleProcessComplete}
-              >
-                Process Completed
-              </Button>
-            </Grid>
-          </Grid>
-        </Card>
-      </Box>
-
       {process.map((pro) => {
         return (
           <>
@@ -215,6 +142,70 @@ export default function Process() {
           </>
         );
       })}
+
+<Box
+        sx={{
+          flexDirection: { xs: "column", md: "row" },
+          marginX: { xs: "5px", md: "200px" },
+          padding: "25px",
+          marginBottom: "20px",
+        }}
+      >
+        <Card>
+          <Grid
+            sx={{ margin: { xs: "10px", md: "25px" },
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            }}
+            container
+            
+          >
+            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center', mb:2}}>
+              <TextField
+                variant="standard"
+                // sx={{ color: "#ff8100" }}
+                // value={value}
+                disabled={!(state.user.role == "root")}
+                // onChange={(e) => setValue(e.target.value)}
+                id="outlined-required"
+                label="Notes"
+                placeholder="Notes"
+                focused
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
+              <Button variant="contained" component="label" sx={{bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#382A41",color: "white"}}}>
+                {/* {value == null ? "Upload File" : "Uploaded"} */}
+                Upload File
+                <input
+                  id="file-upload-button"
+                  type="file"
+                  hidden
+                  disabled={!(state.user.role == "root")}
+                // onChange={(e) => { updatePDF(e.target.files[0]) }}
+                />
+              </Button>
+              {/* {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>} */}
+            </Grid>
+            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
+              <Button
+                variant="contained"
+                // onClick={handleCompleted}
+                sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                  bgcolor: "#CD366B",
+                  color: "white"
+                }}}
+                onClick={handleProcessComplete}
+              >
+                Process Completed
+              </Button>
+            </Grid>
+          </Grid>
+        </Card>
+      </Box>
+
     </>
   );
 }

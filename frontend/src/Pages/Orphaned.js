@@ -73,82 +73,108 @@ const [part, setPart] = useState(0);
 const [num, setNum] = useState(0);
 const [desc, setDesc] = useState("");
 
+const [uname, setUname] = useState();
+    const [utype, setUtype] = useState();
+    const [ustep, setUstep] = useState(0);
+    const [upart, setUpart] = useState(0);
+    const [unum, setUnum] = useState(0);
+    const [udesc, setUdesc] = useState("");
+
 
 const [steps, setSteps] = useState([]);
 
 
-// useEffect(() => {
+useEffect(() => {
 
-//     async function fetchData() {
-//         try {
+    async function fetchData() {
+        try {
 
-//             const p = await axios.get("http://localhost:4000/api/get-abandond");
-//             console.log(p.data);
-//             console.log(p.data[0].steps);
-//             setSteps(p.data[0].steps);
+            const p = await axios.get("http://localhost:4000/api/get-orphaned");
+            console.log(p.data);
+            console.log(p.data[0].steps);
+            setSteps(p.data[0].steps);
 
-//         } catch (err) {
-//             console.log(err);
-//         }
-//     }
-//     fetchData();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    fetchData();
 
-// }, []);
+}, []);
 
 
 const handleDelete = async (e) => {
-//     console.log(nameD);
-//     try {
-//         const pp = await axios.post("http://localhost:4000/api/delete-abandond", { nameD });
-//         console.log(pp);
-//         index = 0;
-//         fetchData();
-//     } catch (err) {
-//         console.log(err);
-//     }
-//     try {
-//         const p = await axios.get("http://localhost:4000/api/get-abandond");
-//         console.log(p.data);
-//         console.log(p.data[0].steps);
-//         setSteps(p.data[0].steps);
-//     } catch (err) {
-//         console.log(err);
-//     }
+    console.log(nameD);
+    try {
+        const pp = await axios.post("http://localhost:4000/api/delete-orphaned", { nameD });
+        console.log(pp);
+        index = 0;
+        fetchData();
+    } catch (err) {
+        console.log(err);
+    }
+    try {
+        const p = await axios.get("http://localhost:4000/api/get-orphaned");
+        console.log(p.data);
+        console.log(p.data[0].steps);
+        setSteps(p.data[0].steps);
+    } catch (err) {
+        console.log(err);
+    }
 }
-
-
+//change 
 const handleUpdate = async (e) => {
-//     console.log(nameD);
-//     try {
-//         const pp = await axios.post("http://localhost:4000/api/update-abandond", { uname, utype, ustep, upart, unum , udesc });
-//         console.log(pp);
-//         index = 0;
-//         fetchData();
-//     } catch (err) {
-//         console.log(err);
-//     }
-//     try {
-//         const p = await axios.get("http://localhost:4000/api/get-abandond");
-//         console.log(p.data);
-//         console.log(p.data[0].steps);
-//         setSteps(p.data[0].steps);
-//     } catch (err) {
-//         console.log(err);
-//     }
+
+    console.log(name, type, step, part, num);
+
+    try {
+
+        const po = await axios.post("http://localhost:4000/api/add-orphaned", { name, type, step, part, num ,description:desc});
+        console.log(po);
+        index = 0;
+        fetchData();
+
+      
+
+    } catch (err) {
+        console.log(err);
+    }
+
+
+}
+
+const handleAdd = async (e) => {
+    console.log(nameD);
+    // try {
+    //     const pp = await axios.post("http://localhost:4000/api/update-abandond", { uname, utype, ustep, upart, unum , udesc });
+    //     console.log(pp);
+    //     index = 0;
+    //     fetchData();
+    // } catch (err) {
+    //     console.log(err);
+    // }
+    try {
+        const p = await axios.get("http://localhost:4000/api/get-orphaned");
+        console.log(p.data);
+        console.log(p.data[0].steps);
+        setSteps(p.data[0].steps);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 
 
-// const fetchData  = async ()=>{
-//     try{
-//     const p = await axios.get("http://localhost:4000/api/get-abandond");
-//     console.log(p.data);
-//     console.log(p.data[0].steps);
-//     setSteps(p.data[0].steps);
-//     }catch(err){
+const fetchData  = async ()=>{
+    try{
+    const p = await axios.get("http://localhost:4000/api/get-orphaned");
+    console.log(p.data);
+    console.log(p.data[0].steps);
+    setSteps(p.data[0].steps);
+    }catch(err){
 
-//     }
-// }
+    }
+}
 
 
 
@@ -179,29 +205,24 @@ return <>
                         required
                         id="outlined-required"
                         onChange={(e) => { setNum(e.target.value) }}
-                        placeholder="Position"
+                        label="Position"
                         type="number"
-                        focused
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
+                        label="Name"
                         onChange={(e) => { setName(e.target.value) }}
-                        placeholder='Name'
-                        focused
                     />
                     <br/>
                     <TextField
                     size="small"
                     sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         onChange={(e) => { setType(e.target.value) }}
-                        placeholder="text or pdf"
-                        focused
+                        label="Text or Pdf"
                     />
 
                 </Grid>
@@ -211,33 +232,27 @@ return <>
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         type="number"
                         onChange={(e) => { setStep(e.target.value) }}
-                        placeholder="Step"
-                        focused
+                        label="Step"
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         type="number"
                         onChange={(e) => { setPart(e.target.value) }}
-                        placeholder="Part"
-                        focused
+                        label="Part"
                     />
                     <br/>
                     <TextField
                         size="small"
                         sx={{ margin: "10px", width: "80%" }}
                         id="outlined-required"
-                        label="Required"
                         type="text"
                         onChange={(e) => { setDesc(e.target.value) }}
-                        placeholder="Description"
-                        focused
+                        label="Description"
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>
@@ -266,9 +281,7 @@ return <>
                         required
                         id="outlined-required"
                         onChange={(e) => { setNameD(e.target.value) }}
-                        label="Required"
-                        placeholder='Name'
-                        focused
+                        label='Name'
                     />
                 </Grid>
                 <Grid item xs={12} sx={{ textAlign: "center" }}>

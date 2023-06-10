@@ -213,9 +213,12 @@ const CaseManagerDashboard = () => {
             
 
 
-            <br/> <h1> Social Workers Information </h1> <br/>
-            
-            <Grid container spacing={3}  marginBottom={7}>
+            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3}>
+                <h1 variant="h4" align="center" fontWeight="bold">
+                    Social Workers Information
+                </h1>
+            </Box>
+            <Grid container spacing={3} marginTop={1} marginBottom={7}>
                 <Grid item xs={12} md={3}></Grid>
                 <Grid item xs={12} md={6} className="grid-item">
                     <Card className= "card-item" style={{borderRadius:'25px', transition:'transform 5.5s, box-shadow 0.5s'}}>
