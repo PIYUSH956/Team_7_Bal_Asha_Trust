@@ -14,6 +14,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import "../Css/ChildTable.css";
 import ChildrenDetails from "./ChildrenDetails";
+import {useNavigate} from 'react-router-dom';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -125,24 +126,30 @@ export default function CompletedChildTable() {
     fetchData();
   }, []);
 
-  const handleCellClick = async (id) => {
-    const profileDetail = id;
-    const childID = id._id;
-    console.log(profileDetail);
-    console.log(childID);
-    try {
-      const result = await axios.post(
-        "http://localhost:4000/api/get-case-detail",
-        { childID }
-      );
-      const workerDetail = result.data.worker;
-      const processDetail = result.data.process;
-      console.log(workerDetail,processDetail);
-      // SHOW THIS IN PDF AS DOWNLOADABLE
-    } catch (err) {
-      alert(err.message);
-    }
+  // const handleCellClick = async (id) => {
+  //   const profileDetail = id;
+  //   const childID = id._id;
+  //   console.log(profileDetail);
+  //   console.log(childID);
+  //   try {
+  //     const result = await axios.post(
+  //       "http://localhost:4000/api/get-case-detail",
+  //       { childID }
+  //     );
+  //     const workerDetail = result.data.worker;
+  //     const processDetail = result.data.process;
+  //     console.log(workerDetail,processDetail);
+  //     // SHOW THIS IN PDF AS DOWNLOADABLE
+  //   } catch (err) {
+  //     alert(err.message);
+  //   }
+  // };
+  const navigate = useNavigate();
+  const handleCellClick = (e) => {
+    navigate("/profile/" + e._id);
+    localStorage.setItem("temp-profile", JSON.stringify(e));
   };
+
 
   return (
     <>

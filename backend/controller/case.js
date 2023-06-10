@@ -216,6 +216,7 @@ exports.getCompletedCaseForRoot = async (req,res) =>{
 exports.changeToCompleted = async(req,res) =>{
     try{
         const result = await Child.findOneAndUpdate({_id:req.body.childID},{$set:{status:"completed"}});
+        console.log(result);
         const r = await Case.findOneAndUpdate({childID:req.body.childID},{$set:{status:"completed"}});
         return res.status(200).json({message:"Completed Succesfully"});
     }catch(err){
@@ -230,10 +231,17 @@ exports. getCaseDetail = async (req,res) =>{
      
     const childID = req.body.childID;
     try{
-    const result = await Case.find({childID}).populate("assignedWorkerID");
-    const process = await Process.find({caseID:result[0]._id});
+    const result = await Case.find({childID}).populate("assignedWorkerID",'username').populate("caseManagerID",'username');
+  
+    const process = await Process.find({caseID:result[0]._id},{"data":1});
+    console.log(result);
+   
+    if(process.length == 0){
+        return res.status(400).json({message:"Not Completed Chid"});
+    }else{
     console.log(process);
-    return res.status(200).json({worker:result[0].assignedWorkerID,process:process[0].data});
+    return res.status(200).json({worker:result[0].assignedWorkerID,process:process[0].data,caseManager:result[0].caseManagerID});
+    }
     console.log(result);
     }catch(err){
         console.log(err);

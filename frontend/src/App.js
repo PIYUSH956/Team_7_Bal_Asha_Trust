@@ -29,6 +29,7 @@ import Surrendered from './Pages/Surrendered';
 import Orphaned from './Pages/Orphaned';
 import AdmittedInCCI from './Pages/AdmittedInCCI';
 import PdfComponent from './Component/PdfComponent';
+import Detail from './Pages/Detail';
 
 
 function App() {
@@ -98,7 +99,8 @@ function App() {
        
 
         <Route path="/login" element={<Login />} />
-        <Route path = "/pdf-check" element={PdfComponent} />
+
+        <Route path = "/completed-detail/:id" element = {<Detail />} />
 
 
         <Route path="/schedule/:id/:category" element={<ScheduleDetails />} />

@@ -92,8 +92,17 @@ export default function PersonalDetails(props) {
         }
     }
 
+    const handleDetail  = () => {
+        navigate(`/completed-detail/${props.id}`);
+        localStorage.setItem("child-name",props.name);
+        localStorage.setItem("case-number",props.caseNumber);
+    }
+
     return (
         <>
+        
+
+        {props.status == "completed" ? <button onClick={handleDetail}>Show Detail</button>:<></>}
             <Box sx={{
                 display: 'flex',
                 flexDirection: { xs: "column", md: "row" },
@@ -101,6 +110,7 @@ export default function PersonalDetails(props) {
                 padding:'40px',
                 marginRight: '50px',
             }}>
+                
                 <Box sx={{
                     display: 'flex',
                     flexDirection: { xs: "column", md: "row" },
