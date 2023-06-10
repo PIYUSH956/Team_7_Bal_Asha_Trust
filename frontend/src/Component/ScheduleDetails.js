@@ -14,7 +14,7 @@ const columns = [
 ];
 
 const categories = [
-    { value: 'notAssigned', label: 'Not Assigned' },
+    { value: 'abandoned', label: 'Abandoned' },
     { value: 'surrendered', label: 'Surrendared by Parents' },
     { value: 'orphanedNoGuardian', label: 'Orphaned - No Guardian' },
     { value: 'childAdmittedInCCIByFamily', label: 'Child Admitted In CCI By Family' }

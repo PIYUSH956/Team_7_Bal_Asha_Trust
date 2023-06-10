@@ -220,7 +220,7 @@ const CaseManagerDashboard = () => {
                     Social Workers Information
                 </h1>
             </Box>
-            <Grid container spacing={3}  marginBottom={7}>
+            <Grid container spacing={3} marginTop={1} marginBottom={7}>
                 <Grid item xs={12} md={3}></Grid>
                 <Grid item xs={12} md={6} className="grid-item">
                     <Card className= "card-item">
