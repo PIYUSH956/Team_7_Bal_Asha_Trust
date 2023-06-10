@@ -176,6 +176,7 @@ const AdminDashboard = () => {
 
         <>
 
+<<<<<<< HEAD
             <div style={{ minHeight: '100vh', width: '100%', textAlign: 'center', padding: '20px' }} className='back'>
 
                 <h1> Children Information </h1>
@@ -202,6 +203,85 @@ const AdminDashboard = () => {
                                             display: true,
                                             position: "bottom"
                                         }
+=======
+        <div style={{minHeight:'100vh', width:'100%', textAlign:'center', padding:'20px'}} className='back'>
+        
+        <h1> Children Information </h1>
+
+        <Grid container spacing={3} padding={2} sx={{justifyContent:'center'}}>
+        <Grid item xs={12} md={4} sx={{mb:4}} className="gridItem">
+          <Card className= "cardItem paper1" style={{borderRadius:'25px'}}>
+            <Pie
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  title: {
+                    display: true,
+                    text: 'Child Cases Status',
+                    font: {
+                      size: 26,
+                      weight: 'bold',
+                    },
+                  },
+                },
+                height: 400,
+                width: 400,
+              }}
+              data={{
+                labels: label2,
+                datasets: dataset2,
+              }}
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={4} sx={{mb:4}} className="gridItem">
+          <Card className= "cardItem paper2"  style={{borderRadius:'25px'}}>
+            <Pie
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  title: {
+                    display: true,
+                    text: 'Region wise Child Cases',
+                    font: {
+                      size: 26,
+                      weight: 'bold',
+                    },
+                  },
+                },
+                height: 400,
+                width: 400,
+              }}
+              data={{
+                labels: label1,
+                datasets: dataset1,
+              }}
+            />
+          </Card>
+        </Grid>
+        {/* <Grid item xs={12} md={2}></Grid> */}
+      </Grid>
+            
+
+
+          <h1 fontWeight="bold"> Social Workers Information </h1>
+            <Grid container spacing={6}  marginBottom={7} sx={{justifyContent:'center'}}>
+                <Grid item xs={12} md={4} mt={2} className="gridItem">
+                    <Card className= "cardItem paper3" style={{borderRadius:'25px'}}>
+                    <Pie
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Region wise Social Workers',
+                                    font: {
+                                        size: 26,
+                                        weight: 'bold',
+>>>>>>> e8949ca508b94a78e73dc6fed512b85aaaa90e58
                                     },
                                     height: 400,
                                     width: 400,

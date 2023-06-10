@@ -13,6 +13,8 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useSelector } from 'react-redux';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import IconButton from '@mui/material/IconButton';
 
 function convertPdfToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -157,7 +159,15 @@ return (
                             disabled={!(state.user.role == "root")}
                             onChange={(e) => { updatePDF(e.target.files[0]) }} />
                     </Button>
-                    {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>}
+                    {/* {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>}    */}
+                    {value != null && 
+                        <IconButton 
+                            onClick={(e) => { downloadPDF(value)}}
+                            sx={{ marginLeft: '15px', padding:'0px',
+                            }}
+                        >
+                            <DownloadForOfflineIcon style={{height:'40px', width:'40px', color:'#CD366B'}}/>
+                        </IconButton>  }
                 </Grid>
             </Grid>
             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
