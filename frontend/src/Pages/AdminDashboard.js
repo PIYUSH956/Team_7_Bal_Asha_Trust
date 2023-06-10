@@ -162,7 +162,7 @@ const AdminDashboard = () => {
         <h1> Children Information </h1>
 
         <Grid container spacing={3} padding={2} sx={{justifyContent:'center'}}>
-        <Grid item xs={12} md={4} className="gridItem">
+        <Grid item xs={12} md={4} sx={{mb:4}} className="gridItem">
           <Card className= "cardItem paper1" style={{borderRadius:'25px'}}>
             <Pie
               options={{
@@ -219,9 +219,9 @@ const AdminDashboard = () => {
             
 
 
-          <h1 fontWeight="bold" > Social Workers Information </h1>
+          <h1 fontWeight="bold"> Social Workers Information </h1>
             <Grid container spacing={6}  marginBottom={7} sx={{justifyContent:'center'}}>
-                <Grid item xs={12} md={4} className="gridItem">
+                <Grid item xs={12} md={4} mt={2} className="gridItem">
                     <Card className= "cardItem paper3" style={{borderRadius:'25px'}}>
                     <Pie
                         options={{

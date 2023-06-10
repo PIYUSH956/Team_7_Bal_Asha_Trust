@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Backgroundimg from "../Images/Background.jpg";
 import Checkbox from "@mui/material/Checkbox";
 import { useMediaQuery,useTheme } from '@material-ui/core';
-import img1 from "../Images/loginphoto.jpg";
+import img1 from "../Images/LoginPageImage.jpg";
 import Box from "@mui/material/Box";
 
 import Fade from '@mui/material/Fade';

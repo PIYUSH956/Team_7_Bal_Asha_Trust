@@ -32,6 +32,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import "../Css/Sidebar.css";
 import { deepPurple, purple } from '@mui/material/colors'; 
 import NotificationBell from '../Component/NotificationBell';
+import Logo from "../Images/logo.png";
 
 const drawerWidth = 240;
 const color = deepPurple[50];
@@ -177,7 +178,9 @@ export default function PersistentDrawerLeft() {
             >
               <MenuIcon sx={{ color: "white" }} />
             </IconButton>
-            <p className="heading-item" >Bal Asha Trust</p>
+            <NavLink exact to="/" className="nav-logo">
+              <img src={Logo} alt="Bal Asha Trust" />
+            </NavLink>
           </Box>
 
           <Box sx={{ flexGrow: 0}}>

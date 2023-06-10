@@ -178,19 +178,6 @@ export default function PersonalDetailsForm() {
             <PhotoCamera />
           </IconButton>
         </label>
-
-        <Button 
-          style={btnStyle} 
-          variant="contained"  
-          onClick={() => setProfilePhoto(null)}
-          sx={{mt: 3, ml: 1, color:'white' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
-            bgcolor: "#CD366B",
-            color: "white"
-          }}}
-        >
-          Remove
-        </Button>
-
       </Grid>
 
 

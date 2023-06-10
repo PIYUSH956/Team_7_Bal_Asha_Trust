@@ -215,7 +215,7 @@ const CaseManagerDashboard = () => {
             
 
 
-            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} >
+            <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3}>
                 <h1 variant="h4" align="center" fontWeight="bold">
                     Social Workers Information
                 </h1>

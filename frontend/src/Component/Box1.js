@@ -158,7 +158,10 @@ const Box1 = (props) => {
                     <Button
                         variant="contained"
                         onClick={handleSubmit}
-                        sx={{ fontSize: "20px", backgroundColor: "#ff8100" }}
+                        sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                            bgcolor: "#CD366B",
+                            color: "white"
+                          }}}
                     >
                         Update
                     </Button>
