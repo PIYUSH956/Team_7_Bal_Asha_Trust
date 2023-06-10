@@ -162,13 +162,10 @@ return (
                     {value != null && 
                         <IconButton 
                             onClick={(e) => { downloadPDF(value)}}
-                            sx={{ marginLeft: '15px', bgcolor:'#CD366B' , fontSize:'15px',
-                                ":hover": {
-                                    bgcolor: "#382A41",
-                                    color: "white" }
+                            sx={{ marginLeft: '15px', padding:'0px',
                             }}
                         >
-                            <DownloadForOfflineIcon />
+                            <DownloadForOfflineIcon style={{height:'40px', width:'40px', color:'#CD366B'}}/>
                         </IconButton>  }
                 </Grid>
             </Grid>
