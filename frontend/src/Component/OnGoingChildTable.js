@@ -129,10 +129,11 @@ export default function PendingChildTable() {
 
   return (
     <>
-      {childData.length == 1 ? (
+      {childData.length == 0 ? (
         <>
           <div className="alert-box">
-            <Card className= "cardItem" sx={{ maxWidth: 445 }}>
+          <div style={{border:'1px solid gray', boxShadow:'10px 10px 5px #aaaaaa', padding:'10px', borderRadius:'20px'}}>
+            <Card className= "cardItem" style={{ maxWidth: '445px', backgroundColor:'#382A41', overflow:'hidden', borderRadius:'20px', padding:'25px', transition:'transform 2.5s, box-shadow 0.5s'}}>
               <CardActionArea>
                 <CardContent
                   sx={{
@@ -149,12 +150,14 @@ export default function PendingChildTable() {
                     gutterBottom
                     variant="h5"
                     component="div"
+                    style={{color:'white'}}
                   >
                     No On Going Cases Currently
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
+          </div>
           </div>
         </>
       ) : (
