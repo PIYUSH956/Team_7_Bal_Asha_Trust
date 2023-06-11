@@ -21,8 +21,12 @@ import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import { makeStyles } from '@material-ui/core';
 
+// import { useTransition } from "react";
+// import i18next from "i18next";
+
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import { useTranslation } from "react-i18next";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -46,18 +50,19 @@ const useStyles = makeStyles((theme) => ({
 
 function HomePage() {
   const classes = useStyles();
+  const {t} = useTranslation();
   return (
     <>
       <section className="header-img">
         <div className="header-text-box">
-          <p className="tag-line">Bal Asha Trust</p>
-          <p className = "border-line">Where every child has a future</p>
+          <p className="tag-line">{t('Bal Asha Trust')}</p>
+          <p className = "border-line">{t('Where every child has a future')}</p>
         </div>
       </section>
 
       {/* cards */}
 
-      <p className="head-size">What We Do</p>
+      <p className="head-size">{t('What We Do')}</p>
 
       <Grid spacing={2} container sx={{ marginTop: "0px", fontFamily: "initial",paddingTop: "20px" }}  className="childCard text-style classes.circularGridContainer">
         <Grid item xs={12} sm={6} md={3}>
@@ -72,7 +77,7 @@ function HomePage() {
               />
               <CardContent>
                 <p className="head-black-under">
-                  Children's Home
+                  {t("Children's Home")}
                 </p>
               </CardContent>
             </CardActionArea>
@@ -91,7 +96,7 @@ function HomePage() {
               />
               <CardContent>
                 <p className="head-black-under">
-                  Adoption
+                  {t("Adoption")}
                 </p>
               </CardContent>
             </CardActionArea>
@@ -110,7 +115,7 @@ function HomePage() {
               />
               <CardContent>
                 <p className="head-black-under">
-                  Child Development Center
+                  {t("Child Development Center")}
                 </p>
               </CardContent>
             </CardActionArea>
@@ -129,7 +134,7 @@ function HomePage() {
               />
               <CardContent>
                 <p className="head-black-under">
-                  Awareness and Training
+                  {t("Awareness and Training")}
                 </p>
               </CardContent>
             </CardActionArea>
@@ -145,11 +150,11 @@ function HomePage() {
 
       <section className="about">
         <p className="para" >
-          Bal Asha Trust is one of India’s most trusted. We give life changing quality care to abandoned and destitute children. Our team provides systematic approach of care to our children so they are safe, healthy, educated and happy! We want every child to grow in a family, so we work hard to reunite children with their families or place them in loving and caring Adoptive families children through a legal process.
+          {t("Bal Asha trust us one of...")}
         </p>
         <br></br>
         <p className="para" >
-          We actively support vulnerable children and strengthen families in their difficult times through our Nutrition, Medical, Education and Awareness programmes. We are recipients of the prestigious Ahilyabai Holkar award from the Government of Maharashtra.
+          {t("We actively...")}
         </p>
       </section>
 
@@ -173,30 +178,30 @@ function HomePage() {
 
         <Grid container item lg={12} className="container">
           <Grid item lg={4} xs={12}>
-            <AccessibilityNewIcon sx={{fontSize: "3rem"}} />
-            <Typography >4340</Typography>
+            <LocalDiningIcon sx={{fontSize: "3rem"}} />
+            <Typography >102325</Typography>
           </Grid>
           <Grid  item lg={4} xs={12}>
-            <FamilyRestroomOutlined sx={{fontSize: "3rem"}} />
-            <Typography >329</Typography>
+            <QueryBuilderIcon sx={{fontSize: "3rem"}} />
+            <Typography >102325</Typography>
           </Grid>
           <Grid  item lg={4} xs={12}>
-            <VolunteerActivismIcon sx={{fontSize: "3rem"}} />
-            <Typography >477</Typography>
+            <EditNoteIcon sx={{fontSize: "3rem"}} />
+            <Typography >37692</Typography>
           </Grid>
         </Grid>
         <Grid container item lg={12} className="container">
           <Grid item lg={4} xs={12}>
-            <AccessibilityNewIcon sx={{fontSize: "3rem"}} />
-            <Typography >4340</Typography>
+            <FavoriteIcon sx={{fontSize: "3rem"}} />
+            <Typography >4451</Typography>
           </Grid>
           <Grid  item lg={4} xs={12}>
-            <FamilyRestroomOutlined sx={{fontSize: "3rem"}} />
-            <Typography >329</Typography>
+            <MonitorHeartIcon sx={{fontSize: "3rem"}} />
+            <Typography >3851</Typography>
           </Grid>
           <Grid  item lg={4} xs={12}>
-            <VolunteerActivismIcon sx={{fontSize: "3rem"}} />
-            <Typography >477</Typography>
+            <MedicalServicesIcon sx={{fontSize: "3rem"}} />
+            <Typography >676</Typography>
           </Grid>
         </Grid>
 
@@ -204,10 +209,10 @@ function HomePage() {
 
 
       {/* OUr Journey */}
-      <p className="head-size">Our Journey</p>
+      <p className="head-size">{t('Our Journey')}</p>
       <section className="our-journey">
         
-        <p className="para">Bal Asha’s journey- from a small charity  founded in 1985, to one of India’s most reputed organisations- has been as special as it is inspiring. Bal Asha is one of the few NGOs in India which specialize in taking care of children with special needs and placing such children in adoption. Bal Asha has been successful In placing many children in loving adoptive families and aims to continue to reach out to any  vulnerable child who is in need of care and protection</p>
+        <p className="para">{t('our journey para')}</p>
       </section>
 
       <Footer />

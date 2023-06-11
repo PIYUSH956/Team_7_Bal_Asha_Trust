@@ -1,6 +1,10 @@
 {
   "dependencies": {
     "@mui/x-data-grid": "^6.6.0",
-    "@mui/x-data-grid-generator": "^6.6.0"
+    "@mui/x-data-grid-generator": "^6.6.0",
+    "i18next": "^22.5.1",
+    "i18next-browser-languagedetector": "^7.0.2",
+    "i18next-http-backend": "^2.2.1",
+    "react-i18next": "^12.3.1"
   }
 }

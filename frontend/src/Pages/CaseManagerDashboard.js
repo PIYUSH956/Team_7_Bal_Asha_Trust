@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import { useRef } from 'react';
 import "../Css/Admin.css";
+import { useTranslation } from 'react-i18next';
 
 const generateRandomColors = (numColors) => {
     const colors = [];
@@ -163,13 +164,15 @@ const CaseManagerDashboard = () => {
             navigate("/pending");
     }
 
+    const {t} = useTranslation();
+
     return (
 
         <>
 
                 <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                     <Typography variant="h4" align="center" fontWeight="bold">
-                    Cases Information
+                    {t("Cases Information")}
                     </Typography>
                 </Box>
 
@@ -242,7 +245,7 @@ const CaseManagerDashboard = () => {
 
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                 <Typography variant="h4" align="center" fontWeight="bold">
-                Region Wise Distribution 
+                {t("Region Wise Distribution")} 
                 </Typography>
                 </Box>
             <Grid marginBottom={7} container spacing={3} padding={2} sx={{ justifyContent: 'center' }}>

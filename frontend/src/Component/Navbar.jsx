@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Logo from "../Images/logo.png";
 import "../Css/Navbar.css";
+import LanguageDropdown from "./LanguageDropdown";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 function NavBar() {
   const [click, setClick] = useState(false);
@@ -43,6 +46,19 @@ function NavBar() {
     navigate("/user-profile");
   }
 
+  const handleChange=(e) =>{
+    i18next.changeLanguage(e.target.value);
+    //now store the current language in local storage
+    localStorage.setItem('i18lang',e.target.value);
+  }
+
+  useEffect(() => {
+    let currenLang = localStorage.getItem('i18lang');
+    i18next.changeLanguage(currenLang);
+  },[])
+
+  const {t} = useTranslation();
+
   const handleClick = () => setClick(!click);
   return (
     <>
@@ -62,8 +78,13 @@ function NavBar() {
                 className="nav-links btn-clr"
                 onClick={handleClick}
               >
-                Home
+                {t('Home')}
               </NavLink>
+            </li>
+
+            {/* language dropdown */}
+            <li className="nav-item">
+              <LanguageDropdown onChange={(e) => handleChange(e)} />
             </li>
 
             <li className="nav-item">
@@ -74,7 +95,7 @@ function NavBar() {
                 className="nav-links btn-clr"
                 onClick={handleClick}
               >
-               Login
+               {t('Login')}
               </NavLink>
             </li>
 
@@ -86,7 +107,7 @@ function NavBar() {
                 className="nav-links"
                 onClick={handleProfile}
               >
-                Profile
+                {t('Profile')}
               </NavLink>}
             </li>}
 
@@ -97,7 +118,7 @@ function NavBar() {
                 className="nav-links"
                 onClick={handleLogout}
               >
-                Logout
+                {t('Logout')}
               </NavLink>}
             </li>
          

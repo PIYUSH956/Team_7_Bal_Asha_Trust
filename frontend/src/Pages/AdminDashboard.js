@@ -12,6 +12,7 @@ import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import "../Css/Admin.css";
+import { useTranslation } from 'react-i18next';
 
 
 const options = {
@@ -168,6 +169,8 @@ const AdminDashboard = () => {
             navigate("/pending");
     }
 
+    const {t} =useTranslation();
+
 
 
 
@@ -181,7 +184,7 @@ const AdminDashboard = () => {
         
                 <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                     <Typography variant="h4" align="center" fontWeight="bold">
-                    Cases Information
+                    {t("Cases Information")}
                     </Typography>
                 </Box>
                 <Grid container spacing={3} padding={2} sx={{ justifyContent: 'center' }}>
@@ -251,7 +254,7 @@ const AdminDashboard = () => {
 
                 <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                 <Typography variant="h4" align="center" fontWeight="bold">
-                Region Wise Distribution 
+                {t("Region Wise Distribution")}
                 </Typography>
                 </Box>
                 

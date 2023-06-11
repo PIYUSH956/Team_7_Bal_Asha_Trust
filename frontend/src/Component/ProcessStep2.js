@@ -5,6 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import Brightness1RoundedIcon from '@mui/icons-material/Brightness1Rounded';
+import { useTranslation } from "react-i18next";
 
 const paperStyle = {
     padding:20,
@@ -106,11 +107,13 @@ export default function ProcessStep2 (){
         }
     }
 
+    const {t} = useTranslation();
+
     return(
         <>
             <Grid>
                     <Box sx={{mt:2}}>
-                        <h6>Submit Child's Report for District Child Protection Unit(DCPU) for No Objection Certificate(NOC)</h6>
+                        <h6>{t("Submit Child's Report for District Child Protection Unit(DCPU) for No Objection Certificate(NOC)")}</h6>
                         <Grid sx={{pl:2}}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
@@ -123,13 +126,13 @@ export default function ProcessStep2 (){
                                 onChange={handleStatus1} 
                                     sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor1}}>
                                     <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
-                                        Pending
+                                    {t('Pending')}
                                     </MenuItem>
                                     <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
-                                        Ongoing
+                                    {t('Ongoing')}
                                     </MenuItem>
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                        Completed
+                                    {t('Completed')}
                                     </MenuItem>
                             </Select>
                             <Grid mt={1}>
@@ -145,7 +148,7 @@ export default function ProcessStep2 (){
                     </Box>
 
                     <Box sx={{mt:2}}>
-                        <h6>Receive District Child Protection Unit(DCPU) No Objection Certificate(NOC)</h6>
+                        <h6>{t("Receive District Child Protection Unit(DCPU) No Objection Certificate(NOC)")}</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}></Typography>
                             <Input
@@ -164,13 +167,13 @@ export default function ProcessStep2 (){
                                     onChange={handleStatus2} 
                                     sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor2}}>
                                     <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
-                                        Pending
+                                    {t('Pending')}
                                     </MenuItem>
                                     <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
-                                        Ongoing
+                                    {t('Ongoing')}
                                     </MenuItem>
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                        Completed
+                                    {t('Completed')}
                                     </MenuItem>
                             </Select>
                             <Button
@@ -193,7 +196,7 @@ export default function ProcessStep2 (){
                     </Box>
 
                     <Box sx={{mt:2}}>
-                        <h6>Final Report from Child Care Institution(CCI)</h6>
+                        <h6>{t("Final Report from Child Care Institution(CCI)")}</h6>
                         <Grid sx={{pl:2}}>
                             <Typography style={styleTypo}></Typography>
                             <Input
@@ -213,13 +216,13 @@ export default function ProcessStep2 (){
                                     onChange={handleStatus3} 
                                     sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor3}}>
                                     <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
-                                        Pending
+                                    {t('Pending')}
                                     </MenuItem>
                                     <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
-                                        Ongoing
+                                    {t('Ongoing')}
                                     </MenuItem>
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                        Completed
+                                    {t('Completed')}
                                     </MenuItem>
                             </Select>
                             <Button
@@ -242,7 +245,7 @@ export default function ProcessStep2 (){
                     </Box>
 
                     <Grid align='center' sx={{mt:4}}>
-                        <Button variant="contained">Update Section</Button>
+                        <Button variant="contained">{t("Update Section")}</Button>
                     </Grid>
             </Grid>
             
