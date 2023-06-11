@@ -8,6 +8,8 @@ import {useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const columns = [
     { field: 'col1', headerName: 'Email', width: 480 },
@@ -88,12 +90,12 @@ export default function App(props) {
         try{
             const res = await axios.post(URL + "/assign-case",data);
             console.log(res);
-            alert("Scheduled");
+            toast.success("Case Scheduled");
         }catch(err){
             if(err.response == null){
-                alert(err.message);
+                toast.error(err.message);
             }else{
-                alert(err.response.data.message);
+                toast.error(err.response.data.message);
             }
         }
     };
@@ -110,12 +112,12 @@ export default function App(props) {
         try{
             const res = await axios.post(URL + "/change-category",childID,category);
             console.log(res);
-            alert("Changed");
+            toast.success("Changed");
         }catch(err){
             if(err.response == null){
-                alert(err.message);
+                toast.error(err.message);
             }else{
-                alert(err.response.data.message);
+                toast.error(err.response.data.message);
             }
         }
 
@@ -124,6 +126,7 @@ export default function App(props) {
 
     return (
         <>
+        <ToastContainer/>
             <Box sx={{
                 flexDirection: { xs: "column", md: "row" },
                 margin: {xs: "5px", md: "50px"},

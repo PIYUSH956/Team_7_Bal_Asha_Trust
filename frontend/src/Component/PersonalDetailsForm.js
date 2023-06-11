@@ -14,7 +14,8 @@ import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button, IconButton } from "@mui/material";
 import profilePhoto from "../Images/LoginImage.jpg"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Label, PhotoCamera } from '@mui/icons-material';
 
 
@@ -50,7 +51,7 @@ export default function PersonalDetailsForm() {
     // const height = event.target.files[0].naturalHeight;
     const size  = (event.target.files[0].size)/1024;
     if(size > 50){
-      alert("Image size must be less than 50KB");
+      toast.error("Image size must be less than 50KB");
       return;
     }
     const file = await convertToBase64(event.target.files[0]);
@@ -150,6 +151,8 @@ export default function PersonalDetailsForm() {
 
   }
   return (
+    <>
+    <ToastContainer/>
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Personal Details
@@ -259,5 +262,6 @@ export default function PersonalDetailsForm() {
 
       </Grid>
     </React.Fragment>
+    </>
   );
 }
