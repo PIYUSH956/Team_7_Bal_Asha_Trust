@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import Box1 from "../Component/Box1";
 import Box2 from "../Component/Box2";
 import JsPDF from "jspdf";
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import {IconButton,  FormGroup, FormControlLabel, Checkbox, } from '@mui/material';
 
 export default function Process() {
   const [process, setProcess] = useState([]);
@@ -240,6 +242,75 @@ export default function Process() {
                 onClick={handleProcessComplete}
               >
                 Process Completed
+              </Button>
+            </Grid>
+          </Grid>
+        </Card>
+
+</Box>
+
+<Box
+        sx={{
+          flexDirection: { xs: "column", md: "row" },
+          marginX: { xs: "5px", md: "200px" },
+          padding: "25px",
+          marginBottom: "20px",
+        }}
+      >
+
+
+        <Card>
+          <Grid
+            sx={{ margin: { xs: "10px", md: "25px" },
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            }}
+            container
+            
+          >
+            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center', mb:2}}>
+            <FormGroup>
+              <FormControlLabel control={<Checkbox defaultChecked />} label="Parent Found"/>
+            </FormGroup>
+              <TextField
+                variant="outlined"
+                disabled={!(state.user.role == "root")}
+                // onChange={() => {} }
+                id="outlined-required"
+                label="Notes"
+                placeholder="Notes"
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
+              <Button variant="contained" component="label" sx={{bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {
+                        bgcolor: "#382A41",color: "white"}}}>
+                Upload File
+                <input
+                  id="file-upload-button"
+                  type="file"
+                  hidden
+                  disabled={!(state.user.role == "root")}
+                // onChange={() => {} }
+                />
+              </Button>
+              <IconButton   
+                sx={{ marginLeft: '15px', padding:'0px',
+                }}
+              >
+                <DownloadForOfflineIcon style={{height:'40px', width:'40px', color:'#CD366B'}}/>
+              </IconButton>
+            </Grid>
+            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
+              <Button
+                variant="contained"
+                sx={{bgcolor:'#382A41' , fontSize:'15px' , ":hover": {
+                  bgcolor: "#CD366B",
+                  color: "white"
+                }}}
+                onClick={() => {console.log("handle request")}}
+              >
+                Request to Complete
               </Button>
             </Grid>
           </Grid>
