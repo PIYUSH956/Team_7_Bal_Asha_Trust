@@ -15,6 +15,8 @@ import Tooltip from '@mui/material/Tooltip';
 import { refType } from "@mui/utils";
 import { MenuItem, Select } from '@mui/material';
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
   const theme = useTheme();
@@ -61,13 +63,13 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!isValidEmail) { alert("not a valid email "); return; }
-    if (!user) { alert("not a valid user"); return; }
-    if (!password || password.length < 6) { alert("not a valid password"); return; }
-    if (file == null) { alert("Please upload Image"); return; }
-    if (role == null) { alert("Please Specified Role"); return; }
-    if (state == null) { alert("Please Enter State"); return; }
-    if (district == null) { alert("Please Enter District"); return; }
+    if (!user) { toast.error("Not a valid user"); return; }
+    if (!isValidEmail) { toast.error("Not a valid email "); return; }
+    if (!password || password.length < 6) { toast.error("Not a valid password"); return; }
+    if (file == null) { toast.error("Please upload Image"); return; }
+    if (role == null) { toast.error("Please Specified Role"); return; }
+    if (state == null) { toast.error("Please Enter State"); return; }
+    if (district == null) { toast.error("Please Enter District"); return; }
 
 
     const base64 = await convertToBase64(file);
@@ -75,10 +77,10 @@ function Signup() {
     try {
       const res = await axios.post("http://localhost:4000/api/signup", { username: user, email, password, role, image: base64, state, district });
       console.log(res);
-      alert("Succesfully signed up");
+      toast.success("Succesfully Added New Volunteer");
     } catch (err) {
       console.log(err);
-      alert(err.message);
+      toast.error(err.message);
     }
 
     setLoading(false);
@@ -106,6 +108,7 @@ function Signup() {
   return (
 
     <>
+    <ToastContainer/>
       <div className='main_box' >
         <Grid container
           xs={isMobile ? 12 : 7} md={isMobile ? 6 : 7}

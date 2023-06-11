@@ -4,7 +4,8 @@ import axios from "axios";
 import { useState } from "react";
 import JsPDF from "jspdf";
 import {Button} from "@mui/material";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function getDateFromTimestamp(timestamp) {
   const date = new Date(timestamp);
@@ -47,7 +48,7 @@ const Detail = () => {
         console.log(workerDetail, processDetail, managerDetail);
         // SHOW THIS IN PDF AS DOWNLOADABLE
       } catch (err) {
-        alert(err.message);
+        toast.error(err.message);
       }
     };
     handleCellClick();
@@ -61,7 +62,7 @@ const Detail = () => {
         report.save();
       });
     } catch (err) {
-      alert(err.response.data.message);
+      toast.error(err.response.data.message);
     }
   };
 
@@ -84,6 +85,7 @@ const Detail = () => {
 
   return (
     <>
+    <ToastContainer/>
       <div
         style={{
           display: "flex",

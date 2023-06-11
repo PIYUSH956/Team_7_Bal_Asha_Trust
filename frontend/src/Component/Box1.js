@@ -14,7 +14,8 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useSelector } from 'react-redux';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Box1 = (props) => {
@@ -47,7 +48,7 @@ const Box1 = (props) => {
         console.log(date,value,status,category,assignedWorkerID,childID);
 
         if (status == null || date == null || value == null) {
-            alert("All Field Required");
+            toast.error("All Field Required");
             return;
         }
 
@@ -66,9 +67,9 @@ const Box1 = (props) => {
                     status
                 }
             })
-            alert("Updated");
+            toast.success("Updated Step Details");
         } catch (err) {
-            alert(err.message);
+            toast.error(err.message);
         }
     }
 
@@ -91,6 +92,8 @@ const Box1 = (props) => {
 
 
     return (
+        <>
+        <ToastContainer/>
         <Box sx={boxStyle}>
             <Card sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
@@ -174,6 +177,7 @@ const Box1 = (props) => {
                 </Grid>
             </Card>
         </Box>
+        </>
     )
 }
 

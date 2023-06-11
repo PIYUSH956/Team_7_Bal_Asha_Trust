@@ -82,10 +82,7 @@ function NavBar() {
               </NavLink>
             </li>
 
-            {/* language dropdown */}
-            <li >
-              <LanguageDropdown onChange={(e) => handleChange(e)} />
-            </li>
+            
 
             <li className="nav-item">
               <NavLink
@@ -97,6 +94,11 @@ function NavBar() {
               >
                {t('Login')}
               </NavLink>
+            </li>
+
+            {/* language dropdown */}
+            <li >
+              <LanguageDropdown onChange={(e) => handleChange(e)} />
             </li>
 
 

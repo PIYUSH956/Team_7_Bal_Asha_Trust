@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import Box1 from "../Component/Box1";
 import Box2 from "../Component/Box2";
 import JsPDF from "jspdf";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Process() {
   const [process, setProcess] = useState([]);
@@ -76,12 +78,12 @@ export default function Process() {
         const res = await axios.post(URL + "/get-value-present", { key: process[item].name, childID });
         console.log(process[item].name, res.data);
         if (res.data.m == false) {
-          alert(`Complete ${process[item].name} Steps`);
+          toast.error(`Complete ${process[item].name} Steps`);
           return;
         }
       } catch (err) {
         console.log(err);
-        alert(err.message);
+        toast.error(err.message);
         return;
       }
       
@@ -91,10 +93,10 @@ export default function Process() {
 
     try {
       const res = await axios.post(URL + "/change-to-completed", {childID });
-      alert("Completed Succesfully");
+      toast.success("Completed Succesfully");
       console.log(res);
     } catch (err) {
-      alert(err.message);
+      toast.error(err.message);
       console.log(err);
     }
 
@@ -110,12 +112,13 @@ export default function Process() {
         report.save();
       });
     } catch (err) {
-      alert(err.response.data.message);
+      toast.error(err.response.data.message);
     }
   };
 
   return (
     <div>
+      <ToastContainer/>
      {/* <div onClick={generatePdf} id = "report" style={{ width: '210mm', height: '297mm', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={{ marginBottom: '20px' }}>
         <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Child Name:</p>

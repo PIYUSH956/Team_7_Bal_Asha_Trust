@@ -17,6 +17,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const steps = ['Personal Details', 'Case Details', 'Review information'];
 
@@ -55,114 +57,114 @@ export default function ChildDataForm() {
 
       var form = state.form;
       if(form == null){
-        alert("Empty Form");
+        toast.error("Empty Form");
         return;
       }
 
 
       console.log(form);
       if(form.state == null){
-        alert("No State Entered");
+        toast.error("No State Entered");
         return;
       }
 
       if(form.district == null){
-        alert("No District Found");
+        toast.error("No District Found");
         return;
       }
 
       if(form.shelter == null){
-        alert("No Shelter Home Found");
+        toast.error("No Shelter Home Found");
         return;
       }
 
       if(form.childName == null){
-        alert("No Child Name Found");
+        toast.error("No Child Name Found");
         return;
       }
 
       if(form.gender == null){
-        alert("No Gender Found");
+        toast.error("No Gender Found");
         return;
       }
 
       if(form.dateOfBirth == null){
-        alert("No Date of Birth Found");
+        toast.error("No Date of Birth Found");
         return;
       }
 
 
       if(form.reasonForFlagging == null){
-        alert("No Reason for Flagging Found");
+        toast.error("No Reason for Flagging Found");
         return;
       }
 
       if(form.lastVisitSince == null){
-        alert("No Last Visit Since Found");
+        toast.error("No Last Visit Since Found");
         return;
       }
 
       if(form.lastCallSince == null){
-        alert("No Last Call Since Found");
+        toast.error("No Last Call Since Found");
         return;
       }
 
       if(form.guardian == null){
-        alert("No Guardian Found");
+        toast.error("No Guardian Found");
         return;
       }
 
       if(form.siblingDetails == null){
-        alert("No Sibling Details Found");
+        toast.error("No Sibling Details Found");
         return;
       }
 
       if(form.totalShelterHomeStay == null){
-        alert("No TotalShelter Home Stay Found");
+        toast.error("No TotalShelter Home Stay Found");
         return;
       }
 
 
       if(form.siblingDetails == null){
-        alert("No Sibling Details Found");
+        toast.error("No Sibling Details Found");
         return;
       }
 
       if(form.totalShelterHomeStay == null){
-        alert("No TotalShelter Home Stay Found");
+        toast.error("No TotalShelter Home Stay Found");
         return;
       }
 
 
       if(form.lastReviewDate == null){
-        alert("No Last Review Date Found");
+        toast.error("No Last Review Date Found");
         return;
       }
 
       if(form.lastChildWelfareCommiteOrder == null){
-        alert("No Last CWC order Found");
+        toast.error("No Last CWC order Found");
         return;
       }
 
       
       if(form.caseHistory == null){
-        alert("No Case History Found");
+        toast.error("No Case History Found");
         return;
       }
 
       if(form.newsPaperPublicationPending == null){
-        alert("No News Paper Publication Pending Found");
+        toast.error("No News Paper Publication Pending Found");
         return;
       }
 
 
       if(form.policeReportPending== null){
-        alert("No Police Report Found");
+        toast.error("No Police Report Found");
         return;
       }
 
       if(form.surrenderPending == null){
-        alert("No Last CWC order Found");
+        toast.error("No Last CWC order Found");
         return;
       }
 
@@ -175,7 +177,7 @@ export default function ChildDataForm() {
       try{
         const res = await axios.post(URL + "/insert-child-data", state.form);
         console.log(res);
-        alert("Saved Successfully");
+        toast.success("Saved Successfully");
         setCaseNumber(res.data.caseNumber);
         setActiveStep(activeStep + 1);
         dispatch({
@@ -185,7 +187,7 @@ export default function ChildDataForm() {
         
       }
       catch(err){
-        alert(err.message);
+        toast.error(err.message);
         console.log(err);
       }
       
@@ -204,6 +206,7 @@ export default function ChildDataForm() {
   const {t} = useTranslation();
 
   return (
+    <><ToastContainer/>
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <AppBar
@@ -267,5 +270,6 @@ export default function ChildDataForm() {
         </Paper>
       </Container>
     </ThemeProvider>
+    </>
   );
 }

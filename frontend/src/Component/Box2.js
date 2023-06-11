@@ -15,6 +15,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useSelector } from 'react-redux';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import IconButton from '@mui/material/IconButton';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function convertPdfToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -66,7 +68,7 @@ const Box2 = (props) => {
        
 
         if (status == null || date == null || value == null) {
-            alert("All Field Required");
+            toast.error("All Field Required");
             return;
         }
 
@@ -88,9 +90,9 @@ const Box2 = (props) => {
                 }
             })
 
-            alert("Updated");
+            toast.success("Updated Step Details");
         } catch (err) {
-            alert(err.message);
+            toast.error(err.message);
         }
     }
 
@@ -130,6 +132,9 @@ const boxStyle = {
 
 
 return (
+    <>
+    <ToastContainer/>
+    
     <Box sx={boxStyle}>
         <Card sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Grid sx={{ margin: { xs: '10px', md: '25px' } }} container spacing={3}>
@@ -226,6 +231,7 @@ return (
             </Grid>
         </Card>
     </Box>
+    </>
 )
 
 }

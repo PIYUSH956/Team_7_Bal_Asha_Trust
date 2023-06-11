@@ -13,7 +13,8 @@ import Checkbox from "@mui/material/Checkbox";
 import { useMediaQuery,useTheme } from '@material-ui/core';
 import img1 from "../Images/LoginPageImage.jpg";
 import Box from "@mui/material/Box";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
 import { borderColor } from "@mui/system";
@@ -43,11 +44,12 @@ function Login() {
 
 
   const handleSubmit = async (e) => {
+    // toast.success("Succesfully Logged In!");
     console.log(email, password);
     e.preventDefault();
     let isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!isValidEmail) { alert("not a valid email "); return; }
-    if (!password || password.length < 6) { alert("not a valid email "); return; }
+    if (!isValidEmail) { toast.error("Not a valid email!"); return; }
+    if (!password || password.length < 6) { toast.error("Wrong Password!"); return; }
 
     try {
       setLoading(true);
@@ -63,16 +65,17 @@ function Login() {
         type: "LOGGED_IN_USER",
         payload,
       });
-
       // alert("Succesfully Logged In");
       //Role based redirecting  Right now for only root 
       navigate("/dashboard");
+      toast.success("Succesfully Logged In!");
+
     } catch (err) {
       console.log(err);
       if(err.resoonse == null){
-        alert("No Internet Connection");
+        toast.error("Wrong Password!");
       }else{
-      alert(err.response.data.message);
+      toast.error(err.response.data.message);
     } 
   } finally {
     setLoading(false);
@@ -222,6 +225,7 @@ function Login() {
             >
               Login
             </Button>
+            <ToastContainer />
             <br /> <br />
           </Grid>
         </Grid>
