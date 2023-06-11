@@ -1,6 +1,6 @@
 # Team 7 - Bal Asha Trust
 
-![Logo](https://github.com/PIYUSH956/Team_7_Bal_Asha_Trust/blob/main/logo.png)
+
 
 Welcome to the GitHub repository for Team 7 - Bal Asha Trust! This project aims to create a web application to support the Bal Asha Trust, a non-profit organization dedicated to the welfare of orphaned and abandoned children. The application provides a platform for managing the trust's operations, including child profiles, adoption processes, and donor management.
 
