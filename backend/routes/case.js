@@ -14,6 +14,8 @@ const {
     changeToCompleted,
     requestForParentFound,
     getCaseDetail,
+    fetchCompletionRequest,
+    changeCompletionStatus
 } = require("../controller/case");
 
 //assign case of child
@@ -41,5 +43,7 @@ router.post("/change-to-completed",changeToCompleted);
 
 router.post("/get-case-detail",getCaseDetail);
 router.post("/request-for-parent",requestForParentFound);
+router.post("/get-request-for-completion",fetchCompletionRequest);
+router.post("/change-comletion-status",changeCompletionStatus);
 
 module.exports = router;

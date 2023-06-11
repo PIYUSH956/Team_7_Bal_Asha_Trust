@@ -33,6 +33,7 @@ import "../Css/Sidebar.css";
 import { deepPurple, purple } from '@mui/material/colors'; 
 import NotificationBell from '../Component/NotificationBell';
 import Logo from "../Images/logo.png";
+import CallToActionIcon from '@mui/icons-material/CallToAction';
 
 const drawerWidth = 240;
 const color = deepPurple[50];
@@ -439,7 +440,7 @@ export default function PersistentDrawerLeft() {
             >
               <ListItemButton>
                 <ListItemIcon>
-                  {React.cloneElement(<PersonAddIcon />, {
+                  {React.cloneElement(<CallToActionIcon />, {
                     style: {
                       color:"white"
                     },

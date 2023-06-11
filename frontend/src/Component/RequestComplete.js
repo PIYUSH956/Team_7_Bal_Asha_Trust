@@ -90,7 +90,7 @@ export default function RequestComplete() {
       try {
         {
           const data = await axios.post(
-            URL + "/get-on-going-child-data-for-admin"
+            URL + "/get-request-for-completion"
           );
           console.log("ON GOING", data);
           setChildData(data.data);
@@ -102,9 +102,52 @@ export default function RequestComplete() {
     fetchData();
   }, []);
 
+
+  const  fetchData =async ()  =>{
+    try {
+      {
+        const data = await axios.post(
+          URL + "/get-request-for-completion"
+        );
+        console.log("ON GOING", data);
+        setChildData(data.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
+  const handleAccept = async (a,b)=>{
+    console.log(a,b);
+
+    try{
+
+      await axios.post(URL + "/change-comletion-status",{childID:a,response:true});
+      fetchData();
+      alert("Succesfully COmpleted");
+
+    }catch(er){
+            alert("Faild");
+    }
+  }
+
+
+  const handleReject = async (a,b)=>{
+    console.log(a,b);
+    try{
+
+      await axios.post(URL + "/change-comletion-status",{childID:a,response:false});
+      fetchData();
+      alert("Succesfully COmpleted");
+    }catch(er){
+            alert("Faild");
+    }
+  }
+
   return (
     <>
-      {childData.map((pro) => {
+      {childData.map((data) => {
         return (
           <div
             style={{
@@ -114,7 +157,7 @@ export default function RequestComplete() {
             }}
           >
             <Paper sx={{ width: "90%", overflow: "hidden", padding: "20px" }}>
-              <h3>Request For Closing</h3>
+              <h3>Request For Closing Case of {data.childName}</h3>
               <Grid
                 container
                 sx={{
@@ -127,28 +170,18 @@ export default function RequestComplete() {
                 }}
               >
                 <Grid item xs={12} md={6} sx={{ textAlign: "center", mb: 2 }}>
-                  <p>Case Id : temp </p> <br />
-                  <p>Social Worker Name : temp </p>
+                  <p>Case Id : {data.caseNumber} </p> <br />
+                  <p>Social Worker Name : {data.assignedWorkerName }</p>
                 </Grid>
 
                 <Grid item xs={12} md={6} sx={{ textAlign: "center", mb: 2 }}>
-                  <p>Notes : temp </p> <br />
-                  <p>
-                    Document :{" "}
-                    <IconButton sx={{ marginLeft: "15px", padding: "0px" }}>
-                      <DownloadForOfflineIcon
-                        style={{
-                          height: "40px",
-                          width: "40px",
-                          color: "#CD366B",
-                        }}
-                      />
-                    </IconButton>{" "}
-                  </p>
+                  <p>Reason : { data.note} </p> <br />
+                 
                 </Grid>
                 <Button
                   variant="contained"
                   component="label"
+                  onClick={()=>{handleAccept(data.childID,data.childName)}}
                   sx={{
                     margin: "20px",
                     bgcolor: "#CD366B",
@@ -161,6 +194,7 @@ export default function RequestComplete() {
                 <Button
                   variant="contained"
                   component="label"
+                  onClick={()=>{handleReject(data.childID,data.childName)}}
                   sx={{
                     margin: "20px",
                     bgcolor: "#CD366B",
@@ -168,7 +202,7 @@ export default function RequestComplete() {
                     ":hover": { bgcolor: "#382A41", color: "white" },
                   }}
                 >
-                  Regect
+                  ReJect
                 </Button>
               </Grid>
             </Paper>

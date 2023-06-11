@@ -79,41 +79,37 @@ export default function Process() {
     e.preventDefault();
     for (var item in process) {
       try {
-        const res = await axios.post(URL + "/get-value-present", { key: process[item].name, childID });
+        const res = await axios.post("http://localhost:4000/api/get-value-present", { key: process[item].name, childID });
         console.log(process[item].name, res.data);
         if (res.data.m == false) {
-          toast.error(`Complete ${process[item].name} Steps`);
+          alert(`Complete ${process[item].name} Steps`);
           return;
         }
       } catch (err) {
         console.log(err);
-        toast.error(err.message);
+        alert(err.message);
         return;
-      }
-      
+      } 
+    }
+    // SET STATUS COMPLETED
+    try {
+      const res = await axios.post("http://localhost:4000/api/change-to-completed", {childID });
+      alert("Completed Succesfully");
+      console.log(res);
+    } catch (err) {
+      alert(err.message);
+      console.log(err);
     }
   }
-    
-
-    // SET STATUS COMPLETED
-
-  //   try {
-  //     const res = await axios.post(URL + "/change-to-completed", {childID });
-  //     toast.success("Completed Succesfully");
-  //     console.log(res);
-  //   } catch (err) {
-  //     toast.error(err.message);
-  //     console.log(err);
-  //   }
 
 
-  // }
   const handleRequestComplete = async (e) => {
     e.preventDefault();
     
       try {
         const res = await axios.post(URL + "/request-for-parent", {assignedWorkerName: state.user.username, note:notes, childID });
         console.log(res.data);
+        alert("Send Succesfully");
         
       } catch (err) {
         console.log(err);
@@ -271,8 +267,8 @@ export default function Process() {
                 disabled={!(state.user.role == "root")}
                 onChange={(e) => {setNotes(e.target.value)} }
                 id="outlined-required"
-                label="Notes"
-                placeholder="Notes"
+                label="Reason for Closing Case"
+                placeholder="Reason for Closing Case"
               />
             </Grid>
             

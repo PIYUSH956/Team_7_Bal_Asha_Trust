@@ -260,13 +260,14 @@ exports. getCaseDetail = async (req,res) =>{
 // IMP
 exports.requestForParentFound = async (req, res) => {
     try{
-        const childData = await Child.find({_id:req.body.childID});
-        // console.log(childData);
-        // const workerData =await User.find({_id:req.body.assignedWorkerID});
-        // console.log(workerData,req.body.assignedWorkerID);
-        const newRequest= new Request({status:"request",childName:childData.childName,assignedWorkerName:req.body.assignedWorkerName,note:req.body.note})
+        console.log(req.body);
+        var childData = await Child.find({_id:req.body.childID});
+        childData = childData[0];
+
+       console.log(childData);
+        const newRequest= new Request({status:"request",childID:req.body.childID,caseNumber:childData.caseNumber,childName:childData.childName,assignedWorkerName:req.body.assignedWorkerName,note:req.body.note})
         console.log(childData.childName, req.body.note);
-        const res=await newRequest.save();
+        const resulr=await newRequest.save();
 
         console.log(res);
         // const r = await Case.findOneAndUpdate({childID:req.body.childID},{$set:{status:"completed"}});
@@ -275,5 +276,47 @@ exports.requestForParentFound = async (req, res) => {
         console.log(err);
         return res.status(400).json({message:"Some Error Occured"});
     }
+
+}
+
+
+exports.fetchCompletionRequest = async (req,res) =>{
+    
+    try{
+    const result = await Request.find({});
+    return res.status(200).json(result);
+    }catch(err){
+        return res.status(400).json(err);
+    }
+
+
+
+}
+
+
+
+exports.changeCompletionStatus= async (req,res) =>{
+
+
+    const {response} = req.body;
+    console.log(response);
+
+    try{
+    if(response == true){
+
+        const childID = req.body.childID;
+        console.log(childID);
+        await Request.findOneAndDelete({childID:req.body.childID});
+        await Child.findOneAndUpdate({_id:childID},{$set:{status:"completed"}});
+        await Case.findOneAndUpdate({childID},{$set:{status:"completed"}});
+        return res.status(200).json({message:"Success"});
+    }else{
+        await Request.findOneAndDelete({childID:req.body.childID});
+    }
+}catch(err){
+    
+return res.status(400).json({message:err.message});
+
+}
 
 }
