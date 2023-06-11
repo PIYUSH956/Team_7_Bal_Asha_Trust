@@ -12,6 +12,7 @@ const {
     getAllCaseForRoot,
     getAssignAndNotGoing,
     changeToCompleted,
+    requestForParentFound,
     getCaseDetail,
 } = require("../controller/case");
 
@@ -39,6 +40,6 @@ router.post("/fake-api", fakeApiController);
 router.post("/change-to-completed",changeToCompleted);
 
 router.post("/get-case-detail",getCaseDetail);
-
+router.post("/request-for-parent",requestForParentFound);
 
 module.exports = router;

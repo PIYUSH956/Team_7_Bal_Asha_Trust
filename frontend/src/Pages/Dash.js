@@ -311,6 +311,7 @@ export default function PersistentDrawerLeft() {
             </ListItem>}
           </List>
           <List >
+
           {state.user.role == "admin" && <> 
           
           <ListItem
@@ -420,6 +421,34 @@ export default function PersistentDrawerLeft() {
                 <ListItemText primary={"Admitted in CCI by Family"} />
               </ListItemButton>
             </ListItem>
+
+            </>
+            
+            }
+
+        {state.user != null && state.user.role == "manager" && <> 
+          
+          <ListItem
+              key={"Request Complete"}
+              className="rowitem"
+              id={window.location.pathname == "/request-complete" ? "active" : ""}
+              disablePadding
+              onClick={() => {
+                navigate("/request-complete");
+              }}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {React.cloneElement(<PersonAddIcon />, {
+                    style: {
+                      color:"white"
+                    },
+                  })}
+                </ListItemIcon>
+                <ListItemText primary={"Request"} />
+              </ListItemButton>
+            </ListItem>
+          
 
             </>
             

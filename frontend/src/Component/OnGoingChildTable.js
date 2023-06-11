@@ -167,46 +167,6 @@ export default function PendingChildTable() {
   return (
     <>
 
-      {state.user.role == "manager" && 
-      
-        <div style={{display:'flex', justifyContent:'center', marginTop:'15px'}}>
-        <Paper sx={{width: "90%", overflow: "hidden", padding:'20px' }}>
-        <h3>Request For Closing</h3>
-        <Grid container
-          sx={{ margin: { xs: "10px", md: "25px" },
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize:'15px',
-            fontWeight:'bold'
-          }}
-        >
-          <Grid item xs={12} md={6} sx={{textAlign:'center', mb:2}}>
-              <p>Case Id : temp </p> <br/>
-              <p>Social Worker Name : temp </p>
-          </Grid>
-          
-          <Grid item xs={12} md={6} sx={{textAlign:'center', mb:2}}>
-          <p>Notes : temp </p> <br/>
-          <p>Document : <IconButton   
-                  sx={{ marginLeft: '15px', padding:'0px',
-                  }}
-                >
-                  <DownloadForOfflineIcon style={{height:'40px', width:'40px', color:'#CD366B'}}/>
-                </IconButton> </p>
-          </Grid>
-          <Button variant="contained" component="label" sx={{margin:'20px', bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {bgcolor: "#382A41",color: "white"}}}>
-            Accept
-          </Button>
-          <Button variant="contained" component="label" sx={{margin:'20px', bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {bgcolor: "#382A41",color: "white"}}}>
-            Regect
-          </Button>
-          </Grid>
-        </Paper>
-        </div>
-
-      }
-
       
 
       {childData.length == 0 ? (

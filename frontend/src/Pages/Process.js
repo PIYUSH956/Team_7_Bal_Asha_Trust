@@ -28,6 +28,8 @@ export default function Process() {
 
   const [four, setFour] = useState();
 
+  const [notes, setNotes] = useState();
+
   var objData = [];
 
   var state = useSelector((state) => ({ ...state }));
@@ -90,21 +92,36 @@ export default function Process() {
       }
       
     }
+  }
+    
 
     // SET STATUS COMPLETED
 
-    try {
-      const res = await axios.post(URL + "/change-to-completed", {childID });
-      toast.success("Completed Succesfully");
-      console.log(res);
-    } catch (err) {
-      toast.error(err.message);
-      console.log(err);
-    }
+  //   try {
+  //     const res = await axios.post(URL + "/change-to-completed", {childID });
+  //     toast.success("Completed Succesfully");
+  //     console.log(res);
+  //   } catch (err) {
+  //     toast.error(err.message);
+  //     console.log(err);
+  //   }
 
 
+  // }
+  const handleRequestComplete = async (e) => {
+    e.preventDefault();
+    
+      try {
+        const res = await axios.post(URL + "/request-for-parent", {assignedWorkerName: state.user.username, note:notes, childID });
+        console.log(res.data);
+        
+      } catch (err) {
+        console.log(err);
+        toast.error(err.message);
+        return;
+      }
+      
   }
-
 
   const generatePdf = () => {
     try {
@@ -206,34 +223,7 @@ export default function Process() {
             container
             
           >
-            {/* <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center', mb:2}}>
-              <TextField
-                variant="standard"
-                // sx={{ color: "#ff8100" }}
-                // value={value}
-                disabled={!(state.user.role == "root")}
-                // onChange={(e) => setValue(e.target.value)}
-                id="outlined-required"
-                label="Notes"
-                placeholder="Notes"
-                focused
-              />
-            </Grid>
-            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
-              <Button variant="contained" component="label" sx={{bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {
-                        bgcolor: "#382A41",color: "white"}}}>
-                {value == null ? "Upload File" : "Uploaded"}
-                Upload File
-                <input
-                  id="file-upload-button"
-                  type="file"
-                  hidden
-                  disabled={!(state.user.role == "root")}
-                // onChange={(e) => { updatePDF(e.target.files[0]) }}
-                />
-              </Button>
-              {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>}
-            </Grid> */}
+            
             <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
               <Button
                 variant="contained"
@@ -279,31 +269,13 @@ export default function Process() {
               <TextField
                 variant="outlined"
                 disabled={!(state.user.role == "root")}
-                // onChange={() => {} }
+                onChange={(e) => {setNotes(e.target.value)} }
                 id="outlined-required"
                 label="Notes"
                 placeholder="Notes"
               />
             </Grid>
-            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
-              <Button variant="contained" component="label" sx={{bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {
-                        bgcolor: "#382A41",color: "white"}}}>
-                Upload File
-                <input
-                  id="file-upload-button"
-                  type="file"
-                  hidden
-                  disabled={!(state.user.role == "root")}
-                // onChange={() => {} }
-                />
-              </Button>
-              <IconButton   
-                sx={{ marginLeft: '15px', padding:'0px',
-                }}
-              >
-                <DownloadForOfflineIcon style={{height:'40px', width:'40px', color:'#CD366B'}}/>
-              </IconButton>
-            </Grid>
+            
             <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
               <Button
                 variant="contained"
@@ -311,7 +283,7 @@ export default function Process() {
                   bgcolor: "#CD366B",
                   color: "white"
                 }}}
-                onClick={() => {console.log("handle request")}}
+                onClick={handleRequestComplete}
               >
                 Request to Complete
               </Button>

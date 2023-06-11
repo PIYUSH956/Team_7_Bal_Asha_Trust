@@ -29,6 +29,7 @@ import Surrendered from './Pages/Surrendered';
 import Orphaned from './Pages/Orphaned';
 import AdmittedInCCI from './Pages/AdmittedInCCI';
 import Detail from './Pages/Detail';
+import RequestComplete from './Component/RequestComplete';
 
 
 function App() {
@@ -95,7 +96,7 @@ function App() {
         <Route path="/on-going-cases" element={<OnGoingChildTable />} />
 
         <Route path="/completed-cases" element={<CompletedChildTable />} />
-       
+        {(state.user != null  && state.user.role == "manager") && <Route path="/request-complete" element={<RequestComplete />} />}
 
         <Route path="/login" element={<Login />} />
 

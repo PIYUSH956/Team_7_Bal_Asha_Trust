@@ -2,7 +2,9 @@ const Case = require('../models/case');
 const Child = require('../models/childSchema');
 const Fake = require('../models/fake');
 const Process = require('../models/process');
-const Notification = require('../models/notification')
+const Notification = require('../models/notification');
+const User = require('../models/user');
+const Request = require('../models/request');
 // IMP
 exports.assignCase = async (req, res) => {
 
@@ -250,6 +252,28 @@ exports. getCaseDetail = async (req,res) =>{
     }catch(err){
         console.log(err);
         return res.status(400).json(err);
+    }
+
+}
+
+
+// IMP
+exports.requestForParentFound = async (req, res) => {
+    try{
+        const childData = await Child.find({_id:req.body.childID});
+        // console.log(childData);
+        // const workerData =await User.find({_id:req.body.assignedWorkerID});
+        // console.log(workerData,req.body.assignedWorkerID);
+        const newRequest= new Request({status:"request",childName:childData.childName,assignedWorkerName:req.body.assignedWorkerName,note:req.body.note})
+        console.log(childData.childName, req.body.note);
+        const res=await newRequest.save();
+
+        console.log(res);
+        // const r = await Case.findOneAndUpdate({childID:req.body.childID},{$set:{status:"completed"}});
+        return res.status(200).json({message:"request send  Succesfully"});
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({message:"Some Error Occured"});
     }
 
 }
