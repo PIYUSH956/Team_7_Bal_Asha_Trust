@@ -16,6 +16,7 @@ import Review from '../Component/Review';
 import axios from 'axios';
 import { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const steps = ['Personal Details', 'Case Details', 'Review information'];
 
@@ -165,11 +166,14 @@ export default function ChildDataForm() {
         return;
       }
 
+
+      const URL = process.env.REACT_APP_URL;
+
       
     
 
       try{
-        const res = await axios.post("http://localhost:4000/api/insert-child-data", state.form);
+        const res = await axios.post(URL + "/insert-child-data", state.form);
         console.log(res);
         alert("Saved Successfully");
         setCaseNumber(res.data.caseNumber);
@@ -197,6 +201,8 @@ export default function ChildDataForm() {
     setActiveStep(activeStep - 1);
   };
 
+  const {t} = useTranslation();
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -214,7 +220,7 @@ export default function ChildDataForm() {
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Child Details
+            {t("Child Details")}
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -226,10 +232,10 @@ export default function ChildDataForm() {
           {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
-                Thank you for Registering.
+                {t("Thank you for Registering.")}
               </Typography>
               <Typography variant="subtitle1">
-                Your child with case number {caseNumber} has been successfully registered.
+                {t("Your child with case number")} {caseNumber} {t("has been successfully registered.")}
               </Typography>
             </React.Fragment>
           ) : (
@@ -241,7 +247,7 @@ export default function ChildDataForm() {
                     bgcolor: "#CD366B",
                     color: "white"
                   }}}>
-                    Back
+                    {t("Back")}
                   </Button>
                 )}
 

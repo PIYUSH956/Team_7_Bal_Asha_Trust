@@ -39,6 +39,7 @@ function formatDate(dateString) {
 
 
 export default function PersonalDetails(props) {
+    const URL = process.env.REACT_APP_URL;
 
     const classes = useStyles();
 

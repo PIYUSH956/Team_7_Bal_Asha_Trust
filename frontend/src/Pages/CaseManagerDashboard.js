@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import { useRef } from 'react';
 import "../Css/Admin.css";
+import { useTranslation } from 'react-i18next';
 
 const generateRandomColors = (numColors) => {
     const colors = [];
@@ -36,6 +37,7 @@ function formatString(inputString) {
 
 
 const CaseManagerDashboard = () => {
+    const URL = process.env.REACT_APP_URL;
     const labels1 = ["Assigned", "Not Assigned", "Completed"],
         labels2 = ["Andheri", "Borivali", "Kurla"],
         datasets = [
@@ -110,7 +112,7 @@ const CaseManagerDashboard = () => {
 
 
                 if (state.user != null && state.user.role == "manager") {
-                    var data = await axios.post("http://localhost:4000/api/get-all-child-data");
+                    var data = await axios.post(URL + "/get-all-child-data");
                     data = data.data;
                     console.log("CASE MANAGER", data);
 
@@ -122,7 +124,7 @@ const CaseManagerDashboard = () => {
                     setDataset1(pie1.count);
                     setDataset2(pie2.count)
 
-                    var rData = await axios.get("http://localhost:4000/api/get-social-worker");
+                    var rData = await axios.get(URL + "/get-social-worker");
                     rData = rData.data;
 
                     var pie3 = (createLabelAndCount1(rData));
@@ -163,13 +165,15 @@ const CaseManagerDashboard = () => {
             navigate("/pending");
     }
 
+    const {t} = useTranslation();
+
     return (
 
         <>
 
                 <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                     <Typography variant="h4" align="center" fontWeight="bold">
-                    Cases Information
+                    {t("Cases Information")}
                     </Typography>
                 </Box>
 
@@ -242,7 +246,7 @@ const CaseManagerDashboard = () => {
 
             <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                 <Typography variant="h4" align="center" fontWeight="bold">
-                Region Wise Distribution 
+                {t("Region Wise Distribution")} 
                 </Typography>
                 </Box>
             <Grid marginBottom={7} container spacing={3} padding={2} sx={{ justifyContent: 'center' }}>

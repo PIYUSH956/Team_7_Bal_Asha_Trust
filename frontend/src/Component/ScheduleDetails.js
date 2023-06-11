@@ -7,6 +7,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 const columns = [
     { field: 'col1', headerName: 'Email', width: 480 },
@@ -28,6 +29,8 @@ const headingstyle = {
 }
 
 export default function App(props) {
+
+  
     const param = useParams();
     const navigate = useNavigate();
     const [volunteer, setVolunteer] = useState({});
@@ -36,6 +39,7 @@ export default function App(props) {
     const [row, setRow] = useState([]);
     var state = useSelector((state) => ({ ...state }));
     const childID = param.id;
+    const URL = process.env.REACT_APP_URL;
 
    
     const managerID = state.user != null ? state.user._id : "";
@@ -45,7 +49,7 @@ export default function App(props) {
 
         async function fetchData() {
             try {
-                var data = await axios.get("http://localhost:4000/api/get-social-worker-for-schedule");
+                var data = await axios.get(URL + "/get-social-worker-for-schedule");
                 console.log(data);
                 data = data.data;
                 var arr = [];
@@ -82,7 +86,7 @@ export default function App(props) {
             caseManagerID : managerID
         }
         try{
-            const res = await axios.post("http://localhost:4000/api/assign-case",data);
+            const res = await axios.post(URL + "/assign-case",data);
             console.log(res);
             alert("Scheduled");
         }catch(err){
@@ -94,6 +98,8 @@ export default function App(props) {
         }
     };
 
+    const {t} = useTranslation();
+
 
     const handleChangeCategoery = async (e) => {
 
@@ -102,7 +108,7 @@ export default function App(props) {
         
      
         try{
-            const res = await axios.post("http://localhost:4000/api/change-category",childID,category);
+            const res = await axios.post(URL + "/change-category",childID,category);
             console.log(res);
             alert("Changed");
         }catch(err){
@@ -126,11 +132,11 @@ export default function App(props) {
                 <Grid>
                     <Grid container spacing={3}>
                         <Grid sx={{ paddingX: {xs: "5px", md: "100px"}}} item xs={12} md={6}>
-                            <Typography style={headingstyle}>Select Volunteer : </Typography>
+                            <Typography style={headingstyle}>{t('Select Volunteer')} : </Typography>
                             <TextField id="standard-basic" variant="standard" value={volunteer.col1} disabled fullWidth />
                         </Grid>
                         <Grid sx={{ paddingX: {xs: "5px", md: "100px"}}} item xs={12} md={6}>
-                            <Typography style={headingstyle}>Change Category : </Typography>
+                            <Typography style={headingstyle}>{t('Change Category')} : </Typography>
                             <TextField
                                 id="standard-select-currency"
                                 select
@@ -157,7 +163,7 @@ export default function App(props) {
                         onClick={handleSchedule} 
                         variant="contained"
                     >
-                        Sechedule the Case
+                        {t('Sechedule the Case')}
                     </Button>
                     {/* <Button 
                         sx={{ mt:'50px' ,bgcolor:'#382A41' , fontSize:'15px' , ":hover": {

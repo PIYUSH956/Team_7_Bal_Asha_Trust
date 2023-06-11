@@ -20,7 +20,7 @@ const {
 router.post("/assign-case", assignCase);
 
 // IMP FOR SOCIAL WORKER DASHBOARD GRAPH
-router.post("/get-assign-case", assignedCase);
+router.get("/get-assign-case", assignedCase);
 
 // IMP FOR ROOT
 router.post("/get-all-case-for-root", getAllCaseForRoot);
@@ -31,8 +31,8 @@ router.post("/get-pending-child-data-for-admin", getPendingChildDataForAdmin); /
 router.post("/get-on-going-child-data-for-admin",getOnGoingChildDataForAdmin); // KAAM KI HAI
 
 // IMP FOR SOCIAL WORKER PENDING CASES 
-router.post("/get-assign-and-not-going-case",getAssignAndNotGoing);
-router.post("/get-on-going-case", onGoingCases);
+router.get("/get-assign-and-not-going-case",getAssignAndNotGoing);
+router.get("/get-on-going-case", onGoingCases);
 router.post("/fake-api", fakeApiController);
 
 //IMP

@@ -22,6 +22,7 @@ const Box1 = (props) => {
 
 
     const category = props.category;
+    const URL = process.env.REACT_APP_URL;
     const assignedWorkerID = props.assignedWorkerID;
     const childID = props.childID;
   
@@ -51,7 +52,7 @@ const Box1 = (props) => {
         }
 
         try {
-            await axios.post("http://localhost:4000/api/update-process", {
+            await axios.post(URL + "/update-process", {
                 category,
                 assignedWorkerID,
                 childID,

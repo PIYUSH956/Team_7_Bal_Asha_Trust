@@ -13,6 +13,7 @@ const ChildList = () => {
 
   const [childData, setChildData] = useState([]);
   var state = useSelector((state) => ({ ...state }));
+  const URL = process.env.REACT_APP_URL;
   console.log(state);
 
 
@@ -21,14 +22,14 @@ const ChildList = () => {
     async function fetchData() {
       try {
         if (state.user != null && state.user.role == "manager") {
-          const data = await axios.post("http://localhost:4000/api/get-child-data", { status: "notAssigned" });
+          const data = await axios.post(URL + "/get-child-data", { status: "notAssigned" });
           console.log(data);
           setChildData(data.data);
         }
 
         else if (state.user != null && state.user.role == "root") {
          
-            var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
+            var data = await axios.post(URL + "/get-assign-case", { assignedWorkerID: state.user._id });
             data = data.data;
             console.log(data);
             var tempArr = [];

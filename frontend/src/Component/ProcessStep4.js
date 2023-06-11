@@ -5,6 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import Brightness1RoundedIcon from '@mui/icons-material/Brightness1Rounded';
+import { useTranslation } from "react-i18next";
 
 const paperStyle = {
     padding:20,
@@ -110,13 +111,15 @@ export default function ProcessStep4 (){
         }
     }
 
+    const {t} = useTranslation();
+
     return(
         <>
             <Grid>
                     <Box sx={{mt:2}}>
-                        <h6>Submit File</h6>
+                        <h6>{t("Submit File")}</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Submit the child file to the Specialised Adoption Agencies(SAA)</Typography>
+                            <Typography style={styleTypo}>{t("Submit the child file to the Specialised Adoption Agencies(SAA)")}</Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
                                     value={submitFileDate}
@@ -128,13 +131,13 @@ export default function ProcessStep4 (){
                                     onChange={handleStatus1} 
                                     sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor1}}>
                                     <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
-                                        Pending
+                                    {t('Pending')}
                                     </MenuItem>
                                     <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
-                                        Ongoing
+                                    {t('Ongoing')}
                                     </MenuItem>
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                        Completed
+                                    {t('Completed')}
                                     </MenuItem>
                             </Select>
                             <Button
@@ -157,10 +160,10 @@ export default function ProcessStep4 (){
                     </Box>
 
                     <Box sx={{mt:2}}>
-                        <h6>Medical Tests</h6>
+                        <h6>{t("Medical Tests")}</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Work with Specialised Adoption Agencies(SAA) and Child Care Institution(CCI) to complete the Medical Tests : Medical Examination Report(MER) and Child Study Report(CSR)</Typography>
-                            <Typography style={styleTypo}>Submit both the Medical Examination Report(MER) and Child Study Report(CSR) reports to the below fields respectively.</Typography>
+                            <Typography style={styleTypo}>{t("Work with Specialised Adoption Agencies(SAA) and Child Care Institution(CCI) to complete the Medical Tests : Medical Examination Report(MER) and Child Study Report(CSR)")}</Typography>
+                            <Typography style={styleTypo}>{t("Submit both the Medical Examination Report(MER) and Child Study Report(CSR) reports to the below fields respectively.")}</Typography>
                             <Grid>
                             <Input 
                                 value={mer} 
@@ -201,13 +204,13 @@ export default function ProcessStep4 (){
                                         onChange={handleStatus2} 
                                         sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor2}}>
                                         <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
-                                            Pending
+                                        {t('Pending')}
                                         </MenuItem>
                                         <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
-                                            Ongoing
+                                        {t('Ongoing')}
                                         </MenuItem>
                                         <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                            Completed
+                                        {t('Completed')}
                                         </MenuItem>
                                 </Select>
                                 <Button
@@ -231,9 +234,9 @@ export default function ProcessStep4 (){
                     </Box>
 
                     <Box sx={{mt:2}}>
-                        <h6>Follow-up</h6>
+                        <h6>{t("Follow-up")}</h6>
                         <Grid sx={{pl:2}}>
-                            <Typography style={styleTypo}>Follow-up with Specialised Adoption Agencies(SAA) to upload child into Caring System</Typography>
+                            <Typography style={styleTypo}>{t("Follow-up with Specialised Adoption Agencies(SAA) to upload child into Caring System")}</Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker 
                                     value={followUpDate}
@@ -245,13 +248,13 @@ export default function ProcessStep4 (){
                                     onChange={handleStatus3} 
                                     sx={{ml:1 , maxHeight:'40px' , backgroundColor:backgroundColor3}}>
                                     <MenuItem selected={true} value='pending'  style={{ backgroundColor: 'red' }}>
-                                        Pending
+                                    {t('Pending')}
                                     </MenuItem>
                                     <MenuItem value='ongoing'  style={{ backgroundColor: 'yellow' }}>
-                                        Ongoing
+                                    {t('Ongoing')}
                                     </MenuItem>
                                     <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                        Completed
+                                    {t('Completed')}
                                     </MenuItem>
                             </Select>
                             <Grid mt={1}>
@@ -267,7 +270,7 @@ export default function ProcessStep4 (){
                     </Box>
 
                     <Grid align='center' sx={{mt:4}}>
-                        <Button variant="contained">Update Section</Button>
+                        <Button variant="contained">{t("Update Section")}</Button>
                     </Grid>
 
             </Grid>

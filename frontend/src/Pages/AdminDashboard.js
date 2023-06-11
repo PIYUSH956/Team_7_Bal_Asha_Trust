@@ -12,6 +12,7 @@ import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import "../Css/Admin.css";
+import { useTranslation } from 'react-i18next';
 
 
 const options = {
@@ -58,6 +59,7 @@ const AdminDashboard = () => {
 
 
     var state = useSelector((state) => ({ ...state }));
+    const URL = process.env.REACT_APP_URL;
 
 
 
@@ -112,7 +114,7 @@ const AdminDashboard = () => {
 
 
                 if (state.user != null) {
-                    var data = await axios.post("http://localhost:4000/api/get-all-child-data");
+                    var data = await axios.post(URL + "/get-all-child-data");
                     data = data.data;
                     console.log("CHILD", data);
 
@@ -124,8 +126,8 @@ const AdminDashboard = () => {
                     setDataset1(pie1.count);
                     setDataset2(pie2.count)
 
-                    var rData = await axios.get("http://localhost:4000/api/get-social-worker");
-                    var mData = await axios.get("http://localhost:4000/api/get-case-manager");
+                    var rData = await axios.get(URL + "/get-social-worker");
+                    var mData = await axios.get(URL + "/get-case-manager");
                     rData = rData.data;
                     mData = mData.data;
                     console.log("SOCIAL", rData);
@@ -168,6 +170,8 @@ const AdminDashboard = () => {
             navigate("/pending");
     }
 
+    const {t} =useTranslation();
+
 
 
 
@@ -181,7 +185,7 @@ const AdminDashboard = () => {
         
                 <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                     <Typography variant="h4" align="center" fontWeight="bold">
-                    Cases Information
+                    {t("Cases Information")}
                     </Typography>
                 </Box>
                 <Grid container spacing={3} padding={2} sx={{ justifyContent: 'center' }}>
@@ -251,7 +255,7 @@ const AdminDashboard = () => {
 
                 <Box display="flex" justifyContent="center" alignItems="center" paddingTop={3} marginBottom={2} >
                 <Typography variant="h4" align="center" fontWeight="bold">
-                Region Wise Distribution 
+                {t("Region Wise Distribution")}
                 </Typography>
                 </Box>
                 

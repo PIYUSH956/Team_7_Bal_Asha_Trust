@@ -5,6 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const styleTypo = {
     fontSize: '13px',
@@ -198,15 +199,17 @@ export default function ProcessStep1(props) {
         }
     }
 
+    const {t} = useTranslation();
+
     return (
         <>
             <Grid>
 
                 <Box sx={{ mt: 2 }}>
-                    <h6>Newspaper Publication</h6>
+                    <h6>{t('Newspaper Publication')}</h6>
                     <Grid sx={{ pl: 2 }}>
-                        <Typography style={styleTypo}>Get Template for Newspaper</Typography>
-                        <Typography style={styleTypo}>Print it into any one National Newspaper</Typography>
+                        <Typography style={styleTypo}>{t('Get Template for Newspaper')}</Typography>
+                        <Typography style={styleTypo}>{t('Print it into any one National Newspaper')}</Typography>
                         <Grid mt={1}>
                             <TextField
                                 value={news2}
@@ -225,13 +228,13 @@ export default function ProcessStep1(props) {
                                 onChange={handleStatus1}
                                 sx={{ ml: 1, maxHeight: '40px', backgroundColor: backgroundColor1 }}>
                                 <MenuItem selected={true} value='pending' style={{ backgroundColor: 'red' }}>
-                                    Pending
+                                    {t('Pending')}
                                 </MenuItem>
                                 <MenuItem value='ongoing' style={{ backgroundColor: 'yellow' }}>
-                                    Ongoing
+                                    {t('Ongoing')}
                                 </MenuItem>
                                 <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                    Completed
+                                    {t('Completed')}
                                 </MenuItem>
                             </Select>
                         </Grid>
@@ -252,9 +255,9 @@ export default function ProcessStep1(props) {
 
 
                 <Box sx={{ mt: 5 }}>
-                    <h6>TV Telecasting</h6>
+                    <h6>{t('TV Telecasting')}</h6>
                     <Grid sx={{ pl: 2 }}>
-                        <Typography style={styleTypo}>Telecast the child details to any television channel</Typography>
+                        <Typography style={styleTypo}>{t('Telecast the child details to any television channel')}</Typography>
                         <TextField
                             value={tv}
                             onChange={(e) => setTV(e.target.value)}
@@ -273,13 +276,13 @@ export default function ProcessStep1(props) {
                             onChange={handleStatus2}
                             sx={{ ml: 1, maxHeight: '40px', backgroundColor: backgroundColor2 }}>
                             <MenuItem selected={true} value='pending' style={{ backgroundColor: 'red' }}>
-                                Pending
+                            {t('Pending')}
                             </MenuItem>
                             <MenuItem value='ongoing' style={{ backgroundColor: 'yellow' }}>
-                                Ongoing
+                            {t('Ongoing')}
                             </MenuItem>
                             <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                Completed
+                            {t('Completed')}
                             </MenuItem>
                         </Select>
                         <Grid mt={1}>
@@ -295,9 +298,9 @@ export default function ProcessStep1(props) {
                 </Box>
 
                 <Box sx={{ mt: 5 }}>
-                    <h6>File Missing Complaint</h6>
+                    <h6>{t('File Missing Complaint')}</h6>
                     <Grid sx={{ pl: 2 }}>
-                        <Typography style={styleTypo}>Telecast the child details to any television channel</Typography>
+                        <Typography style={styleTypo}>{t('Telecast the child details to any television channel')}</Typography>
                         <Input
                             value={fmc}
                             onChange={(e) => setFMC(e.target.value)}
@@ -315,13 +318,13 @@ export default function ProcessStep1(props) {
                             onChange={handleStatus3}
                             sx={{ ml: 1, maxHeight: '40px', backgroundColor: backgroundColor3 }}>
                             <MenuItem selected={true} value='pending' style={{ backgroundColor: 'red' }}>
-                                Pending
+                            {t('Pending')}
                             </MenuItem>
                             <MenuItem value='ongoing' style={{ backgroundColor: 'yellow' }}>
-                                Ongoing
+                            {t('Ongoing')}
                             </MenuItem>
                             <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                Completed
+                            {t('Completed')}
                             </MenuItem>
                         </Select>
                         <Button
@@ -346,7 +349,7 @@ export default function ProcessStep1(props) {
                 <Box sx={{ mt: 5 }}>
                     <h6>Medical Report (if needed)</h6>
                     <Grid sx={{ pl: 2 }}>
-                        <Typography style={styleTypo}>Telecast the child details to any television channel</Typography>
+                        <Typography style={styleTypo}>{t('Telecast the child details to any television channel')}</Typography>
                         <Input
                             value={mr}
                             onChange={(e) => setMR(e.target.value)}
@@ -361,13 +364,13 @@ export default function ProcessStep1(props) {
                             onChange={handleStatus4}
                             sx={{ ml: 1, maxHeight: '40px', backgroundColor: backgroundColor4 }}>
                             <MenuItem selected={true} value='pending' style={{ backgroundColor: 'red' }}>
-                                Pending
+                            {t('Pending')}
                             </MenuItem>
                             <MenuItem value='ongoing' style={{ backgroundColor: 'yellow' }}>
-                                Ongoing
+                            {t('Ongoing')}
                             </MenuItem>
                             <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                Completed
+                            {t('Completed')}
                             </MenuItem>
                         </Select>
                         <Button
@@ -390,9 +393,9 @@ export default function ProcessStep1(props) {
                 </Box>
 
                 <Box sx={{ mt: 5 }}>
-                    <h6>Social Investigation Report</h6>
+                    <h6>{t('Social Investigation Report')}</h6>
                     <Grid sx={{ pl: 2 }}>
-                        <Typography style={styleTypo}>Telecast the child details to any television channel</Typography>
+                        <Typography style={styleTypo}>{t('Telecast the child details to any television channel')}</Typography>
                         <Input
                             value={sir}
                             onChange={(e) => setSIR(e.target.value)}
@@ -408,13 +411,13 @@ export default function ProcessStep1(props) {
                             onChange={handleStatus5}
                             sx={{ ml: 1, maxHeight: '40px', backgroundColor: backgroundColor5 }}>
                             <MenuItem selected={true} value='pending' style={{ backgroundColor: 'red' }}>
-                                Pending
+                            {t('Pending')}
                             </MenuItem>
                             <MenuItem value='ongoing' style={{ backgroundColor: 'yellow' }}>
-                                Ongoing
+                            {t('Ongoing')}
                             </MenuItem>
                             <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                Completed
+                            {t('Completed')}
                             </MenuItem>
                         </Select>
 
@@ -438,16 +441,16 @@ export default function ProcessStep1(props) {
                 </Box>
 
                 <Box sx={{ mt: 5 }}>
-                    <h6>Parent Info</h6>
+                    <h6>{t('Parent Info')}</h6>
                     <Grid sx={{ pl: 2 }}>
-                        <Typography style={styleTypo}>Parent found or not?</Typography>
+                        <Typography style={styleTypo}>{t('Parent found or not?')}</Typography>
                         <Select
                             value={parentInfo}
                             onChange={(e) => setParentInfo(e.target.value)}
                             sx={{ mr: 1, maxHeight: '40px' }}
                         >
-                            <MenuItem value='found'> Found </MenuItem>
-                            <MenuItem value='not found'> Not Found</MenuItem>
+                            <MenuItem value='found'> {t('Found')}</MenuItem>
+                            <MenuItem value='not found'> {t('Not Found')}</MenuItem>
                         </Select>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
@@ -460,13 +463,13 @@ export default function ProcessStep1(props) {
                             onChange={handleStatus6}
                             sx={{ ml: 1, maxHeight: '40px', backgroundColor: backgroundColor6 }}>
                             <MenuItem selected={true} value='pending' style={{ backgroundColor: 'red' }}>
-                                Pending
+                            {t('Pending')}
                             </MenuItem>
                             <MenuItem value='ongoing' style={{ backgroundColor: 'yellow' }}>
-                                Ongoing
+                            {t('Ongoing')}
                             </MenuItem>
                             <MenuItem value='completed' style={{ backgroundColor: 'green' }}>
-                                Completed
+                            {t('Completed')}
                             </MenuItem>
                         </Select>
                         <Grid mt={1}>
@@ -482,7 +485,7 @@ export default function ProcessStep1(props) {
                 </Box>
 
                 <Grid align='center' sx={{ mt: 4 }}>
-                    <Button variant="contained">Update Section</Button>
+                    <Button variant="contained">{t('Update Section')}</Button>
                 </Grid>
             </Grid>
 

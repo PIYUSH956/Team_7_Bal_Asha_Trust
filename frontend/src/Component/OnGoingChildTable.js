@@ -21,12 +21,24 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import img1 from "../Images/LoginPageImage.jpg";
 
+
+const check  = (v) =>{
+  const regex = /(\d+) years/;
+  const match = v.match(regex);
+
+  if (match) {
+      var year = parseInt(match[1]);
+      year = Number(year);
+      return year >= '17' && year < '18';
+  }
+}
+
 const useStyles = makeStyles((theme) => ({
   tableHeader: {
     backgroundColor: "#382A41",
     color: "white",
   },
-  hoverRow: {
+  hoverRow1: {
     "&:hover": {
       backgroundColor: "#CD366B", // Change this to your desired hover color
       cursor: "pointer",
@@ -89,6 +101,7 @@ export default function PendingChildTable() {
   var state = useSelector((state) => ({ ...state }));
   // const [id,setID] = useState(state.user._id);
   console.log(state);
+  const URL = process.env.REACT_APP_URL;
 
   useEffect(() => {
     async function fetchData() {
@@ -97,15 +110,15 @@ export default function PendingChildTable() {
           state.user != null &&
           (state.user.role == "manager" || state.user.role == "admin")
         ) {
-          const data = await axios.post(
-            "http://localhost:4000/api/get-on-going-child-data-for-admin"
+          const data = await axios.post(URL + 
+            "/get-on-going-child-data-for-admin"
           );
           console.log("ON GOING", data);
           setChildData(data.data);
         } else if (state.user != null && state.user.role == "root") {
-          var data = await axios.post(
-            "http://localhost:4000/api/get-on-going-case",
-            { assignedWorkerID: state.user._id }
+
+          var data = await axios.get(URL +   "/get-on-going-case",
+            {params:{ assignedWorkerID: state.user._id }}
           );
           data = data.data;
           console.log(data);
@@ -126,6 +139,27 @@ export default function PendingChildTable() {
     navigate("/profile/" + e._id);
     localStorage.setItem("temp-profile", JSON.stringify(e));
   };
+
+  const [flag, setFlag] = React.useState(true);
+  const handleSort = (e) => {
+    console.log(e);
+    const sorted = [...childData].sort((a, b) => {
+      const aValue = a[e];
+      const bValue = b[e];
+
+      if (flag) {
+        if (aValue < bValue) return -1;
+        if (aValue > bValue) return 1;
+      } else {
+        if (aValue > bValue) return -1;
+        if (aValue < bValue) return 1;
+      }
+    });
+
+    setChildData(sorted);
+    setFlag(!flag);
+  };
+
 
   return (
     <>
@@ -163,7 +197,11 @@ export default function PendingChildTable() {
       ) : (
         <>
           <div className="table-content">
+          
             <Paper sx={{ width: "90%", overflow: "hidden" }}>
+            <div>
+        <h3>** Cases which need urgent attention are highlighted.</h3>
+      </div>
               <TableContainer sx={{ maxHeight: 580 }}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
@@ -173,6 +211,9 @@ export default function PendingChildTable() {
                           key={column.id}
                           align={column.align}
                           style={{ minWidth: column.minWidth }}
+                          onClick={() => {
+                            handleSort(column.id);
+                          }}
                           className={classes.tableHeader}
                         >
                           {column.label}
@@ -190,21 +231,26 @@ export default function PendingChildTable() {
                         .map((val) => {
                           return (
                             <TableRow
-                              className={classes.hoverRow}
+                            
+                              className={classes.hoverRow1}
                               role="checkbox"
                               tabIndex={-1}
                               key={val.id}
                             >
                               {columns.map((column) => {
+                                {console.log("ERR",val.age,column,check(val.age))}
                                 const value =
                                   column.id == null ? null : val[column.id];
                                 console.log(column, val);
                                 return (
                                   <TableCell
+
                                     onClick={() => {
                                       handleCellClick(val);
                                     }}
-                                    className={classes.hoverCell}
+                                    style={{
+                                      backgroundColor: check(val.age) ? 'rgb(203, 160, 232)' : '',
+                                    }}
                                     key={column.id}
                                     align={column.align}
                                   >

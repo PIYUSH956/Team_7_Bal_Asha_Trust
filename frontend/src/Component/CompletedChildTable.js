@@ -74,6 +74,7 @@ export default function CompletedChildTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const URL = process.env.REACT_APP_URL;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -95,14 +96,14 @@ export default function CompletedChildTable() {
           state.user != null &&
           (state.user.role == "manager" || state.user.role == "admin")
         ) {
-          const data = await axios.post(
-            "http://localhost:4000/api/get-completed-child-data"
+          const data = await axios.post(URL + 
+            "/get-completed-child-data"
           );
           console.log(data);
           setChildData(data.data);
         } else if (state.user != null && state.user.role == "root") {
-          var data = await axios.post(
-            "http://localhost:4000/api/get-completed-case-for-root",
+          var data = await axios.post(URL + 
+            "/get-completed-case-for-root",
             { assignedWorkerID: state.user._id }
           );
           data = data.data;
@@ -126,24 +127,7 @@ export default function CompletedChildTable() {
     fetchData();
   }, []);
 
-  // const handleCellClick = async (id) => {
-  //   const profileDetail = id;
-  //   const childID = id._id;
-  //   console.log(profileDetail);
-  //   console.log(childID);
-  //   try {
-  //     const result = await axios.post(
-  //       "http://localhost:4000/api/get-case-detail",
-  //       { childID }
-  //     );
-  //     const workerDetail = result.data.worker;
-  //     const processDetail = result.data.process;
-  //     console.log(workerDetail,processDetail);
-  //     // SHOW THIS IN PDF AS DOWNLOADABLE
-  //   } catch (err) {
-  //     alert(err.message);
-  //   }
-  // };
+
   const navigate = useNavigate();
   const handleCellClick = (e) => {
     navigate("/profile/" + e._id);
@@ -153,11 +137,10 @@ export default function CompletedChildTable() {
 
   return (
     <>
-      {childData.length == 0 ? (
+      {childData.length == 1 ? (
         <>
           <div className="alert-box">
-          <div style={{border:'1px solid gray', boxShadow:'10px 10px 5px #aaaaaa', padding:'10px', borderRadius:'20px'}}>
-            <Card className="cardItem" style={{ maxWidth: '445px', backgroundColor:'#382A41', overflow:'hidden', borderRadius:'20px', padding:'25px', transition:'transform 2.5s, box-shadow 0.5s'}}>
+            <Card className="cardItem" sx={{ maxWidth: 445 }}>
               <CardActionArea>
                 <CardContent
                   sx={{
@@ -174,14 +157,12 @@ export default function CompletedChildTable() {
                     gutterBottom
                     variant="h5"
                     component="div"
-                    style={{color:'white'}}
                   >
                     No Completed Cases Currently
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
-          </div>
           </div>
         </>
       ) : (

@@ -30,16 +30,18 @@ export default function Process() {
   const category = useParams().category;
   const childID = useParams().id;
   const assignedWorkerID = state.user._id;
+  const URL ="http://localhost:4000/api";
+  console.log(URL, "cds");
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const processStep = await axios.post(
-          "http://localhost:4000/api/get-process-by-category",
+        const processStep = await axios.post(URL + 
+          "/get-process-by-category",
           { category }
         );
-        const processData = await axios.post(
-          "http://localhost:4000/api/get-data-in-process",
+        const processData = await axios.post(URL +
+          "/get-data-in-process",
           { childID, assignedWorkerID }
         );
         const A = processStep.data[0].steps;
@@ -71,7 +73,7 @@ export default function Process() {
     e.preventDefault();
     for (var item in process) {
       try {
-        const res = await axios.post("http://localhost:4000/api/get-value-present", { key: process[item].name, childID });
+        const res = await axios.post(URL + "/get-value-present", { key: process[item].name, childID });
         console.log(process[item].name, res.data);
         if (res.data.m == false) {
           alert(`Complete ${process[item].name} Steps`);
@@ -88,7 +90,7 @@ export default function Process() {
     // SET STATUS COMPLETED
 
     try {
-      const res = await axios.post("http://localhost:4000/api/change-to-completed", {childID });
+      const res = await axios.post(URL + "/change-to-completed", {childID });
       alert("Completed Succesfully");
       console.log(res);
     } catch (err) {

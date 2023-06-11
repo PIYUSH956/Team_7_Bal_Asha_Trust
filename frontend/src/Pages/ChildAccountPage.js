@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
+import { t } from 'i18next';
 
 const boxStyle = {
     marginTop:'2%',
@@ -82,13 +83,14 @@ export default function ChildAccountPage(){
 
     const [value, setValue] = React.useState('0');
     const [childData,setChildData] = useState({}); 
+    const URL = process.env.REACT_APP_URL;
 
   useEffect(()=>{
 
     async function fetchData() {
       try {
         
-        const data = await axios.post("http://localhost:4000/api/get-child-data-with-image",{_id:uid});
+        const data = await axios.post(URL + "/get-child-data-with-image",{_id:uid});
         console.log(data);
         setChildData(data.data[0]);
       } catch (err) {
@@ -178,7 +180,7 @@ export default function ChildAccountPage(){
                 </Paper>
             </Box>
                 
-            <h2 style={heading}>Case Details</h2>
+            <h2 style={heading}>{t("Case Details")}</h2>
             <Box style={boxStyle2} mt={5} mb={10}>
                     <Box sx={{
                         display: 'flex',
@@ -187,31 +189,31 @@ export default function ChildAccountPage(){
                     }}>
                         <Paper elevation={10} className={classes.paper}>
                             <Grid>
-                                <Typography style={headingStyle} >Reason for Admission</Typography>
+                                <Typography style={headingStyle} >{t("Reason for Admission")}</Typography>
                             </Grid>
                             <Grid> 
                                 <Typography style={contentStyle}>{childData.reasonForAdmission}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Case History</Typography>
+                                <Typography style={headingStyle}>{t("Case History")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.caseHistory}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Document Completed</Typography>
+                                <Typography style={headingStyle}>{t("Document Completed")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.documentCompleted}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Document Pending</Typography>
+                                <Typography style={headingStyle}>{t("Document Pending")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.documentPending}</Typography>    
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Newspaper Publication Pending Since</Typography>
+                                <Typography style={headingStyle}>{t("Newspaper Publication Pending Since")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.newsPaperPublicationPending}</Typography>
@@ -220,31 +222,31 @@ export default function ChildAccountPage(){
 
                         <Paper elevation={10} className={classes.paper} >
                             <Grid>
-                                <Typography style={headingStyle} >Reason for Flagging</Typography>
+                                <Typography style={headingStyle} >{t("Reason for Flagging")}</Typography>
                             </Grid>
                             <Grid>    
                                 <Typography style={contentStyle}>{childData.reasonForFlagging}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Last Call Since</Typography>
+                                <Typography style={headingStyle}>{t("Last Call Since")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.lastCallSince}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Total Shelter Home Stay</Typography>
+                                <Typography style={headingStyle}>{t("Total Shelter Home Stay")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.totalShelterHomeStay}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Last Visit Since</Typography>
+                                <Typography style={headingStyle}>{t("Last Visit Since")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.lastVisitSince}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Police Report Pending Since</Typography>
+                                <Typography style={headingStyle}>{t("Police Report Pending Since")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.policeReportPending}</Typography>
@@ -254,31 +256,31 @@ export default function ChildAccountPage(){
 
                         <Paper elevation={10} className={classes.paper} >
                             <Grid>
-                                <Typography style={headingStyle}>Child Welfare Committee Last Review Date</Typography>
+                                <Typography style={headingStyle}>{t("Child Welfare Committee Last Review Date")}</Typography>
                             </Grid>
                             <Grid>    
                                 <Typography style={contentStyle}>{childData.childWelfareCommitteLastReviewDate}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Last Child Welfare Committee Order</Typography>
+                                <Typography style={headingStyle}>{t("Last Child Welfare Committee Order")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.lastChildWelfareCommiteOrder}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Gaurdian</Typography>
+                                <Typography style={headingStyle}>{t("Gaurdian")}</Typography>
                             </Grid>
                             <Grid>    
                                 <Typography style={contentStyle}>{childData.guardian}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Sibling Details</Typography>
+                                <Typography style={headingStyle}>{t("Sibling Details")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.siblingDetails}</Typography>
                             </Grid>
                             <Grid>
-                                <Typography style={headingStyle}>Surrender Pending Status</Typography>
+                                <Typography style={headingStyle}>{t("Surrender Pending Status")}</Typography>
                             </Grid>
                             <Grid>
                                 <Typography style={contentStyle}>{childData.surrenderPending}</Typography>

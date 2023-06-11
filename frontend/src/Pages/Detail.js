@@ -104,7 +104,11 @@ const Detail = () => {
             alignItems: "center",
           }}
         >
+          
           <div style={{marginBottom:'40px'}} >
+            <p style={{ fontSize: "22px", fontWeight: "bold" }}>
+              BAL ASHA TRUST
+            </p>
             <p style={{ fontSize: "18px", fontWeight: "bold" }}>
               Case Number : {caseNumber}
             </p>
