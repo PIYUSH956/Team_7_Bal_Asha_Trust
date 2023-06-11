@@ -91,13 +91,14 @@ const Abandond = () => {
     const [udesc, setUdesc] = useState("");
 
     const [steps, setSteps] = useState([]);
+    const URL = process.env.REACT_APP_URL;
 
     useEffect(() => {
 
         async function fetchData() {
             try {
 
-                const p = await axios.get("http://localhost:4000/api/get-abandond");
+                const p = await axios.get(URL + "/get-abandond");
                 console.log(p.data);
                 console.log(p.data[0].steps);
                 setSteps(p.data[0].steps);
@@ -116,7 +117,7 @@ const Abandond = () => {
 
         try {
 
-            const po = await axios.post("http://localhost:4000/api/add-abandond", { name, type, step, part, num, desc });
+            const po = await axios.post(URL + "/add-abandond", { name, type, step, part, num, desc });
             console.log(po);
             index = 0;
             fetchData();
@@ -135,7 +136,7 @@ const Abandond = () => {
 
     const fetchData = async () => {
         try {
-            const p = await axios.get("http://localhost:4000/api/get-abandond");
+            const p = await axios.get(URL + "/get-abandond");
             console.log(p.data);
             console.log(p.data[0].steps);
             setSteps(p.data[0].steps);

@@ -24,15 +24,15 @@ const Detail = () => {
     const [data,setData] = useState([]);
     const name = localStorage.getItem("child-name");
     const caseNumber = localStorage.getItem("case-number");
-  
+    const URL = process.env.REACT_APP_URL;
     const childID = param.id;
     console.log(childID);
     useEffect(() => {
         const handleCellClick = async () => {
 
             try {
-                const result = await axios.post(
-                    "http://localhost:4000/api/get-case-detail",
+                const result = await axios.post(URL + 
+                    "/get-case-detail",
                     { childID }
                 );
                 const workerDetail = result.data.worker;

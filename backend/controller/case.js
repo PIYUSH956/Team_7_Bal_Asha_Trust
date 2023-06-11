@@ -29,10 +29,12 @@ exports.assignCase = async (req, res) => {
 exports.assignedCase = async (req, res) => {
 
 
-    console.log(req.body);
+    console.log(req.headers);
+    const assignedWorkerID = req.query.assignedWorkerID;
+    console.log(assignedWorkerID);
 
     try {
-        const x = await Case.find({ assignedWorkerID: req.body.assignedWorkerID }).populate({
+        const x = await Case.find({ assignedWorkerID }).populate({
             path: "childID",
         }).select("-image");
         console.log(x);
@@ -50,10 +52,11 @@ exports.assignedCase = async (req, res) => {
 exports.getAssignAndNotGoing= async (req, res) => {
 
 
-    console.log(req.body);
+    const assignedWorkerID = req.query.assignedWorkerID;
+    console.log(assignedWorkerID);
 
     try {
-        const x = await Case.find({ assignedWorkerID: req.body.assignedWorkerID }).populate({
+        const x = await Case.find({ assignedWorkerID }).populate({
             path: "childID",
             match:{
                 $or:[{status:"assigned"}]
@@ -146,13 +149,14 @@ exports.fakeApiController = async (req, res) => {
 exports.onGoingCases = async (req, res) => {
 
 
-    console.log(req.body);
-
+    
+    const assignedWorkerID = req.query.assignedWorkerID;
+    console.log(assignedWorkerID);
     try {
 
         const x = await Process.find({}).populate({
             path: "caseID",
-            match: { assignedWorkerID: req.body.assignedWorkerID },
+            match: { assignedWorkerID },
             populate: {
                 path: "childID",
                 match: { status: "onGoing" }

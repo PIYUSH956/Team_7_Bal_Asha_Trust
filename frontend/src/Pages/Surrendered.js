@@ -76,13 +76,15 @@ const [desc, setDesc] = useState("");
 
 const [steps, setSteps] = useState([]);
 
+const URL = process.env.REACT_APP_URL;
+
 
 useEffect(() => {
 
     async function fetchData() {
         try {
 
-            const p = await axios.get("http://localhost:4000/api/get-surrendered");
+            const p = await axios.get(URL + "/get-surrendered");
             console.log(p.data);
             console.log(p.data[0].steps);
             setSteps(p.data[0].steps);

@@ -13,6 +13,7 @@ export default function CaseDetailsForm() {
 
   var state = useSelector((state) => ({ ...state }));
   console.log(state);
+  const URL = process.env.REACT_APP_URL;
 
   const dispatch = useDispatch();
 

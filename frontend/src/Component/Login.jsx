@@ -23,6 +23,8 @@ function Login() {
   
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const URL = process.env.REACT_APP_URL;
+  console.log("URL",URL);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,7 +52,7 @@ function Login() {
     try {
       setLoading(true);
       console.log(email,password);
-      const res = await axios.post("http://localhost:4000/api/login", { email, password });
+      const res = await axios.post(URL + "/login", { email, password });
 
       const payload = res.data;
 

@@ -89,6 +89,7 @@ export default function PendingChildTable() {
   var state = useSelector((state) => ({ ...state }));
   // const [id,setID] = useState(state.user._id);
   console.log(state);
+  const URL = process.env.REACT_APP_URL;
 
   useEffect(() => {
     async function fetchData() {
@@ -97,21 +98,21 @@ export default function PendingChildTable() {
           state.user != null &&
           (state.user.role == "manager" || state.user.role == "admin")
         ) {
-          const data = await axios.post(
-            "http://localhost:4000/api/get-on-going-child-data-for-admin"
+          const data = await axios.get(URL + 
+            "/get-on-going-child-data-for-admin"
           );
           console.log("ON GOING", data);
           setChildData(data.data);
         } else if (state.user != null && state.user.role == "root") {
-          var data = await axios.post(
-            "http://localhost:4000/api/get-on-going-case",
-            { assignedWorkerID: state.user._id }
+
+          var data = await axios.get(URL +   "/get-on-going-case",
+            {params:{ assignedWorkerID: state.user._id }}
           );
           data = data.data;
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            if (item.caseID != null) tempArr.push(item.caseID.childID);
+            if (item.caseID != null && item.caseID.childID != null) tempArr.push(item.caseID.childID);
           }
           setChildData(tempArr);
         }
@@ -196,6 +197,7 @@ export default function PendingChildTable() {
                               key={val.id}
                             >
                               {columns.map((column) => {
+                                {console.log("ERR",val,column)}
                                 const value =
                                   column.id == null ? null : val[column.id];
                                 console.log(column, val);

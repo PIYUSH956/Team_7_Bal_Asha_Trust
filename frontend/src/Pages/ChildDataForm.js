@@ -166,11 +166,14 @@ export default function ChildDataForm() {
         return;
       }
 
+
+      const URL = process.env.REACT_APP_URL;
+
       
     
 
       try{
-        const res = await axios.post("http://localhost:4000/api/insert-child-data", state.form);
+        const res = await axios.post(URL + "/insert-child-data", state.form);
         console.log(res);
         alert("Saved Successfully");
         setCaseNumber(res.data.caseNumber);

@@ -59,6 +59,7 @@ const AdminDashboard = () => {
 
 
     var state = useSelector((state) => ({ ...state }));
+    const URL = process.env.REACT_APP_URL;
 
 
 
@@ -113,7 +114,7 @@ const AdminDashboard = () => {
 
 
                 if (state.user != null) {
-                    var data = await axios.post("http://localhost:4000/api/get-all-child-data");
+                    var data = await axios.post(URL + "/get-all-child-data");
                     data = data.data;
                     console.log("CHILD", data);
 
@@ -125,8 +126,8 @@ const AdminDashboard = () => {
                     setDataset1(pie1.count);
                     setDataset2(pie2.count)
 
-                    var rData = await axios.get("http://localhost:4000/api/get-social-worker");
-                    var mData = await axios.get("http://localhost:4000/api/get-case-manager");
+                    var rData = await axios.get(URL + "/get-social-worker");
+                    var mData = await axios.get(URL + "/get-case-manager");
                     rData = rData.data;
                     mData = mData.data;
                     console.log("SOCIAL", rData);

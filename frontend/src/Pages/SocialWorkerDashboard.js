@@ -34,6 +34,7 @@ const SocialWorkerDashboard = () => {
 
 
     var state = useSelector((state) => ({ ...state }));
+    const URL = process.env.REACT_APP_URL;
 
 
     const [childData, setChildData] = useState([]);
@@ -95,7 +96,7 @@ const SocialWorkerDashboard = () => {
                 }
 
                 if (state.user != null) {
-                    var data = await axios.post("http://localhost:4000/api/get-assign-case", { assignedWorkerID: state.user._id });
+                    var data = await axios.get(URL + "/get-assign-case", { params: {assignedWorkerID: state.user._id} });
                     data = data.data;
 
 

@@ -37,6 +37,7 @@ function formatString(inputString) {
 
 
 const CaseManagerDashboard = () => {
+    const URL = process.env.REACT_APP_URL;
     const labels1 = ["Assigned", "Not Assigned", "Completed"],
         labels2 = ["Andheri", "Borivali", "Kurla"],
         datasets = [
@@ -111,7 +112,7 @@ const CaseManagerDashboard = () => {
 
 
                 if (state.user != null && state.user.role == "manager") {
-                    var data = await axios.post("http://localhost:4000/api/get-all-child-data");
+                    var data = await axios.post(URL + "/get-all-child-data");
                     data = data.data;
                     console.log("CASE MANAGER", data);
 
@@ -123,7 +124,7 @@ const CaseManagerDashboard = () => {
                     setDataset1(pie1.count);
                     setDataset2(pie2.count)
 
-                    var rData = await axios.get("http://localhost:4000/api/get-social-worker");
+                    var rData = await axios.get(URL + "/get-social-worker");
                     rData = rData.data;
 
                     var pie3 = (createLabelAndCount1(rData));

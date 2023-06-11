@@ -29,6 +29,8 @@ const headingstyle = {
 }
 
 export default function App(props) {
+
+  
     const param = useParams();
     const navigate = useNavigate();
     const [volunteer, setVolunteer] = useState({});
@@ -37,6 +39,7 @@ export default function App(props) {
     const [row, setRow] = useState([]);
     var state = useSelector((state) => ({ ...state }));
     const childID = param.id;
+    const URL = process.env.REACT_APP_URL;
 
    
     const managerID = state.user != null ? state.user._id : "";
@@ -46,7 +49,7 @@ export default function App(props) {
 
         async function fetchData() {
             try {
-                var data = await axios.get("http://localhost:4000/api/get-social-worker-for-schedule");
+                var data = await axios.get(URL + "/get-social-worker-for-schedule");
                 console.log(data);
                 data = data.data;
                 var arr = [];
@@ -83,7 +86,7 @@ export default function App(props) {
             caseManagerID : managerID
         }
         try{
-            const res = await axios.post("http://localhost:4000/api/assign-case",data);
+            const res = await axios.post(URL + "/assign-case",data);
             console.log(res);
             alert("Scheduled");
         }catch(err){
@@ -105,7 +108,7 @@ export default function App(props) {
         
      
         try{
-            const res = await axios.post("http://localhost:4000/api/change-category",childID,category);
+            const res = await axios.post(URL + "/change-category",childID,category);
             console.log(res);
             alert("Changed");
         }catch(err){
