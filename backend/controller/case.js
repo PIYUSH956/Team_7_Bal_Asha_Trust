@@ -2,7 +2,7 @@ const Case = require('../models/case');
 const Child = require('../models/childSchema');
 const Fake = require('../models/fake');
 const Process = require('../models/process');
-
+const Notification = require('../models/notification')
 // IMP
 exports.assignCase = async (req, res) => {
 

@@ -111,7 +111,7 @@ export default function PendingChildTable() {
           console.log(data);
           var tempArr = [];
           for (const item of data) {
-            if (item.caseID != null) tempArr.push(item.caseID.childID);
+            if (item.caseID != null && item.caseID.childID != null) tempArr.push(item.caseID.childID);
           }
           setChildData(tempArr);
         }

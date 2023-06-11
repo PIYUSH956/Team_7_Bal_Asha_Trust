@@ -114,7 +114,7 @@ export default function Process() {
 
   return (
     <div>
-     <div onClick={generatePdf} id = "report" style={{ width: '210mm', height: '297mm', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+     {/* <div onClick={generatePdf} id = "report" style={{ width: '210mm', height: '297mm', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={{ marginBottom: '20px' }}>
         <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Child Name:</p>
         <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Case Manager:</p>
@@ -137,7 +137,7 @@ export default function Process() {
           ))}
         </tbody>
       </table>
-    </div>
+    </div> */}
       {process.map((pro) => {
         return (
           <>
@@ -193,13 +193,13 @@ export default function Process() {
           <Grid
             sx={{ margin: { xs: "10px", md: "25px" },
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             }}
             container
             
           >
-            <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center', mb:2}}>
+            {/* <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center', mb:2}}>
               <TextField
                 variant="standard"
                 // sx={{ color: "#ff8100" }}
@@ -215,7 +215,7 @@ export default function Process() {
             <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
               <Button variant="contained" component="label" sx={{bgcolor:'#CD366B' , fontSize:'15px' , ":hover": {
                         bgcolor: "#382A41",color: "white"}}}>
-                {/* {value == null ? "Upload File" : "Uploaded"} */}
+                {value == null ? "Upload File" : "Uploaded"}
                 Upload File
                 <input
                   id="file-upload-button"
@@ -225,8 +225,8 @@ export default function Process() {
                 // onChange={(e) => { updatePDF(e.target.files[0]) }}
                 />
               </Button>
-              {/* {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>} */}
-            </Grid>
+              {value != null && <Typography onClick={(e) => { downloadPDF(value) }} sx={{ marginLeft: '10px', marginTop: '17px' }}>Download</Typography>}
+            </Grid> */}
             <Grid item xs={12} md={4} sx={{display:'flex' , justifyContent:'center',mb:2}}>
               <Button
                 variant="contained"

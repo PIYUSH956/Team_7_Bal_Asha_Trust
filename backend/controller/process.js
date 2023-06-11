@@ -168,10 +168,10 @@ exports.getValuePresent = async (req, res) => {
     var childID = req.body.childID;
     console.log(key, childID);
     try {
-        const caseID = await Case.find({childID},{"_id":1});
+        var caseID = await Case.find({childID},{"_id":1});
         console.log(caseID);
-        childID = caseID[0]._id;
-        const result = await Process.find({ childID, data: { $elemMatch: { name: key } } }, { "data.$": 1 });
+        caseID = caseID[0]._id;
+        const result = await Process.find({ caseID, data: { $elemMatch: { name: key } } }, { "data.$": 1 });
         //    console.log(result[0].data[0].status);
         
         if (result == null || result[0] == null || result[0].data[0] == null ) return res.status(200).json({ m: false });

@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import { Grid, Avatar , Button, IconButton, Input, TextField, Typography, Paper } from "@mui/material";
 import Box from '@mui/material/Box';
-import profilePhoto from "../Images/LoginImage.jpg"
-import { Label, PhotoCamera } from '@mui/icons-material';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateField } from '@mui/x-date-pickers/DateField';
-import dayjs from 'dayjs';
-import { DatePicker } from '@mui/lab';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { useNavigate } from 'react-router-dom';
 import {useSelector} from 'react-redux';
-import MenuItem from '@mui/material/MenuItem';
-
 import ProcessIcon from '@mui/icons-material/DeveloperBoard';
+import { makeStyles } from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles((theme) => ({
+    centerButton: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "10vh", // Optional, to center vertically on the screen
+    },
+  }));
+
 
 function formatDate(dateString) {
     if(dateString == null) return "";
@@ -38,7 +40,8 @@ function formatDate(dateString) {
 
 export default function PersonalDetails(props) {
 
-   
+    const classes = useStyles();
+
     var state = useSelector((state) => ({ ...state }));
     const navigate = useNavigate();
 
@@ -102,7 +105,7 @@ export default function PersonalDetails(props) {
         <>
         
 
-        {props.status == "completed" ? <button onClick={handleDetail}>Show Detail</button>:<></>}
+        {/* {props.status == "completed" ? <button onClick={handleDetail}>Show Detail</button>:<></>} */}
             <Box sx={{
                 display: 'flex',
                 flexDirection: { xs: "column", md: "row" },
@@ -127,6 +130,24 @@ export default function PersonalDetails(props) {
                     <Grid item xs={12} md={8}>
                         <Typography variant='h4' fontWeight='bold'>{props.name}</Typography>
                         <Typography style={contentStyle}>{formatString(props.gender)}</Typography>
+                        <div className={classes.centerButton}>
+                        {props.status == "completed" ? <Button
+                                variant="contained"
+                                
+                                onClick={handleDetail}
+                                sx={{
+                                bgcolor: "#382A41",
+                                fontSize: "15px",
+                                ":hover": {
+                                    bgcolor: "#CD366B",
+                                    color: "white",
+                                },
+                                }}
+                            >
+                                Process Overview
+                            </Button>:<></>}
+                            </div>
+
                     </Grid>
                     <Grid item xs={12} md={3} sx={{paddingTop: '11px',paddingLeft: '10px'}}>
                         <ProcessIcon onClick={handleProcess}/>
