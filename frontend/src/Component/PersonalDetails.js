@@ -7,8 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import ProcessIcon from '@mui/icons-material/DeveloperBoard';
 import { makeStyles } from "@material-ui/core/styles";
-
-
+import PdfGenerator from './PdfGenerator';
 const useStyles = makeStyles((theme) => ({
     centerButton: {
       display: "flex",
@@ -155,6 +154,9 @@ export default function PersonalDetails(props) {
                       {(state.user.role != "root"  &&  (props.status == "assigned" || props.status == "onGoing"))  && <AssignmentTurnedInIcon onClick={handleSchedule}  />  }
                       
                       {(state.user.role != "root"  &&  props.status == "notAssigned") && <AssignmentLateIcon onClick={handleSchedule} />}
+                    </Grid>
+                    <Grid>
+                        <PdfGenerator image={props.image} name={props.name} age={props.age} district={props.district} shelter={props.shelter}/>
                     </Grid>
                 </Grid>
                 </Box>

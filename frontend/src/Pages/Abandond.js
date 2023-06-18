@@ -19,6 +19,8 @@ import TableRow from "@mui/material/TableRow";
 import "../Css/ChildTable.css";
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
   centerButton: {
@@ -113,6 +115,7 @@ const Abandond = () => {
       });
       console.log(po);
       index = 0;
+      toast.success("Step Added");
       fetchData();
     } catch (err) {
       console.log(err);
@@ -149,7 +152,7 @@ const Abandond = () => {
       });
       console.log(pp);
       index = 0;
-
+      toast.success("Step Deleted");
       fetchData();
     } catch (err) {
       console.log(err);
@@ -169,6 +172,7 @@ const Abandond = () => {
 
   return (
     <>
+    <ToastContainer/>
       <Paper
         elevation={8}
         sx={{ margin: "50px auto", padding: "10px", width: "80vw" }}

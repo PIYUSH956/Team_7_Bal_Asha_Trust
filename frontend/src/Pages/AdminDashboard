@@ -1,0 +1,12 @@
+import React from "react";
+
+
+
+const AdminDashboard = () => {
+    
+  return (
+   <>I am Admin Dashboard</>
+  );
+};
+
+export default AdminDashboard;

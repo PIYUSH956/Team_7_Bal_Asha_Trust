@@ -23,6 +23,8 @@ import img1 from "../Images/LoginPageImage.jpg";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import IconButton from "@mui/material/IconButton";
 import { Grid, Button } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
   tableHeader: {
@@ -125,10 +127,10 @@ export default function RequestComplete() {
 
       await axios.post(URL + "/change-comletion-status",{childID:a,response:true});
       fetchData();
-      alert("Succesfully COmpleted");
+      toast.success("Succesfully COmpleted");
 
     }catch(er){
-            alert("Faild");
+            toast.error("Faild");
     }
   }
 
@@ -139,14 +141,15 @@ export default function RequestComplete() {
 
       await axios.post(URL + "/change-comletion-status",{childID:a,response:false});
       fetchData();
-      alert("Succesfully COmpleted");
+      toast.success("Succesfully COmpleted");
     }catch(er){
-            alert("Faild");
+      toast.error("Faild");
     }
   }
 
   return (
     <>
+    <ToastContainer/>
       {childData.map((data) => {
         return (
           <div

@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const columns = [
     { field: 'col1', headerName: 'Email', width: 480 },
     { field: 'col2', headerName: 'Username', width: 250 },
+    { field: 'col3', headerName: 'District', width: 250 },
 ];
 
 const categories = [
@@ -59,7 +60,8 @@ export default function App(props) {
                     const email = item.email;
                     const id = item._id;
                     const username = item.username;
-                    arr.push({ id,  col1: email, col2: username });
+                    const district = item.district;
+                    arr.push({ id,  col1: email, col2: username , col3:district});
                 }
                 setRow(arr);
                 console.log(arr);

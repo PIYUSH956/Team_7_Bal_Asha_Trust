@@ -23,6 +23,7 @@ import img1 from "../Images/LoginPageImage.jpg";
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import IconButton from '@mui/material/IconButton';
 import { Grid, Button,} from "@mui/material";
+import { TextField } from "@mui/material";
 
 
 const check  = (v) =>{
@@ -163,6 +164,12 @@ export default function PendingChildTable() {
     setFlag(!flag);
   };
 
+  const [copyList, setCopyList] = useState(childData)
+
+  const requestSearch = (searched) => {
+    setCopyList(childData.filter((item) => item.childName.includes(searched)))
+  }
+
 
   return (
     <>
@@ -204,7 +211,16 @@ export default function PendingChildTable() {
         <>
           <div className="table-content">
           
-            <Paper sx={{ width: "90%", overflow: "hidden" }}>
+            <Paper sx={{ width: "90%", overflow: "hidden",padding:"10px" }}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <TextField
+            variant='outlined'
+            placeholder='Search...'
+            type='search'
+            onInput={(e) => requestSearch(e.target.value)}
+          />
+            </div>
+            
             <div>
         <h3>** Cases which need urgent attention are highlighted.</h3>
       </div>
@@ -228,9 +244,7 @@ export default function PendingChildTable() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {childData.length != 0 &&
-                      childData
-                        .slice(
+                  {(copyList.length > 0 ? copyList : childData).slice(
                           page * rowsPerPage,
                           page * rowsPerPage + rowsPerPage
                         )

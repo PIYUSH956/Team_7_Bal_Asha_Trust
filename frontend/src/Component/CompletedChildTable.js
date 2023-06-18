@@ -170,7 +170,7 @@ export default function CompletedChildTable() {
           <div className="table-content">
             <Paper sx={{ width: "90%", overflow: "hidden" }}>
               <TableContainer sx={{ maxHeight: 580 }}>
-                <Table stickyHeader aria-label="sticky table">
+                <Table exportButton={true} stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow>
                       {columns.map((column) => (

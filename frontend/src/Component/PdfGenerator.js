@@ -37,9 +37,11 @@ const styles = StyleSheet.create({
     }
   });
 
+  
 
 const PdfGenerator = (props) => {
 
+  console.log(props);
   const MyDocument = () => (
     <Document>
     <Page size="A4" style={styles.page}>
@@ -49,13 +51,13 @@ const PdfGenerator = (props) => {
           <View style={styles.column}>
             <Text>{props.name}, a {props.age}-year-old, has been separated from their parents and is currently residing at {props.shelter}.</Text>
             <Text> We urgently need your assistance to reunite this brave child with their family.</Text>
-            <Text>{props.name}, as seen in the attached photograph, arrived at {props.shelter}, {props.district}, {props.district} on [Date of Admission].</Text>
+            <Text>{props.name}, as seen in the attached photograph, arrived at {props.shelter}, {props.district}, {props.district}.</Text>
             <Text> We are determined to find their parents and provide the loving reunion they long for.</Text>
             <Text>Please share any information that may help locate {props.name}'s parents. Contact {props.shelter} to share details. You may choose to remain anonymous.</Text>
           </View>
           <View style={styles.column}>
             <View style={styles.imageContainer}>
-              {/* <Image src={props.image} style={styles.image} /> */}
+              <Image src={props.image} style={styles.image} />
             </View>
             <View>
               <Text>Share this article and the photograph on social media platforms to broaden the search. Let's come together as a community and bring joy to this deserving child by reuniting them with their family.</Text>
@@ -74,10 +76,22 @@ const PdfGenerator = (props) => {
       <Paper style={{ padding: 20, marginTop: 40 }}>
         <Grid container spacing={2}>
           
-          <PDFDownloadLink document={<MyDocument />} fileName="news_article.pdf">
-              {({ loading}) =>
-                loading ? 'Generating PDF...' : 'Download PDF'
-              }
+          <PDFDownloadLink document={<MyDocument />}  fileName="news_article.pdf">
+              {({ loading }) => (
+              <button
+                style={{
+                  mt:'50px' ,background:'#382A41' , fontSize:'15px',
+                  color: 'white',
+                  padding: '10px 20px',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer'}}
+              >
+
+
+                {loading ? 'Generating PDF...' : 'Download News Article'}
+              </button>
+            )}
           </PDFDownloadLink>
           
         </Grid>

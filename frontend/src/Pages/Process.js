@@ -82,22 +82,22 @@ export default function Process() {
         const res = await axios.post("http://localhost:4000/api/get-value-present", { key: process[item].name, childID });
         console.log(process[item].name, res.data);
         if (res.data.m == false) {
-          alert(`Complete ${process[item].name} Steps`);
+          toast.error(`Complete ${process[item].name} Steps`);
           return;
         }
       } catch (err) {
         console.log(err);
-        alert(err.message);
+        toast.error(err.message);
         return;
       } 
     }
     // SET STATUS COMPLETED
     try {
       const res = await axios.post("http://localhost:4000/api/change-to-completed", {childID });
-      alert("Completed Succesfully");
+      toast.success("Completed Succesfully");
       console.log(res);
     } catch (err) {
-      alert(err.message);
+      toast.error(err.message);
       console.log(err);
     }
   }
@@ -109,7 +109,7 @@ export default function Process() {
       try {
         const res = await axios.post(URL + "/request-for-parent", {assignedWorkerName: state.user.username, note:notes, childID });
         console.log(res.data);
-        alert("Send Succesfully");
+        toast.success("Send Succesfully");
         
       } catch (err) {
         console.log(err);

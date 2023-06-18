@@ -311,7 +311,8 @@ exports.changeCompletionStatus= async (req,res) =>{
         await Case.findOneAndUpdate({childID},{$set:{status:"completed"}});
         return res.status(200).json({message:"Success"});
     }else{
-        await Request.findOneAndDelete({childID:req.body.childID});
+        const x= await Request.findOneAndDelete({childID:req.body.childID});
+        console.log(x,req.body.childID);
     }
 }catch(err){
     

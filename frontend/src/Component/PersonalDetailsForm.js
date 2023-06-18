@@ -180,6 +180,7 @@ export default function PersonalDetailsForm() {
           >
             <PhotoCamera />
           </IconButton>
+
         </label>
       </Grid>
 

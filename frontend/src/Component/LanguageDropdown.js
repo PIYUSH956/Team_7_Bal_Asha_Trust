@@ -10,8 +10,8 @@ function LanguageDropdown(props){
             <InputLabel id="demo-simple-select-table"><LanguageIcon/></InputLabel>
             <Select onChange={props.onChange}>
             <MenuItem value="en">English</MenuItem>
-            <MenuItem value="hi">Hindi</MenuItem>
-            <MenuItem value="mr">Marathi</MenuItem>
+            <MenuItem value="hi">हिन्दी</MenuItem>
+            <MenuItem value="mr">मराठी</MenuItem>
             </Select>
         </FormControl>
     );
